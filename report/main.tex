@@ -1,0 +1,969 @@
+%----------------------------------------------------------------------------------------
+%   Доорх хэсгийг өөрчлөх шаардлагагүй
+%----------------------------------------------------------------------------------------
+%!TEX TS-program = xelatex
+%!TEX encoding = UTF-8 Unicode
+\documentclass[12pt,a4paper]{report}
+
+\usepackage{fontspec,xltxtra,xunicode}
+\setmainfont[Ligatures=TeX]{Times New Roman}
+\setsansfont{Arial}
+
+% \usepackage[utf8x]{inputenc}
+% \usepackage[mongolian]{babel}
+%\usepackage{natbib}
+\usepackage{geometry}
+\geometry{a4paper, margin=2.5cm}
+\setlength{\headheight}{29.03363pt}
+%\usepackage{fancyheadings} fancyheadings is obsolete: replaced by fancyhdr. JL
+\usepackage{fancyhdr}
+% Set up page numbering style
+\pagestyle{fancy}
+\fancyhf{} % Clear all headers and footers
+\fancyfoot[C]{\thepage} % Page number at center bottom
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\usepackage{float}
+\usepackage{afterpage}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb,amsbsy}
+\usepackage{dcolumn,array}
+\usepackage{tocloft}
+\usepackage{styles/dics}
+% Ensure proper page numbering after dics.sty is loaded
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\thepage} % Page number at center bottom
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\usepackage{nomencl}
+\usepackage{upgreek}
+\newcommand{\argmin}{\arg\!\min}
+\usepackage{mathtools}
+\usepackage[hidelinks]{hyperref}
+
+% Packages for better text wrapping and line breaking
+\usepackage{microtype} % Improves text appearance and reduces overfull boxes
+\usepackage{ragged2e} % Better text justification
+\usepackage{hyphenat} % Better hyphenation control
+\usepackage{url} % Better URL line breaking
+
+% Emergency stretch to prevent overfull hboxes
+\emergencystretch=1em
+
+% Additional settings for better text handling
+\tolerance=1000
+\hyphenpenalty=50
+\exhyphenpenalty=50
+
+% Set line breaking parameters
+\linespread{1.05} % Slightly increase line spacing
+\clubpenalty=10000 % Prevent single lines at bottom of page
+\widowpenalty=10000 % Prevent single lines at top of page
+
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+\usepackage{listings}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\makeatletter
+\usepackage{caption}
+\captionsetup[table]{belowskip=0.5pt}
+\usepackage{subfiles}
+
+\usepackage{listings}
+\renewcommand{\lstlistingname}{Код}
+\renewcommand{\lstlistlistingname}{\lstlistingname ын жагсаалт}
+
+\usepackage{color}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.99,0.99,0.99}
+\definecolor{lightgray}{rgb}{0.83,0.83,0.83}
+ 
+\lstdefinestyle{mystyle}{
+    basicstyle=\ttfamily\small,
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=false,                 
+    numbers=left,                    
+    numbersep=10pt,                  
+    showspaces=false,                
+    showstringspaces=true,
+    showtabs=false,                  
+    tabsize=2,
+    % Additional settings for better line breaking
+    breakindent=1.5em,
+    postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
+    frame=single,
+    rulecolor=\color{lightgray},
+    columns=flexible,
+    % Ensure lines don't exceed margins
+    xleftmargin=2em,
+    xrightmargin=2em
+}
+ 
+\lstset{style=mystyle, label=DescriptiveLabel} 
+
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+\makenomenclature
+\begin{document}
+
+
+%----------------------------------------------------------------------------------------
+%   Өөрийн мэдээллээ оруулах хэсэг
+%----------------------------------------------------------------------------------------
+
+% Дипломийн ажлын сэдэв
+\title{МЭДЭЭЛЛИЙН ТЕХНОЛОГИЙН ХӨТӨЛБӨРИЙН ҮЙЛДВЭРИЙН ДАДЛАГЫН ТАЙЛАН}
+% Дипломын ажлын англи нэр
+\titleEng{Internship Report}
+% Өөрийн овог нэрийг бүтнээр нь бичнэ
+\author{Булганы Раднаабазар}
+% Өөрийн овгийн эхний үсэг нэрээ бичнэ
+\authorShort{Б.Раднаабазар}
+% Удирдагчийн зэрэг цол овгийн эхний үсэг нэр
+\supervisor{Директори. С.Дамдинсүрэн}
+% Хамтарсан удирдагчийн зэрэг цол овгийн эхний үсэг нэр
+\cosupervisor{}
+
+% СиСи дугаар 
+\sisiId{22B1NUM0286}
+% Их сургуулийн нэр
+\university{МОНГОЛ УЛСЫН ИХ СУРГУУЛЬ}
+% Бүрэлдэхүүн сургуулийн нэр
+\faculty{МЭДЭЭЛЛИЙН ТЕХНОЛОГИ, ЭЛЕКТРОНИКИЙН СУРГУУЛЬ}
+% Тэнхимийн нэр
+\department{МЭДЭЭЛЭЛ, КОМПЬЮТЕРИЙН УХААНЫ ТЭНХИМ}
+% Зэргийн нэр
+\degreeName{Дадлагын ажлын тайлан}
+% Суралцаж буй хөтөлбөрийн нэр
+\programeName{Мэдээллийн технологи (D061304)}
+% Хэвлэгдсэн газар
+\cityName{Улаанбаатар}
+% Хэвлэгдсэн огноо
+\gradyear{2025 оны 09 сар}
+
+
+%----------------------------------------------------------------------------------------
+%   Доорх хэсгийг өөрчлөх шаардлагагүй
+%----------------------------------------------------------------------------------------
+\include{src/main-pre}
+
+% Удиртгалыг оруулж ирэх ба abstract.tex файлд удиртгалаа бичнэ
+\include{src/abstract}
+
+%----------------------------------------------------------------------------------------
+%   Дипломын үндсэн хэсэг эндээс эхэлнэ
+%----------------------------------------------------------------------------------------
+%\addcontentsline{toc}{part}{БҮЛГҮҮД}
+% Шинэ бүлэг
+\chapter{Компанийн танилцуулга ба мэдээллийн системүүд}
+
+\section{"БиДиСЕК ҮЦК" ХК танилцуулга}
+"БиДиСек ҮЦК" ХК нь 1991 онд байгуулагдсан бөгөөд Монголын хөрөнгийн зах зээлд хамгийн олон харилцагчтай, тэргүүлэгч брокер, дилер, хөрөнгө оруулалтын зөвлөх, андеррайтерын  компаниудын нэг юм. Үнэт цаасны зах зээлийн арилжаанд зуучлах, шинээр үнэт цаас гаргахад болон хөрөнгө оруулалтын зөвлөгөө өгөх зэрэг цогц үйлчилгээ үзүүлдэг мэргэжлийн компаниудын нэг бөгөөд салбартаа тасралтгүй 30 гаруй жилийн үйл ажиллагаагаа явуулж байгаа туршлагатай.  
+
+Компанийн үндсэн үйл ажиллагаа нь дараах таван чиглэлээр хэрэгждэг.  
+
+\begin{enumerate}
+    \item \textbf{Брокер, дилерийн үйлчилгээ} \\
+    Монголын хөрөнгийн зах зээлд хувь хүн болон байгууллагуудад хөрөнгө оруулах боломжийг олгож, мэргэжлийн туршлагатай хамт олноор дамжуулан цогц үйлчилгээ үзүүлдэг.  
+
+    \item \textbf{Андеррайтерийн үйлчилгээ} \\
+    Үнэт цаас гаргалтыг зохион байгуулах, эрсдэлийн удирдлагыг хэрэгжүүлэх замаар үйлчлүүлэгчдэд найдвартай, мэргэжлийн шийдэл санал болгодог.  
+
+    \item \textbf{Хөрөнгө оруулалтын зөвлөх үйлчилгээ} \\
+    Компанийн засаглал, бүтцийн өөрчлөлт, хувьцаа эзэмшигчдийн хурлын зохион байгуулалт, арилжаа болон санхүүжилт татах зэрэг чиглэлээр зөвлөгөө өгдөг.  
+
+    \item \textbf{Гадаад арилжааны зуучлал} \\
+    Олон улсын хөрөнгийн зах зээлд арилжаа хийх боломжийг олгохоос гадна шаардлагатай зөвлөгөө, зуучлалын үйлчилгээг үзүүлдэг.  
+
+    \item \textbf{Уул уурхайн бүтээгдэхүүний арилжаа} \\
+    Монголын хөрөнгийн бирж дээр арилжаалагддаг уул уурхайн бүтээгдэхүүнийг харилцагчдад зуучлан арилжаа хийж өгдөг.  
+\end{enumerate}
+
+БиДиСек ҮЦК ХК нь санхүүгийн салбарын тэргүүлэгчийн хувьд үйлчлүүлэгчдийнхээ хэрэгцээнд нийцсэн шинэчлэл, дижитал үйлчилгээ нэвтрүүлэхэд байнга анхаарч ажилладаг. 
+
+Миний оролцсон \textbf{"Мини апп"} төсөл нь мерчант байгууллага өөрийн үйлчилгээг томоохон олон супер аппликейшн дотор мини-апп хэлбэрээр хэрэгжсэн бөгөөд брокерийн үйлчилгээ, төлбөр тооцоог илүү хүртээмжтэй, дэвшилтэт технологиор хангах зорилготой юм. Энэхүү систем нь тухайн системтэй OAuth механизмаар хэрэглэгчийн нэвтрэлтийг хангаж, фронтенд URL-ээр дамжуулан манай системтэй холбогддог.
+
+
+\section{Компанийн мэдээллийн системүүд}
+
+БиДиСек ҮЦК ХК нь брокер, дилерийн үйл ажиллагаагаа дэмжихийн тулд 
+олон төрлийн мэдээллийн системийг ашиглаж байна. Үүнд харилцагчийн бүртгэл, 
+арилжааны мэдээлэл, төлбөр тооцоо, үнэт цаасны хадгаламжийн мэдээлэл зэрэг 
+суурь үйл ажиллагааг дэмжсэн дотоод болон гадаад холболттой системүүд ордог.  
+
+\subsection{Одоогийн системийн байдал}
+
+Одоогийн байдлаар харилцагчийн бүртгэл, хөрөнгийн зах зээлийн арилжааг агуулсан үндсэн системийг тусдаа гадны системээр явуулдаг. Уг системд шинэчлэлт хийх, алдааг засахад хугацаа их зарцуулагддаг бөгөөд заримдаа дутуу засагдаж, хэрэглэгчийн туршлага муу байдаг. БиДиСЕК ҮЦК нь өөрийн нийт харилцагч зориулсан систем нарт дотооддоо хөгжүүлдэг боловч жинхэнэ брокер, дилерийн үйл ажиллагааг дэмжих цогц систем байгуулахад хангалтгүй байна. Мөн шинэ системийн модуль хөгжүүлэхэд гадны хөгжүүлэгчдээс хамааралтай байх нь бизнесийн үйл ажиллагааг удаашруулдаг.
+
+\section{Шинэчлэлийн хэрэгцээ}
+
+\subsection{Шаардлагатай өөрчлөлт}
+
+Эдгээр нөхцөл байдлаас шалтгаалан дараах өөрчлөлт шаардлагатай болсон:
+
+\begin{enumerate}
+    \item Компанийн ашиглаж байгаа гадны системийн үйлчилгээг бага багаар өөрсдөө хөгжүүлж, нэвтрүүлэх
+    \item Одоо байгаа системүүдийн өгөгдлийг илүү үр ашигтайгаар томоохон мерчантийн аппликейшнд нэгтгэх
+    \item Банкны API-тай шууд холбож, төлбөр тооцоог төвлөрсөн байдлаар гүйцэтгэх
+    \item ҮЦТХТ-тай интеграц хийж, харилцагчийн бүртгэлийн мэдээлэл болон KYC статусыг найдвартайгаар шинэчлэх
+    \item Үнэт цаас болон компанийн мэдээллийг бодит цагийн горимд хэрэглэгчдэд шууд хүргэж, дансаа цэнэглэж арилжаанд оролцуулах
+\end{enumerate}
+
+Ийм нөхцөлд \textbf{"Мини апп"} төслийг хэрэгжүүлснээр компанийн үйлчилгээний хүртээмжийг нэмэгдүүлэх, хэрэглэгчийн туршлагыг сайжруулах, өгөгдөл дамжуулалтын хурд болон найдвартай байдлыг нэмэгдүүлэх боломж бүрдсэн.
+
+
+\chapter{Төслийн ерөнхий танилцуулга ба шаардлага}
+
+\section{Төслийн ерөнхий танилцуулга}
+
+"Мини апп" төсөл нь БиДиСЕК ҮЦК-ийн харилцагчдад орчин үеийн дижитал үйлчилгээг хүргэх зорилгоор хөгжүүлсэн фүллстек веб аппликейшн юм. Энэхүү төсөл нь компанийн одоогийн гадны системийн хамаарлыг багасгаж, өөрийн хөгжүүлсэн системээр үйлчилгээний чанарыг сайжруулах зорилготой юм.
+
+Төслийн гол зорилго нь дараах үйлдлүүдийг нэгтгэсэн цогц системийг бүрдүүлэх явдал юм:
+\begin{itemize}
+    \item Мерчантийн аппликейшнд мини аппликейшн хэлбэрээр суурилуулах
+    \item Харилцагчийн бүртгэл хийх болон KYC статусыг шалгах
+    \item Бүртгэлийн шимтгэлийг банкны API-аар төлөх
+    \item Үнэт цаасны ханшийн өгөгдлийг бодит цагийн горимд харуулах
+    \item Харилцагчийн өөрийн үнэт цаасуудыг харах болон удирдах
+    \item Төлбөр тооцооны үйлдлийг төвлөрсөн байдлаар гүйцэтгэх
+    \item Үнэт цаасны хоёрдогч зах зээлийн арилжаанд оролцох
+\end{itemize}
+
+\section{Техникийн шаардлага}
+
+\subsection{Фронтенд шаардлага}
+Фронтенд хэсэгт дараах техникийн шаардлагуудыг тавьсан:
+\begin{itemize}
+    \item \textbf{Next.js framework} - React-д суурилсан сервер-сайд рендеринг болон статик сайт генераци
+    \item \textbf{TypeScript} - Кодын чанарыг сайжруулах, алдааг урьдчилан сэргийлэх
+    \item \textbf{Responsive Design} - Мобайл төхөөрөмж дээр ажиллах
+    \item \textbf{Modern UI/UX} - Figma-д боловсруулсан дизайн системийг хэрэгжүүлэх
+\end{itemize}
+
+\subsection{Бэкенд шаардлага}
+Бэкенд системд дараах техникийн шаардлагуудыг тавьсан:
+\begin{itemize}
+    \item \textbf{Node.js} - JavaScript runtime environment
+    \item \textbf{Express.js} - RESTful API хөгжүүлэх
+    \item \textbf{Prisma ORM} - Өгөгдлийн сантай ажиллах
+    \item \textbf{TypeScript} - SOLID зарчмыг баримтлах
+    \item \textbf{JWT Authentication} - Аюулгүй байдлыг хангах
+\end{itemize}
+
+\subsection{Интеграцийн шаардлага}
+Гадаад системүүдтэй холбогдох шаардлага:
+\begin{itemize}
+    \item \textbf{Банкны API} - Төлбөр тооцооны үйлчилгээ
+    \item \textbf{ҮЦТХТ SOAP API} - Харилцагчийн таних үйлчилгээ
+    \item \textbf{Кронжоб} - Өгөгдлийн автомат татах систем
+    \item \textbf{300,000+ мөртэй өгөгдөл} - Масс өгөгдлийн интеграци
+\end{itemize}
+
+\section{Системийн архитектур}
+
+Төслийн системийн архитектур нь гурван үндсэн давхаргаас бүрдэнэ:
+
+\subsection{Презентацийн давхарга (Frontend)}
+Next.js-д суурилсан реактив веб интерфейс бөгөөд дараах компонентуудыг агуулна:
+\begin{itemize}
+    \item Харилцагчийн бүртгэлийн форм
+    \item Төлбөр тооцооны интерфейс
+    \item Үнэт цаасны ханшийн харуулах самбар
+    \item Хувийн дансны удирдлага
+\end{itemize}
+
+\subsection{Бизнес логикийн давхарга (Backend)}
+Node.js-д суурилсан API сервер бөгөөд дараах үйлчилгээг үзүүлнэ:
+\begin{itemize}
+    \item Харилцагчийн бүртгэлийн үйлчилгээ
+    \item Төлбөр тооцооны үйлчилгээ
+    \item Үнэт цаасны мэдээллийн үйлчилгээ
+    \item Аюулгүй байдлын үйлчилгээ
+\end{itemize}
+
+\subsection{Өгөгдлийн давхарга (Data Layer)}
+Өгөгдлийн сан болон гадаад системүүдтэй холбогдох давхарга:
+\begin{itemize}
+    \item MySQL өгөгдлийн сан
+    \item Гадаад API интеграци
+    \item Кэш систем 
+    \item Файл хадгалалт
+\end{itemize}
+
+\section{Хэрэглэгчийн шаардлага}
+
+\subsection{Функциональ шаардлага}
+\begin{enumerate}
+    \item \textbf{Харилцагчийн бүртгэл} - Шинэ харилцагч бүртгэх, KYC статус шалгах
+    \item \textbf{Төлбөр тооцоо} - Бүртгэлийн шимтгэл төлөх, данс цэнэглэх
+    \item \textbf{Үнэт цаасны мэдээлэл} - Ханш харах, портфолио удирдах
+    \item \textbf{Хувийн мэдээлэл} - Профайл засах
+    \item \textbf{Алдаа мэдэгдэгч сервис} - Системийн түвшинд гарсан алдааг Discord-ээр мэдэгдэх
+\end{enumerate}
+
+\subsection{Функциональ бус шаардлага}
+\begin{enumerate}
+    \item \textbf{Аюулгүй байдал} - HTTPS, JWT токен, шифрлэлт
+    \item \textbf{Гүйцэтгэл} - 3 секундын дотор хуудас ачаалах
+    \item \textbf{Хүртээмж} - 24/7 үйлчилгээ, 99.9\% uptime
+\end{enumerate}
+
+\chapter{Техникийн хэрэгжүүлэлт}
+
+\section{Системийн архитектур}
+
+Мини апп төсөл нь дараах архитектураар бүтээгдсэн:
+
+\begin{itemize}
+    \item \textbf{Merchant Super App} - Mерчант аппликейшны мобайл аппликейшн дотор мини-апп хэлбэрээр суурилуулагдсан
+    \item \textbf{Frontend} - Next.js TypeScript-ээр бичигдсэн веб интерфейс
+    \item \textbf{Backend} - Node.js Express фреймворк дээр суурилсан RESTful API сервер
+    \item \textbf{Өгөгдлийн сан} - MySQL өгөгдлийн сан Prisma ORM-ээр удирддаг
+    \item \textbf{Гадаад интеграци} - Merchant Super App OAuth, ҮЦТХТ SOAP үйлчилгээ
+\end{itemize}
+
+\section{Фронтенд хөгжүүлэлт}
+
+\subsection{Next.js болон TypeScript}
+Next.js framework ашиглан React-д суурилсан фронтенд системийг хөгжүүлсэн. Кодын чанарыг сайжруулах, алдааг урьдчилан сэргийлэх зорилгоор TypeScript ашигласан.
+
+\subsection{Бүртгэлийн форм - Zod + React Hook Form}
+Хэрэглэгчийн бүртгэлийн формыг React Hook Form болон Zod schema validation ашиглан хэрэгжүүлсэн. Энэ нь хүчтэй типийн аюулгүй байдал болон хэрэглэгчийн таалагдах туршлагыг хангадаг.
+
+\section{Бэкенд хөгжүүлэлт}
+
+\subsection{SOLID зарчмууд ба хэрэгжүүлэлт}
+
+SOLID зарчим нь объект хандалттай программчлалын таван үндсэн зарчим бөгөөд манай төслийн кодод дараах байдлаар хэрэгжсэн:
+
+\subsubsection{Single Responsibility Principle (SRP)}
+Нэг класс зөвхөн нэг шалтгаанаар өөрчлөгдөх ёстой гэсэн зарчим:
+
+\textbf{Controller-ууд:} Зөвхөн HTTP хүсэлт болон хариулт боловсруулна
+\begin{lstlisting}[language=Java, caption=SRP - UserController]
+export class UserController {
+  // Зөвхөн HTTP layer-ийн хариуцлага
+  merchantRegistration = catchAsync(async (req, res, next) => {
+    const result = await userService.merchantRegistration(req.body);
+    res.status(200).json({ success: true, data: result });
+  });
+}
+\end{lstlisting}
+
+\textbf{Service-үүд:} Зөвхөн бизнес логик боловсруулна
+\begin{lstlisting}[language=Java, caption=SRP - Service Layer]
+export class UserService {
+  // Зөвхөн бизнес логикийн хариуцлага
+  async merchantRegistration(data: any) {
+    // Валидаци, бизнес дүрэм шалгах
+    // Өгөгдлийн сантай ажиллах
+  }
+}
+\end{lstlisting}
+
+\subsubsection{Dependency Injection ба Inversion of Control}
+Dependency Injection нь класс өөрийн хамаарлыг шууд үүсгэдэггүй, гаднаас өгөгддөг арга юм:
+
+\textbf{Notification Service-ийн DI Хэрэгжүүлэлт:}
+\begin{lstlisting}[language=Java, caption=Dependency Injection Pattern]
+// Interface-ээр хамаарлыг abstract хийх
+interface NotificationChannel {
+  send(message: string): Promise<void>;
+}
+
+// Concrete implementation-ууд
+class DiscordChannel implements NotificationChannel {
+  async send(message: string) { /* Discord логик */ }
+}
+
+class EmailNotifier implements NotificationChannel {
+  async send(message: string) { /* Email логик */ }
+}
+
+// Service нь хамаарлыг гаднаас авна
+export class NotifierService {
+  private channels: NotificationChannel[] = [];
+  
+  addChannel(channel: NotificationChannel) {
+    this.channels.push(channel); // DI pattern
+  }
+}
+\end{lstlisting}
+
+Энэ арга нь:
+\begin{itemize}
+    \item Тест хийхэд хялбар (mock dependency inject хийх)
+    \item Код өөрчлөхөд уян хатан
+    \item Шинэ notification channel нэмэхэд хялбар
+\end{itemize}
+
+\subsubsection{Interface Segregation Principle}
+Харилцагч зөвхөн өөрт хэрэгтэй interface ашиглах ёстой:
+
+Merchant Super App-тай холбогдох үйлчилгээнүүдийг тусдаа service-ээр салгасан:
+\begin{itemize}
+    \item \textbf{MerchantService} - Ecommerce API (төлбөр тооцоо)
+    \item \textbf{MerchantSuperService} - Super App API (OAuth, хэрэглэгчийн мэдээлэл)
+\end{itemize}
+
+\subsection{Express.js API}
+RESTful API-г Express.js framework ашиглан хөгжүүлсэн. Middleware-ээр JWT токен баталгаажуулалт, алдаа боловсруулалт, лог бичлэг зэргийг хэрэгжүүлсэн.
+
+\subsection{Өгөгдлийн сан удирдлага}
+Prisma ORM ашиглан MySQL өгөгдлийн сантай холбогдсон. Энэ нь type-safe өгөгдлийн сангийн хандалт, автомат migration, болон хөгжүүлэлтийн үр ашгийг нэмэгдүүлдэг.
+
+\section{Merchant Super App OAuth интеграци}
+
+\subsection{OAuth-ийн дэлгэрэнгүй хэрэгжүүлэлт}
+
+OAuth Authorization Code Flow нь хамгийн аюулгүй authorization grant төрөл бөгөөд веб аппликейшнд зориулагдсан. Манай системд дараах алхмуудаар хэрэгжсэн:
+
+\textbf{1. Authorization хүсэлт:}
+Хэрэглэгч Merchant Super App супер апп дотор мини-апп руу шилжих үед систем рүү authorization code хүсэлт илгээнэ.
+
+\textbf{2. Authorization Code авах:}
+Merchant Super App хэрэглэгчийг баталгаажуулсны дараа authorization code өгч, мини-апп руу redirect хийнэ.
+
+\textbf{3. Access Token солилцоо:}
+Authorization code-г ашиглан access token болон refresh token авах:
+
+\begin{lstlisting}[language=Java, caption=Merchant Super App OAuth Token Exchange]
+async getToken(code: string, userId: number | null = null) {
+  const url = this.BASE_URL + "/v3/superapp/oauth/token";
+  const body = qs.stringify({
+    code: code,
+    redirect_uri: this.URL,
+    client_id: this.CLIENT_ID,
+    client_secret: this.CLIENT_SECRET,
+  });
+  
+  const response = await axios.post(url, body, {
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    params: { grant_type: "authorization_code" }
+  });
+  
+  // Refresh token-г өгөгдлийн санд хадгалах
+  if (userId) {
+    await db.user.update({
+      where: { id: userId },
+      data: { refreshToken: response.data.refresh_token }
+    });
+  }
+  
+  return response.data;
+}
+\end{lstlisting}
+
+\subsection{Refresh Token механизм}
+Access token дуусах үед refresh token ашиглан шинэ token авах систем:
+
+\begin{lstlisting}[language=Java, caption=Refresh Token Rotation]
+async refreshToken(refresh_token: string, userId: number) {
+  const url = this.BASE_URL + "/v3/superapp/oauth/refreshToken";
+  const body = new URLSearchParams({ refresh_token });
+  
+  const response = await axios.post(url, body.toString(), {
+    auth: {
+      username: this.CLIENT_ID,
+      password: this.CLIENT_SECRET
+    },
+    headers: { "Content-Type": "application/x-www-form-urlencoded" }
+  });
+  
+  // Шинэ refresh token-г өгөгдлийн санд шинэчлэх
+  await db.user.update({
+    where: { id: userId },
+    data: { refreshToken: response.data.refresh_token }
+  });
+  
+  return response.data;
+}
+\end{lstlisting}
+
+\section{Үнэт цаасны үйлчилгээ ба синхронизаци}
+
+\subsection{Үнэт цаасны өгөгдөл татах}
+Үнэт цаасны ханш, компанийн мэдээлэл зэрэг өгөгдлийг гадаад API-аас тогтмол татаж авдаг:
+
+\begin{itemize}
+    \item \textbf{Cron Job} - Тогтмол хугацаанд үнэт цаасны ханшийг шинэчлэх. Хугацааны давтамжаар Fine-tuning хийв.
+    \item \textbf{Delta дата} - Зөвхөн өөрчлөгдсөн өгөгдлийг илгээх
+    \item \textbf{Socket Server} - Бодит цагийн горимд клиент руу өгөгдөл дамжуулах
+\end{itemize}
+
+\subsection{Socket Server бодит цагийн өгөгдөл}
+WebSocket ашиглан үнэт цаасны ханшийн өөрчлөлтийг бодит цагт илгээх:
+
+\begin{lstlisting}[language=Java, caption=Real-time Securities Data via WebSocket]
+// Socket Server - бодит цагийн өгөгдөл дамжуулах
+io.on('connection', (socket) => {
+  socket.on('subscribe_securities', (symbols) => {
+    // Тодорхой үнэт цаас бүртгүүлэх
+    socket.join(`securities_${symbols.join('_')}`);
+  });
+  
+  socket.on('unsubscribe_securities', (symbols) => {
+    socket.leave(`securities_${symbols.join('_')}`);
+  });
+});
+
+// Cron job-аас өгөгдөл шинэчлэгдэх үед
+async function broadcastSecuritiesUpdate(updatedData) {
+  // Delta дата бэлтгэх (зөвхөн өөрчлөгдсөн өгөгдөл)
+  const deltaData = calculateDelta(previousData, updatedData);
+  
+  // Бүртгүүлсэн клиентуудад илгээх
+  deltaData.forEach(security => {
+    io.to(`securities_${security.symbol}`)
+      .emit('security_update', {
+        symbol: security.symbol,
+        price: security.currentPrice,
+        change: security.priceChange,
+        timestamp: new Date()
+      });
+  });
+}
+\end{lstlisting}
+
+\section{ҮЦТХТ интеграци}
+
+\subsection{300,000+ мөртэй өгөгдөл синхронизаци}
+Гадны системээс 300,000 гаруй мөртэй өгөгдлийг файл хэлбэрээр татаж авч, хурдан хайлт хийх боломжтой индекс файл үүсгэсэн.
+
+\subsection{Тэмдэгт мөрөөр хайлт}
+Binary search ашиглан O(log n) хурдтайгаар тэмдэгт мөрөөр хайлт хийх алгоритм:
+
+\begin{lstlisting}[language=Java, caption=Optimized Registry Number Search]
+export async function findAccountByRegistryNumber(registryNumber: string) {
+  // Индекс файлаас бинари хайлт
+  const index = await loadIndex();
+  const indexEntry = binarySearchIndex(index, registryNumber);
+  
+  if (!indexEntry) {
+    return { success: false, message: "Account not found" };
+  }
+  
+  // Файлаас зөвхөн шаардлагатай хэсгийг унших
+  const fileStream = fs.createReadStream(accountsFilePath, {
+    start: indexEntry.byteOffset,
+    highWaterMark: 4096
+  });
+  
+  let data = "";
+  for await (const chunk of fileStream) {
+    data += chunk;
+    const newlineIndex = data.indexOf("\n");
+    if (newlineIndex !== -1) {
+      const account = JSON.parse(data.slice(0, newlineIndex));
+      fileStream.destroy();
+      return { success: true, data: account };
+    }
+  }
+}
+\end{lstlisting}
+
+\subsection{ҮЦТХТ SetAccounts давталт механизм}
+ҮЦТХТ системд хэрэглэгч бүртгэх үед давхцал гарсан тохиолдолд автомат дахин оролдлого хийх механизм:
+
+\begin{lstlisting}[language=Java, caption=ҮЦТХТ Retry Logic with Duplicate Handling]
+async function attemptҮЦТХТSetAccounts(userId: number, data: any, maxRetries = 10) {
+  let attempts = 0;
+  let currentData = { ...data };
+  
+  while (attempts < maxRetries) {
+    const result = await ҮЦТХТSetAccounts(userId, currentData);
+    
+    // Амжилттай
+    if (result.ResponseCode === 1) {
+      return result;
+    }
+    
+    // Давхцал шийдвэрлэх
+    if (result.duplicated === "accountId") {
+      currentData.accountId = RandomAccountID();
+      attempts++;
+      continue;
+    } else if (result.duplicated === "accountNumber") {
+      currentData.accountNumber = RandomAccountNumber();
+      attempts++;
+      continue;
+    }
+    
+    throw new AppError(result.ResponseMessage || "ҮЦТХТ Service error", 400);
+  }
+}
+\end{lstlisting}
+
+\chapter{Хөгжүүлэлтийн явц}
+
+\section{Багийн ажиллагаа ба хариуцлага хуваарилалт}
+
+Төслийг багаар хэрэгжүүлсэн бөгөөд миний үндсэн хариуцлага нь:
+
+\begin{itemize}
+    \item \textbf{Бэкенд хөгжүүлэлт} - Node.js Express API, Merchant Super App болон ҮЦТХТ интеграци
+    \item \textbf{Фронтенд бүртгэлийн форм} - Zod + React Hook Form ашиглан хэрэглэгчийн бүртгэлийн хэсэг, дизайн, алдаа засах
+    \item \textbf{VPS системийн администраци} - Nginx, PM2, MySQL, Docker суурилуулалт болон тохиргоо
+    \item \textbf{CI/CD pipeline} - GitHub Actions ашиглан автомат deploy систем
+\end{itemize}
+
+\section{Төслийн төлөвлөлт}
+
+Төслийн төлөвлөлт болон даалгавар хуваарилалтыг Excel файлаар хэрэгжүүлсэн:
+
+\begin{itemize}
+    \item \textbf{Системийн төслийн төлөвлөгөө} - Төслийн ерөнхий төлөвлөгөө, milestone-ууд, хугацаа
+    \item \textbf{Системийн шаардлага} - Функциональ болон функциональ бус шаардлагууд
+    \item \textbf{Даалгаврын хуваарилалт} - Баг гишүүн тус бүрийн хариуцах даалгаврууд
+\end{itemize}
+
+\section{Хөгжүүлэлтийн аргачлал}
+
+\subsection{Git workflow}
+GitHub дээр feature branch workflow ашиглан хөгжүүлэлт хийсэн. Код өөрчлөлт бүрийг pull request-ээр хянуулж, code review хийсний дараа main branch руу merge хийсэн. Дараа нь Github Workflow нь CI/CD процессийг ажиллуулдаг.
+
+\subsection{Code standards}
+TypeScript, Prettier ашиглан кодын чанарыг хангасан..
+
+\section{Тулгарсан бэрхшээлүүд}
+
+\subsection{Merchant Super App OAuth интеграци}
+Merchant Super App-ийн OAuth flow нь refresh token rotation механизмтай байсан. Энэ нь хэрэглэгчийн session-г тогтвортой байлгахад бэрхшээл үүсгэсэн.
+
+\textbf{Шийдэл:} Refresh token-г өгөгдлийн санд хадгалж, access token дуусах үед автомат шинэчлэх механизм хэрэгжүүлсэн.
+
+\subsection{ҮЦТХТ системийн давхцал}
+ҮЦТХТ системд хэрэглэгч бүртгэх үед accountId болон accountNumber давхцал гарах асуудал байсан.
+
+\textbf{Шийдэл:} Retry механизм хэрэгжүүлж, давхцал гарсан тохиолдолд шинэ ID, дугаар үүсгэж дахин оролдох систем бүтээсэн.
+
+\subsection{300,000+ мөртэй өгөгдлийн хайлт}
+Гадны системээс 300,000 гаруй мөртэй өгөгдлөөс 10 урттай тэмдэгт мөрөөр хайлт хийх нь удаан байсан.
+
+\textbf{Шийдэл:} Индекс файл үүсгэж, binary search алгоритм ашиглан O(log n) хурдтай хайлт хэрэгжүүлсэн. Энэ нь хайлтын хурдыг дараах байдлаар сайжруулсан:
+\begin{itemize}
+    \item Хайлтын хугацаа: 5-40ms 
+    \item Өмнөх шугаман хайлтын хэрэгжүүлэлтийн хугацаа: 2минут
+    \item Санах ойн хэрэглээ: 50MB-аас бага
+    \item Файл уншилт: Зөвхөн шаардлагатай хэсэг (4KB buffer)
+\end{itemize}
+
+\chapter{Туршилт, нэвтрүүлэлт ба үр дүн}
+
+\section{Туршилт}
+
+\subsection{API туршилт}
+Postman ашиглан бүх API endpoint-уудыг туршиж, янз бүрийн тохиолдолд (амжилттай, алдаатай) зөв хариулт буцаах эсэхийг шалгасан.
+
+\subsection{Merchant Super App интеграцийн туршилт}
+Merchant Super App-ийн OAuth flow, refresh token механизм, invoice үүсгэлт болон төлбөрийн статус шалгалтыг туршсан.
+
+\subsection{ҮЦТХТ интеграцийн туршилт}
+ҮЦТХТ системтэй холбогдох SOAP үйлчилгээг туршиж, хэрэглэгч бүртгэх, тэмдэгт мөрөөр хайх зэрэг функцийг баталгаажуулсан.
+
+\section{VPS нэвтрүүлэлт}
+
+\subsection{Серверийн тохиргоо}
+Төслийг VPS сервер дээр нэвтрүүлсэн:
+
+\begin{table}[h]
+\centering
+\caption{VPS серверийн хамгийн бага шаардагдах техникийн үзүүлэлт}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Параметр} & \textbf{Утга} \\
+\hline
+CPU & 2 vCPU \\
+\hline
+RAM & 2GB \\
+\hline
+Хадгалах сан & SSD \\
+\hline
+Үйлдлийн систем & Ubuntu 20.04 LTS \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Серверийн архитектур}
+Docker container ашиглан нэг VPS сервер дээр ихэнх компонентийг суурилуулсан:
+
+\begin{itemize}
+    \item \textbf{Nginx} - Reverse proxy, SSL termination, статик файл өгөх
+    \item \textbf{Backend Container} - Node.js Express API сервер Docker image-ээр
+    \item \textbf{Frontend Container} - Next.js статик файл Nginx container-ээр өгөх
+    \item \textbf{MySQL} - Өгөгдлийн сан
+    \item \textbf{Dockerfile} - Автомат нэвтрүүлэлт
+\end{itemize}
+
+\subsection{CI/CD Pipeline}
+GitHub Actions ашиглан Docker-тай автомат deploy систем хэрэгжүүлсэн:
+
+\begin{enumerate}
+    \item \textbf{Build} - Docker image-ууд build хийх (frontend, backend)
+    \item \textbf{Deploy} - SSH ашиглан серверт Docker image татах
+    \item \textbf{Restart} - Dockerfile ашиглан container-уудыг дахин эхлүүлэх
+\end{enumerate}
+
+\section{Гүйцэтгэлийн үзүүлэлтүүд}
+
+\subsection{Хариу өгөх хугацаа}
+Системийн хариу өгөх хугацааг хэмжсэн үр дүн:
+
+\begin{itemize}
+    \item \textbf{API хүсэлт} - Дундаж 50-200ms
+    \item \textbf{Тэмдэгт мөрний хайлт} - 5-40ms (binary search)
+    \item \textbf{ҮЦТХТ SOAP үйлчилгээ} - 1-5 секунд
+    \item \textbf{Merchant Super App API} - 100ms-1 секунд
+\end{itemize}
+
+\section{Үр дүн}
+
+Төсөл амжилттай хэрэгжиж, дараах үр дүнд хүрсэн:
+
+\begin{itemize}
+    \item Merchant Super App хэрэглэгч системд хүрэх боломжтой болсон
+    \item ҮЦТХТ системтэй найдвартай интеграци бүрдэж, хэрэглэгчийн бүртгэл автоматжсан
+    \item Хурдан хайлт алгоритмаар тэмдэгт мөрөөр хайх цаг хугацааг эрс багасгасан
+    \item JWT болон refresh token механизмаар аюулгүй нэвтрэлт хангасан
+\end{itemize}
+
+\chapter{Дүгнэлт ба суралцалт}
+
+\section{Олж авсан туршлага}
+
+\subsection{Техникийн чадвар}
+Энэхүү дадлагаар дараах техникийн чадваруудыг олж авсан:
+
+\begin{itemize}
+    \item \textbf{Фүллстек хөгжүүлэлт} - Next.js React фронтенд болон Node.js Express бэкенд
+    \item \textbf{TypeScript} - Type safety болон кодын чанарыг сайжруулах арга техник
+    \item \textbf{Өгөгдлийн сангийн дизайн} - Prisma ORM, MySQL schema design, migration
+    \item \textbf{API интеграци} - REST API, SOAP үйлчилгээ, OAuth механизм
+    \item \textbf{DevOps} - VPS суурилуулалт, Nginx тохиргоо, PM2, CI/CD pipeline, Docker
+    \item \textbf{Алгоритм оновчлол} - Binary search, индекс файл, файл streaming
+\end{itemize}
+
+\subsection{Санхүүгийн салбарын мэдлэг}
+БиДиСЕК ҮЦК-д ажиллаж санхүүгийн салбарын тодорхой мэдлэг олж авсан:
+
+\begin{itemize}
+    \item Брокер, дилерийн үйл ажиллагаа
+    \item ҮЦТХТ системийн ажиллагаа
+    \item KYC (Know Your Customer) процесс
+    \item Төлбөрийн систем, invoice механизм
+    \item Үнэт цаасны арилжаа, портфолио удирдлага
+\end{itemize}
+
+\subsection{Багийн ажиллагаа}
+\begin{itemize}
+    \item Git workflow, code review процесс
+    \item Agile methodology, task planning Excel-ээр
+    \item Код стандарт тогтоох, ESLint/Prettier setup
+    \item Техникийн баримт бичиг боловсруулах
+\end{itemize}
+
+\section{Техникийн шийдлийн ач холбогдол}
+
+\subsection{Binary search хайлтын давуу тал}
+300,000+ өгөгдлөөс тэмдэгт мөрөөр хайх алгоритм:
+
+\begin{itemize}
+    \item \textbf{Хурд} - O(log n) алгоритм, 5-40ms хайлт
+    \item \textbf{Санах ой} - 50MB-аас бага memory usage
+    \item \textbf{Өргөтгөх чадвар} - Өгөгдөл 10 дахин ихэссэн ч хайлтын хурд бараг өөрчлөгдөхгүй
+    \item \textbf{Шууд файл хандалт} - Зөвхөн шаардлагатай хэсгийг уншиж, I/O-г хэмнэнэ
+\end{itemize}
+
+\subsection{OAuth refresh token механизм}
+Merchant Super App-тай интеграцийн аюулгүй байдлыг хангасан арга:
+
+\begin{itemize}
+    \item Access token богино хугацаатай (15 минут), аюулгүй байдлыг нэмэгдүүлнэ
+    \item Refresh token rotation хэрэглэгчийн мэдээлэл хулгайлагдахаас хамгаална
+    \item Автомат token шинэчлэх механизм хэрэглэгчийн туршлагыг сайжруулна
+\end{itemize}
+
+\section{Ирээдүйн хөгжүүлэлт}
+
+\subsection{Системийн сайжруулалт}
+\begin{itemize}
+    \item Өгөгдлийн санг тусдаа серверт шилжүүлж scalability нэмэгдүүлэх
+    \item Redis кэш нэмж API хариу өгөх хурдыг сайжруулах
+    \item Docker compose ашиглан deployment хялбарчлах
+    \item Үнэт цаасны хоёрдогч зах зээлийн арилжааны сервисийг холбох
+    \item Бодит орчинд нэвтрүүлэх
+\end{itemize}
+
+
+
+
+%----------------------------------------------------------------------------------------
+%   Дүгнэлт эндээс эхэлнэ
+%----------------------------------------------------------------------------------------
+\conclusion{Дүгнэлт}
+Энэхүү үйлдвэрийн дадлагаар БиДиСЕК ҮЦК компанид "Мини апп" төслийг амжилттай хэрэгжүүлсэн. Төсөл нь томоохон мерчантийн аппликейшн дотор мини-апп хэлбэрээр суурилуулагдаж, компанийн дижитал шинэчлэлийн зорилгодоо хүрэхэд чухал хувь нэмэр оруулсан.
+
+Техникийн хөгжүүлэлтийн хувьд Next.js React фронтенд, Node.js Express бэкенд, TypeScript, MySQL ашиглан SOLID зарчмыг дагасан архитектур бүтээсэн. Merchant Super App OAuth механизм, ҮЦТХТ SOAP API интеграци, 300,000+ мөртэй өгөгдлөөс binary search алгоритмаар хурдан хайлт хийх(5-40ms), үнэт цаасны real-time дата WebSocket ашиглан дамжуулах систем зэрэг олон чухал арга техникийг амжилттай хэрэгжүүлсэн.
+
+Фүллстек веб хөгжүүлэлт, API интеграци, real-time дата боловсруулалт, Docker containerization, DevOps практик зэрэг олон чиглэлийн техникийн чадваруудыг эзэмшсэн. Мөн багийн ажиллагаа, төслийн удирдлага, Git workflow, CI/CD pipeline зэрэг мэргэжлийн ур чадваруудыг хөгжүүлсэн.
+
+Энэхүү дадлагын үр дүнд санхүүгийн технологийн салбарт бодит ажлын туршлага олж авч, ирээдүйд илүү том, нарийн төвөгтэй системүүд хөгжүүлэх, санхүүгийн технологийн салбарт хувь нэмрээ оруулах чадварыг эзэмшсэн.
+
+%----------------------------------------------------------------------------------------
+%   Дипломын номзүй, хавсралтын хэсэг эндээс эхэлнэ
+%----------------------------------------------------------------------------------------
+
+\singlespace
+\addcontentsline{toc}{part}{НОМ ЗҮЙ}
+\begin{thebibliography}{}
+	% Ашигласан материалыг эндээс оруулна
+	\bibitem{nextjs}
+	Next.js Documentation, \url{https://nextjs.org/docs}
+	\bibitem{nodejs}
+	Node.js Documentation, \url{https://nodejs.org/docs}
+	\bibitem{typescript}
+	TypeScript Documentation, \url{https://www.typescriptlang.org/docs}
+	\bibitem{prisma}
+	Prisma Documentation, \url{https://www.prisma.io/docs}
+	\bibitem{jwt}
+	JWT.io Documentation, \url{https://jwt.io/introduction}
+	\bibitem{express}
+	Express.js Documentation, \url{https://expressjs.com/}
+	\bibitem{mysql}
+	MySQL Documentation, \url{https://dev.mysql.com/doc/}
+	\bibitem{react}
+	React Documentation, \url{https://react.dev/}
+  \bibitem{docker}
+  Docker Documentation, \url{https://docs.docker.com/}
+\end{thebibliography}
+
+
+%----------------------------------------------------------------------------------------
+%   Хавсралтууд эндээс эхэлнэ
+%----------------------------------------------------------------------------------------
+\appendix
+\addcontentsline{toc}{part}{ХАВСРАЛТ}
+
+% Хавсралтын нэр. Хавсралт гэдэг үг агуулахгүй
+\chapter{Нүүр хуудас}
+NextJS дээр Figma-гийн дизайныг амжилттай хэрэгжүүлсэн.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{figures/mainPage.jpeg}
+    \caption{Нүүр хуудас}
+    \label{fig:home}
+\end{figure}
+
+% Хавсралтын нэр. Хавсралт гэдэг үг агуулахгүй
+\chapter{Кодын хэрэгжүүлэлт}
+
+\section{Merchant Super App OAuth нэвтрэлт}
+
+\begin{lstlisting}[language=Java, caption=Merchant App Authorization Redirect Handler]
+router.get("/merchantA", async (req, res) => {
+  const { code, scope } = req.query;
+  
+  // Merchant OAuth code-г token-д солих
+  const tokenRes = await merchantService.getCode(code as string);
+  const merchantInformation = await merchantService.getUserInfo(
+    tokenRes.access_token
+  );
+  
+  // Хэрэглэгч өгөгдлийн санд байгаа эсэхийг шалгах
+  const user = await db.user.findFirst({
+    where: { merchantUser: { userIdMerchant: merchantInformation.userId } },
+    include: { user: true, merchantUser: true }
+  });
+  
+  let token;
+  if (user) {
+    // Хэрэглэгч бүртгэлтэй бол JWT токен үүсгэх
+    const payload = { id: user.user.id, role: "USER", type: "merchant" };
+    token = jwt.sign(payload, env.JWT_SECRET);
+    
+    // Хэрэглэгчийн Refresh Token-ыг шинэчлэх
+  } else {
+    // Шинэ хэрэглэгч бүртгэх
+    token = jwt.sign({ id: merchantUser.id, role: "USER" }, env.JWT_SECRET);
+  }
+  
+  // JWT токенийг cookie-д хадгалах
+  res.cookie("token", token, {
+    httpOnly: false,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "lax",
+    maxAge: 24 * 60 * 60 * 1000 // 1 day
+  });
+  
+  res.redirect(process.env.PROD_FRONTURL);
+});
+\end{lstlisting}
+
+\section{Cron job болон тогтмол синхронизаци}
+
+\begin{lstlisting}[language=Java, caption=Securities Data Synchronization Cron Job]
+// Cron job - тогтмол хугацаанд үнэт цаасны өгөгдөл шинэчлэх
+const cron = require('node-cron');
+
+cron.schedule(crontabExpression, async () => {
+  try {
+    console.log('Starting securities data sync...');
+    
+    // Гадаад API-аас үнэт цаасны өгөгдөл татах
+    const latestSecuritiesData = await fetchSecuritiesFromAPI();
+    
+    // Өгөгдлийн санд хадгалагдсан өмнөх өгөгдөлтэй харьцуулах
+    const previousData = await getStoredSecuritiesData();
+    
+    // Delta дата тооцоолох (зөвхөн өөрчлөлттэй өгөгдөл)
+    const deltaChanges = calculateSecuritiesDelta(previousData, latestSecuritiesData);
+    
+    if (deltaChanges.length > 0) {
+      // Өгөгдлийн санд шинэчлэх
+      await updateSecuritiesInDatabase(deltaChanges);
+      
+      // WebSocket-ээр клиентуудад илгээх
+      broadcastSecuritiesUpdate(deltaChanges);
+      
+      console.log(`Updated ${deltaChanges.length} securities`);
+    }
+  } catch (error) {
+    console.error('Securities sync failed:', error);
+  }
+});
+
+// Delta тооцоолох функц
+function calculateSecuritiesDelta(oldData, newData) {
+  const changes = [];
+  
+  newData.forEach(newSecurity => {
+    const oldSecurity = oldData.find(old => old.symbol === newSecurity.symbol);
+    
+    if (!oldSecurity || oldSecurity.price !== newSecurity.price) {
+      changes.push({
+        symbol: newSecurity.symbol,
+        oldPrice: oldSecurity?.price || 0,
+        newPrice: newSecurity.price,
+        change: newSecurity.price - (oldSecurity?.price || 0),
+        timestamp: new Date()
+      });
+    }
+  });
+  
+  return changes;
+}
+\end{lstlisting}
+
+
+\end{document}
