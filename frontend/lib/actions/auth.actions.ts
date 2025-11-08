@@ -1,8 +1,10 @@
 "use server";
 
 import { auth } from "@/lib/better-auth/auth";
-import { inngest } from "@/lib/inngest/client";
 import { headers } from "next/headers";
+
+// API Gateway URL (configured via environment variable)
+const API_GATEWAY_URL = process.env.NEXT_PUBLIC_API_GATEWAY_URL || 'http://localhost:3001';
 
 export const signUpWithEmail = async ({
   email,
@@ -19,17 +21,26 @@ export const signUpWithEmail = async ({
     });
 
     if (response?.user) {
-      await inngest.send({
-        name: "app/user.created",
-        data: {
-          email,
-          name: fullName,
-          country,
-          investmentGoals,
-          riskTolerance,
-          preferredIndustry,
-        },
-      });
+      // Send registration event to API Gateway (replaces Inngest)
+      try {
+        await fetch(`${API_GATEWAY_URL}/api/auth/register`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email,
+            name: fullName,
+            country,
+            investmentGoals,
+            riskTolerance,
+            preferredIndustry,
+          }),
+        });
+      } catch (kafkaError) {
+        // Log but don't fail registration if welcome email fails
+        console.error('Failed to send registration event:', kafkaError);
+      }
     }
     return { success: true, data: response };
   } catch (error) {
