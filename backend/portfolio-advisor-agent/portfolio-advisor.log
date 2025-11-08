@@ -1,0 +1,191 @@
+
+> portfolio-advisor-agent@1.0.0 dev
+> tsx watch src/index.ts
+
+[32minfo[39m: ========================================== {"service":"portfolio-advisor","timestamp":"2025-11-08T01:40:59.102Z"}
+[32minfo[39m: Starting Portfolio Advisor Agent {"service":"portfolio-advisor","timestamp":"2025-11-08T01:40:59.108Z"}
+[32minfo[39m: ========================================== {"service":"portfolio-advisor","timestamp":"2025-11-08T01:40:59.109Z"}
+[32minfo[39m: Connecting to PostgreSQL... {"service":"portfolio-advisor","timestamp":"2025-11-08T01:40:59.110Z"}
+[32minfo[39m: Connected to PostgreSQL {"service":"portfolio-advisor","timestamp":"2025-11-08T01:40:59.191Z"}
+[32minfo[39m: Connecting to Kafka... {"service":"portfolio-advisor","timestamp":"2025-11-08T01:40:59.192Z"}
+(node:90869) TimeoutNegativeWarning: -1762566059207 is a negative number.
+Timeout duration was set to 1.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[32minfo[39m: Connected to Kafka {"service":"portfolio-advisor","timestamp":"2025-11-08T01:40:59.209Z"}
+[32minfo[39m: Subscribing to portfolio-events topic... {"service":"portfolio-advisor","timestamp":"2025-11-08T01:40:59.210Z"}
+[32minfo[39m: Subscribed to portfolio-events topic {"service":"portfolio-advisor","timestamp":"2025-11-08T01:40:59.222Z"}
+[32minfo[39m: Starting message consumption... {"service":"portfolio-advisor","timestamp":"2025-11-08T01:40:59.223Z"}
+{"level":"INFO","timestamp":"2025-11-08T01:40:59.224Z","logger":"kafkajs","message":"[Consumer] Starting","groupId":"portfolio-advisor-group"}
+{"level":"INFO","timestamp":"2025-11-08T01:41:02.266Z","logger":"kafkajs","message":"[ConsumerGroup] Consumer has joined the group","groupId":"portfolio-advisor-group","memberId":"portfolio-advisor-agent-d3bfa603-1b6d-4554-beb5-5e78b94273ca","leaderId":"portfolio-advisor-agent-d3bfa603-1b6d-4554-beb5-5e78b94273ca","isLeader":true,"memberAssignment":{"portfolio-events":[0,1,2]},"groupProtocol":"RoundRobinAssigner","duration":3041}
+[32minfo[39m: Started consuming messages {"service":"portfolio-advisor","timestamp":"2025-11-08T01:41:02.268Z"}
+[32minfo[39m: ========================================== {"service":"portfolio-advisor","timestamp":"2025-11-08T01:41:02.268Z"}
+[32minfo[39m: ✅ Portfolio Advisor Agent is running! {"service":"portfolio-advisor","timestamp":"2025-11-08T01:41:02.268Z"}
+[32minfo[39m: ========================================== {"service":"portfolio-advisor","timestamp":"2025-11-08T01:41:02.268Z"}
+[32minfo[39m: Listening for portfolio advice requests... {"service":"portfolio-advisor","timestamp":"2025-11-08T01:41:02.268Z"}
+[32minfo[39m:  {"service":"portfolio-advisor","timestamp":"2025-11-08T01:41:02.269Z"}
+[32minfo[39m: Capabilities: {"service":"portfolio-advisor","timestamp":"2025-11-08T01:41:02.269Z"}
+[32minfo[39m:   - Investment recommendations {"service":"portfolio-advisor","timestamp":"2025-11-08T01:41:02.269Z"}
+[32minfo[39m:   - Portfolio analysis {"service":"portfolio-advisor","timestamp":"2025-11-08T01:41:02.269Z"}
+[32minfo[39m:   - Stock suggestions {"service":"portfolio-advisor","timestamp":"2025-11-08T01:41:02.269Z"}
+[32minfo[39m:   - Risk assessment {"service":"portfolio-advisor","timestamp":"2025-11-08T01:41:02.269Z"}
+[32minfo[39m:   - Diversification advice {"service":"portfolio-advisor","timestamp":"2025-11-08T01:41:02.269Z"}
+[32minfo[39m:  {"service":"portfolio-advisor","timestamp":"2025-11-08T01:41:02.269Z"}
+[32minfo[39m: Data Sources: {"service":"portfolio-advisor","timestamp":"2025-11-08T01:41:02.269Z"}
+[32minfo[39m:   - MSE Trading History (52K+ records) {"service":"portfolio-advisor","timestamp":"2025-11-08T01:41:02.269Z"}
+[32minfo[39m:   - MSE Companies (75+ stocks) {"service":"portfolio-advisor","timestamp":"2025-11-08T01:41:02.269Z"}
+[32minfo[39m:   - Real-time market data {"service":"portfolio-advisor","timestamp":"2025-11-08T01:41:02.269Z"}
+[32minfo[39m:   - Gemini 2.0 Flash AI {"service":"portfolio-advisor","timestamp":"2025-11-08T01:41:02.269Z"}
+[32minfo[39m:  {"service":"portfolio-advisor","timestamp":"2025-11-08T01:41:02.270Z"}
+[32minfo[39m: Kafka Topics: {"service":"portfolio-advisor","timestamp":"2025-11-08T01:41:02.270Z"}
+[32minfo[39m:   IN: portfolio-events (listening) {"service":"portfolio-advisor","timestamp":"2025-11-08T01:41:02.270Z"}
+[32minfo[39m:   OUT: user-responses (sending) {"service":"portfolio-advisor","timestamp":"2025-11-08T01:41:02.270Z"}
+[32minfo[39m: ========================================== {"service":"portfolio-advisor","timestamp":"2025-11-08T01:41:02.270Z"}
+[32minfo[39m: Processing portfolio advice request I have 10 million tugrik. Which MSE stocks should I invest in for long-term growth? {"requestId":"test-e2e-001","service":"portfolio-advisor","timestamp":"2025-11-08T01:41:27.311Z","userId":"user-999"}
+[32minfo[39m: Fetched market data {"count":0,"service":"portfolio-advisor","symbols":["HAVE","WHICH","MSE","FOR","LONG"],"timestamp":"2025-11-08T01:41:27.599Z"}
+[32minfo[39m: Fetched top performers {"count":5,"service":"portfolio-advisor","timestamp":"2025-11-08T01:41:27.619Z"}
+[31merror[39m: Failed to generate portfolio advice {"error":"s.changePercent.toFixed is not a function","service":"portfolio-advisor","timestamp":"2025-11-08T01:41:27.620Z"}
+[31merror[39m: Error processing portfolio advice request {"error":"top.changePercent.toFixed is not a function","service":"portfolio-advisor","stack":"TypeError: top.changePercent.toFixed is not a function\n    at GeminiClient.generateFallbackAdvice (/home/it/apps/thesis-report/backend/portfolio-advisor-agent/src/gemini-client.ts:220:63)\n    at GeminiClient.generateAdvice (/home/it/apps/thesis-report/backend/portfolio-advisor-agent/src/gemini-client.ts:64:19)\n    at AdvisorService.processRequest (/home/it/apps/thesis-report/backend/portfolio-advisor-agent/src/advisor-service.ts:54:58)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async <anonymous> (/home/it/apps/thesis-report/backend/portfolio-advisor-agent/src/index.ts:42:9)\n    at async Runner.eachMessage (/home/it/apps/thesis-report/backend/portfolio-advisor-agent/src/kafka-client.ts:80:13)\n    at async Runner.processEachMessage (/home/it/apps/thesis-report/backend/portfolio-advisor-agent/node_modules/kafkajs/src/consumer/runner.js:231:9)\n    at async onBatch (/home/it/apps/thesis-report/backend/portfolio-advisor-agent/node_modules/kafkajs/src/consumer/runner.js:447:9)\n    at async Runner.handleBatch (/home/it/apps/thesis-report/backend/portfolio-advisor-agent/node_modules/kafkajs/src/consumer/runner.js:461:5)\n    at async /home/it/apps/thesis-report/backend/portfolio-advisor-agent/node_modules/kafkajs/src/consumer/worker.js:29:9","timestamp":"2025-11-08T01:41:27.626Z"}
+9:41:58 AM [tsx] change in ./src/gemini-client.ts Restarting...
+[32minfo[39m: SIGTERM received, shutting down gracefully... {"service":"portfolio-advisor","timestamp":"2025-11-08T01:41:58.172Z"}
+[32minfo[39m: Shutting down portfolio advisor agent... {"service":"portfolio-advisor","timestamp":"2025-11-08T01:41:58.173Z"}
+[32minfo[39m: Disconnected from PostgreSQL {"service":"portfolio-advisor","timestamp":"2025-11-08T01:41:58.174Z"}
+{"level":"INFO","timestamp":"2025-11-08T01:42:00.388Z","logger":"kafkajs","message":"[Runner] consumer not running, exiting","groupId":"portfolio-advisor-group","memberId":"portfolio-advisor-agent-d3bfa603-1b6d-4554-beb5-5e78b94273ca"}
+{"level":"INFO","timestamp":"2025-11-08T01:42:00.404Z","logger":"kafkajs","message":"[Consumer] Stopped","groupId":"portfolio-advisor-group"}
+[32minfo[39m: Disconnected from Kafka {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:00.404Z"}
+[32minfo[39m: Portfolio advisor agent stopped {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:00.404Z"}
+c[32minfo[39m: ========================================== {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:01.133Z"}
+[32minfo[39m: Starting Portfolio Advisor Agent {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:01.136Z"}
+[32minfo[39m: ========================================== {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:01.136Z"}
+[32minfo[39m: Connecting to PostgreSQL... {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:01.136Z"}
+[32minfo[39m: Connected to PostgreSQL {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:01.181Z"}
+[32minfo[39m: Connecting to Kafka... {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:01.182Z"}
+(node:91321) TimeoutNegativeWarning: -1762566121204 is a negative number.
+Timeout duration was set to 1.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[32minfo[39m: Connected to Kafka {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:01.207Z"}
+[32minfo[39m: Subscribing to portfolio-events topic... {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:01.208Z"}
+[32minfo[39m: Subscribed to portfolio-events topic {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:01.218Z"}
+[32minfo[39m: Starting message consumption... {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:01.218Z"}
+{"level":"INFO","timestamp":"2025-11-08T01:42:01.219Z","logger":"kafkajs","message":"[Consumer] Starting","groupId":"portfolio-advisor-group"}
+{"level":"INFO","timestamp":"2025-11-08T01:42:04.256Z","logger":"kafkajs","message":"[ConsumerGroup] Consumer has joined the group","groupId":"portfolio-advisor-group","memberId":"portfolio-advisor-agent-5a2d0d4c-14e7-42e8-b10d-202ade4e3a0a","leaderId":"portfolio-advisor-agent-5a2d0d4c-14e7-42e8-b10d-202ade4e3a0a","isLeader":true,"memberAssignment":{"portfolio-events":[0,1,2]},"groupProtocol":"RoundRobinAssigner","duration":3035}
+[32minfo[39m: Started consuming messages {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:04.258Z"}
+[32minfo[39m: ========================================== {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:04.258Z"}
+[32minfo[39m: ✅ Portfolio Advisor Agent is running! {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:04.258Z"}
+[32minfo[39m: ========================================== {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:04.258Z"}
+[32minfo[39m: Listening for portfolio advice requests... {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:04.258Z"}
+[32minfo[39m:  {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:04.258Z"}
+[32minfo[39m: Capabilities: {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:04.258Z"}
+[32minfo[39m:   - Investment recommendations {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:04.258Z"}
+[32minfo[39m:   - Portfolio analysis {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:04.259Z"}
+[32minfo[39m:   - Stock suggestions {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:04.259Z"}
+[32minfo[39m:   - Risk assessment {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:04.259Z"}
+[32minfo[39m:   - Diversification advice {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:04.259Z"}
+[32minfo[39m:  {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:04.259Z"}
+[32minfo[39m: Data Sources: {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:04.259Z"}
+[32minfo[39m:   - MSE Trading History (52K+ records) {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:04.259Z"}
+[32minfo[39m:   - MSE Companies (75+ stocks) {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:04.259Z"}
+[32minfo[39m:   - Real-time market data {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:04.259Z"}
+[32minfo[39m:   - Gemini 2.0 Flash AI {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:04.259Z"}
+[32minfo[39m:  {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:04.259Z"}
+[32minfo[39m: Kafka Topics: {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:04.259Z"}
+[32minfo[39m:   IN: portfolio-events (listening) {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:04.259Z"}
+[32minfo[39m:   OUT: user-responses (sending) {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:04.259Z"}
+[32minfo[39m: ========================================== {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:04.259Z"}
+9:42:13 AM [tsx] change in ./src/gemini-client.ts Restarting...
+[32minfo[39m: SIGTERM received, shutting down gracefully... {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:13.564Z"}
+[32minfo[39m: Shutting down portfolio advisor agent... {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:13.564Z"}
+[32minfo[39m: Disconnected from PostgreSQL {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:13.567Z"}
+{"level":"INFO","timestamp":"2025-11-08T01:42:14.299Z","logger":"kafkajs","message":"[Runner] consumer not running, exiting","groupId":"portfolio-advisor-group","memberId":"portfolio-advisor-agent-5a2d0d4c-14e7-42e8-b10d-202ade4e3a0a"}
+{"level":"INFO","timestamp":"2025-11-08T01:42:14.308Z","logger":"kafkajs","message":"[Consumer] Stopped","groupId":"portfolio-advisor-group"}
+[32minfo[39m: Disconnected from Kafka {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:14.309Z"}
+[32minfo[39m: Portfolio advisor agent stopped {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:14.309Z"}
+c[32minfo[39m: ========================================== {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:14.999Z"}
+[32minfo[39m: Starting Portfolio Advisor Agent {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:15.001Z"}
+[32minfo[39m: ========================================== {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:15.002Z"}
+[32minfo[39m: Connecting to PostgreSQL... {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:15.002Z"}
+[32minfo[39m: Connected to PostgreSQL {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:15.039Z"}
+[32minfo[39m: Connecting to Kafka... {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:15.040Z"}
+(node:91401) TimeoutNegativeWarning: -1762566135052 is a negative number.
+Timeout duration was set to 1.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[32minfo[39m: Connected to Kafka {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:15.053Z"}
+[32minfo[39m: Subscribing to portfolio-events topic... {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:15.054Z"}
+[32minfo[39m: Subscribed to portfolio-events topic {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:15.062Z"}
+[32minfo[39m: Starting message consumption... {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:15.062Z"}
+{"level":"INFO","timestamp":"2025-11-08T01:42:15.063Z","logger":"kafkajs","message":"[Consumer] Starting","groupId":"portfolio-advisor-group"}
+{"level":"INFO","timestamp":"2025-11-08T01:42:18.096Z","logger":"kafkajs","message":"[ConsumerGroup] Consumer has joined the group","groupId":"portfolio-advisor-group","memberId":"portfolio-advisor-agent-b82bb69e-35eb-458d-bccb-41a22a818070","leaderId":"portfolio-advisor-agent-b82bb69e-35eb-458d-bccb-41a22a818070","isLeader":true,"memberAssignment":{"portfolio-events":[0,1,2]},"groupProtocol":"RoundRobinAssigner","duration":3032}
+[32minfo[39m: Started consuming messages {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:18.097Z"}
+[32minfo[39m: ========================================== {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:18.098Z"}
+[32minfo[39m: ✅ Portfolio Advisor Agent is running! {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:18.098Z"}
+[32minfo[39m: ========================================== {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:18.098Z"}
+[32minfo[39m: Listening for portfolio advice requests... {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:18.098Z"}
+[32minfo[39m:  {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:18.098Z"}
+[32minfo[39m: Capabilities: {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:18.098Z"}
+[32minfo[39m:   - Investment recommendations {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:18.098Z"}
+[32minfo[39m:   - Portfolio analysis {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:18.098Z"}
+[32minfo[39m:   - Stock suggestions {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:18.099Z"}
+[32minfo[39m:   - Risk assessment {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:18.099Z"}
+[32minfo[39m:   - Diversification advice {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:18.099Z"}
+[32minfo[39m:  {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:18.099Z"}
+[32minfo[39m: Data Sources: {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:18.099Z"}
+[32minfo[39m:   - MSE Trading History (52K+ records) {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:18.099Z"}
+[32minfo[39m:   - MSE Companies (75+ stocks) {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:18.099Z"}
+[32minfo[39m:   - Real-time market data {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:18.099Z"}
+[32minfo[39m:   - Gemini 2.0 Flash AI {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:18.099Z"}
+[32minfo[39m:  {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:18.099Z"}
+[32minfo[39m: Kafka Topics: {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:18.099Z"}
+[32minfo[39m:   IN: portfolio-events (listening) {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:18.099Z"}
+[32minfo[39m:   OUT: user-responses (sending) {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:18.099Z"}
+[32minfo[39m: ========================================== {"service":"portfolio-advisor","timestamp":"2025-11-08T01:42:18.099Z"}
+[32minfo[39m: Processing portfolio advice request What are the best MSE banking stocks to buy right now? {"requestId":"test-fixed-001","service":"portfolio-advisor","timestamp":"2025-11-08T01:43:06.632Z","userId":"user-888"}
+[32minfo[39m: Fetched market data {"count":2,"service":"portfolio-advisor","symbols":["TDB-O-0000","KHAN-O-0000","WHAT","ARE","THE","BEST","MSE"],"timestamp":"2025-11-08T01:43:06.722Z"}
+[32minfo[39m: Fetched top performers {"count":5,"service":"portfolio-advisor","timestamp":"2025-11-08T01:43:06.740Z"}
+[32minfo[39m: Portfolio advice generated {"confidence":0.7,"service":"portfolio-advisor","timestamp":"2025-11-08T01:43:13.353Z","userMessage":"What are the best MSE banking stocks to buy right "}
+[32minfo[39m: Generated portfolio advice {"confidence":0.7,"recommendation":"hold","requestId":"test-fixed-001","service":"portfolio-advisor","suggestedStocksCount":2,"timestamp":"2025-11-08T01:43:13.354Z"}
+[32minfo[39m: Portfolio advice request completed {"processingTime":6724,"requestId":"test-fixed-001","service":"portfolio-advisor","timestamp":"2025-11-08T01:43:13.383Z"}
+9:45:28 AM [tsx] change in ./src/index.ts Restarting...
+[32minfo[39m: SIGTERM received, shutting down gracefully... {"service":"portfolio-advisor","timestamp":"2025-11-08T01:45:28.063Z"}
+[32minfo[39m: Shutting down portfolio advisor agent... {"service":"portfolio-advisor","timestamp":"2025-11-08T01:45:28.063Z"}
+[32minfo[39m: Disconnected from PostgreSQL {"service":"portfolio-advisor","timestamp":"2025-11-08T01:45:28.064Z"}
+{"level":"INFO","timestamp":"2025-11-08T01:45:32.016Z","logger":"kafkajs","message":"[Runner] consumer not running, exiting","groupId":"portfolio-advisor-group","memberId":"portfolio-advisor-agent-b82bb69e-35eb-458d-bccb-41a22a818070"}
+{"level":"INFO","timestamp":"2025-11-08T01:45:32.027Z","logger":"kafkajs","message":"[Consumer] Stopped","groupId":"portfolio-advisor-group"}
+[32minfo[39m: Disconnected from Kafka {"service":"portfolio-advisor","timestamp":"2025-11-08T01:45:32.027Z"}
+[32minfo[39m: Portfolio advisor agent stopped {"service":"portfolio-advisor","timestamp":"2025-11-08T01:45:32.028Z"}
+c[32minfo[39m: ========================================== {"service":"portfolio-advisor","timestamp":"2025-11-08T01:45:33.165Z"}
+[32minfo[39m: Starting Portfolio Advisor Agent {"service":"portfolio-advisor","timestamp":"2025-11-08T01:45:33.169Z"}
+[32minfo[39m: ========================================== {"service":"portfolio-advisor","timestamp":"2025-11-08T01:45:33.169Z"}
+[32minfo[39m: Connecting to PostgreSQL... {"service":"portfolio-advisor","timestamp":"2025-11-08T01:45:33.170Z"}
+[32minfo[39m: Connected to PostgreSQL {"service":"portfolio-advisor","timestamp":"2025-11-08T01:45:33.211Z"}
+[32minfo[39m: Connecting to Kafka... {"service":"portfolio-advisor","timestamp":"2025-11-08T01:45:33.213Z"}
+(node:92443) TimeoutNegativeWarning: -1762566333226 is a negative number.
+Timeout duration was set to 1.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[32minfo[39m: Connected to Kafka {"service":"portfolio-advisor","timestamp":"2025-11-08T01:45:33.227Z"}
+[32minfo[39m: Subscribing to portfolio-events topic... {"service":"portfolio-advisor","timestamp":"2025-11-08T01:45:33.227Z"}
+[32minfo[39m: Subscribed to portfolio-events topic {"service":"portfolio-advisor","timestamp":"2025-11-08T01:45:33.235Z"}
+[32minfo[39m: Starting message consumption... {"service":"portfolio-advisor","timestamp":"2025-11-08T01:45:33.235Z"}
+{"level":"INFO","timestamp":"2025-11-08T01:45:33.236Z","logger":"kafkajs","message":"[Consumer] Starting","groupId":"portfolio-advisor-group"}
+{"level":"INFO","timestamp":"2025-11-08T01:45:34.006Z","logger":"kafkajs","message":"[ConsumerGroup] Consumer has joined the group","groupId":"portfolio-advisor-group","memberId":"portfolio-advisor-agent-c4267a98-609e-44a3-83b7-37759bba231f","leaderId":"portfolio-advisor-agent-c4267a98-609e-44a3-83b7-37759bba231f","isLeader":true,"memberAssignment":{"portfolio-events":[0,1,2]},"groupProtocol":"RoundRobinAssigner","duration":769}
+[32minfo[39m: Started consuming messages {"service":"portfolio-advisor","timestamp":"2025-11-08T01:45:34.009Z"}
+[32minfo[39m: ========================================== {"service":"portfolio-advisor","timestamp":"2025-11-08T01:45:34.010Z"}
+[32minfo[39m: ✅ Portfolio Advisor Agent is running! {"service":"portfolio-advisor","timestamp":"2025-11-08T01:45:34.010Z"}
+[32minfo[39m: ========================================== {"service":"portfolio-advisor","timestamp":"2025-11-08T01:45:34.010Z"}
+[32minfo[39m: Listening for portfolio advice requests... {"service":"portfolio-advisor","timestamp":"2025-11-08T01:45:34.010Z"}
+[32minfo[39m:  {"service":"portfolio-advisor","timestamp":"2025-11-08T01:45:34.010Z"}
+[32minfo[39m: Capabilities: {"service":"portfolio-advisor","timestamp":"2025-11-08T01:45:34.010Z"}
+[32minfo[39m:   - Investment recommendations {"service":"portfolio-advisor","timestamp":"2025-11-08T01:45:34.010Z"}
+[32minfo[39m:   - Portfolio analysis {"service":"portfolio-advisor","timestamp":"2025-11-08T01:45:34.011Z"}
+[32minfo[39m:   - Stock suggestions {"service":"portfolio-advisor","timestamp":"2025-11-08T01:45:34.011Z"}
+[32minfo[39m:   - Risk assessment {"service":"portfolio-advisor","timestamp":"2025-11-08T01:45:34.011Z"}
+[32minfo[39m:   - Diversification advice {"service":"portfolio-advisor","timestamp":"2025-11-08T01:45:34.011Z"}
+[32minfo[39m:  {"service":"portfolio-advisor","timestamp":"2025-11-08T01:45:34.011Z"}
+[32minfo[39m: Data Sources: {"service":"portfolio-advisor","timestamp":"2025-11-08T01:45:34.011Z"}
+[32minfo[39m:   - MSE Trading History (52K+ records) {"service":"portfolio-advisor","timestamp":"2025-11-08T01:45:34.011Z"}
+[32minfo[39m:   - MSE Companies (75+ stocks) {"service":"portfolio-advisor","timestamp":"2025-11-08T01:45:34.012Z"}
+[32minfo[39m:   - Real-time market data {"service":"portfolio-advisor","timestamp":"2025-11-08T01:45:34.012Z"}
+[32minfo[39m:   - Gemini 2.0 Flash AI {"service":"portfolio-advisor","timestamp":"2025-11-08T01:45:34.012Z"}
+[32minfo[39m:  {"service":"portfolio-advisor","timestamp":"2025-11-08T01:45:34.012Z"}
+[32minfo[39m: Kafka Topics: {"service":"portfolio-advisor","timestamp":"2025-11-08T01:45:34.012Z"}
+[32minfo[39m:   IN: portfolio-events (listening) {"service":"portfolio-advisor","timestamp":"2025-11-08T01:45:34.013Z"}
+[32minfo[39m:   OUT: user-responses (sending) {"service":"portfolio-advisor","timestamp":"2025-11-08T01:45:34.013Z"}
+[32minfo[39m: ========================================== {"service":"portfolio-advisor","timestamp":"2025-11-08T01:45:34.013Z"}

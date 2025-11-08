@@ -1,0 +1,207 @@
+
+> orchestrator-agent@1.0.0 dev
+> tsx watch src/index.ts
+
+[32minfo[39m: ========================================== {"service":"orchestrator-agent","timestamp":"2025-11-08T01:28:27.260Z"}
+[32minfo[39m: Starting Orchestrator Agent {"service":"orchestrator-agent","timestamp":"2025-11-08T01:28:27.262Z"}
+[32minfo[39m: ========================================== {"service":"orchestrator-agent","timestamp":"2025-11-08T01:28:27.263Z"}
+[32minfo[39m: Connecting to Kafka... {"service":"orchestrator-agent","timestamp":"2025-11-08T01:28:27.263Z"}
+(node:87075) TimeoutNegativeWarning: -1762565307284 is a negative number.
+Timeout duration was set to 1.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[32minfo[39m: Connected to Kafka {"service":"orchestrator-agent","timestamp":"2025-11-08T01:28:27.285Z"}
+[32minfo[39m: Subscribing to user-requests topic... {"service":"orchestrator-agent","timestamp":"2025-11-08T01:28:27.285Z"}
+[32minfo[39m: Subscribed to user-requests topic {"service":"orchestrator-agent","timestamp":"2025-11-08T01:28:27.294Z"}
+[32minfo[39m: Agent Registry {"agents":[{"capabilities":["portfolio_advice"],"name":"portfolio-advisor","topic":"portfolio-events"},{"capabilities":["market_analysis"],"name":"market-analysis","topic":"market-analysis-events"},{"capabilities":["news_query"],"name":"news-intelligence","topic":"news-events"},{"capabilities":["historical_analysis"],"name":"historical-analysis","topic":"market-analysis-events"},{"capabilities":["risk_assessment"],"name":"risk-assessment","topic":"risk-assessment-events"}],"service":"orchestrator-agent","timestamp":"2025-11-08T01:28:27.294Z","totalAgents":5}
+[32minfo[39m: Starting message consumption... {"service":"orchestrator-agent","timestamp":"2025-11-08T01:28:27.295Z"}
+{"level":"INFO","timestamp":"2025-11-08T01:28:27.295Z","logger":"kafkajs","message":"[Consumer] Starting","groupId":"orchestrator-group"}
+{"level":"INFO","timestamp":"2025-11-08T01:28:30.336Z","logger":"kafkajs","message":"[ConsumerGroup] Consumer has joined the group","groupId":"orchestrator-group","memberId":"orchestrator-agent-388d805b-4e78-4897-a398-19285e572710","leaderId":"orchestrator-agent-388d805b-4e78-4897-a398-19285e572710","isLeader":true,"memberAssignment":{"user-requests":[0,1,2]},"groupProtocol":"RoundRobinAssigner","duration":3040}
+[32minfo[39m: Started consuming messages {"service":"orchestrator-agent","timestamp":"2025-11-08T01:28:30.337Z"}
+[32minfo[39m: ========================================== {"service":"orchestrator-agent","timestamp":"2025-11-08T01:28:30.337Z"}
+[32minfo[39m: ✅ Orchestrator Agent is running! {"service":"orchestrator-agent","timestamp":"2025-11-08T01:28:30.338Z"}
+[32minfo[39m: ========================================== {"service":"orchestrator-agent","timestamp":"2025-11-08T01:28:30.338Z"}
+[32minfo[39m: Listening for user requests... {"service":"orchestrator-agent","timestamp":"2025-11-08T01:28:30.338Z"}
+[32minfo[39m:  {"service":"orchestrator-agent","timestamp":"2025-11-08T01:28:30.338Z"}
+[32minfo[39m: Available Intents: {"service":"orchestrator-agent","timestamp":"2025-11-08T01:28:30.338Z"}
+[32minfo[39m:   - portfolio_advice: Investment recommendations {"service":"orchestrator-agent","timestamp":"2025-11-08T01:28:30.338Z"}
+[32minfo[39m:   - market_analysis: Market trends and sector analysis {"service":"orchestrator-agent","timestamp":"2025-11-08T01:28:30.338Z"}
+[32minfo[39m:   - news_query: Latest news and sentiment {"service":"orchestrator-agent","timestamp":"2025-11-08T01:28:30.338Z"}
+[32minfo[39m:   - historical_analysis: Historical data and technical indicators {"service":"orchestrator-agent","timestamp":"2025-11-08T01:28:30.338Z"}
+[32minfo[39m:   - risk_assessment: Risk metrics and portfolio risk {"service":"orchestrator-agent","timestamp":"2025-11-08T01:28:30.338Z"}
+[32minfo[39m:   - general_query: General stock market questions {"service":"orchestrator-agent","timestamp":"2025-11-08T01:28:30.338Z"}
+[32minfo[39m:  {"service":"orchestrator-agent","timestamp":"2025-11-08T01:28:30.339Z"}
+[32minfo[39m: Kafka Topics: {"service":"orchestrator-agent","timestamp":"2025-11-08T01:28:30.339Z"}
+[32minfo[39m:   IN: user-requests (listening) {"service":"orchestrator-agent","timestamp":"2025-11-08T01:28:30.339Z"}
+[32minfo[39m:   OUT: user-responses, portfolio-events, market-analysis-events, news-events, risk-assessment-events {"service":"orchestrator-agent","timestamp":"2025-11-08T01:28:30.339Z"}
+[32minfo[39m: ========================================== {"service":"orchestrator-agent","timestamp":"2025-11-08T01:28:30.339Z"}
+[32minfo[39m: Processing user request Should I invest in Tesla stock? {"requestId":"test-001","service":"orchestrator-agent","timestamp":"2025-11-08T01:28:49.807Z","userId":"user-123"}
+[31merror[39m: Failed to classify intent {"error":"[GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent: [404 Not Found] models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.","service":"orchestrator-agent","timestamp":"2025-11-08T01:28:50.404Z"}
+[32minfo[39m: Intent classified {"confidence":0.6,"intent":"portfolio_advice","requestId":"test-001","service":"orchestrator-agent","timestamp":"2025-11-08T01:28:50.405Z"}
+[32minfo[39m: Routing request {"confidence":0.6,"intent":"portfolio_advice","service":"orchestrator-agent","timestamp":"2025-11-08T01:28:50.405Z"}
+[32minfo[39m: Routing decision made {"priority":"medium","requiresAggregation":true,"service":"orchestrator-agent","subAgents":[],"targetAgent":"portfolio-advisor","targetTopic":"portfolio-events","timestamp":"2025-11-08T01:28:50.406Z"}
+[32minfo[39m: Request processed successfully {"processingTime":622,"requestId":"test-001","service":"orchestrator-agent","targetAgent":"portfolio-advisor","timestamp":"2025-11-08T01:28:50.429Z"}
+9:29:04 AM [tsx] change in ./src/gemini-client.ts Restarting...
+[32minfo[39m: SIGTERM received, shutting down gracefully... {"service":"orchestrator-agent","timestamp":"2025-11-08T01:29:04.093Z"}
+[32minfo[39m: Shutting down orchestrator agent... {"service":"orchestrator-agent","timestamp":"2025-11-08T01:29:04.093Z"}
+{"level":"INFO","timestamp":"2025-11-08T01:29:08.250Z","logger":"kafkajs","message":"[Runner] consumer not running, exiting","groupId":"orchestrator-group","memberId":"orchestrator-agent-388d805b-4e78-4897-a398-19285e572710"}
+{"level":"INFO","timestamp":"2025-11-08T01:29:08.264Z","logger":"kafkajs","message":"[Consumer] Stopped","groupId":"orchestrator-group"}
+[32minfo[39m: Disconnected from Kafka {"service":"orchestrator-agent","timestamp":"2025-11-08T01:29:08.265Z"}
+[32minfo[39m: Orchestrator agent stopped {"service":"orchestrator-agent","timestamp":"2025-11-08T01:29:08.265Z"}
+c[32minfo[39m: ========================================== {"service":"orchestrator-agent","timestamp":"2025-11-08T01:29:08.837Z"}
+[32minfo[39m: Starting Orchestrator Agent {"service":"orchestrator-agent","timestamp":"2025-11-08T01:29:08.840Z"}
+[32minfo[39m: ========================================== {"service":"orchestrator-agent","timestamp":"2025-11-08T01:29:08.841Z"}
+[32minfo[39m: Connecting to Kafka... {"service":"orchestrator-agent","timestamp":"2025-11-08T01:29:08.841Z"}
+(node:87371) TimeoutNegativeWarning: -1762565348864 is a negative number.
+Timeout duration was set to 1.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[32minfo[39m: Connected to Kafka {"service":"orchestrator-agent","timestamp":"2025-11-08T01:29:08.866Z"}
+[32minfo[39m: Subscribing to user-requests topic... {"service":"orchestrator-agent","timestamp":"2025-11-08T01:29:08.867Z"}
+[32minfo[39m: Subscribed to user-requests topic {"service":"orchestrator-agent","timestamp":"2025-11-08T01:29:08.875Z"}
+[32minfo[39m: Agent Registry {"agents":[{"capabilities":["portfolio_advice"],"name":"portfolio-advisor","topic":"portfolio-events"},{"capabilities":["market_analysis"],"name":"market-analysis","topic":"market-analysis-events"},{"capabilities":["news_query"],"name":"news-intelligence","topic":"news-events"},{"capabilities":["historical_analysis"],"name":"historical-analysis","topic":"market-analysis-events"},{"capabilities":["risk_assessment"],"name":"risk-assessment","topic":"risk-assessment-events"}],"service":"orchestrator-agent","timestamp":"2025-11-08T01:29:08.876Z","totalAgents":5}
+[32minfo[39m: Starting message consumption... {"service":"orchestrator-agent","timestamp":"2025-11-08T01:29:08.876Z"}
+{"level":"INFO","timestamp":"2025-11-08T01:29:08.877Z","logger":"kafkajs","message":"[Consumer] Starting","groupId":"orchestrator-group"}
+{"level":"INFO","timestamp":"2025-11-08T01:29:11.915Z","logger":"kafkajs","message":"[ConsumerGroup] Consumer has joined the group","groupId":"orchestrator-group","memberId":"orchestrator-agent-06c1ee7e-4d41-406f-a69c-9c493cf54aed","leaderId":"orchestrator-agent-06c1ee7e-4d41-406f-a69c-9c493cf54aed","isLeader":true,"memberAssignment":{"user-requests":[0,1,2]},"groupProtocol":"RoundRobinAssigner","duration":3037}
+[32minfo[39m: Started consuming messages {"service":"orchestrator-agent","timestamp":"2025-11-08T01:29:11.916Z"}
+[32minfo[39m: ========================================== {"service":"orchestrator-agent","timestamp":"2025-11-08T01:29:11.917Z"}
+[32minfo[39m: ✅ Orchestrator Agent is running! {"service":"orchestrator-agent","timestamp":"2025-11-08T01:29:11.917Z"}
+[32minfo[39m: ========================================== {"service":"orchestrator-agent","timestamp":"2025-11-08T01:29:11.917Z"}
+[32minfo[39m: Listening for user requests... {"service":"orchestrator-agent","timestamp":"2025-11-08T01:29:11.917Z"}
+[32minfo[39m:  {"service":"orchestrator-agent","timestamp":"2025-11-08T01:29:11.917Z"}
+[32minfo[39m: Available Intents: {"service":"orchestrator-agent","timestamp":"2025-11-08T01:29:11.917Z"}
+[32minfo[39m:   - portfolio_advice: Investment recommendations {"service":"orchestrator-agent","timestamp":"2025-11-08T01:29:11.917Z"}
+[32minfo[39m:   - market_analysis: Market trends and sector analysis {"service":"orchestrator-agent","timestamp":"2025-11-08T01:29:11.917Z"}
+[32minfo[39m:   - news_query: Latest news and sentiment {"service":"orchestrator-agent","timestamp":"2025-11-08T01:29:11.918Z"}
+[32minfo[39m:   - historical_analysis: Historical data and technical indicators {"service":"orchestrator-agent","timestamp":"2025-11-08T01:29:11.918Z"}
+[32minfo[39m:   - risk_assessment: Risk metrics and portfolio risk {"service":"orchestrator-agent","timestamp":"2025-11-08T01:29:11.918Z"}
+[32minfo[39m:   - general_query: General stock market questions {"service":"orchestrator-agent","timestamp":"2025-11-08T01:29:11.918Z"}
+[32minfo[39m:  {"service":"orchestrator-agent","timestamp":"2025-11-08T01:29:11.918Z"}
+[32minfo[39m: Kafka Topics: {"service":"orchestrator-agent","timestamp":"2025-11-08T01:29:11.918Z"}
+[32minfo[39m:   IN: user-requests (listening) {"service":"orchestrator-agent","timestamp":"2025-11-08T01:29:11.918Z"}
+[32minfo[39m:   OUT: user-responses, portfolio-events, market-analysis-events, news-events, risk-assessment-events {"service":"orchestrator-agent","timestamp":"2025-11-08T01:29:11.918Z"}
+[32minfo[39m: ========================================== {"service":"orchestrator-agent","timestamp":"2025-11-08T01:29:11.918Z"}
+9:29:16 AM [tsx] change in ./src/gemini-client.ts Restarting...
+[32minfo[39m: SIGTERM received, shutting down gracefully... {"service":"orchestrator-agent","timestamp":"2025-11-08T01:29:16.513Z"}
+[32minfo[39m: Shutting down orchestrator agent... {"service":"orchestrator-agent","timestamp":"2025-11-08T01:29:16.513Z"}
+{"level":"INFO","timestamp":"2025-11-08T01:29:16.951Z","logger":"kafkajs","message":"[Runner] consumer not running, exiting","groupId":"orchestrator-group","memberId":"orchestrator-agent-06c1ee7e-4d41-406f-a69c-9c493cf54aed"}
+{"level":"INFO","timestamp":"2025-11-08T01:29:16.976Z","logger":"kafkajs","message":"[Consumer] Stopped","groupId":"orchestrator-group"}
+[32minfo[39m: Disconnected from Kafka {"service":"orchestrator-agent","timestamp":"2025-11-08T01:29:16.977Z"}
+[32minfo[39m: Orchestrator agent stopped {"service":"orchestrator-agent","timestamp":"2025-11-08T01:29:16.977Z"}
+c[32minfo[39m: ========================================== {"service":"orchestrator-agent","timestamp":"2025-11-08T01:29:18.135Z"}
+[32minfo[39m: Starting Orchestrator Agent {"service":"orchestrator-agent","timestamp":"2025-11-08T01:29:18.141Z"}
+[32minfo[39m: ========================================== {"service":"orchestrator-agent","timestamp":"2025-11-08T01:29:18.141Z"}
+[32minfo[39m: Connecting to Kafka... {"service":"orchestrator-agent","timestamp":"2025-11-08T01:29:18.141Z"}
+(node:87421) TimeoutNegativeWarning: -1762565358184 is a negative number.
+Timeout duration was set to 1.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[32minfo[39m: Connected to Kafka {"service":"orchestrator-agent","timestamp":"2025-11-08T01:29:18.188Z"}
+[32minfo[39m: Subscribing to user-requests topic... {"service":"orchestrator-agent","timestamp":"2025-11-08T01:29:18.189Z"}
+[32minfo[39m: Subscribed to user-requests topic {"service":"orchestrator-agent","timestamp":"2025-11-08T01:29:18.200Z"}
+[32minfo[39m: Agent Registry {"agents":[{"capabilities":["portfolio_advice"],"name":"portfolio-advisor","topic":"portfolio-events"},{"capabilities":["market_analysis"],"name":"market-analysis","topic":"market-analysis-events"},{"capabilities":["news_query"],"name":"news-intelligence","topic":"news-events"},{"capabilities":["historical_analysis"],"name":"historical-analysis","topic":"market-analysis-events"},{"capabilities":["risk_assessment"],"name":"risk-assessment","topic":"risk-assessment-events"}],"service":"orchestrator-agent","timestamp":"2025-11-08T01:29:18.201Z","totalAgents":5}
+[32minfo[39m: Starting message consumption... {"service":"orchestrator-agent","timestamp":"2025-11-08T01:29:18.202Z"}
+{"level":"INFO","timestamp":"2025-11-08T01:29:18.203Z","logger":"kafkajs","message":"[Consumer] Starting","groupId":"orchestrator-group"}
+{"level":"INFO","timestamp":"2025-11-08T01:29:21.244Z","logger":"kafkajs","message":"[ConsumerGroup] Consumer has joined the group","groupId":"orchestrator-group","memberId":"orchestrator-agent-31e7e231-ef54-4053-98de-2ab48603d90e","leaderId":"orchestrator-agent-31e7e231-ef54-4053-98de-2ab48603d90e","isLeader":true,"memberAssignment":{"user-requests":[0,1,2]},"groupProtocol":"RoundRobinAssigner","duration":3039}
+[32minfo[39m: Started consuming messages {"service":"orchestrator-agent","timestamp":"2025-11-08T01:29:21.246Z"}
+[32minfo[39m: ========================================== {"service":"orchestrator-agent","timestamp":"2025-11-08T01:29:21.246Z"}
+[32minfo[39m: ✅ Orchestrator Agent is running! {"service":"orchestrator-agent","timestamp":"2025-11-08T01:29:21.247Z"}
+[32minfo[39m: ========================================== {"service":"orchestrator-agent","timestamp":"2025-11-08T01:29:21.247Z"}
+[32minfo[39m: Listening for user requests... {"service":"orchestrator-agent","timestamp":"2025-11-08T01:29:21.247Z"}
+[32minfo[39m:  {"service":"orchestrator-agent","timestamp":"2025-11-08T01:29:21.247Z"}
+[32minfo[39m: Available Intents: {"service":"orchestrator-agent","timestamp":"2025-11-08T01:29:21.247Z"}
+[32minfo[39m:   - portfolio_advice: Investment recommendations {"service":"orchestrator-agent","timestamp":"2025-11-08T01:29:21.247Z"}
+[32minfo[39m:   - market_analysis: Market trends and sector analysis {"service":"orchestrator-agent","timestamp":"2025-11-08T01:29:21.247Z"}
+[32minfo[39m:   - news_query: Latest news and sentiment {"service":"orchestrator-agent","timestamp":"2025-11-08T01:29:21.247Z"}
+[32minfo[39m:   - historical_analysis: Historical data and technical indicators {"service":"orchestrator-agent","timestamp":"2025-11-08T01:29:21.248Z"}
+[32minfo[39m:   - risk_assessment: Risk metrics and portfolio risk {"service":"orchestrator-agent","timestamp":"2025-11-08T01:29:21.248Z"}
+[32minfo[39m:   - general_query: General stock market questions {"service":"orchestrator-agent","timestamp":"2025-11-08T01:29:21.248Z"}
+[32minfo[39m:  {"service":"orchestrator-agent","timestamp":"2025-11-08T01:29:21.248Z"}
+[32minfo[39m: Kafka Topics: {"service":"orchestrator-agent","timestamp":"2025-11-08T01:29:21.248Z"}
+[32minfo[39m:   IN: user-requests (listening) {"service":"orchestrator-agent","timestamp":"2025-11-08T01:29:21.248Z"}
+[32minfo[39m:   OUT: user-responses, portfolio-events, market-analysis-events, news-events, risk-assessment-events {"service":"orchestrator-agent","timestamp":"2025-11-08T01:29:21.248Z"}
+[32minfo[39m: ========================================== {"service":"orchestrator-agent","timestamp":"2025-11-08T01:29:21.248Z"}
+9:31:48 AM [tsx] change in ./src/gemini-client.ts Restarting...
+[32minfo[39m: SIGTERM received, shutting down gracefully... {"service":"orchestrator-agent","timestamp":"2025-11-08T01:31:48.854Z"}
+[32minfo[39m: Shutting down orchestrator agent... {"service":"orchestrator-agent","timestamp":"2025-11-08T01:31:48.854Z"}
+{"level":"INFO","timestamp":"2025-11-08T01:31:52.727Z","logger":"kafkajs","message":"[Runner] consumer not running, exiting","groupId":"orchestrator-group","memberId":"orchestrator-agent-31e7e231-ef54-4053-98de-2ab48603d90e"}
+{"level":"INFO","timestamp":"2025-11-08T01:31:52.741Z","logger":"kafkajs","message":"[Consumer] Stopped","groupId":"orchestrator-group"}
+[32minfo[39m: Disconnected from Kafka {"service":"orchestrator-agent","timestamp":"2025-11-08T01:31:52.742Z"}
+[32minfo[39m: Orchestrator agent stopped {"service":"orchestrator-agent","timestamp":"2025-11-08T01:31:52.742Z"}
+c[32minfo[39m: ========================================== {"service":"orchestrator-agent","timestamp":"2025-11-08T01:31:53.651Z"}
+[32minfo[39m: Starting Orchestrator Agent {"service":"orchestrator-agent","timestamp":"2025-11-08T01:31:53.656Z"}
+[32minfo[39m: ========================================== {"service":"orchestrator-agent","timestamp":"2025-11-08T01:31:53.657Z"}
+[32minfo[39m: Connecting to Kafka... {"service":"orchestrator-agent","timestamp":"2025-11-08T01:31:53.657Z"}
+(node:88226) TimeoutNegativeWarning: -1762565513692 is a negative number.
+Timeout duration was set to 1.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[32minfo[39m: Connected to Kafka {"service":"orchestrator-agent","timestamp":"2025-11-08T01:31:53.694Z"}
+[32minfo[39m: Subscribing to user-requests topic... {"service":"orchestrator-agent","timestamp":"2025-11-08T01:31:53.695Z"}
+[32minfo[39m: Subscribed to user-requests topic {"service":"orchestrator-agent","timestamp":"2025-11-08T01:31:53.705Z"}
+[32minfo[39m: Agent Registry {"agents":[{"capabilities":["portfolio_advice"],"name":"portfolio-advisor","topic":"portfolio-events"},{"capabilities":["market_analysis"],"name":"market-analysis","topic":"market-analysis-events"},{"capabilities":["news_query"],"name":"news-intelligence","topic":"news-events"},{"capabilities":["historical_analysis"],"name":"historical-analysis","topic":"market-analysis-events"},{"capabilities":["risk_assessment"],"name":"risk-assessment","topic":"risk-assessment-events"}],"service":"orchestrator-agent","timestamp":"2025-11-08T01:31:53.706Z","totalAgents":5}
+[32minfo[39m: Starting message consumption... {"service":"orchestrator-agent","timestamp":"2025-11-08T01:31:53.706Z"}
+{"level":"INFO","timestamp":"2025-11-08T01:31:53.707Z","logger":"kafkajs","message":"[Consumer] Starting","groupId":"orchestrator-group"}
+{"level":"INFO","timestamp":"2025-11-08T01:31:56.766Z","logger":"kafkajs","message":"[ConsumerGroup] Consumer has joined the group","groupId":"orchestrator-group","memberId":"orchestrator-agent-a9b35a3e-0ff4-4265-a349-63162346cf25","leaderId":"orchestrator-agent-a9b35a3e-0ff4-4265-a349-63162346cf25","isLeader":true,"memberAssignment":{"user-requests":[0,1,2]},"groupProtocol":"RoundRobinAssigner","duration":3056}
+[32minfo[39m: Started consuming messages {"service":"orchestrator-agent","timestamp":"2025-11-08T01:31:56.768Z"}
+[32minfo[39m: ========================================== {"service":"orchestrator-agent","timestamp":"2025-11-08T01:31:56.768Z"}
+[32minfo[39m: ✅ Orchestrator Agent is running! {"service":"orchestrator-agent","timestamp":"2025-11-08T01:31:56.769Z"}
+[32minfo[39m: ========================================== {"service":"orchestrator-agent","timestamp":"2025-11-08T01:31:56.769Z"}
+[32minfo[39m: Listening for user requests... {"service":"orchestrator-agent","timestamp":"2025-11-08T01:31:56.769Z"}
+[32minfo[39m:  {"service":"orchestrator-agent","timestamp":"2025-11-08T01:31:56.769Z"}
+[32minfo[39m: Available Intents: {"service":"orchestrator-agent","timestamp":"2025-11-08T01:31:56.769Z"}
+[32minfo[39m:   - portfolio_advice: Investment recommendations {"service":"orchestrator-agent","timestamp":"2025-11-08T01:31:56.769Z"}
+[32minfo[39m:   - market_analysis: Market trends and sector analysis {"service":"orchestrator-agent","timestamp":"2025-11-08T01:31:56.769Z"}
+[32minfo[39m:   - news_query: Latest news and sentiment {"service":"orchestrator-agent","timestamp":"2025-11-08T01:31:56.769Z"}
+[32minfo[39m:   - historical_analysis: Historical data and technical indicators {"service":"orchestrator-agent","timestamp":"2025-11-08T01:31:56.769Z"}
+[32minfo[39m:   - risk_assessment: Risk metrics and portfolio risk {"service":"orchestrator-agent","timestamp":"2025-11-08T01:31:56.769Z"}
+[32minfo[39m:   - general_query: General stock market questions {"service":"orchestrator-agent","timestamp":"2025-11-08T01:31:56.769Z"}
+[32minfo[39m:  {"service":"orchestrator-agent","timestamp":"2025-11-08T01:31:56.770Z"}
+[32minfo[39m: Kafka Topics: {"service":"orchestrator-agent","timestamp":"2025-11-08T01:31:56.770Z"}
+[32minfo[39m:   IN: user-requests (listening) {"service":"orchestrator-agent","timestamp":"2025-11-08T01:31:56.770Z"}
+[32minfo[39m:   OUT: user-responses, portfolio-events, market-analysis-events, news-events, risk-assessment-events {"service":"orchestrator-agent","timestamp":"2025-11-08T01:31:56.770Z"}
+[32minfo[39m: ========================================== {"service":"orchestrator-agent","timestamp":"2025-11-08T01:31:56.770Z"}
+9:31:58 AM [tsx] change in ./src/gemini-client.ts Restarting...
+[32minfo[39m: SIGTERM received, shutting down gracefully... {"service":"orchestrator-agent","timestamp":"2025-11-08T01:31:58.419Z"}
+[32minfo[39m: Shutting down orchestrator agent... {"service":"orchestrator-agent","timestamp":"2025-11-08T01:31:58.420Z"}
+{"level":"INFO","timestamp":"2025-11-08T01:32:01.802Z","logger":"kafkajs","message":"[Runner] consumer not running, exiting","groupId":"orchestrator-group","memberId":"orchestrator-agent-a9b35a3e-0ff4-4265-a349-63162346cf25"}
+{"level":"INFO","timestamp":"2025-11-08T01:32:01.812Z","logger":"kafkajs","message":"[Consumer] Stopped","groupId":"orchestrator-group"}
+[32minfo[39m: Disconnected from Kafka {"service":"orchestrator-agent","timestamp":"2025-11-08T01:32:01.813Z"}
+[32minfo[39m: Orchestrator agent stopped {"service":"orchestrator-agent","timestamp":"2025-11-08T01:32:01.813Z"}
+c[32minfo[39m: ========================================== {"service":"orchestrator-agent","timestamp":"2025-11-08T01:32:02.486Z"}
+[32minfo[39m: Starting Orchestrator Agent {"service":"orchestrator-agent","timestamp":"2025-11-08T01:32:02.492Z"}
+[32minfo[39m: ========================================== {"service":"orchestrator-agent","timestamp":"2025-11-08T01:32:02.493Z"}
+[32minfo[39m: Connecting to Kafka... {"service":"orchestrator-agent","timestamp":"2025-11-08T01:32:02.494Z"}
+(node:88286) TimeoutNegativeWarning: -1762565522530 is a negative number.
+Timeout duration was set to 1.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[32minfo[39m: Connected to Kafka {"service":"orchestrator-agent","timestamp":"2025-11-08T01:32:02.533Z"}
+[32minfo[39m: Subscribing to user-requests topic... {"service":"orchestrator-agent","timestamp":"2025-11-08T01:32:02.533Z"}
+[32minfo[39m: Subscribed to user-requests topic {"service":"orchestrator-agent","timestamp":"2025-11-08T01:32:02.542Z"}
+[32minfo[39m: Agent Registry {"agents":[{"capabilities":["portfolio_advice"],"name":"portfolio-advisor","topic":"portfolio-events"},{"capabilities":["market_analysis"],"name":"market-analysis","topic":"market-analysis-events"},{"capabilities":["news_query"],"name":"news-intelligence","topic":"news-events"},{"capabilities":["historical_analysis"],"name":"historical-analysis","topic":"market-analysis-events"},{"capabilities":["risk_assessment"],"name":"risk-assessment","topic":"risk-assessment-events"}],"service":"orchestrator-agent","timestamp":"2025-11-08T01:32:02.543Z","totalAgents":5}
+[32minfo[39m: Starting message consumption... {"service":"orchestrator-agent","timestamp":"2025-11-08T01:32:02.543Z"}
+{"level":"INFO","timestamp":"2025-11-08T01:32:02.544Z","logger":"kafkajs","message":"[Consumer] Starting","groupId":"orchestrator-group"}
+{"level":"INFO","timestamp":"2025-11-08T01:32:05.577Z","logger":"kafkajs","message":"[ConsumerGroup] Consumer has joined the group","groupId":"orchestrator-group","memberId":"orchestrator-agent-bb3cf35e-050b-4ccc-870b-e35c116d5685","leaderId":"orchestrator-agent-bb3cf35e-050b-4ccc-870b-e35c116d5685","isLeader":true,"memberAssignment":{"user-requests":[0,1,2]},"groupProtocol":"RoundRobinAssigner","duration":3031}
+[32minfo[39m: Started consuming messages {"service":"orchestrator-agent","timestamp":"2025-11-08T01:32:05.578Z"}
+[32minfo[39m: ========================================== {"service":"orchestrator-agent","timestamp":"2025-11-08T01:32:05.579Z"}
+[32minfo[39m: ✅ Orchestrator Agent is running! {"service":"orchestrator-agent","timestamp":"2025-11-08T01:32:05.579Z"}
+[32minfo[39m: ========================================== {"service":"orchestrator-agent","timestamp":"2025-11-08T01:32:05.579Z"}
+[32minfo[39m: Listening for user requests... {"service":"orchestrator-agent","timestamp":"2025-11-08T01:32:05.579Z"}
+[32minfo[39m:  {"service":"orchestrator-agent","timestamp":"2025-11-08T01:32:05.579Z"}
+[32minfo[39m: Available Intents: {"service":"orchestrator-agent","timestamp":"2025-11-08T01:32:05.579Z"}
+[32minfo[39m:   - portfolio_advice: Investment recommendations {"service":"orchestrator-agent","timestamp":"2025-11-08T01:32:05.579Z"}
+[32minfo[39m:   - market_analysis: Market trends and sector analysis {"service":"orchestrator-agent","timestamp":"2025-11-08T01:32:05.579Z"}
+[32minfo[39m:   - news_query: Latest news and sentiment {"service":"orchestrator-agent","timestamp":"2025-11-08T01:32:05.579Z"}
+[32minfo[39m:   - historical_analysis: Historical data and technical indicators {"service":"orchestrator-agent","timestamp":"2025-11-08T01:32:05.579Z"}
+[32minfo[39m:   - risk_assessment: Risk metrics and portfolio risk {"service":"orchestrator-agent","timestamp":"2025-11-08T01:32:05.580Z"}
+[32minfo[39m:   - general_query: General stock market questions {"service":"orchestrator-agent","timestamp":"2025-11-08T01:32:05.580Z"}
+[32minfo[39m:  {"service":"orchestrator-agent","timestamp":"2025-11-08T01:32:05.580Z"}
+[32minfo[39m: Kafka Topics: {"service":"orchestrator-agent","timestamp":"2025-11-08T01:32:05.580Z"}
+[32minfo[39m:   IN: user-requests (listening) {"service":"orchestrator-agent","timestamp":"2025-11-08T01:32:05.580Z"}
+[32minfo[39m:   OUT: user-responses, portfolio-events, market-analysis-events, news-events, risk-assessment-events {"service":"orchestrator-agent","timestamp":"2025-11-08T01:32:05.580Z"}
+[32minfo[39m: ========================================== {"service":"orchestrator-agent","timestamp":"2025-11-08T01:32:05.580Z"}
+[32minfo[39m: SIGTERM received, shutting down gracefully... {"service":"orchestrator-agent","timestamp":"2025-11-08T01:32:24.000Z"}
+[32minfo[39m: Shutting down orchestrator agent... {"service":"orchestrator-agent","timestamp":"2025-11-08T01:32:24.001Z"}
+[32minfo[39m: SIGTERM received, shutting down gracefully... {"service":"orchestrator-agent","timestamp":"2025-11-08T01:32:24.003Z"}
+[32minfo[39m: Shutting down orchestrator agent... {"service":"orchestrator-agent","timestamp":"2025-11-08T01:32:24.003Z"}
+{"level":"INFO","timestamp":"2025-11-08T01:32:28.353Z","logger":"kafkajs","message":"[Runner] consumer not running, exiting","groupId":"orchestrator-group","memberId":"orchestrator-agent-bb3cf35e-050b-4ccc-870b-e35c116d5685"}
+{"level":"INFO","timestamp":"2025-11-08T01:32:28.360Z","logger":"kafkajs","message":"[Consumer] Stopped","groupId":"orchestrator-group"}
+[32minfo[39m: Disconnected from Kafka {"service":"orchestrator-agent","timestamp":"2025-11-08T01:32:28.361Z"}
+[32minfo[39m: Disconnected from Kafka {"service":"orchestrator-agent","timestamp":"2025-11-08T01:32:28.361Z"}
+[32minfo[39m: Orchestrator agent stopped {"service":"orchestrator-agent","timestamp":"2025-11-08T01:32:28.361Z"}

@@ -1,0 +1,11 @@
+
+> mse-ingestion-service@1.0.0 load-data
+> tsx scripts/load-data.ts
+
+{"level":"WARN","timestamp":"2025-11-08T01:02:35.399Z","logger":"kafkajs","message":"KafkaJS v2.0.0 switched default partitioner. To retain the same partitioning behavior as in previous versions, create the producer with the option \"createPartitioner: Partitioners.LegacyPartitioner\". See the migration guide at https://kafka.js.org/docs/migration-guide-v2.0.0#producer-new-default-partitioner for details. Silence this warning by setting the environment variable \"KAFKAJS_NO_PARTITIONER_WARNING=1\""}
+[32minfo[39m: ============================================================ {"service":"mse-ingestion","timestamp":"2025-11-08T01:02:35.402Z"}
+[32minfo[39m: MSE Data Loading Script {"service":"mse-ingestion","timestamp":"2025-11-08T01:02:35.404Z"}
+[32minfo[39m: ============================================================ {"service":"mse-ingestion","timestamp":"2025-11-08T01:02:35.404Z"}
+[32minfo[39m: Connecting to PostgreSQL... {"service":"mse-ingestion","timestamp":"2025-11-08T01:02:35.405Z"}
+[31merror[39m: Failed to connect to PostgreSQL {"error":{},"service":"mse-ingestion","timestamp":"2025-11-08T01:02:35.439Z"}
+[31merror[39m: Fatal error {"error":{},"service":"mse-ingestion","timestamp":"2025-11-08T01:02:35.439Z"}

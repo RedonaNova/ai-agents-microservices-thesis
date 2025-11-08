@@ -1,0 +1,17 @@
+
+> mse-ingestion-service@1.0.0 load-data
+> tsx scripts/load-data.ts
+
+[32minfo[39m: ============================================================ {"service":"mse-ingestion","timestamp":"2025-11-08T01:05:22.045Z"}
+[32minfo[39m: MSE Data Loading Script {"service":"mse-ingestion","timestamp":"2025-11-08T01:05:22.048Z"}
+[32minfo[39m: ============================================================ {"service":"mse-ingestion","timestamp":"2025-11-08T01:05:22.048Z"}
+[32minfo[39m: Connecting to PostgreSQL... {"service":"mse-ingestion","timestamp":"2025-11-08T01:05:22.049Z"}
+[32minfo[39m: Connected to PostgreSQL {"service":"mse-ingestion","timestamp":"2025-11-08T01:05:22.087Z"}
+[32minfo[39m: Connecting to Kafka... {"service":"mse-ingestion","timestamp":"2025-11-08T01:05:22.088Z"}
+(node:80342) TimeoutNegativeWarning: -1762563922102 is a negative number.
+Timeout duration was set to 1.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[32minfo[39m: Connected to Kafka {"service":"mse-ingestion","timestamp":"2025-11-08T01:05:22.103Z"}
+[32minfo[39m: Loading Trading History data... {"service":"mse-ingestion","timestamp":"2025-11-08T01:05:22.104Z"}
+[32minfo[39m: File: /home/it/apps/thesis-report/backend/mse-ingestion-service/data/TradingHistory.json {"service":"mse-ingestion","timestamp":"2025-11-08T01:05:22.104Z"}
+[31merror[39m: Fatal error {"error":{},"service":"mse-ingestion","timestamp":"2025-11-08T01:05:22.104Z"}
