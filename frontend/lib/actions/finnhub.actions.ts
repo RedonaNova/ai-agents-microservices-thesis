@@ -3,6 +3,7 @@
 import { getDateRange, validateArticle, formatArticle } from "@/lib/utils";
 import { POPULAR_STOCK_SYMBOLS } from "@/lib/constants";
 import { cache } from "react";
+import { getNewsFromAgent } from "./agent.actions";
 
 const FINNHUB_BASE_URL = "https://finnhub.io/api/v1";
 const NEXT_PUBLIC_FINNHUB_API_KEY =
@@ -27,9 +28,39 @@ async function fetchJSON<T>(
 
 export { fetchJSON };
 
+/**
+ * Get news articles - Now uses News Intelligence Agent (backend)
+ * Falls back to direct Finnhub API if agent is unavailable
+ */
 export async function getNews(
   symbols?: string[]
 ): Promise<MarketNewsArticle[]> {
+  // Try to use News Intelligence Agent first
+  try {
+    const agentNews = await getNewsFromAgent({
+      symbols: symbols || [],
+      days: 7,
+    });
+    
+    if (agentNews && agentNews.length > 0) {
+      // Convert agent format to MarketNewsArticle format
+      return agentNews.map((article, index) => ({
+        headline: article.headline,
+        summary: article.summary || '',
+        source: article.source,
+        url: article.url,
+        datetime: article.datetime,
+        image: article.image || '',
+        related: article.related || '',
+        category: 'general',
+        id: index,
+      }));
+    }
+  } catch (agentError) {
+    console.warn('News Intelligence Agent unavailable, falling back to direct API:', agentError);
+  }
+
+  // Fallback to direct Finnhub API (legacy behavior)
   try {
     const range = getDateRange(5);
     const token = process.env.FINNHUB_API_KEY ?? NEXT_PUBLIC_FINNHUB_API_KEY;

@@ -1,4 +1,5 @@
 import TradingViewWidget from "@/components/TradingViewWidget";
+import { MSEStocksWidget } from "@/components/MSEStocksWidget";
 import {
   HEATMAP_WIDGET_CONFIG,
   MARKET_DATA_WIDGET_CONFIG,
@@ -11,6 +12,11 @@ export default function Home() {
     "https://s3.tradingview.com/external-embedding/embed-widget-";
   return (
     <div className="flex min-h-screen home-wrapper">
+      {/* MSE Stocks Section */}
+      <section className="w-full mb-8">
+        <MSEStocksWidget />
+      </section>
+
       <section className="grid w-full gap-8 home-section">
         <div className="md:col-span-1 xl:col-span-1">
           <TradingViewWidget
