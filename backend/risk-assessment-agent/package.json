@@ -1,0 +1,28 @@
+{
+  "name": "risk-assessment-agent",
+  "version": "1.0.0",
+  "description": "Risk assessment agent with VaR and Monte Carlo simulation for MSE",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "keywords": ["risk", "var", "monte-carlo", "agent", "kafka", "gemini"],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "@google/generative-ai": "^0.21.0",
+    "dotenv": "^16.4.5",
+    "kafkajs": "^2.2.4",
+    "pg": "^8.11.3",
+    "winston": "^3.11.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.6",
+    "@types/pg": "^8.10.9",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.3"
+  }
+}
+
