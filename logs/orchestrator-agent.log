@@ -1,0 +1,35 @@
+
+> orchestrator-agent@1.0.0 dev
+> tsx watch src/index.ts
+
+{"level":"WARN","timestamp":"2025-11-08T09:51:43.325Z","logger":"kafkajs","message":"KafkaJS v2.0.0 switched default partitioner. To retain the same partitioning behavior as in previous versions, create the producer with the option \"createPartitioner: Partitioners.LegacyPartitioner\". See the migration guide at https://kafka.js.org/docs/migration-guide-v2.0.0#producer-new-default-partitioner for details. Silence this warning by setting the environment variable \"KAFKAJS_NO_PARTITIONER_WARNING=1\""}
+[32minfo[39m: ========================================== {"service":"orchestrator-agent","timestamp":"2025-11-08T09:51:43.446Z"}
+[32minfo[39m: Starting Orchestrator Agent {"service":"orchestrator-agent","timestamp":"2025-11-08T09:51:43.451Z"}
+[32minfo[39m: ========================================== {"service":"orchestrator-agent","timestamp":"2025-11-08T09:51:43.453Z"}
+[32minfo[39m: Connecting to Kafka... {"service":"orchestrator-agent","timestamp":"2025-11-08T09:51:43.459Z"}
+{"level":"ERROR","timestamp":"2025-11-08T09:51:43.612Z","logger":"kafkajs","message":"[BrokerPool] Closed connection","retryCount":0,"retryTime":120}
+{"level":"ERROR","timestamp":"2025-11-08T09:51:43.616Z","logger":"kafkajs","message":"[BrokerPool] Closed connection","retryCount":0,"retryTime":114}
+{"level":"ERROR","timestamp":"2025-11-08T09:51:43.752Z","logger":"kafkajs","message":"[BrokerPool] Closed connection","retryCount":1,"retryTime":242}
+{"level":"ERROR","timestamp":"2025-11-08T09:51:43.753Z","logger":"kafkajs","message":"[BrokerPool] Closed connection","retryCount":1,"retryTime":242}
+{"level":"ERROR","timestamp":"2025-11-08T09:51:44.005Z","logger":"kafkajs","message":"[BrokerPool] Closed connection","retryCount":2,"retryTime":454}
+{"level":"ERROR","timestamp":"2025-11-08T09:51:44.007Z","logger":"kafkajs","message":"[BrokerPool] Closed connection","retryCount":2,"retryTime":506}
+{"level":"ERROR","timestamp":"2025-11-08T09:51:44.468Z","logger":"kafkajs","message":"[BrokerPool] Closed connection","retryCount":3,"retryTime":1020}
+{"level":"ERROR","timestamp":"2025-11-08T09:51:44.519Z","logger":"kafkajs","message":"[BrokerPool] Closed connection","retryCount":3,"retryTime":1160}
+{"level":"ERROR","timestamp":"2025-11-08T09:51:45.506Z","logger":"kafkajs","message":"[BrokerPool] Closed connection","retryCount":4,"retryTime":1696}
+{"level":"ERROR","timestamp":"2025-11-08T09:51:45.694Z","logger":"kafkajs","message":"[BrokerPool] Closed connection","retryCount":4,"retryTime":1882}
+{"level":"ERROR","timestamp":"2025-11-08T09:51:47.213Z","logger":"kafkajs","message":"[Connection] Connection error: read ECONNRESET","broker":"localhost:9092","clientId":"orchestrator-agent","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)"}
+{"level":"ERROR","timestamp":"2025-11-08T09:51:47.214Z","logger":"kafkajs","message":"[BrokerPool] Failed to connect to seed broker, trying another broker from the list: Connection error: read ECONNRESET","retryCount":5,"retryTime":3854}
+{"level":"ERROR","timestamp":"2025-11-08T09:51:47.587Z","logger":"kafkajs","message":"[Connection] Connection error: read ECONNRESET","broker":"localhost:9092","clientId":"orchestrator-agent","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)"}
+{"level":"ERROR","timestamp":"2025-11-08T09:51:47.588Z","logger":"kafkajs","message":"[BrokerPool] Failed to connect to seed broker, trying another broker from the list: Connection error: read ECONNRESET","retryCount":5,"retryTime":4234}
+{"level":"ERROR","timestamp":"2025-11-08T09:51:51.077Z","logger":"kafkajs","message":"[Connection] Connection error: read ECONNRESET","broker":"localhost:9092","clientId":"orchestrator-agent","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)"}
+{"level":"ERROR","timestamp":"2025-11-08T09:51:51.078Z","logger":"kafkajs","message":"[BrokerPool] Failed to connect to seed broker, trying another broker from the list: Connection error: read ECONNRESET","retryCount":6,"retryTime":7010}
+{"level":"ERROR","timestamp":"2025-11-08T09:51:51.826Z","logger":"kafkajs","message":"[Connection] Connection error: read ECONNRESET","broker":"localhost:9092","clientId":"orchestrator-agent","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)"}
+{"level":"ERROR","timestamp":"2025-11-08T09:51:51.828Z","logger":"kafkajs","message":"[BrokerPool] Failed to connect to seed broker, trying another broker from the list: Connection error: read ECONNRESET","retryCount":6,"retryTime":7096}
+{"level":"ERROR","timestamp":"2025-11-08T09:51:55.776Z","logger":"kafkajs","message":"[Connection] Connection error: read ECONNRESET","broker":"localhost:9092","clientId":"orchestrator-agent","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)"}
+{"level":"ERROR","timestamp":"2025-11-08T09:51:55.776Z","logger":"kafkajs","message":"[BrokerPool] Failed to connect to seed broker, trying another broker from the list: Connection error: read ECONNRESET","retryCount":7,"retryTime":11420}
+{"level":"ERROR","timestamp":"2025-11-08T09:51:56.607Z","logger":"kafkajs","message":"[Connection] Connection error: read ECONNRESET","broker":"localhost:9092","clientId":"orchestrator-agent","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)"}
+{"level":"ERROR","timestamp":"2025-11-08T09:51:56.608Z","logger":"kafkajs","message":"[BrokerPool] Failed to connect to seed broker, trying another broker from the list: Connection error: read ECONNRESET","retryCount":7,"retryTime":11644}
+{"level":"ERROR","timestamp":"2025-11-08T09:52:07.201Z","logger":"kafkajs","message":"[Connection] Connection error: read ECONNRESET","broker":"localhost:9092","clientId":"orchestrator-agent","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)"}
+{"level":"ERROR","timestamp":"2025-11-08T09:52:07.201Z","logger":"kafkajs","message":"[BrokerPool] Failed to connect to seed broker, trying another broker from the list: Connection error: read ECONNRESET","retryCount":8,"retryTime":20322}
+[31merror[39m: Failed to connect to Kafka {"error":"Connection error: read ECONNRESET","service":"orchestrator-agent","timestamp":"2025-11-08T09:52:07.202Z"}
+[31merror[39m: Failed to start orchestrator agent {"error":"Connection error: read ECONNRESET","service":"orchestrator-agent","stack":"KafkaJSNonRetriableError\n  Caused by: KafkaJSConnectionError: Connection error: read ECONNRESET\n    at Socket.onError (/home/it/apps/thesis-report/backend/orchestrator-agent/node_modules/kafkajs/src/network/connection.js:210:23)\n    at Socket.emit (node:events:508:28)\n    at emitErrorNT (node:internal/streams/destroy:170:8)\n    at emitErrorCloseNT (node:internal/streams/destroy:129:3)\n    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)","timestamp":"2025-11-08T09:52:07.203Z"}

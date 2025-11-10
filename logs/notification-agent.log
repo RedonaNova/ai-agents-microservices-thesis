@@ -1,0 +1,16 @@
+
+> notification-agent@1.0.0 dev
+> tsx watch src/index.ts
+
+[32minfo[39m: ========================================== {"service":"welcome-email-agent","timestamp":"2025-11-08T09:51:47.497Z"}
+[32minfo[39m: Starting Consolidated Notification Agent {"service":"welcome-email-agent","timestamp":"2025-11-08T09:51:47.504Z"}
+[32minfo[39m: ========================================== {"service":"welcome-email-agent","timestamp":"2025-11-08T09:51:47.505Z"}
+{"level":"WARN","timestamp":"2025-11-08T09:51:47.507Z","logger":"kafkajs","message":"KafkaJS v2.0.0 switched default partitioner. To retain the same partitioning behavior as in previous versions, create the producer with the option \"createPartitioner: Partitioners.LegacyPartitioner\". See the migration guide at https://kafka.js.org/docs/migration-guide-v2.0.0#producer-new-default-partitioner for details. Silence this warning by setting the environment variable \"KAFKAJS_NO_PARTITIONER_WARNING=1\""}
+{"level":"ERROR","timestamp":"2025-11-08T09:51:47.536Z","logger":"kafkajs","message":"[BrokerPool] Closed connection","retryCount":0,"retryTime":294}
+{"level":"ERROR","timestamp":"2025-11-08T09:51:47.835Z","logger":"kafkajs","message":"[BrokerPool] Closed connection","retryCount":1,"retryTime":534}
+{"level":"ERROR","timestamp":"2025-11-08T09:51:48.374Z","logger":"kafkajs","message":"[BrokerPool] Closed connection","retryCount":2,"retryTime":882}
+{"level":"ERROR","timestamp":"2025-11-08T09:51:49.261Z","logger":"kafkajs","message":"[BrokerPool] Closed connection","retryCount":3,"retryTime":1864}
+{"level":"ERROR","timestamp":"2025-11-08T09:51:51.130Z","logger":"kafkajs","message":"[BrokerPool] Closed connection","retryCount":4,"retryTime":3360}
+{"level":"ERROR","timestamp":"2025-11-08T09:51:54.495Z","logger":"kafkajs","message":"[BrokerPool] Closed connection","retryCount":5,"retryTime":6944}
+[31merror[39m: Failed to connect to Kafka {"error":{"name":"KafkaJSNumberOfRetriesExceeded","retriable":false,"retryCount":5,"retryTime":6944},"service":"welcome-email-agent","timestamp":"2025-11-08T09:51:54.499Z"}
+[31merror[39m: Failed to start Notification Agent {"error":{"name":"KafkaJSNumberOfRetriesExceeded","retriable":false,"retryCount":5,"retryTime":6944},"service":"welcome-email-agent","timestamp":"2025-11-08T09:51:54.501Z"}

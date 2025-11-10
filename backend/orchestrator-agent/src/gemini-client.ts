@@ -18,7 +18,7 @@ class GeminiClient {
 
     this.genAI = new GoogleGenerativeAI(apiKey);
     this.model = this.genAI.getGenerativeModel({ 
-      model: 'gemini-2.0-flash-exp',
+      model: 'gemini-2.0-flash',
       generationConfig: {
         temperature: 0.3, // Lower temperature for more consistent intent classification
         topP: 0.8,
@@ -208,7 +208,7 @@ Important:
   async generateResponse(prompt: string, temperature: number = 0.7): Promise<string> {
     try {
       const model = this.genAI.getGenerativeModel({ 
-        model: 'gemini-2.0-flash-exp',
+        model: 'gemini-2.0-flash',
         generationConfig: {
           temperature,
           topP: 0.9,

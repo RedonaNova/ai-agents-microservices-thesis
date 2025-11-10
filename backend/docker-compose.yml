@@ -15,6 +15,12 @@ services:
       - zookeeper_logs:/var/lib/zookeeper/log
     networks:
       - thesis-network
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 1G
 
   # Apache Kafka
   kafka:
@@ -44,6 +50,12 @@ services:
       interval: 10s
       timeout: 10s
       retries: 5
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2G
 
   # Kafka UI (for visualization and debugging)
   kafka-ui:
@@ -59,6 +71,12 @@ services:
       KAFKA_CLUSTERS_0_ZOOKEEPER: zookeeper:2181
     networks:
       - thesis-network
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
 
   # Apache Flink Job Manager
   flink-jobmanager:
@@ -73,18 +91,31 @@ services:
         jobmanager.rpc.address: flink-jobmanager
         jobmanager.memory.process.size: 1600m
         parallelism.default: 2
+      - KAFKA_BOOTSTRAP_SERVERS=kafka:9093
     volumes:
       - ./flink-jobs:/opt/flink/jobs
       - flink_data:/opt/flink/data
     networks:
       - thesis-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8081/overview"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2G
 
-  # Apache Flink Task Manager
-  flink-taskmanager:
+  # Apache Flink Task Manager 1
+  flink-taskmanager-1:
     image: apache/flink:1.18-scala_2.12-java11
-    container_name: thesis-flink-taskmanager
+    container_name: thesis-flink-taskmanager-1
     depends_on:
       - flink-jobmanager
+      - kafka
     command: taskmanager
     environment:
       - |
@@ -93,13 +124,74 @@ services:
         taskmanager.numberOfTaskSlots: 4
         taskmanager.memory.process.size: 1728m
         parallelism.default: 2
+      - KAFKA_BOOTSTRAP_SERVERS=kafka:9093
     volumes:
       - ./flink-jobs:/opt/flink/jobs
       - flink_data:/opt/flink/data
     networks:
       - thesis-network
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2G
 
-  # PostgreSQL Database
+  # Apache Flink Task Manager 2 (for scalability demo)
+  flink-taskmanager-2:
+    image: apache/flink:1.18-scala_2.12-java11
+    container_name: thesis-flink-taskmanager-2
+    depends_on:
+      - flink-jobmanager
+      - kafka
+    command: taskmanager
+    environment:
+      - |
+        FLINK_PROPERTIES=
+        jobmanager.rpc.address: flink-jobmanager
+        taskmanager.numberOfTaskSlots: 4
+        taskmanager.memory.process.size: 1728m
+        parallelism.default: 2
+      - KAFKA_BOOTSTRAP_SERVERS=kafka:9093
+    volumes:
+      - ./flink-jobs:/opt/flink/jobs
+      - flink_data:/opt/flink/data
+    networks:
+      - thesis-network
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2G
+
+  # MongoDB (for user data and watchlists)
+  mongodb:
+    image: mongo:7
+    container_name: thesis-mongodb
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: thesis_user
+      MONGO_INITDB_ROOT_PASSWORD: thesis_pass
+      MONGO_INITDB_DATABASE: thesis_db
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - thesis-network
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 1G
+
+  # PostgreSQL Database (for MSE stock data)
   postgres:
     image: postgres:16-alpine
     container_name: thesis-postgres
@@ -120,6 +212,12 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 1G
 
   # Qdrant Vector Database (for RAG)
   qdrant:
@@ -137,6 +235,12 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 1G
 
   # Redis Cache
   redis:
@@ -154,6 +258,12 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
 
 networks:
   thesis-network:
@@ -164,6 +274,7 @@ volumes:
   zookeeper_logs:
   kafka_data:
   flink_data:
+  mongodb_data:
   postgres_data:
   qdrant_data:
   redis_data:

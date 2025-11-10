@@ -9,6 +9,8 @@ import mongodb from './services/mongodb';
 import authRoutes from './routes/auth.routes';
 import newsRoutes from './routes/news.routes';
 import agentRoutes from './routes/agent.routes';
+import ragRoutes from './routes/rag.routes';
+import monitoringRoutes from './routes/monitoring.routes';
 
 const app: Express = express();
 
@@ -40,6 +42,8 @@ app.get('/health', (req: Request, res: Response) => {
 app.use('/api/auth', authRoutes);
 app.use('/api/news', newsRoutes);
 app.use('/api/agent', agentRoutes);
+app.use('/api/rag', ragRoutes);
+app.use('/api/monitoring', monitoringRoutes);
 
 // 404 handler
 app.use((req: Request, res: Response) => {

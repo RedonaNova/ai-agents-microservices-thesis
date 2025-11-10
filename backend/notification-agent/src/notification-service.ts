@@ -42,7 +42,7 @@ const FROM_NAME = process.env.FROM_NAME || 'Redona Stock Tracker';
 // Gemini AI Configuration
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY || '';
 const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
-const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash-exp' });
+const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
 
 // Finnhub Configuration
 const FINNHUB_API_KEY = process.env.FINNHUB_API_KEY || '';

@@ -1,0 +1,31 @@
+
+> news-intelligence-agent@1.0.0 dev
+> tsx watch src/index.ts
+
+{"level":"WARN","timestamp":"2025-11-08T09:51:43.345Z","logger":"kafkajs","message":"KafkaJS v2.0.0 switched default partitioner. To retain the same partitioning behavior as in previous versions, create the producer with the option \"createPartitioner: Partitioners.LegacyPartitioner\". See the migration guide at https://kafka.js.org/docs/migration-guide-v2.0.0#producer-new-default-partitioner for details. Silence this warning by setting the environment variable \"KAFKAJS_NO_PARTITIONER_WARNING=1\""}
+[32minfo[39m: Starting News Intelligence Agent... {"service":"news-intelligence","timestamp":"2025-11-08T09:51:43.771Z"}
+{"level":"ERROR","timestamp":"2025-11-08T09:51:43.827Z","logger":"kafkajs","message":"[BrokerPool] Closed connection","retryCount":0,"retryTime":109}
+{"level":"ERROR","timestamp":"2025-11-08T09:51:43.831Z","logger":"kafkajs","message":"[BrokerPool] Closed connection","retryCount":0,"retryTime":114}
+{"level":"ERROR","timestamp":"2025-11-08T09:51:43.944Z","logger":"kafkajs","message":"[BrokerPool] Closed connection","retryCount":1,"retryTime":230}
+{"level":"ERROR","timestamp":"2025-11-08T09:51:43.959Z","logger":"kafkajs","message":"[BrokerPool] Closed connection","retryCount":1,"retryTime":248}
+{"level":"ERROR","timestamp":"2025-11-08T09:51:44.180Z","logger":"kafkajs","message":"[BrokerPool] Closed connection","retryCount":2,"retryTime":546}
+{"level":"ERROR","timestamp":"2025-11-08T09:51:44.222Z","logger":"kafkajs","message":"[BrokerPool] Closed connection","retryCount":2,"retryTime":584}
+{"level":"ERROR","timestamp":"2025-11-08T09:51:44.735Z","logger":"kafkajs","message":"[BrokerPool] Closed connection","retryCount":3,"retryTime":980}
+{"level":"ERROR","timestamp":"2025-11-08T09:51:44.810Z","logger":"kafkajs","message":"[BrokerPool] Closed connection","retryCount":3,"retryTime":1034}
+{"level":"ERROR","timestamp":"2025-11-08T09:51:45.720Z","logger":"kafkajs","message":"[BrokerPool] Closed connection","retryCount":4,"retryTime":2104}
+{"level":"ERROR","timestamp":"2025-11-08T09:51:45.852Z","logger":"kafkajs","message":"[BrokerPool] Closed connection","retryCount":4,"retryTime":2306}
+{"level":"ERROR","timestamp":"2025-11-08T09:51:47.831Z","logger":"kafkajs","message":"[Connection] Connection error: read ECONNRESET","broker":"localhost:9092","clientId":"news-intelligence-agent","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)"}
+{"level":"ERROR","timestamp":"2025-11-08T09:51:47.832Z","logger":"kafkajs","message":"[BrokerPool] Failed to connect to seed broker, trying another broker from the list: Connection error: read ECONNRESET","retryCount":5,"retryTime":4984}
+{"level":"ERROR","timestamp":"2025-11-08T09:51:48.162Z","logger":"kafkajs","message":"[Connection] Connection error: read ECONNRESET","broker":"localhost:9092","clientId":"news-intelligence-agent","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)"}
+{"level":"ERROR","timestamp":"2025-11-08T09:51:48.163Z","logger":"kafkajs","message":"[BrokerPool] Failed to connect to seed broker, trying another broker from the list: Connection error: read ECONNRESET","retryCount":5,"retryTime":4690}
+{"level":"ERROR","timestamp":"2025-11-08T09:51:52.820Z","logger":"kafkajs","message":"[Connection] Connection error: read ECONNRESET","broker":"localhost:9092","clientId":"news-intelligence-agent","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)"}
+{"level":"ERROR","timestamp":"2025-11-08T09:51:52.821Z","logger":"kafkajs","message":"[BrokerPool] Failed to connect to seed broker, trying another broker from the list: Connection error: read ECONNRESET","retryCount":6,"retryTime":9410}
+{"level":"ERROR","timestamp":"2025-11-08T09:51:52.859Z","logger":"kafkajs","message":"[Connection] Connection error: read ECONNRESET","broker":"localhost:9092","clientId":"news-intelligence-agent","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)"}
+{"level":"ERROR","timestamp":"2025-11-08T09:51:52.860Z","logger":"kafkajs","message":"[BrokerPool] Failed to connect to seed broker, trying another broker from the list: Connection error: read ECONNRESET","retryCount":6,"retryTime":8206}
+{"level":"ERROR","timestamp":"2025-11-08T09:51:58.750Z","logger":"kafkajs","message":"[Connection] Connection error: read ECONNRESET","broker":"localhost:9092","clientId":"news-intelligence-agent","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)"}
+{"level":"ERROR","timestamp":"2025-11-08T09:51:58.752Z","logger":"kafkajs","message":"[BrokerPool] Failed to connect to seed broker, trying another broker from the list: Connection error: read ECONNRESET","retryCount":7,"retryTime":15132}
+{"level":"ERROR","timestamp":"2025-11-08T09:51:59.915Z","logger":"kafkajs","message":"[Connection] Connection error: read ECONNRESET","broker":"localhost:9092","clientId":"news-intelligence-agent","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)"}
+{"level":"ERROR","timestamp":"2025-11-08T09:51:59.915Z","logger":"kafkajs","message":"[BrokerPool] Failed to connect to seed broker, trying another broker from the list: Connection error: read ECONNRESET","retryCount":7,"retryTime":21794}
+{"level":"ERROR","timestamp":"2025-11-08T09:52:13.887Z","logger":"kafkajs","message":"[Connection] Connection error: read ECONNRESET","broker":"localhost:9092","clientId":"news-intelligence-agent","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)"}
+{"level":"ERROR","timestamp":"2025-11-08T09:52:13.888Z","logger":"kafkajs","message":"[BrokerPool] Failed to connect to seed broker, trying another broker from the list: Connection error: read ECONNRESET","retryCount":8,"retryTime":30000}
+[31merror[39m: Failed to start News Intelligence Agent: Connection error: read ECONNRESET {"service":"news-intelligence","timestamp":"2025-11-08T09:52:13.889Z"}

@@ -6,6 +6,8 @@ class KafkaService {
   private kafka: Kafka;
   private producer: Producer | null = null;
   private consumers: Map<string, Consumer> = new Map();
+  private responseHandlers: Map<string, (response: any) => void> = new Map();
+  private responseConsumerStarted: boolean = false;
 
   constructor() {
     this.kafka = new Kafka({
@@ -68,6 +70,57 @@ class KafkaService {
         }
       }
     });
+  }
+
+  /**
+   * Subscribe to a specific response by requestId
+   */
+  subscribeToResponse(requestId: string, handler: (response: any) => void): void {
+    this.responseHandlers.set(requestId, handler);
+    
+    // Start response consumer if not already started
+    if (!this.responseConsumerStarted) {
+      this.startResponseConsumer();
+    }
+  }
+
+  /**
+   * Start consuming responses from rag-responses topic
+   */
+  private async startResponseConsumer(): Promise<void> {
+    if (this.responseConsumerStarted) return;
+    
+    this.responseConsumerStarted = true;
+    
+    try {
+      const consumer = await this.createConsumer('api-gateway-rag-responses', ['rag-responses']);
+      
+      await consumer.run({
+        eachMessage: async ({ message }) => {
+          try {
+            if (!message.value) return;
+            
+            const response = JSON.parse(message.value.toString());
+            const requestId = response.requestId;
+            
+            if (requestId && this.responseHandlers.has(requestId)) {
+              const handler = this.responseHandlers.get(requestId);
+              if (handler) {
+                handler(response);
+                this.responseHandlers.delete(requestId); // Clean up after handling
+              }
+            }
+          } catch (error) {
+            logger.error('Error processing RAG response', { error });
+          }
+        }
+      });
+      
+      logger.info('RAG response consumer started');
+    } catch (error) {
+      logger.error('Failed to start RAG response consumer', { error });
+      this.responseConsumerStarted = false;
+    }
   }
 
   async disconnect(): Promise<void> {

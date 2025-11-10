@@ -1,0 +1,27 @@
+{
+  "name": "rag-service",
+  "version": "1.0.0",
+  "description": "RAG Service for MSE Stock Information (Mongolian)",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsx src/index.ts",
+    "ingest": "tsx src/ingest-data.ts"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.21.0",
+    "@qdrant/js-client-rest": "^1.13.0",
+    "dotenv": "^16.4.7",
+    "kafkajs": "^2.2.4",
+    "pg": "^8.13.1",
+    "winston": "^3.17.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "@types/pg": "^8.11.10",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}
+

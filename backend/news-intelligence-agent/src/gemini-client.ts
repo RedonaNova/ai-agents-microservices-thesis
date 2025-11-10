@@ -5,7 +5,7 @@ import { NewsArticle } from './types';
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
 
 class GeminiClient {
-  private model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash-exp' });
+  private model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
 
   async analyzeNews(symbols: string[]): Promise<{ articles: NewsArticle[]; marketImpact: string; keyTopics: string[] }> {
     const prompt = `You are a financial news analyst for the Mongolian Stock Exchange (MSE). Generate a simulated news intelligence report for the following companies: ${symbols.join(', ')}.

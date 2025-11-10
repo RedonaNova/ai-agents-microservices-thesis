@@ -239,7 +239,7 @@ export default function SearchCommand({
             </div>
           ) : null}
 
-          {/* MSE Stocks Section (Mongolian) */}
+          {/* MSE Stocks Section */}
           {isSearchMode && (
             <>
               <div className="border-t border-gray-800 my-2" />
@@ -250,11 +250,8 @@ export default function SearchCommand({
                 </div>
               ) : mseStocks.length > 0 ? (
                 <div>
-                  <div className="search-count px-2 py-2 text-xs font-semibold text-purple-400 uppercase flex items-center gap-2">
-                    <span className="px-2 py-0.5 bg-purple-900/30 rounded text-purple-300">
-                      MSE
-                    </span>
-                    Монголын Хөрөнгийн Бирж ({mseStocks.length})
+                  <div className="search-count px-2 py-2 text-xs font-semibold text-gray-400 uppercase">
+                    MSE Stocks ({mseStocks.length})
                   </div>
                   <ul>
                     {mseStocks.map((stock) => (
@@ -262,17 +259,17 @@ export default function SearchCommand({
                         <Link
                           href={`/stocks/${stock.symbol}`}
                           onClick={handleSelectStock}
-                          className="search-item-link group flex items-center gap-3 px-3 py-2 hover:bg-purple-900/20 rounded-md transition-colors"
+                          className="search-item-link group flex items-center gap-3 px-3 py-2 hover:bg-gray-800/50 rounded-md transition-colors"
                         >
-                          <TrendingUp className="h-4 w-4 text-purple-400" />
+                          <TrendingUp className="h-4 w-4 text-gray-500" />
                           <div className="flex-1 min-w-0">
-                            <div className="font-medium text-gray-100 flex items-center gap-2">
+                            <div className="search-item-name font-medium text-gray-100 flex items-center gap-2">
                               {stock.name}
-                              <span className="text-xs text-gray-500">({stock.symbol})</span>
+                              <span className="px-1.5 py-0.5 text-[10px] bg-gray-700 text-gray-300 rounded font-semibold">MSE</span>
                             </div>
-                            {stock.sector && (
-                              <div className="text-xs text-gray-500">{stock.sector}</div>
-                            )}
+                            <div className="text-xs text-gray-500">
+                              {stock.symbol} {stock.sector && `| ${stock.sector}`}
+                            </div>
                             {stock.closingPrice !== undefined && (
                               <div className="text-xs text-gray-400 mt-1">
                                 ₮{stock.closingPrice.toLocaleString('mn-MN')}
@@ -292,17 +289,17 @@ export default function SearchCommand({
                           <button
                             onClick={(e) => handleToggleWatchlist(e, stock.symbol, stock.name)}
                             disabled={togglingWatchlist.has(stock.symbol)}
-                            className="p-1.5 rounded-md hover:bg-purple-700 transition-colors disabled:opacity-50"
+                            className="p-1.5 rounded-md hover:bg-gray-700 transition-colors disabled:opacity-50"
                             title={watchlistStatus.get(stock.symbol) ? "Хяналтаас хасах" : "Хяналтанд нэмэх"}
                           >
                             {togglingWatchlist.has(stock.symbol) ? (
-                              <Loader2 className="w-4 h-4 animate-spin text-purple-400" />
+                              <Loader2 className="w-4 h-4 animate-spin text-gray-400" />
                             ) : (
                               <Star
                                 className={`w-4 h-4 transition-all ${
                                   watchlistStatus.get(stock.symbol)
                                     ? 'fill-yellow-400 text-yellow-400'
-                                    : 'text-purple-400 hover:text-yellow-400'
+                                    : 'text-gray-500 hover:text-yellow-400'
                                 }`}
                               />
                             )}
