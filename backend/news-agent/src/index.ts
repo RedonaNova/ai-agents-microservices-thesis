@@ -1,9 +1,13 @@
-import { Kafka, Consumer, Producer } from 'kafkajs';
+import { Kafka, Consumer, Producer, CompressionTypes, CompressionCodecs } from 'kafkajs';
+import SnappyCodec from 'kafkajs-snappy';
 import axios from 'axios';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import dotenv from 'dotenv';
 import path from 'path';
 import { v4 as uuidv4 } from 'uuid';
+
+// Register Snappy codec
+CompressionCodecs[CompressionTypes.Snappy] = SnappyCodec;
 
 // Load environment variables
 dotenv.config({ path: path.join(__dirname, '../../.env') });

@@ -1,6 +1,10 @@
-import { Kafka, Producer, Consumer, EachMessagePayload } from 'kafkajs';
+import { Kafka, Producer, Consumer, EachMessagePayload, CompressionTypes, CompressionCodecs } from 'kafkajs';
+import SnappyCodec from 'kafkajs-snappy';
 import { config } from '../config';
 import logger from './logger';
+
+// Register Snappy codec
+CompressionCodecs[CompressionTypes.Snappy] = SnappyCodec;
 
 class KafkaService {
   private kafka: Kafka;

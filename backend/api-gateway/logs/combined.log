@@ -176,3 +176,151 @@
 {"ip":"::1","level":"info","message":"GET /api/monitoring/agents","service":"api-gateway","timestamp":"2025-11-09T12:04:44.241Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36 Edg/142.0.0.0"}
 {"ip":"::1","level":"info","message":"GET /api/monitoring/agents","service":"api-gateway","timestamp":"2025-11-09T12:04:44.327Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36 Edg/142.0.0.0"}
 {"ip":"::1","level":"info","message":"POST /api/agent/investment/portfolio/advice","service":"api-gateway","timestamp":"2025-11-09T12:04:50.527Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36 Edg/142.0.0.0"}
+{"level":"warn","message":"⚠️ Email service not configured (missing EMAIL_USER or EMAIL_PASS)","service":"api-gateway","timestamp":"2025-11-10T16:40:52.818Z"}
+{"env":"development","level":"info","message":"Starting API Gateway...","port":3001,"service":"api-gateway","timestamp":"2025-11-10T16:40:52.883Z"}
+{"level":"info","message":"✅ PostgreSQL connected successfully","service":"api-gateway","timestamp":"2025-11-10T16:40:52.948Z"}
+{"level":"info","message":"Kafka producer connected","service":"api-gateway","timestamp":"2025-11-10T16:40:52.971Z"}
+{"level":"info","message":"API Gateway listening on port 3001","service":"api-gateway","timestamp":"2025-11-10T16:40:52.974Z"}
+{"level":"info","message":"CORS enabled for: http://localhost:3000","service":"api-gateway","timestamp":"2025-11-10T16:40:52.975Z"}
+{"level":"info","message":"Kafka broker: localhost:9092","service":"api-gateway","timestamp":"2025-11-10T16:40:52.975Z"}
+{"level":"info","message":"API Gateway is ready!","service":"api-gateway","timestamp":"2025-11-10T16:40:52.976Z"}
+{"level":"warn","message":"⚠️ Email service not configured (missing EMAIL_USER or EMAIL_PASS)","service":"api-gateway","timestamp":"2025-11-10T16:41:50.401Z"}
+{"env":"development","level":"info","message":"Starting API Gateway...","port":3001,"service":"api-gateway","timestamp":"2025-11-10T16:41:50.438Z"}
+{"level":"info","message":"✅ PostgreSQL connected successfully","service":"api-gateway","timestamp":"2025-11-10T16:41:50.476Z"}
+{"level":"info","message":"Kafka producer connected","service":"api-gateway","timestamp":"2025-11-10T16:41:50.497Z"}
+{"level":"info","message":"API Gateway listening on port 3001","service":"api-gateway","timestamp":"2025-11-10T16:41:50.500Z"}
+{"level":"info","message":"CORS enabled for: http://localhost:3000","service":"api-gateway","timestamp":"2025-11-10T16:41:50.501Z"}
+{"level":"info","message":"Kafka broker: localhost:9092","service":"api-gateway","timestamp":"2025-11-10T16:41:50.501Z"}
+{"level":"info","message":"API Gateway is ready!","service":"api-gateway","timestamp":"2025-11-10T16:41:50.501Z"}
+{"level":"info","message":"✅ Email service configured","service":"api-gateway","timestamp":"2025-11-10T16:42:22.229Z"}
+{"env":"development","level":"info","message":"Starting API Gateway...","port":3001,"service":"api-gateway","timestamp":"2025-11-10T16:42:22.264Z"}
+{"level":"info","message":"✅ PostgreSQL connected successfully","service":"api-gateway","timestamp":"2025-11-10T16:42:22.297Z"}
+{"level":"info","message":"Kafka producer connected","service":"api-gateway","timestamp":"2025-11-10T16:42:22.315Z"}
+{"level":"info","message":"✅ Email service configured","service":"api-gateway","timestamp":"2025-11-10T16:42:27.796Z"}
+{"env":"development","level":"info","message":"Starting API Gateway...","port":3001,"service":"api-gateway","timestamp":"2025-11-10T16:42:27.831Z"}
+{"level":"info","message":"✅ PostgreSQL connected successfully","service":"api-gateway","timestamp":"2025-11-10T16:42:27.867Z"}
+{"level":"info","message":"Kafka producer connected","service":"api-gateway","timestamp":"2025-11-10T16:42:27.885Z"}
+{"level":"info","message":"✅ Email service configured","service":"api-gateway","timestamp":"2025-11-10T16:42:48.341Z"}
+{"env":"development","level":"info","message":"Starting API Gateway...","port":3001,"service":"api-gateway","timestamp":"2025-11-10T16:42:48.382Z"}
+{"level":"info","message":"✅ PostgreSQL connected successfully","service":"api-gateway","timestamp":"2025-11-10T16:42:48.415Z"}
+{"level":"info","message":"Kafka producer connected","service":"api-gateway","timestamp":"2025-11-10T16:42:48.432Z"}
+{"level":"info","message":"API Gateway listening on port 3001","service":"api-gateway","timestamp":"2025-11-10T16:42:48.434Z"}
+{"level":"info","message":"CORS enabled for: http://localhost:3000","service":"api-gateway","timestamp":"2025-11-10T16:42:48.435Z"}
+{"level":"info","message":"Kafka broker: localhost:9092","service":"api-gateway","timestamp":"2025-11-10T16:42:48.435Z"}
+{"level":"info","message":"API Gateway is ready!","service":"api-gateway","timestamp":"2025-11-10T16:42:48.435Z"}
+{"ip":"::1","level":"info","message":"POST /api/agent/chat","service":"api-gateway","timestamp":"2025-11-10T16:47:34.758Z","userAgent":"curl/8.5.0"}
+{"ip":"::1","level":"info","message":"GET /health","service":"api-gateway","timestamp":"2025-11-10T16:47:53.873Z","userAgent":"curl/8.5.0"}
+{"ip":"::1","level":"info","message":"POST /api/agent/query","service":"api-gateway","timestamp":"2025-11-10T16:48:13.321Z","userAgent":"curl/8.5.0"}
+{"key":"cf5dc106-448e-464b-9ab0-bdd096b6e00d","level":"info","message":"Event sent to user.requests","service":"api-gateway","timestamp":"2025-11-10T16:48:13.715Z"}
+{"level":"info","message":"User query sent to orchestrator","requestId":"cf5dc106-448e-464b-9ab0-bdd096b6e00d","service":"api-gateway","timestamp":"2025-11-10T16:48:13.716Z","type":"investment","userId":"guest"}
+{"level":"info","message":"SIGTERM received, shutting down gracefully...","service":"api-gateway","timestamp":"2025-11-10T16:49:43.849Z"}
+{"level":"info","message":"✅ Email service configured","service":"api-gateway","timestamp":"2025-11-10T16:49:45.028Z"}
+{"env":"development","level":"info","message":"Starting API Gateway...","port":3001,"service":"api-gateway","timestamp":"2025-11-10T16:49:45.061Z"}
+{"level":"info","message":"✅ PostgreSQL connected successfully","service":"api-gateway","timestamp":"2025-11-10T16:49:45.104Z"}
+{"level":"info","message":"Kafka producer connected","service":"api-gateway","timestamp":"2025-11-10T16:49:45.127Z"}
+{"level":"info","message":"API Gateway listening on port 3001","service":"api-gateway","timestamp":"2025-11-10T16:49:45.130Z"}
+{"level":"info","message":"CORS enabled for: http://localhost:3000","service":"api-gateway","timestamp":"2025-11-10T16:49:45.130Z"}
+{"level":"info","message":"Kafka broker: localhost:9092","service":"api-gateway","timestamp":"2025-11-10T16:49:45.131Z"}
+{"level":"info","message":"API Gateway is ready!","service":"api-gateway","timestamp":"2025-11-10T16:49:45.131Z"}
+{"ip":"::1","level":"info","message":"POST /api/agent/query","service":"api-gateway","timestamp":"2025-11-10T16:51:20.168Z","userAgent":"curl/8.5.0"}
+{"key":"970284c4-b3ab-4c72-8b92-c904d0fe528b","level":"info","message":"Event sent to user.requests","service":"api-gateway","timestamp":"2025-11-10T16:51:20.202Z"}
+{"level":"info","message":"User query sent to orchestrator","requestId":"970284c4-b3ab-4c72-8b92-c904d0fe528b","service":"api-gateway","timestamp":"2025-11-10T16:51:20.202Z","type":"investment","userId":"guest"}
+{"ip":"::1","level":"info","message":"POST /api/agent/query","service":"api-gateway","timestamp":"2025-11-10T16:52:18.334Z","userAgent":"curl/8.5.0"}
+{"key":"beea6ba6-0f6f-4f29-ad15-58f845af235b","level":"info","message":"Event sent to user.requests","service":"api-gateway","timestamp":"2025-11-10T16:52:18.341Z"}
+{"level":"info","message":"User query sent to orchestrator","requestId":"beea6ba6-0f6f-4f29-ad15-58f845af235b","service":"api-gateway","timestamp":"2025-11-10T16:52:18.342Z","type":"investment","userId":"guest"}
+{"level":"info","message":"SIGTERM received, shutting down gracefully...","service":"api-gateway","timestamp":"2025-11-10T16:55:01.477Z"}
+{"level":"info","message":"✅ Email service configured","service":"api-gateway","timestamp":"2025-11-10T16:55:02.400Z"}
+{"env":"development","level":"info","message":"Starting API Gateway...","port":3001,"service":"api-gateway","timestamp":"2025-11-10T16:55:02.426Z"}
+{"level":"info","message":"✅ PostgreSQL connected successfully","service":"api-gateway","timestamp":"2025-11-10T16:55:02.457Z"}
+{"level":"info","message":"Kafka producer connected","service":"api-gateway","timestamp":"2025-11-10T16:55:02.473Z"}
+{"level":"info","message":"API Gateway listening on port 3001","service":"api-gateway","timestamp":"2025-11-10T16:55:02.475Z"}
+{"level":"info","message":"CORS enabled for: http://localhost:3000","service":"api-gateway","timestamp":"2025-11-10T16:55:02.476Z"}
+{"level":"info","message":"Kafka broker: localhost:9092","service":"api-gateway","timestamp":"2025-11-10T16:55:02.476Z"}
+{"level":"info","message":"API Gateway is ready!","service":"api-gateway","timestamp":"2025-11-10T16:55:02.476Z"}
+{"level":"info","message":"SIGTERM received, shutting down gracefully...","service":"api-gateway","timestamp":"2025-11-10T17:19:42.793Z"}
+{"level":"info","message":"✅ Email service configured","service":"api-gateway","timestamp":"2025-11-10T17:19:45.204Z"}
+{"level":"info","message":"✅ Gemini AI configured for email generation","service":"api-gateway","timestamp":"2025-11-10T17:19:45.216Z"}
+{"env":"development","level":"info","message":"Starting API Gateway...","port":3001,"service":"api-gateway","timestamp":"2025-11-10T17:19:45.251Z"}
+{"level":"info","message":"✅ PostgreSQL connected successfully","service":"api-gateway","timestamp":"2025-11-10T17:19:45.305Z"}
+{"level":"info","message":"Kafka producer connected","service":"api-gateway","timestamp":"2025-11-10T17:19:45.330Z"}
+{"level":"info","message":"API Gateway listening on port 3001","service":"api-gateway","timestamp":"2025-11-10T17:19:45.336Z"}
+{"level":"info","message":"CORS enabled for: http://localhost:3000","service":"api-gateway","timestamp":"2025-11-10T17:19:45.336Z"}
+{"level":"info","message":"Kafka broker: localhost:9092","service":"api-gateway","timestamp":"2025-11-10T17:19:45.337Z"}
+{"level":"info","message":"API Gateway is ready!","service":"api-gateway","timestamp":"2025-11-10T17:19:45.338Z"}
+{"level":"info","message":"SIGTERM received, shutting down gracefully...","service":"api-gateway","timestamp":"2025-11-10T17:22:12.660Z"}
+{"level":"info","message":"✅ Email service configured","service":"api-gateway","timestamp":"2025-11-10T17:22:14.265Z"}
+{"level":"info","message":"✅ Gemini AI configured for email generation","service":"api-gateway","timestamp":"2025-11-10T17:22:14.270Z"}
+{"env":"development","level":"info","message":"Starting API Gateway...","port":3001,"service":"api-gateway","timestamp":"2025-11-10T17:22:14.300Z"}
+{"level":"info","message":"✅ PostgreSQL connected successfully","service":"api-gateway","timestamp":"2025-11-10T17:22:14.346Z"}
+{"level":"info","message":"Kafka producer connected","service":"api-gateway","timestamp":"2025-11-10T17:22:14.371Z"}
+{"level":"info","message":"API Gateway listening on port 3001","service":"api-gateway","timestamp":"2025-11-10T17:22:14.375Z"}
+{"level":"info","message":"CORS enabled for: http://localhost:3000","service":"api-gateway","timestamp":"2025-11-10T17:22:14.375Z"}
+{"level":"info","message":"Kafka broker: localhost:9092","service":"api-gateway","timestamp":"2025-11-10T17:22:14.376Z"}
+{"level":"info","message":"API Gateway is ready!","service":"api-gateway","timestamp":"2025-11-10T17:22:14.377Z"}
+{"level":"info","message":"SIGTERM received, shutting down gracefully...","service":"api-gateway","timestamp":"2025-11-10T17:22:37.889Z"}
+{"level":"info","message":"✅ Email service configured","service":"api-gateway","timestamp":"2025-11-10T17:22:39.534Z"}
+{"level":"info","message":"✅ Gemini AI configured for email generation","service":"api-gateway","timestamp":"2025-11-10T17:22:39.540Z"}
+{"env":"development","level":"info","message":"Starting API Gateway...","port":3001,"service":"api-gateway","timestamp":"2025-11-10T17:22:39.632Z"}
+{"level":"info","message":"✅ PostgreSQL connected successfully","service":"api-gateway","timestamp":"2025-11-10T17:22:39.681Z"}
+{"level":"info","message":"Kafka producer connected","service":"api-gateway","timestamp":"2025-11-10T17:22:39.749Z"}
+{"level":"info","message":"API Gateway listening on port 3001","service":"api-gateway","timestamp":"2025-11-10T17:22:39.754Z"}
+{"level":"info","message":"CORS enabled for: http://localhost:3000","service":"api-gateway","timestamp":"2025-11-10T17:22:39.755Z"}
+{"level":"info","message":"Kafka broker: localhost:9092","service":"api-gateway","timestamp":"2025-11-10T17:22:39.755Z"}
+{"level":"info","message":"API Gateway is ready!","service":"api-gateway","timestamp":"2025-11-10T17:22:39.756Z"}
+{"level":"info","message":"SIGTERM received, shutting down gracefully...","service":"api-gateway","timestamp":"2025-11-10T17:24:27.132Z"}
+{"level":"info","message":"✅ Email service configured","service":"api-gateway","timestamp":"2025-11-10T17:24:28.512Z"}
+{"level":"info","message":"✅ Gemini AI configured for email generation","service":"api-gateway","timestamp":"2025-11-10T17:24:28.520Z"}
+{"env":"development","level":"info","message":"Starting API Gateway...","port":3001,"service":"api-gateway","timestamp":"2025-11-10T17:24:28.704Z"}
+{"level":"info","message":"✅ PostgreSQL connected successfully","service":"api-gateway","timestamp":"2025-11-10T17:24:28.754Z"}
+{"level":"info","message":"Kafka producer connected","service":"api-gateway","timestamp":"2025-11-10T17:24:28.780Z"}
+{"level":"info","message":"API Gateway listening on port 3001","service":"api-gateway","timestamp":"2025-11-10T17:24:28.785Z"}
+{"level":"info","message":"CORS enabled for: http://localhost:3000","service":"api-gateway","timestamp":"2025-11-10T17:24:28.785Z"}
+{"level":"info","message":"Kafka broker: localhost:9092","service":"api-gateway","timestamp":"2025-11-10T17:24:28.786Z"}
+{"level":"info","message":"API Gateway is ready!","service":"api-gateway","timestamp":"2025-11-10T17:24:28.786Z"}
+{"level":"info","message":"SIGTERM received, shutting down gracefully...","service":"api-gateway","timestamp":"2025-11-10T17:24:56.103Z"}
+{"level":"info","message":"✅ Email service configured","service":"api-gateway","timestamp":"2025-11-10T17:24:57.387Z"}
+{"level":"info","message":"✅ Gemini AI configured for email generation","service":"api-gateway","timestamp":"2025-11-10T17:24:57.393Z"}
+{"env":"development","level":"info","message":"Starting API Gateway...","port":3001,"service":"api-gateway","timestamp":"2025-11-10T17:24:57.583Z"}
+{"level":"info","message":"✅ PostgreSQL connected successfully","service":"api-gateway","timestamp":"2025-11-10T17:24:57.632Z"}
+{"level":"info","message":"Kafka producer connected","service":"api-gateway","timestamp":"2025-11-10T17:24:57.662Z"}
+{"level":"info","message":"API Gateway listening on port 3001","service":"api-gateway","timestamp":"2025-11-10T17:24:57.667Z"}
+{"level":"info","message":"CORS enabled for: http://localhost:3000","service":"api-gateway","timestamp":"2025-11-10T17:24:57.667Z"}
+{"level":"info","message":"Kafka broker: localhost:9092","service":"api-gateway","timestamp":"2025-11-10T17:24:57.668Z"}
+{"level":"info","message":"API Gateway is ready!","service":"api-gateway","timestamp":"2025-11-10T17:24:57.668Z"}
+{"level":"info","message":"SIGTERM received, shutting down gracefully...","service":"api-gateway","timestamp":"2025-11-10T17:25:17.190Z"}
+{"level":"info","message":"✅ Email service configured","service":"api-gateway","timestamp":"2025-11-10T17:25:21.269Z"}
+{"level":"info","message":"✅ Gemini AI configured for email generation","service":"api-gateway","timestamp":"2025-11-10T17:25:21.277Z"}
+{"env":"development","level":"info","message":"Starting API Gateway...","port":3001,"service":"api-gateway","timestamp":"2025-11-10T17:25:21.319Z"}
+{"level":"info","message":"✅ PostgreSQL connected successfully","service":"api-gateway","timestamp":"2025-11-10T17:25:21.371Z"}
+{"level":"info","message":"Kafka producer connected","service":"api-gateway","timestamp":"2025-11-10T17:25:21.397Z"}
+{"level":"info","message":"API Gateway listening on port 3001","service":"api-gateway","timestamp":"2025-11-10T17:25:21.401Z"}
+{"level":"info","message":"CORS enabled for: http://localhost:3000","service":"api-gateway","timestamp":"2025-11-10T17:25:21.402Z"}
+{"level":"info","message":"Kafka broker: localhost:9092","service":"api-gateway","timestamp":"2025-11-10T17:25:21.403Z"}
+{"level":"info","message":"API Gateway is ready!","service":"api-gateway","timestamp":"2025-11-10T17:25:21.403Z"}
+{"ip":"::1","level":"info","message":"POST /api/users/register","service":"api-gateway","timestamp":"2025-11-10T17:27:13.099Z","userAgent":"curl/8.5.0"}
+{"key":"1","level":"info","message":"Event sent to user.events","service":"api-gateway","timestamp":"2025-11-10T17:27:13.441Z"}
+{"key":"api-gateway","level":"info","message":"Event sent to monitoring.events","service":"api-gateway","timestamp":"2025-11-10T17:27:13.570Z"}
+{"ip":"::1","level":"info","message":"GET /health","service":"api-gateway","timestamp":"2025-11-10T17:27:13.610Z","userAgent":"curl/8.5.0"}
+{"level":"info","message":"Email sent successfully","service":"api-gateway","subject":"🎉 Welcome to Redona - Your AI Investment Advisor","timestamp":"2025-11-10T17:27:40.199Z","to":"demo@redona.com"}
+{"level":"info","message":"✅ Welcome email sent","service":"api-gateway","timestamp":"2025-11-10T17:27:40.200Z","to":"demo@redona.com"}
+{"ip":"::1","level":"info","message":"GET /health","service":"api-gateway","timestamp":"2025-11-10T17:29:47.040Z","userAgent":"curl/8.5.0"}
+{"level":"info","message":"SIGTERM received, shutting down gracefully...","service":"api-gateway","timestamp":"2025-11-10T17:30:16.951Z"}
+{"level":"info","message":"✅ Email service configured","service":"api-gateway","timestamp":"2025-11-10T17:30:18.178Z"}
+{"level":"info","message":"✅ Gemini AI configured for email generation","service":"api-gateway","timestamp":"2025-11-10T17:30:18.183Z"}
+{"env":"development","level":"info","message":"Starting API Gateway...","port":3001,"service":"api-gateway","timestamp":"2025-11-10T17:30:18.225Z"}
+{"level":"info","message":"✅ PostgreSQL connected successfully","service":"api-gateway","timestamp":"2025-11-10T17:30:18.273Z"}
+{"level":"info","message":"Kafka producer connected","service":"api-gateway","timestamp":"2025-11-10T17:30:18.299Z"}
+{"level":"info","message":"API Gateway listening on port 3001","service":"api-gateway","timestamp":"2025-11-10T17:30:18.304Z"}
+{"level":"info","message":"CORS enabled for: http://localhost:3000","service":"api-gateway","timestamp":"2025-11-10T17:30:18.304Z"}
+{"level":"info","message":"Kafka broker: localhost:9092","service":"api-gateway","timestamp":"2025-11-10T17:30:18.305Z"}
+{"level":"info","message":"API Gateway is ready!","service":"api-gateway","timestamp":"2025-11-10T17:30:18.305Z"}
+{"level":"info","message":"SIGTERM received, shutting down gracefully...","service":"api-gateway","timestamp":"2025-11-10T17:30:57.247Z"}
+{"level":"info","message":"✅ Email service configured","service":"api-gateway","timestamp":"2025-11-10T17:30:58.452Z"}
+{"level":"info","message":"✅ Gemini AI configured for email generation","service":"api-gateway","timestamp":"2025-11-10T17:30:58.457Z"}
+{"env":"development","level":"info","message":"Starting API Gateway...","port":3001,"service":"api-gateway","timestamp":"2025-11-10T17:30:58.496Z"}
+{"level":"info","message":"✅ PostgreSQL connected successfully","service":"api-gateway","timestamp":"2025-11-10T17:30:58.558Z"}
+{"level":"info","message":"Kafka producer connected","service":"api-gateway","timestamp":"2025-11-10T17:30:58.583Z"}
+{"level":"info","message":"API Gateway listening on port 3001","service":"api-gateway","timestamp":"2025-11-10T17:30:58.586Z"}
+{"level":"info","message":"CORS enabled for: http://localhost:3000","service":"api-gateway","timestamp":"2025-11-10T17:30:58.587Z"}
+{"level":"info","message":"Kafka broker: localhost:9092","service":"api-gateway","timestamp":"2025-11-10T17:30:58.588Z"}
+{"level":"info","message":"API Gateway is ready!","service":"api-gateway","timestamp":"2025-11-10T17:30:58.588Z"}

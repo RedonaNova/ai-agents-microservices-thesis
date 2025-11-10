@@ -1,19 +1,52 @@
 
-> investment-agent@1.0.0 dev
+> investment-agent@2.0.0 dev
 > tsx watch src/index.ts
 
-[32minfo[39m: ========================================== {"service":"investment-agent","timestamp":"2025-11-08T09:51:43.847Z"}
-[32minfo[39m: Starting Consolidated Investment Agent {"service":"investment-agent","timestamp":"2025-11-08T09:51:43.852Z"}
-[32minfo[39m: ========================================== {"service":"investment-agent","timestamp":"2025-11-08T09:51:43.852Z"}
-[32minfo[39m: Connected to PostgreSQL database {"service":"investment-agent","timestamp":"2025-11-08T09:51:44.010Z"}
-{"level":"WARN","timestamp":"2025-11-08T09:51:44.014Z","logger":"kafkajs","message":"KafkaJS v2.0.0 switched default partitioner. To retain the same partitioning behavior as in previous versions, create the producer with the option \"createPartitioner: Partitioners.LegacyPartitioner\". See the migration guide at https://kafka.js.org/docs/migration-guide-v2.0.0#producer-new-default-partitioner for details. Silence this warning by setting the environment variable \"KAFKAJS_NO_PARTITIONER_WARNING=1\""}
-{"level":"ERROR","timestamp":"2025-11-08T09:51:44.048Z","logger":"kafkajs","message":"[BrokerPool] Closed connection","retryCount":0,"retryTime":301}
-{"level":"ERROR","timestamp":"2025-11-08T09:51:44.358Z","logger":"kafkajs","message":"[BrokerPool] Closed connection","retryCount":1,"retryTime":572}
-{"level":"ERROR","timestamp":"2025-11-08T09:51:44.940Z","logger":"kafkajs","message":"[Connection] Connection error: read ECONNRESET","broker":"localhost:9092","clientId":"investment-agent","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)"}
-{"level":"ERROR","timestamp":"2025-11-08T09:51:44.944Z","logger":"kafkajs","message":"[BrokerPool] Failed to connect to seed broker, trying another broker from the list: Connection error: read ECONNRESET","retryCount":2,"retryTime":1016}
-{"level":"ERROR","timestamp":"2025-11-08T09:51:45.967Z","logger":"kafkajs","message":"[BrokerPool] Closed connection","retryCount":3,"retryTime":2044}
-{"level":"ERROR","timestamp":"2025-11-08T09:51:48.017Z","logger":"kafkajs","message":"[BrokerPool] Closed connection","retryCount":4,"retryTime":4066}
-{"level":"ERROR","timestamp":"2025-11-08T09:51:52.087Z","logger":"kafkajs","message":"[Connection] Connection error: read ECONNRESET","broker":"localhost:9092","clientId":"investment-agent","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)"}
-{"level":"ERROR","timestamp":"2025-11-08T09:51:52.088Z","logger":"kafkajs","message":"[BrokerPool] Failed to connect to seed broker, trying another broker from the list: Connection error: read ECONNRESET","retryCount":5,"retryTime":9674}
-[31merror[39m: Failed to connect to Kafka {"error":{"name":"KafkaJSNumberOfRetriesExceeded","retriable":false,"retryCount":5,"retryTime":9674},"service":"investment-agent","timestamp":"2025-11-08T09:51:52.090Z"}
-[31merror[39m: Failed to start Investment Agent {"error":{"name":"KafkaJSNumberOfRetriesExceeded","retriable":false,"retryCount":5,"retryTime":9674},"service":"investment-agent","timestamp":"2025-11-08T09:51:52.091Z"}
+{"level":"WARN","timestamp":"2025-11-10T16:51:54.379Z","logger":"kafkajs","message":"KafkaJS v2.0.0 switched default partitioner. To retain the same partitioning behavior as in previous versions, create the producer with the option \"createPartitioner: Partitioners.LegacyPartitioner\". See the migration guide at https://kafka.js.org/docs/migration-guide-v2.0.0#producer-new-default-partitioner for details. Silence this warning by setting the environment variable \"KAFKAJS_NO_PARTITIONER_WARNING=1\""}
+[2025-11-10T16:51:54.382Z] ========================================== 
+[2025-11-10T16:51:54.383Z] 🚀 Starting Investment Agent v2.0 
+[2025-11-10T16:51:54.383Z] ========================================== 
+[2025-11-10T16:51:54.383Z] Connecting to PostgreSQL... 
+[2025-11-10T16:51:54.431Z] Connecting to Kafka... 
+(node:83378) TimeoutNegativeWarning: -1762793514447 is a negative number.
+Timeout duration was set to 1.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[2025-11-10T16:51:54.463Z] ✅ Investment Agent ready 
+[2025-11-10T16:51:54.463Z] Listening for investment tasks... 
+[2025-11-10T16:51:54.463Z] ========================================== 
+{"level":"INFO","timestamp":"2025-11-10T16:51:54.464Z","logger":"kafkajs","message":"[Consumer] Starting","groupId":"investment-agent-group"}
+{"level":"INFO","timestamp":"2025-11-10T16:51:56.213Z","logger":"kafkajs","message":"[ConsumerGroup] Consumer has joined the group","groupId":"investment-agent-group","memberId":"investment-agent-899dad0f-377e-4535-8940-358f9a9437e7","leaderId":"investment-agent-899dad0f-377e-4535-8940-358f9a9437e7","isLeader":true,"memberAssignment":{"agent.tasks":[0,1,2],"execution.plans":[0,1,2]},"groupProtocol":"RoundRobinAssigner","duration":1748}
+[2025-11-10T16:52:18.355Z] 📥 Processing task {
+  "taskId": "a3214206-d535-48b2-b2c9-94490e8c21f1",
+  "action": "process_query",
+  "agentType": "investment"
+}
+[2025-11-10T16:52:18.387Z] ❌ Error fetching MSE data {
+  "error": "column c.industry does not exist"
+}
+[2025-11-10T16:52:19.302Z] ❌ Gemini API error {
+  "error": "[GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent: [429 Too Many Requests] Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details."
+}
+[2025-11-10T16:52:19.318Z] ✅ Task completed {
+  "taskId": "a3214206-d535-48b2-b2c9-94490e8c21f1",
+  "duration": 963
+}
+12:55:01 AM [tsx] change in ./src/index.ts Restarting...
+[2025-11-10T16:55:01.509Z] Shutting down... 
+{"level":"INFO","timestamp":"2025-11-10T16:55:04.581Z","logger":"kafkajs","message":"[Runner] consumer not running, exiting","groupId":"investment-agent-group","memberId":"investment-agent-899dad0f-377e-4535-8940-358f9a9437e7"}
+{"level":"INFO","timestamp":"2025-11-10T16:55:04.589Z","logger":"kafkajs","message":"[Consumer] Stopped","groupId":"investment-agent-group"}
+12:55:06 AM [tsx] Process didn't exit in 5s. Force killing...
+c{"level":"WARN","timestamp":"2025-11-10T16:55:07.033Z","logger":"kafkajs","message":"KafkaJS v2.0.0 switched default partitioner. To retain the same partitioning behavior as in previous versions, create the producer with the option \"createPartitioner: Partitioners.LegacyPartitioner\". See the migration guide at https://kafka.js.org/docs/migration-guide-v2.0.0#producer-new-default-partitioner for details. Silence this warning by setting the environment variable \"KAFKAJS_NO_PARTITIONER_WARNING=1\""}
+[2025-11-10T16:55:07.036Z] ========================================== 
+[2025-11-10T16:55:07.036Z] 🚀 Starting Investment Agent v2.0 
+[2025-11-10T16:55:07.036Z] ========================================== 
+[2025-11-10T16:55:07.036Z] Connecting to PostgreSQL... 
+[2025-11-10T16:55:07.068Z] Connecting to Kafka... 
+(node:84996) TimeoutNegativeWarning: -1762793707080 is a negative number.
+Timeout duration was set to 1.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[2025-11-10T16:55:07.092Z] ✅ Investment Agent ready 
+[2025-11-10T16:55:07.092Z] Listening for investment tasks... 
+[2025-11-10T16:55:07.092Z] ========================================== 
+{"level":"INFO","timestamp":"2025-11-10T16:55:07.093Z","logger":"kafkajs","message":"[Consumer] Starting","groupId":"investment-agent-group"}
+{"level":"INFO","timestamp":"2025-11-10T16:55:10.128Z","logger":"kafkajs","message":"[ConsumerGroup] Consumer has joined the group","groupId":"investment-agent-group","memberId":"investment-agent-c1ef82c0-727c-4f91-b72a-aca5eabdc91e","leaderId":"investment-agent-c1ef82c0-727c-4f91-b72a-aca5eabdc91e","isLeader":true,"memberAssignment":{"agent.tasks":[0,1,2],"execution.plans":[0,1,2]},"groupProtocol":"RoundRobinAssigner","duration":3034}

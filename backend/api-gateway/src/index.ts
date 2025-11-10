@@ -11,6 +11,8 @@ import newsRoutes from './routes/news.routes';
 import agentRoutes from './routes/agent.routes';
 import ragRoutes from './routes/rag.routes';
 import monitoringRoutes from './routes/monitoring.routes';
+import watchlistRoutes from './routes/watchlist.routes';
+import dailyNewsRoutes from './routes/daily-news.routes';
 
 const app: Express = express();
 
@@ -44,6 +46,8 @@ app.use('/api/news', newsRoutes);
 app.use('/api/agent', agentRoutes);
 app.use('/api/rag', ragRoutes);
 app.use('/api/monitoring', monitoringRoutes);
+app.use('/api/watchlist', watchlistRoutes);
+app.use('/api/daily-news', dailyNewsRoutes);
 
 // 404 handler
 app.use((req: Request, res: Response) => {

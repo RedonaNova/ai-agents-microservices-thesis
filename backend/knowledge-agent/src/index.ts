@@ -1,8 +1,12 @@
-import { Kafka, Consumer, Producer } from 'kafkajs';
+import { Kafka, Consumer, Producer, CompressionTypes, CompressionCodecs } from 'kafkajs';
+import SnappyCodec from 'kafkajs-snappy';
 import { Pool } from 'pg';
 import * as fs from 'fs';
 import * as path from 'path';
 import dotenv from 'dotenv';
+
+// Register Snappy codec
+CompressionCodecs[CompressionTypes.Snappy] = SnappyCodec;
 
 // Load environment variables
 dotenv.config({ path: path.join(__dirname, '../../.env') });

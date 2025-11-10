@@ -8,13 +8,19 @@
     "build": "tsc",
     "start": "node dist/index.js"
   },
-  "keywords": ["rag", "knowledge", "semantic-search", "kafka"],
+  "keywords": [
+    "rag",
+    "knowledge",
+    "semantic-search",
+    "kafka"
+  ],
   "license": "MIT",
   "dependencies": {
-    "kafkajs": "^2.2.4",
     "dotenv": "^16.4.5",
-    "winston": "^3.11.0",
-    "pg": "^8.11.3"
+    "kafkajs": "^2.2.4",
+    "kafkajs-snappy": "^1.1.0",
+    "pg": "^8.11.3",
+    "winston": "^3.11.0"
   },
   "devDependencies": {
     "@types/node": "^20.10.6",

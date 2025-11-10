@@ -26,3 +26,43 @@ Timeout duration was set to 1.
 {"level":"ERROR","timestamp":"2025-11-10T16:21:16.439Z","logger":"kafkajs","message":"[Connection] Response Heartbeat(key: 12, version: 3)","broker":"localhost:9092","clientId":"knowledge-agent","error":"The group is rebalancing, so a rejoin is needed","correlationId":24,"size":10}
 {"level":"WARN","timestamp":"2025-11-10T16:21:16.439Z","logger":"kafkajs","message":"[Runner] The group is rebalancing, re-joining","groupId":"knowledge-agent-group","memberId":"knowledge-agent-5cecddcd-54fb-4034-9d22-640f876dbfba","error":"The group is rebalancing, so a rejoin is needed"}
 {"level":"INFO","timestamp":"2025-11-10T16:21:16.464Z","logger":"kafkajs","message":"[ConsumerGroup] Consumer has joined the group","groupId":"knowledge-agent-group","memberId":"knowledge-agent-5cecddcd-54fb-4034-9d22-640f876dbfba","leaderId":"knowledge-agent-5cecddcd-54fb-4034-9d22-640f876dbfba","isLeader":true,"memberAssignment":{"knowledge.queries":[0,1,2]},"groupProtocol":"RoundRobinAssigner","duration":25}
+12:50:06 AM [tsx] change in ./src/index.ts Restarting...
+[2025-11-10T16:50:06.215Z] Shutting down... 
+{"level":"INFO","timestamp":"2025-11-10T16:50:11.177Z","logger":"kafkajs","message":"[Runner] consumer not running, exiting","groupId":"knowledge-agent-group","memberId":"knowledge-agent-5cecddcd-54fb-4034-9d22-640f876dbfba"}
+{"level":"INFO","timestamp":"2025-11-10T16:50:11.214Z","logger":"kafkajs","message":"[Consumer] Stopped","groupId":"knowledge-agent-group"}
+12:50:11 AM [tsx] Process didn't exit in 5s. Force killing...
+c{"level":"WARN","timestamp":"2025-11-10T16:50:12.170Z","logger":"kafkajs","message":"KafkaJS v2.0.0 switched default partitioner. To retain the same partitioning behavior as in previous versions, create the producer with the option \"createPartitioner: Partitioners.LegacyPartitioner\". See the migration guide at https://kafka.js.org/docs/migration-guide-v2.0.0#producer-new-default-partitioner for details. Silence this warning by setting the environment variable \"KAFKAJS_NO_PARTITIONER_WARNING=1\""}
+[2025-11-10T16:50:12.173Z] ========================================== 
+[2025-11-10T16:50:12.174Z] 🚀 Starting Knowledge Agent (RAG) 
+[2025-11-10T16:50:12.174Z] ========================================== 
+[2025-11-10T16:50:12.174Z] Connecting to PostgreSQL... 
+[2025-11-10T16:50:12.268Z] ✅ Loaded 24 knowledge base entries 
+[2025-11-10T16:50:12.269Z] Connecting to Kafka... 
+(node:81807) TimeoutNegativeWarning: -1762793412281 is a negative number.
+Timeout duration was set to 1.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[2025-11-10T16:50:12.296Z] ✅ Knowledge Agent ready 
+[2025-11-10T16:50:12.296Z] Listening for knowledge queries... 
+[2025-11-10T16:50:12.296Z] ========================================== 
+{"level":"INFO","timestamp":"2025-11-10T16:50:12.296Z","logger":"kafkajs","message":"[Consumer] Starting","groupId":"knowledge-agent-group"}
+{"level":"INFO","timestamp":"2025-11-10T16:50:15.330Z","logger":"kafkajs","message":"[ConsumerGroup] Consumer has joined the group","groupId":"knowledge-agent-group","memberId":"knowledge-agent-9035fadc-a252-46d3-a87b-8bfee14d8973","leaderId":"knowledge-agent-9035fadc-a252-46d3-a87b-8bfee14d8973","isLeader":true,"memberAssignment":{"knowledge.queries":[0,1,2]},"groupProtocol":"RoundRobinAssigner","duration":3032}
+12:55:01 AM [tsx] change in ./src/index.ts Restarting...
+[2025-11-10T16:55:01.483Z] Shutting down... 
+{"level":"INFO","timestamp":"2025-11-10T16:55:05.791Z","logger":"kafkajs","message":"[Runner] consumer not running, exiting","groupId":"knowledge-agent-group","memberId":"knowledge-agent-9035fadc-a252-46d3-a87b-8bfee14d8973"}
+{"level":"INFO","timestamp":"2025-11-10T16:55:05.799Z","logger":"kafkajs","message":"[Consumer] Stopped","groupId":"knowledge-agent-group"}
+12:55:06 AM [tsx] Process didn't exit in 5s. Force killing...
+c{"level":"WARN","timestamp":"2025-11-10T16:55:07.002Z","logger":"kafkajs","message":"KafkaJS v2.0.0 switched default partitioner. To retain the same partitioning behavior as in previous versions, create the producer with the option \"createPartitioner: Partitioners.LegacyPartitioner\". See the migration guide at https://kafka.js.org/docs/migration-guide-v2.0.0#producer-new-default-partitioner for details. Silence this warning by setting the environment variable \"KAFKAJS_NO_PARTITIONER_WARNING=1\""}
+[2025-11-10T16:55:07.005Z] ========================================== 
+[2025-11-10T16:55:07.005Z] 🚀 Starting Knowledge Agent (RAG) 
+[2025-11-10T16:55:07.005Z] ========================================== 
+[2025-11-10T16:55:07.005Z] Connecting to PostgreSQL... 
+[2025-11-10T16:55:07.061Z] ✅ Loaded 24 knowledge base entries 
+[2025-11-10T16:55:07.061Z] Connecting to Kafka... 
+(node:84990) TimeoutNegativeWarning: -1762793707074 is a negative number.
+Timeout duration was set to 1.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[2025-11-10T16:55:07.087Z] ✅ Knowledge Agent ready 
+[2025-11-10T16:55:07.087Z] Listening for knowledge queries... 
+[2025-11-10T16:55:07.087Z] ========================================== 
+{"level":"INFO","timestamp":"2025-11-10T16:55:07.087Z","logger":"kafkajs","message":"[Consumer] Starting","groupId":"knowledge-agent-group"}
+{"level":"INFO","timestamp":"2025-11-10T16:55:10.127Z","logger":"kafkajs","message":"[ConsumerGroup] Consumer has joined the group","groupId":"knowledge-agent-group","memberId":"knowledge-agent-d63a3349-537e-4d4b-9ac4-f01f3232529d","leaderId":"knowledge-agent-d63a3349-537e-4d4b-9ac4-f01f3232529d","isLeader":true,"memberAssignment":{"knowledge.queries":[0,1,2]},"groupProtocol":"RoundRobinAssigner","duration":3038}

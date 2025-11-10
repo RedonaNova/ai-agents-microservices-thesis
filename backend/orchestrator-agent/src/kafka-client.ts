@@ -1,10 +1,14 @@
-import { Kafka, Consumer, Producer } from 'kafkajs';
+import { Kafka, Consumer, Producer, CompressionTypes, CompressionCodecs } from 'kafkajs';
+import SnappyCodec from 'kafkajs-snappy';
 import logger from './logger';
 import dotenv from 'dotenv';
 import path from 'path';
 
 // Load environment variables
 dotenv.config({ path: path.join(__dirname, '../../.env') });
+
+// Register Snappy codec
+CompressionCodecs[CompressionTypes.Snappy] = SnappyCodec;
 
 class KafkaClient {
   private kafka: Kafka;

@@ -8,15 +8,21 @@
     "build": "tsc",
     "start": "node dist/index.js"
   },
-  "keywords": ["news", "sentiment", "ai", "kafka"],
+  "keywords": [
+    "news",
+    "sentiment",
+    "ai",
+    "kafka"
+  ],
   "license": "MIT",
   "dependencies": {
-    "kafkajs": "^2.2.4",
-    "dotenv": "^16.4.5",
-    "winston": "^3.11.0",
-    "uuid": "^9.0.1",
+    "@google/generative-ai": "^0.21.0",
     "axios": "^1.6.5",
-    "@google/generative-ai": "^0.21.0"
+    "dotenv": "^16.4.5",
+    "kafkajs": "^2.2.4",
+    "kafkajs-snappy": "^1.1.0",
+    "uuid": "^9.0.1",
+    "winston": "^3.11.0"
   },
   "devDependencies": {
     "@types/node": "^20.10.6",
@@ -25,4 +31,3 @@
     "typescript": "^5.3.3"
   }
 }
-

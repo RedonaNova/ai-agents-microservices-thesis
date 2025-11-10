@@ -2,26 +2,105 @@
 > orchestrator-agent@1.0.0 dev
 > tsx watch src/index.ts
 
-{"level":"WARN","timestamp":"2025-11-10T16:03:20.998Z","logger":"kafkajs","message":"KafkaJS v2.0.0 switched default partitioner. To retain the same partitioning behavior as in previous versions, create the producer with the option \"createPartitioner: Partitioners.LegacyPartitioner\". See the migration guide at https://kafka.js.org/docs/migration-guide-v2.0.0#producer-new-default-partitioner for details. Silence this warning by setting the environment variable \"KAFKAJS_NO_PARTITIONER_WARNING=1\""}
-[32minfo[39m: ========================================== {"service":"orchestrator-agent","timestamp":"2025-11-10T16:03:21.139Z"}
-[32minfo[39m: 🚀 Starting Orchestrator Agent (v2.0) {"service":"orchestrator-agent","timestamp":"2025-11-10T16:03:21.141Z"}
-[32minfo[39m: ========================================== {"service":"orchestrator-agent","timestamp":"2025-11-10T16:03:21.142Z"}
-[32minfo[39m: Connecting to Kafka... {"service":"orchestrator-agent","timestamp":"2025-11-10T16:03:21.142Z"}
-(node:58653) TimeoutNegativeWarning: -1762790601186 is a negative number.
+{"level":"WARN","timestamp":"2025-11-10T16:50:54.573Z","logger":"kafkajs","message":"KafkaJS v2.0.0 switched default partitioner. To retain the same partitioning behavior as in previous versions, create the producer with the option \"createPartitioner: Partitioners.LegacyPartitioner\". See the migration guide at https://kafka.js.org/docs/migration-guide-v2.0.0#producer-new-default-partitioner for details. Silence this warning by setting the environment variable \"KAFKAJS_NO_PARTITIONER_WARNING=1\""}
+[32minfo[39m: ========================================== {"service":"orchestrator-agent","timestamp":"2025-11-10T16:50:54.622Z"}
+[32minfo[39m: 🚀 Starting Orchestrator Agent (v2.0) {"service":"orchestrator-agent","timestamp":"2025-11-10T16:50:54.624Z"}
+[32minfo[39m: ========================================== {"service":"orchestrator-agent","timestamp":"2025-11-10T16:50:54.625Z"}
+[32minfo[39m: Connecting to Kafka... {"service":"orchestrator-agent","timestamp":"2025-11-10T16:50:54.625Z"}
+(node:82481) TimeoutNegativeWarning: -1762793454655 is a negative number.
 Timeout duration was set to 1.
 (Use `node --trace-warnings ...` to show where the warning was created)
-[32minfo[39m: ✅ Connected to Kafka {"service":"orchestrator-agent","timestamp":"2025-11-10T16:03:21.187Z"}
-[32minfo[39m: Subscribing to topics... {"service":"orchestrator-agent","timestamp":"2025-11-10T16:03:21.187Z"}
-[32minfo[39m: ✅ Subscribed to topics: user.requests, knowledge.results {"service":"orchestrator-agent","timestamp":"2025-11-10T16:03:21.200Z"}
-[32minfo[39m: 📋 Configuration: {"service":"orchestrator-agent","timestamp":"2025-11-10T16:03:21.200Z"}
-[32minfo[39m:   - Input Topic: user.requests {"service":"orchestrator-agent","timestamp":"2025-11-10T16:03:21.201Z"}
-[32minfo[39m:   - Output Topics: agent.tasks, planning.tasks, knowledge.queries {"service":"orchestrator-agent","timestamp":"2025-11-10T16:03:21.201Z"}
-[32minfo[39m:   - Monitoring: monitoring.events {"service":"orchestrator-agent","timestamp":"2025-11-10T16:03:21.201Z"}
-[32minfo[39m:  {"service":"orchestrator-agent","timestamp":"2025-11-10T16:03:21.201Z"}
-[32minfo[39m: Starting message consumption... {"service":"orchestrator-agent","timestamp":"2025-11-10T16:03:21.201Z"}
-{"level":"INFO","timestamp":"2025-11-10T16:03:21.202Z","logger":"kafkajs","message":"[Consumer] Starting","groupId":"orchestrator-group"}
-{"level":"INFO","timestamp":"2025-11-10T16:03:24.334Z","logger":"kafkajs","message":"[ConsumerGroup] Consumer has joined the group","groupId":"orchestrator-group","memberId":"orchestrator-agent-9ce7bb5d-80b2-4a50-b681-24fb953ff3a2","leaderId":"orchestrator-agent-9ce7bb5d-80b2-4a50-b681-24fb953ff3a2","isLeader":true,"memberAssignment":{"user.requests":[0,1,2],"knowledge.results":[0,1,2]},"groupProtocol":"RoundRobinAssigner","duration":3131}
-[32minfo[39m: ✅ Started consuming messages {"service":"orchestrator-agent","timestamp":"2025-11-10T16:03:24.335Z"}
-[32minfo[39m: ========================================== {"service":"orchestrator-agent","timestamp":"2025-11-10T16:03:24.335Z"}
-[32minfo[39m: ✅ Orchestrator Agent is running! {"service":"orchestrator-agent","timestamp":"2025-11-10T16:03:24.335Z"}
-[32minfo[39m: ========================================== {"service":"orchestrator-agent","timestamp":"2025-11-10T16:03:24.335Z"}
+[32minfo[39m: ✅ Connected to Kafka {"service":"orchestrator-agent","timestamp":"2025-11-10T16:50:54.658Z"}
+[32minfo[39m: Subscribing to topics... {"service":"orchestrator-agent","timestamp":"2025-11-10T16:50:54.658Z"}
+[32minfo[39m: ✅ Subscribed to topics: user.requests, knowledge.results {"service":"orchestrator-agent","timestamp":"2025-11-10T16:50:54.673Z"}
+[32minfo[39m: 📋 Configuration: {"service":"orchestrator-agent","timestamp":"2025-11-10T16:50:54.673Z"}
+[32minfo[39m:   - Input Topic: user.requests {"service":"orchestrator-agent","timestamp":"2025-11-10T16:50:54.674Z"}
+[32minfo[39m:   - Output Topics: agent.tasks, planning.tasks, knowledge.queries {"service":"orchestrator-agent","timestamp":"2025-11-10T16:50:54.674Z"}
+[32minfo[39m:   - Monitoring: monitoring.events {"service":"orchestrator-agent","timestamp":"2025-11-10T16:50:54.675Z"}
+[32minfo[39m:  {"service":"orchestrator-agent","timestamp":"2025-11-10T16:50:54.675Z"}
+[32minfo[39m: Starting message consumption... {"service":"orchestrator-agent","timestamp":"2025-11-10T16:50:54.675Z"}
+{"level":"INFO","timestamp":"2025-11-10T16:50:54.676Z","logger":"kafkajs","message":"[Consumer] Starting","groupId":"orchestrator-group"}
+{"level":"INFO","timestamp":"2025-11-10T16:50:57.558Z","logger":"kafkajs","message":"[ConsumerGroup] Consumer has joined the group","groupId":"orchestrator-group","memberId":"orchestrator-agent-878ab2f3-ee4d-4d8c-a940-966cd229214f","leaderId":"orchestrator-agent-f1c4e181-9ae8-4978-8444-24cca5799d1c","isLeader":false,"memberAssignment":{"user.requests":[0,1],"knowledge.results":[2]},"groupProtocol":"RoundRobinAssigner","duration":2878}
+[32minfo[39m: ✅ Started consuming messages {"service":"orchestrator-agent","timestamp":"2025-11-10T16:50:57.560Z"}
+[32minfo[39m: ========================================== {"service":"orchestrator-agent","timestamp":"2025-11-10T16:50:57.560Z"}
+[32minfo[39m: ✅ Orchestrator Agent is running! {"service":"orchestrator-agent","timestamp":"2025-11-10T16:50:57.560Z"}
+[32minfo[39m: ========================================== {"service":"orchestrator-agent","timestamp":"2025-11-10T16:50:57.560Z"}
+12:55:01 AM [tsx] change in ./src/kafka-client.ts Restarting...
+[32minfo[39m: SIGTERM received, shutting down gracefully... {"service":"orchestrator-agent","timestamp":"2025-11-10T16:55:01.509Z"}
+[32minfo[39m: Shutting down orchestrator agent... {"service":"orchestrator-agent","timestamp":"2025-11-10T16:55:01.509Z"}
+[32minfo[39m: Total requests processed: 0 {"service":"orchestrator-agent","timestamp":"2025-11-10T16:55:01.510Z"}
+{"level":"INFO","timestamp":"2025-11-10T16:55:03.004Z","logger":"kafkajs","message":"[Runner] consumer not running, exiting","groupId":"orchestrator-group","memberId":"orchestrator-agent-878ab2f3-ee4d-4d8c-a940-966cd229214f"}
+{"level":"INFO","timestamp":"2025-11-10T16:55:03.010Z","logger":"kafkajs","message":"[Consumer] Stopped","groupId":"orchestrator-group"}
+[32minfo[39m: Disconnected from Kafka {"service":"orchestrator-agent","timestamp":"2025-11-10T16:55:03.010Z"}
+[32minfo[39m: Orchestrator agent stopped {"service":"orchestrator-agent","timestamp":"2025-11-10T16:55:03.010Z"}
+c{"level":"WARN","timestamp":"2025-11-10T16:55:03.431Z","logger":"kafkajs","message":"KafkaJS v2.0.0 switched default partitioner. To retain the same partitioning behavior as in previous versions, create the producer with the option \"createPartitioner: Partitioners.LegacyPartitioner\". See the migration guide at https://kafka.js.org/docs/migration-guide-v2.0.0#producer-new-default-partitioner for details. Silence this warning by setting the environment variable \"KAFKAJS_NO_PARTITIONER_WARNING=1\""}
+[32minfo[39m: ========================================== {"service":"orchestrator-agent","timestamp":"2025-11-10T16:55:03.466Z"}
+[32minfo[39m: 🚀 Starting Orchestrator Agent (v2.0) {"service":"orchestrator-agent","timestamp":"2025-11-10T16:55:03.468Z"}
+[32minfo[39m: ========================================== {"service":"orchestrator-agent","timestamp":"2025-11-10T16:55:03.469Z"}
+[32minfo[39m: Connecting to Kafka... {"service":"orchestrator-agent","timestamp":"2025-11-10T16:55:03.469Z"}
+(node:84871) TimeoutNegativeWarning: -1762793703495 is a negative number.
+Timeout duration was set to 1.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[32minfo[39m: ✅ Connected to Kafka {"service":"orchestrator-agent","timestamp":"2025-11-10T16:55:03.496Z"}
+[32minfo[39m: Subscribing to topics... {"service":"orchestrator-agent","timestamp":"2025-11-10T16:55:03.497Z"}
+[32minfo[39m: ✅ Subscribed to topics: user.requests, knowledge.results {"service":"orchestrator-agent","timestamp":"2025-11-10T16:55:03.504Z"}
+[32minfo[39m: 📋 Configuration: {"service":"orchestrator-agent","timestamp":"2025-11-10T16:55:03.504Z"}
+[32minfo[39m:   - Input Topic: user.requests {"service":"orchestrator-agent","timestamp":"2025-11-10T16:55:03.504Z"}
+[32minfo[39m:   - Output Topics: agent.tasks, planning.tasks, knowledge.queries {"service":"orchestrator-agent","timestamp":"2025-11-10T16:55:03.504Z"}
+[32minfo[39m:   - Monitoring: monitoring.events {"service":"orchestrator-agent","timestamp":"2025-11-10T16:55:03.505Z"}
+[32minfo[39m:  {"service":"orchestrator-agent","timestamp":"2025-11-10T16:55:03.505Z"}
+[32minfo[39m: Starting message consumption... {"service":"orchestrator-agent","timestamp":"2025-11-10T16:55:03.505Z"}
+{"level":"INFO","timestamp":"2025-11-10T16:55:03.505Z","logger":"kafkajs","message":"[Consumer] Starting","groupId":"orchestrator-group"}
+{"level":"INFO","timestamp":"2025-11-10T16:55:03.675Z","logger":"kafkajs","message":"[ConsumerGroup] Consumer has joined the group","groupId":"orchestrator-group","memberId":"orchestrator-agent-50685353-afe6-45d6-94a6-2d78d3276072","leaderId":"orchestrator-agent-50685353-afe6-45d6-94a6-2d78d3276072","isLeader":true,"memberAssignment":{"user.requests":[0,1,2],"knowledge.results":[0,1,2]},"groupProtocol":"RoundRobinAssigner","duration":169}
+[32minfo[39m: ✅ Started consuming messages {"service":"orchestrator-agent","timestamp":"2025-11-10T16:55:03.677Z"}
+[32minfo[39m: ========================================== {"service":"orchestrator-agent","timestamp":"2025-11-10T16:55:03.677Z"}
+[32minfo[39m: ✅ Orchestrator Agent is running! {"service":"orchestrator-agent","timestamp":"2025-11-10T16:55:03.677Z"}
+[32minfo[39m: ========================================== {"service":"orchestrator-agent","timestamp":"2025-11-10T16:55:03.677Z"}
+{"level":"ERROR","timestamp":"2025-11-10T16:55:08.713Z","logger":"kafkajs","message":"[Connection] Response Heartbeat(key: 12, version: 3)","broker":"localhost:9092","clientId":"orchestrator-agent","error":"The group is rebalancing, so a rejoin is needed","correlationId":9,"size":10}
+{"level":"ERROR","timestamp":"2025-11-10T16:55:08.715Z","logger":"kafkajs","message":"[Connection] Response Heartbeat(key: 12, version: 3)","broker":"localhost:9092","clientId":"orchestrator-agent","error":"The group is rebalancing, so a rejoin is needed","correlationId":10,"size":10}
+{"level":"ERROR","timestamp":"2025-11-10T16:55:08.717Z","logger":"kafkajs","message":"[Connection] Response Heartbeat(key: 12, version: 3)","broker":"localhost:9092","clientId":"orchestrator-agent","error":"The group is rebalancing, so a rejoin is needed","correlationId":11,"size":10}
+{"level":"ERROR","timestamp":"2025-11-10T16:55:08.718Z","logger":"kafkajs","message":"[Connection] Response Heartbeat(key: 12, version: 3)","broker":"localhost:9092","clientId":"orchestrator-agent","error":"The group is rebalancing, so a rejoin is needed","correlationId":12,"size":10}
+{"level":"ERROR","timestamp":"2025-11-10T16:55:08.719Z","logger":"kafkajs","message":"[Connection] Response Heartbeat(key: 12, version: 3)","broker":"localhost:9092","clientId":"orchestrator-agent","error":"The group is rebalancing, so a rejoin is needed","correlationId":13,"size":10}
+{"level":"ERROR","timestamp":"2025-11-10T16:55:08.721Z","logger":"kafkajs","message":"[Connection] Response Heartbeat(key: 12, version: 3)","broker":"localhost:9092","clientId":"orchestrator-agent","error":"The group is rebalancing, so a rejoin is needed","correlationId":14,"size":10}
+{"level":"WARN","timestamp":"2025-11-10T16:55:08.722Z","logger":"kafkajs","message":"[Runner] The group is rebalancing, re-joining","groupId":"orchestrator-group","memberId":"orchestrator-agent-50685353-afe6-45d6-94a6-2d78d3276072","error":"The group is rebalancing, so a rejoin is needed"}
+{"level":"INFO","timestamp":"2025-11-10T16:55:08.732Z","logger":"kafkajs","message":"[ConsumerGroup] Consumer has joined the group","groupId":"orchestrator-group","memberId":"orchestrator-agent-50685353-afe6-45d6-94a6-2d78d3276072","leaderId":"orchestrator-agent-50685353-afe6-45d6-94a6-2d78d3276072","isLeader":true,"memberAssignment":{"user.requests":[0,1],"knowledge.results":[2]},"groupProtocol":"RoundRobinAssigner","duration":10}
+berId":"orchestrator-agent-f1c4e181-9ae8-4978-8444-24cca5799d1c","leaderId":"orchestrator-agent-f1c4e181-9ae8-4978-8444-24cca5799d1c","isLeader":true,"memberAssignment":{"user.requests":[2],"knowledge.results":[0,1]},"groupProtocol":"RoundRobinAssigner","duration":15}
+[32minfo[39m: 📥 New user request {"requestId":"970284c4-b3ab-4c72-8b92-c904d0fe528b","service":"orchestrator-agent","timestamp":"2025-11-10T16:51:20.209Z","type":"investment","userId":"guest"}
+[32minfo[39m: 🧠 Intent classified: investment {"requestId":"970284c4-b3ab-4c72-8b92-c904d0fe528b","service":"orchestrator-agent","timestamp":"2025-11-10T16:51:20.210Z"}
+[32minfo[39m: ⚡ Complexity: simple {"requestId":"970284c4-b3ab-4c72-8b92-c904d0fe528b","service":"orchestrator-agent","timestamp":"2025-11-10T16:51:20.211Z"}
+[32minfo[39m: ➡️  Routing to investment agent {"requestId":"970284c4-b3ab-4c72-8b92-c904d0fe528b","service":"orchestrator-agent","taskId":"54213f36-e959-45ad-b3c8-40af5ff0bb34","timestamp":"2025-11-10T16:51:20.212Z"}
+[32minfo[39m: 📥 New user request {"requestId":"beea6ba6-0f6f-4f29-ad15-58f845af235b","service":"orchestrator-agent","timestamp":"2025-11-10T16:52:18.345Z","type":"investment","userId":"guest"}
+[32minfo[39m: 🧠 Intent classified: investment {"requestId":"beea6ba6-0f6f-4f29-ad15-58f845af235b","service":"orchestrator-agent","timestamp":"2025-11-10T16:52:18.345Z"}
+[32minfo[39m: ⚡ Complexity: simple {"requestId":"beea6ba6-0f6f-4f29-ad15-58f845af235b","service":"orchestrator-agent","timestamp":"2025-11-10T16:52:18.345Z"}
+[32minfo[39m: ➡️  Routing to investment agent {"requestId":"beea6ba6-0f6f-4f29-ad15-58f845af235b","service":"orchestrator-agent","taskId":"a3214206-d535-48b2-b2c9-94490e8c21f1","timestamp":"2025-11-10T16:52:18.345Z"}
+12:55:01 AM [tsx] change in ./src/kafka-client.ts Restarting...
+[32minfo[39m: SIGTERM received, shutting down gracefully... {"service":"orchestrator-agent","timestamp":"2025-11-10T16:55:01.487Z"}
+[32minfo[39m: Shutting down orchestrator agent... {"service":"orchestrator-agent","timestamp":"2025-11-10T16:55:01.487Z"}
+[32minfo[39m: Total requests processed: 2 {"service":"orchestrator-agent","timestamp":"2025-11-10T16:55:01.487Z"}
+{"level":"INFO","timestamp":"2025-11-10T16:55:03.620Z","logger":"kafkajs","message":"[Runner] consumer not running, exiting","groupId":"orchestrator-group","memberId":"orchestrator-agent-f1c4e181-9ae8-4978-8444-24cca5799d1c"}
+{"level":"INFO","timestamp":"2025-11-10T16:55:03.658Z","logger":"kafkajs","message":"[Consumer] Stopped","groupId":"orchestrator-group"}
+[32minfo[39m: Disconnected from Kafka {"service":"orchestrator-agent","timestamp":"2025-11-10T16:55:03.659Z"}
+[32minfo[39m: Orchestrator agent stopped {"service":"orchestrator-agent","timestamp":"2025-11-10T16:55:03.659Z"}
+c{"level":"WARN","timestamp":"2025-11-10T16:55:04.160Z","logger":"kafkajs","message":"KafkaJS v2.0.0 switched default partitioner. To retain the same partitioning behavior as in previous versions, create the producer with the option \"createPartitioner: Partitioners.LegacyPartitioner\". See the migration guide at https://kafka.js.org/docs/migration-guide-v2.0.0#producer-new-default-partitioner for details. Silence this warning by setting the environment variable \"KAFKAJS_NO_PARTITIONER_WARNING=1\""}
+[32minfo[39m: ========================================== {"service":"orchestrator-agent","timestamp":"2025-11-10T16:55:04.221Z"}
+[32minfo[39m: 🚀 Starting Orchestrator Agent (v2.0) {"service":"orchestrator-agent","timestamp":"2025-11-10T16:55:04.224Z"}
+[32minfo[39m: ========================================== {"service":"orchestrator-agent","timestamp":"2025-11-10T16:55:04.224Z"}
+[32minfo[39m: Connecting to Kafka... {"service":"orchestrator-agent","timestamp":"2025-11-10T16:55:04.225Z"}
+(node:84937) TimeoutNegativeWarning: -1762793704255 is a negative number.
+Timeout duration was set to 1.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[32minfo[39m: ✅ Connected to Kafka {"service":"orchestrator-agent","timestamp":"2025-11-10T16:55:04.258Z"}
+[32minfo[39m: Subscribing to topics... {"service":"orchestrator-agent","timestamp":"2025-11-10T16:55:04.259Z"}
+[32minfo[39m: ✅ Subscribed to topics: user.requests, knowledge.results {"service":"orchestrator-agent","timestamp":"2025-11-10T16:55:04.271Z"}
+[32minfo[39m: 📋 Configuration: {"service":"orchestrator-agent","timestamp":"2025-11-10T16:55:04.271Z"}
+[32minfo[39m:   - Input Topic: user.requests {"service":"orchestrator-agent","timestamp":"2025-11-10T16:55:04.271Z"}
+[32minfo[39m:   - Output Topics: agent.tasks, planning.tasks, knowledge.queries {"service":"orchestrator-agent","timestamp":"2025-11-10T16:55:04.272Z"}
+[32minfo[39m:   - Monitoring: monitoring.events {"service":"orchestrator-agent","timestamp":"2025-11-10T16:55:04.272Z"}
+[32minfo[39m:  {"service":"orchestrator-agent","timestamp":"2025-11-10T16:55:04.272Z"}
+[32minfo[39m: Starting message consumption... {"service":"orchestrator-agent","timestamp":"2025-11-10T16:55:04.272Z"}
+{"level":"INFO","timestamp":"2025-11-10T16:55:04.273Z","logger":"kafkajs","message":"[Consumer] Starting","groupId":"orchestrator-group"}
+{"level":"INFO","timestamp":"2025-11-10T16:55:08.734Z","logger":"kafkajs","message":"[ConsumerGroup] Consumer has joined the group","groupId":"orchestrator-group","memberId":"orchestrator-agent-7f597e28-db68-4625-883c-1ba3a988d84c","leaderId":"orchestrator-agent-50685353-afe6-45d6-94a6-2d78d3276072","isLeader":false,"memberAssignment":{"user.requests":[2],"knowledge.results":[0,1]},"groupProtocol":"RoundRobinAssigner","duration":4458}
+[32minfo[39m: ✅ Started consuming messages {"service":"orchestrator-agent","timestamp":"2025-11-10T16:55:08.735Z"}
+[32minfo[39m: ========================================== {"service":"orchestrator-agent","timestamp":"2025-11-10T16:55:08.735Z"}
+[32minfo[39m: ✅ Orchestrator Agent is running! {"service":"orchestrator-agent","timestamp":"2025-11-10T16:55:08.735Z"}
+[32minfo[39m: ========================================== {"service":"orchestrator-agent","timestamp":"2025-11-10T16:55:08.735Z"}

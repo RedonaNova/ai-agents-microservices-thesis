@@ -15,6 +15,8 @@ const news_routes_1 = __importDefault(require("./routes/news.routes"));
 const agent_routes_1 = __importDefault(require("./routes/agent.routes"));
 const rag_routes_1 = __importDefault(require("./routes/rag.routes"));
 const monitoring_routes_1 = __importDefault(require("./routes/monitoring.routes"));
+const watchlist_routes_1 = __importDefault(require("./routes/watchlist.routes"));
+const daily_news_routes_1 = __importDefault(require("./routes/daily-news.routes"));
 const app = (0, express_1.default)();
 // Middleware
 app.use((0, cors_1.default)({ origin: config_1.config.corsOrigin, credentials: true }));
@@ -43,6 +45,8 @@ app.use('/api/news', news_routes_1.default);
 app.use('/api/agent', agent_routes_1.default);
 app.use('/api/rag', rag_routes_1.default);
 app.use('/api/monitoring', monitoring_routes_1.default);
+app.use('/api/watchlist', watchlist_routes_1.default);
+app.use('/api/daily-news', daily_news_routes_1.default);
 // 404 handler
 app.use((req, res) => {
     res.status(404).json({ error: 'Not found' });
