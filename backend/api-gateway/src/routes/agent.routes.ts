@@ -2,154 +2,98 @@ import { Router, Request, Response } from 'express';
 import kafkaService from '../services/kafka';
 import logger from '../services/logger';
 import { v4 as uuidv4 } from 'uuid';
+import jwt from 'jsonwebtoken';
 
 const router = Router();
 
-/**
- * POST /api/agent/portfolio/advice
- * Get investment recommendations from Portfolio Advisor Agent
- */
-router.post('/portfolio/advice', async (req: Request, res: Response) => {
-  try {
-    const { userId, investmentAmount, riskTolerance, preferences } = req.body;
-    const requestId = uuidv4();
+const JWT_SECRET = process.env.JWT_SECRET || 'thesis-demo-secret-change-in-production';
 
-    // Route to consolidated Investment Agent
-    await kafkaService.sendEvent('portfolio-requests', requestId, {
-      requestId,
-      userId: userId || 'guest',
-      type: 'portfolio_advice',
-      message: `I want to invest ${investmentAmount || '5M'} MNT`,
-      metadata: {
-        investmentAmount,
-        riskTolerance,
-        preferences
-      },
-      timestamp: new Date().toISOString()
-    });
-
-    logger.info('Portfolio advice request sent (consolidated)', { requestId, userId });
-
-    res.json({
-      success: true,
-      requestId,
-      message: 'Processing portfolio advice request'
-    });
-  } catch (error) {
-    logger.error('Portfolio advice error', { error });
-    res.status(500).json({ error: 'Failed to process portfolio advice request' });
+// Middleware to extract userId from token (optional)
+function getUserId(req: Request): string {
+  const token = req.headers.authorization?.replace('Bearer ', '');
+  if (token) {
+    try {
+      const decoded = jwt.verify(token, JWT_SECRET) as any;
+      return decoded.userId?.toString() || 'guest';
+    } catch (error) {
+      return 'guest';
+    }
   }
-});
+  return 'guest';
+}
 
 /**
- * POST /api/agent/market/analyze
- * Get market analysis from Market Analysis Agent
+ * POST /api/agent/query
+ * Universal agent query endpoint - sends to user.requests topic
+ * Orchestrator will route to appropriate agent
  */
-router.post('/market/analyze', async (req: Request, res: Response) => {
+router.post('/query', async (req: Request, res: Response) => {
   try {
-    const { userId } = req.body;
+    const { query, type, context } = req.body;
+    const userId = getUserId(req);
     const requestId = uuidv4();
 
-    // Route to consolidated Investment Agent
-    await kafkaService.sendEvent('market-analysis-requests', requestId, {
-      requestId,
-      userId: userId || 'guest',
-      type: 'market_analysis',
-      message: 'Analyze current market trends',
-      timestamp: new Date().toISOString()
-    });
-
-    logger.info('Market analysis request sent (consolidated)', { requestId });
-
-    res.json({
-      success: true,
-      requestId,
-      message: 'Processing market analysis request'
-    });
-  } catch (error) {
-    logger.error('Market analysis error', { error });
-    res.status(500).json({ error: 'Failed to process market analysis request' });
-  }
-});
-
-/**
- * POST /api/agent/historical/analyze
- * Get technical analysis from Historical Analysis Agent
- */
-router.post('/historical/analyze', async (req: Request, res: Response) => {
-  try {
-    const { userId, symbol, period } = req.body;
-    const requestId = uuidv4();
-
-    if (!symbol) {
-      return res.status(400).json({ error: 'Symbol is required' });
+    if (!query) {
+      return res.status(400).json({
+        success: false,
+        error: 'Query is required',
+      });
     }
 
-    // Route to consolidated Investment Agent
-    await kafkaService.sendEvent('historical-analysis-requests', requestId, {
+    // Send to user.requests topic (new architecture)
+    await kafkaService.sendEvent('user.requests', requestId, {
       requestId,
-      userId: userId || 'guest',
-      type: 'historical_analysis',
-      message: `Analyze historical data for ${symbol}`,
-      parameters: {
-        symbol,
-        period: period || 90
-      },
-      timestamp: new Date().toISOString()
+      userId,
+      timestamp: new Date().toISOString(),
+      query,
+      type: type || undefined, // 'portfolio', 'news', 'market', 'risk', etc.
+      context: context || {},
     });
 
-    logger.info('Historical analysis request sent (consolidated)', { requestId, symbol });
+    logger.info('User query sent to orchestrator', { requestId, userId, type });
 
     res.json({
       success: true,
       requestId,
-      message: 'Processing historical analysis request'
+      message: 'Query submitted successfully',
     });
   } catch (error) {
-    logger.error('Historical analysis error', { error });
-    res.status(500).json({ error: 'Failed to process historical analysis request' });
+    logger.error('Agent query error', { error });
+    res.status(500).json({
+      success: false,
+      error: 'Failed to process query',
+    });
   }
 });
 
 /**
- * POST /api/agent/risk/assess
- * Get risk assessment from Risk Assessment Agent
+ * GET /api/agent/response/:requestId
+ * Get agent response (polling endpoint)
  */
-router.post('/risk/assess', async (req: Request, res: Response) => {
+router.get('/response/:requestId', async (req: Request, res: Response) => {
   try {
-    const { userId, portfolio, symbols, confidenceLevel } = req.body;
-    const requestId = uuidv4();
-
-    // Route to consolidated Investment Agent
-    await kafkaService.sendEvent('risk-assessment-requests', requestId, {
-      requestId,
-      userId: userId || 'guest',
-      type: 'risk_assessment',
-      message: 'Assess portfolio risk',
-      parameters: {
-        portfolio,
-        symbols: symbols || [],
-        confidenceLevel: confidenceLevel || 0.95
-      },
-      timestamp: new Date().toISOString()
-    });
-
-    logger.info('Risk assessment request sent (consolidated)', { requestId });
-
+    const { requestId } = req.params;
+    
+    // This would typically check a cache/database for the response
+    // For SSE implementation, responses are streamed directly
+    
     res.json({
       success: true,
-      requestId,
-      message: 'Processing risk assessment request'
+      message: 'Use SSE endpoint for real-time responses',
+      sseEndpoint: `/api/agent/stream/${requestId}`,
     });
   } catch (error) {
-    logger.error('Risk assessment error', { error });
-    res.status(500).json({ error: 'Failed to process risk assessment request' });
+    logger.error('Get response error', { error });
+    res.status(500).json({
+      success: false,
+      error: 'Failed to get response',
+    });
   }
 });
 
 /**
  * GET /api/agent/stream/:requestId
- * Server-Sent Events endpoint for real-time agent responses
+ * Server-Sent Events (SSE) endpoint for streaming agent responses
  */
 router.get('/stream/:requestId', async (req: Request, res: Response) => {
   const { requestId } = req.params;
@@ -158,50 +102,128 @@ router.get('/stream/:requestId', async (req: Request, res: Response) => {
   res.setHeader('Content-Type', 'text/event-stream');
   res.setHeader('Cache-Control', 'no-cache');
   res.setHeader('Connection', 'keep-alive');
-  res.setHeader('Access-Control-Allow-Origin', '*');
-
-  logger.info('SSE connection established', { requestId });
+  res.setHeader('X-Accel-Buffering', 'no'); // Disable nginx buffering
 
   // Send initial connection message
   res.write(`data: ${JSON.stringify({ type: 'connected', requestId })}\n\n`);
 
-  // Set up Kafka consumer for this request
-  const consumerGroupId = `sse-${requestId}`;
+  // Start consuming agent.responses topic for this requestId
+  const consumer = kafkaService.getConsumer(`sse-${requestId}`);
   
   try {
-    await kafkaService.consumeMessages(
-      consumerGroupId,
-      ['user-responses'],
-      async ({ message }) => {
+    await consumer.connect();
+    await consumer.subscribe({ topic: 'agent.responses', fromBeginning: false });
+
+    await consumer.run({
+      eachMessage: async ({ message }) => {
         try {
-          const response = JSON.parse(message.value!.toString());
+          const response = JSON.parse(message.value?.toString() || '{}');
           
-          // Only send messages for this requestId
-          if (response.requestId === requestId) {
+          // Check if this response is for our request
+          if (response.requestId === requestId || response.correlationId === requestId) {
             res.write(`data: ${JSON.stringify(response)}\n\n`);
             
-            // Close connection after sending response
+            // If response is complete, close connection
             if (response.status === 'success' || response.status === 'error') {
               res.write(`data: ${JSON.stringify({ type: 'complete' })}\n\n`);
+              await consumer.disconnect();
               res.end();
             }
           }
         } catch (error) {
-          logger.error('Error processing SSE message', { error });
+          logger.error('SSE message processing error:', error);
         }
-      }
-    );
+      },
+    });
   } catch (error) {
-    logger.error('SSE error', { requestId, error });
-    res.write(`data: ${JSON.stringify({ type: 'error', error: 'Connection failed' })}\n\n`);
+    logger.error('SSE stream error:', error);
+    res.write(`data: ${JSON.stringify({ type: 'error', error: 'Stream failed' })}\n\n`);
     res.end();
   }
 
-  // Handle client disconnect
-  req.on('close', () => {
-    logger.info('SSE connection closed', { requestId });
+  // Cleanup on client disconnect
+  req.on('close', async () => {
+    try {
+      await consumer.disconnect();
+    } catch (error) {
+      logger.error('Error disconnecting SSE consumer:', error);
+    }
+    res.end();
   });
 });
 
-export default router;
+/**
+ * POST /api/agent/portfolio/advice (Legacy compatibility)
+ * Redirects to unified /query endpoint
+ */
+router.post('/portfolio/advice', async (req: Request, res: Response) => {
+  try {
+    const { userId, investmentAmount, riskTolerance, preferences } = req.body;
+    const requestId = uuidv4();
 
+    await kafkaService.sendEvent('user.requests', requestId, {
+      requestId,
+      userId: userId || getUserId(req),
+      timestamp: new Date().toISOString(),
+      query: `I want investment advice for ${investmentAmount || 5000000} MNT`,
+      type: 'portfolio',
+      context: {
+        investmentAmount,
+        riskTolerance,
+        preferences,
+      },
+    });
+
+    logger.info('Portfolio advice request sent', { requestId });
+
+    res.json({
+      success: true,
+      requestId,
+      message: 'Processing portfolio advice request',
+    });
+  } catch (error) {
+    logger.error('Portfolio advice error', { error });
+    res.status(500).json({
+      success: false,
+      error: 'Failed to process portfolio advice request',
+    });
+  }
+});
+
+/**
+ * POST /api/agent/news/latest (Legacy compatibility)
+ */
+router.post('/news/latest', async (req: Request, res: Response) => {
+  try {
+    const { symbols } = req.body;
+    const userId = getUserId(req);
+    const requestId = uuidv4();
+
+    await kafkaService.sendEvent('user.requests', requestId, {
+      requestId,
+      userId,
+      timestamp: new Date().toISOString(),
+      query: `Get latest news for ${symbols?.join(', ') || 'my watchlist'}`,
+      type: 'news',
+      context: {
+        symbols,
+      },
+    });
+
+    logger.info('News request sent', { requestId });
+
+    res.json({
+      success: true,
+      requestId,
+      message: 'Processing news request',
+    });
+  } catch (error) {
+    logger.error('News request error', { error });
+    res.status(500).json({
+      success: false,
+      error: 'Failed to process news request',
+    });
+  }
+});
+
+export default router;

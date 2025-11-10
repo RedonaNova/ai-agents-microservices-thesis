@@ -1,0 +1,358 @@
+{
+  "title": "Kafka Topic Message Schemas",
+  "description": "Event-Driven AI Agents Architecture - Message Formats",
+  "version": "2.0.0",
+  "topics": {
+    "user.requests": {
+      "description": "User AI queries from API Gateway",
+      "producers": ["api-gateway"],
+      "consumers": ["orchestrator-agent"],
+      "schema": {
+        "requestId": "string (UUID)",
+        "userId": "string",
+        "timestamp": "string (ISO8601)",
+        "query": "string",
+        "type": "string (optional: 'portfolio', 'news', 'market', 'risk')",
+        "context": {
+          "portfolio": "array (optional)",
+          "watchlist": "array (optional)",
+          "preferences": "object (optional)"
+        }
+      },
+      "example": {
+        "requestId": "550e8400-e29b-41d4-a716-446655440000",
+        "userId": "user_123",
+        "timestamp": "2025-11-10T10:30:00.000Z",
+        "query": "Should I invest 10M MNT in APU mining stock?",
+        "type": "portfolio",
+        "context": {
+          "watchlist": ["APU", "TDB"],
+          "preferences": {
+            "riskTolerance": "moderate"
+          }
+        }
+      }
+    },
+    "planning.tasks": {
+      "description": "Complex workflows requiring execution planning (sent to Flink Planner)",
+      "producers": ["orchestrator-agent"],
+      "consumers": ["flink-planner"],
+      "schema": {
+        "taskId": "string (UUID)",
+        "correlationId": "string (UUID)",
+        "requestId": "string (UUID)",
+        "userId": "string",
+        "complexity": "string (multi-agent, sequential, parallel)",
+        "query": "string",
+        "requiredAgents": "array of strings",
+        "constraints": "object (optional)",
+        "timestamp": "string (ISO8601)"
+      },
+      "example": {
+        "taskId": "task_001",
+        "correlationId": "corr_abc",
+        "requestId": "550e8400-e29b-41d4-a716-446655440000",
+        "userId": "user_123",
+        "complexity": "multi-agent",
+        "query": "Analyze my portfolio risk and suggest rebalancing",
+        "requiredAgents": ["investment-agent", "knowledge-agent"],
+        "constraints": {
+          "maxLatency": 10000
+        },
+        "timestamp": "2025-11-10T10:30:05.000Z"
+      }
+    },
+    "execution.plans": {
+      "description": "Generated execution plans from Flink Planner Agent",
+      "producers": ["flink-planner"],
+      "consumers": ["orchestrator-agent", "investment-agent", "news-agent"],
+      "schema": {
+        "planId": "string (UUID)",
+        "taskId": "string (UUID)",
+        "correlationId": "string (UUID)",
+        "sequence": "array of steps",
+        "steps": "array of objects",
+        "timestamp": "string (ISO8601)"
+      },
+      "example": {
+        "planId": "plan_xyz",
+        "taskId": "task_001",
+        "correlationId": "corr_abc",
+        "sequence": ["knowledge-agent", "investment-agent"],
+        "steps": [
+          {
+            "stepId": 1,
+            "agent": "knowledge-agent",
+            "action": "retrieve_context",
+            "params": {
+              "query": "APU mining risk factors"
+            }
+          },
+          {
+            "stepId": 2,
+            "agent": "investment-agent",
+            "action": "analyze_investment",
+            "params": {
+              "symbol": "APU",
+              "amount": 10000000
+            },
+            "dependsOn": [1]
+          }
+        ],
+        "timestamp": "2025-11-10T10:30:10.000Z"
+      }
+    },
+    "agent.tasks": {
+      "description": "Tasks routed to specific agents",
+      "producers": ["orchestrator-agent", "flink-planner"],
+      "consumers": ["investment-agent", "news-agent"],
+      "schema": {
+        "taskId": "string (UUID)",
+        "correlationId": "string (UUID)",
+        "requestId": "string (UUID)",
+        "agentType": "string (investment, news)",
+        "action": "string",
+        "payload": "object",
+        "priority": "string (high, normal, low)",
+        "timestamp": "string (ISO8601)"
+      },
+      "example": {
+        "taskId": "task_inv_001",
+        "correlationId": "corr_abc",
+        "requestId": "550e8400-e29b-41d4-a716-446655440000",
+        "agentType": "investment",
+        "action": "analyze_portfolio",
+        "payload": {
+          "userId": "user_123",
+          "symbols": ["APU", "TDB"],
+          "amount": 10000000
+        },
+        "priority": "normal",
+        "timestamp": "2025-11-10T10:30:15.000Z"
+      }
+    },
+    "knowledge.queries": {
+      "description": "Queries to Knowledge Agent for RAG retrieval",
+      "producers": ["orchestrator-agent", "investment-agent", "news-agent"],
+      "consumers": ["knowledge-agent"],
+      "schema": {
+        "queryId": "string (UUID)",
+        "correlationId": "string (UUID)",
+        "query": "string",
+        "context": "string (optional)",
+        "topK": "number (default: 5)",
+        "filters": "object (optional)",
+        "timestamp": "string (ISO8601)"
+      },
+      "example": {
+        "queryId": "query_001",
+        "correlationId": "corr_abc",
+        "query": "What are the risk factors for APU mining company?",
+        "context": "portfolio_analysis",
+        "topK": 5,
+        "filters": {
+          "content_type": "company_profile",
+          "symbol": "APU"
+        },
+        "timestamp": "2025-11-10T10:30:12.000Z"
+      }
+    },
+    "knowledge.results": {
+      "description": "Retrieved context from Knowledge Agent",
+      "producers": ["knowledge-agent"],
+      "consumers": ["orchestrator-agent", "investment-agent", "news-agent"],
+      "schema": {
+        "queryId": "string (UUID)",
+        "correlationId": "string (UUID)",
+        "results": "array of objects",
+        "metadata": "object",
+        "timestamp": "string (ISO8601)"
+      },
+      "example": {
+        "queryId": "query_001",
+        "correlationId": "corr_abc",
+        "results": [
+          {
+            "id": 1,
+            "content": "APU is a major mining company focused on copper...",
+            "score": 0.95,
+            "source": "MSE",
+            "content_type": "company_profile"
+          }
+        ],
+        "metadata": {
+          "totalResults": 1,
+          "processingTimeMs": 45
+        },
+        "timestamp": "2025-11-10T10:30:13.000Z"
+      }
+    },
+    "agent.responses": {
+      "description": "Responses from agents to users (sent back to API Gateway)",
+      "producers": ["investment-agent", "news-agent"],
+      "consumers": ["api-gateway", "orchestrator-agent"],
+      "schema": {
+        "responseId": "string (UUID)",
+        "requestId": "string (UUID)",
+        "correlationId": "string (UUID)",
+        "agentType": "string",
+        "status": "string (success, error, partial)",
+        "result": "object or string",
+        "metadata": {
+          "processingTimeMs": "number",
+          "model": "string (optional)",
+          "tokensUsed": "number (optional)"
+        },
+        "timestamp": "string (ISO8601)"
+      },
+      "example": {
+        "responseId": "resp_001",
+        "requestId": "550e8400-e29b-41d4-a716-446655440000",
+        "correlationId": "corr_abc",
+        "agentType": "investment",
+        "status": "success",
+        "result": {
+          "recommendation": "Consider APU for moderate allocation",
+          "reasoning": "Strong fundamentals, moderate risk...",
+          "confidence": 0.82
+        },
+        "metadata": {
+          "processingTimeMs": 3500,
+          "model": "gemini-2.0-flash",
+          "tokensUsed": 1250
+        },
+        "timestamp": "2025-11-10T10:30:20.000Z"
+      }
+    },
+    "service.calls": {
+      "description": "Direct service operation calls (CRUD operations)",
+      "producers": ["api-gateway", "orchestrator-agent"],
+      "consumers": ["api-gateway (user CRUD)"],
+      "schema": {
+        "callId": "string (UUID)",
+        "service": "string (user, portfolio, watchlist)",
+        "operation": "string (create, read, update, delete)",
+        "payload": "object",
+        "timestamp": "string (ISO8601)"
+      },
+      "example": {
+        "callId": "call_001",
+        "service": "watchlist",
+        "operation": "create",
+        "payload": {
+          "userId": "user_123",
+          "symbol": "APU"
+        },
+        "timestamp": "2025-11-10T10:30:00.000Z"
+      }
+    },
+    "service.results": {
+      "description": "Results from service operations",
+      "producers": ["api-gateway (user CRUD)"],
+      "consumers": ["api-gateway", "orchestrator-agent"],
+      "schema": {
+        "callId": "string (UUID)",
+        "status": "string (success, error)",
+        "result": "object",
+        "error": "string (optional)",
+        "timestamp": "string (ISO8601)"
+      },
+      "example": {
+        "callId": "call_001",
+        "status": "success",
+        "result": {
+          "id": 123,
+          "userId": "user_123",
+          "symbol": "APU",
+          "addedAt": "2025-11-10T10:30:01.000Z"
+        },
+        "timestamp": "2025-11-10T10:30:01.000Z"
+      }
+    },
+    "user.events": {
+      "description": "User lifecycle events (registration, login, profile updates)",
+      "producers": ["api-gateway"],
+      "consumers": ["orchestrator-agent", "investment-agent"],
+      "schema": {
+        "eventId": "string (UUID)",
+        "eventType": "string (user.registered, user.login, user.profile.updated)",
+        "userId": "string",
+        "data": "object",
+        "timestamp": "string (ISO8601)"
+      },
+      "example": {
+        "eventId": "event_001",
+        "eventType": "user.registered",
+        "userId": "user_123",
+        "data": {
+          "email": "user@example.com",
+          "investmentGoal": "Growth",
+          "riskTolerance": "Moderate"
+        },
+        "timestamp": "2025-11-10T10:00:00.000Z"
+      }
+    },
+    "news.events": {
+      "description": "Financial news events and sentiment analysis",
+      "producers": ["news-agent"],
+      "consumers": ["investment-agent", "orchestrator-agent"],
+      "schema": {
+        "eventId": "string (UUID)",
+        "symbol": "string",
+        "headline": "string",
+        "summary": "string",
+        "sentiment": "string (positive, negative, neutral)",
+        "impact": "string (high, medium, low)",
+        "source": "string",
+        "url": "string",
+        "timestamp": "string (ISO8601)"
+      },
+      "example": {
+        "eventId": "news_001",
+        "symbol": "APU",
+        "headline": "APU Mining Reports Record Q3 Earnings",
+        "summary": "Asia Pacific United mining company reported...",
+        "sentiment": "positive",
+        "impact": "high",
+        "source": "MSE News",
+        "url": "https://mse.mn/news/...",
+        "timestamp": "2025-11-10T09:00:00.000Z"
+      }
+    },
+    "monitoring.events": {
+      "description": "System logs, metrics, and health events from all services",
+      "producers": ["all services"],
+      "consumers": ["monitoring-agent (future)", "api-gateway (for metrics endpoint)"],
+      "schema": {
+        "eventId": "string (UUID)",
+        "service": "string",
+        "eventType": "string (info, warning, error, metric)",
+        "message": "string",
+        "metadata": "object",
+        "timestamp": "string (ISO8601)"
+      },
+      "example": {
+        "eventId": "mon_001",
+        "service": "investment-agent",
+        "eventType": "metric",
+        "message": "Request processed",
+        "metadata": {
+          "requestId": "550e8400-e29b-41d4-a716-446655440000",
+          "latencyMs": 3500,
+          "status": "success",
+          "model": "gemini-2.0-flash",
+          "tokensUsed": 1250
+        },
+        "timestamp": "2025-11-10T10:30:20.000Z"
+      }
+    }
+  },
+  "notes": {
+    "correlation": "Use correlationId to track multi-step workflows across agents",
+    "ordering": "Kafka guarantees ordering within a partition (use correlationId or userId as key)",
+    "retention": "Topics retain messages for 7 days (604800000ms)",
+    "compression": "Snappy compression enabled for all topics",
+    "maxMessageSize": "10MB per message"
+  }
+}
+

@@ -1,0 +1,15 @@
+# PyFlink Planner Agent Dependencies
+
+# Apache Flink for Python
+apache-flink==1.18.0
+
+# Kafka connector for Flink
+kafka-python==2.0.2
+
+# Google Generative AI (Gemini)
+google-generativeai==0.3.2
+
+# Utilities
+python-dotenv==1.0.0
+requests==2.31.0
+

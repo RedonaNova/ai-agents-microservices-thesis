@@ -12,7 +12,7 @@ PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$PROJECT_ROOT"
 
 echo -e "${BLUE}╔══════════════════════════════════════════════════════════════════╗${NC}"
-echo -e "${BLUE}║       Starting Thesis Demo - Event-Driven Architecture          ║${NC}"
+echo -e "${BLUE}║     Thesis Demo - Event-Driven AI Agents Architecture v2.0      ║${NC}"
 echo -e "${BLUE}╚══════════════════════════════════════════════════════════════════╝${NC}"
 echo ""
 
@@ -79,15 +79,12 @@ cd backend
 echo -e "${YELLOW}🐳 Starting Docker Compose services...${NC}"
 docker-compose up -d
 
-# Wait for services
+# Wait for core services
 echo ""
 wait_for_service localhost 2181 "Zookeeper"
 wait_for_service localhost 9092 "Kafka"
 wait_for_service localhost 5432 "PostgreSQL"
-wait_for_service localhost 6333 "Qdrant"
 wait_for_service localhost 6379 "Redis"
-wait_for_service localhost 27017 "MongoDB"
-wait_for_service localhost 8081 "Flink JobManager"
 
 echo ""
 echo -e "${GREEN}✓ All infrastructure services are running${NC}"
@@ -99,7 +96,19 @@ docker-compose ps
 
 echo ""
 echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-echo -e "${BLUE}   PHASE 2: Backend Agents${NC}"
+echo -e "${BLUE}   PHASE 2: Kafka Topics Creation${NC}"
+echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+echo ""
+
+echo -e "${YELLOW}📝 Creating Kafka topics...${NC}"
+cd "$PROJECT_ROOT/backend/kafka"
+chmod +x topics.sh
+./topics.sh
+echo -e "${GREEN}✓ Kafka topics created${NC}"
+
+echo ""
+echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+echo -e "${BLUE}   PHASE 3: Backend Agents${NC}"
 echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 echo ""
 
@@ -109,7 +118,6 @@ cd "$PROJECT_ROOT/backend"
 start_agent() {
     local agent_dir=$1
     local agent_name=$2
-    local port=$3
 
     echo -e "${YELLOW}🤖 Starting $agent_name...${NC}"
     cd "$agent_dir"
@@ -130,20 +138,44 @@ start_agent() {
 # Create logs directory
 mkdir -p "$PROJECT_ROOT/logs"
 
-# Start agents
-start_agent "$PROJECT_ROOT/backend/orchestrator-agent" "orchestrator-agent" 3002
+# Start agents in order
+echo -e "${YELLOW}Starting Orchestrator Agent...${NC}"
+start_agent "$PROJECT_ROOT/backend/orchestrator-agent" "orchestrator-agent"
 sleep 2
-start_agent "$PROJECT_ROOT/backend/investment-agent" "investment-agent" 3003
+
+echo -e "${YELLOW}Starting Knowledge Agent (RAG)...${NC}"
+start_agent "$PROJECT_ROOT/backend/knowledge-agent" "knowledge-agent"
 sleep 1
-start_agent "$PROJECT_ROOT/backend/news-intelligence-agent" "news-intelligence-agent" 3004
+
+echo -e "${YELLOW}Starting Investment Agent...${NC}"
+start_agent "$PROJECT_ROOT/backend/investment-agent" "investment-agent"
 sleep 1
-start_agent "$PROJECT_ROOT/backend/notification-agent" "notification-agent" 3005
+
+echo -e "${YELLOW}Starting News Agent...${NC}"
+start_agent "$PROJECT_ROOT/backend/news-agent" "news-agent"
 sleep 1
-start_agent "$PROJECT_ROOT/backend/rag-service" "rag-service" 3006
+
+# Start PyFlink Planner (Python)
+echo -e "${YELLOW}🐍 Starting PyFlink Planner Agent...${NC}"
+cd "$PROJECT_ROOT/backend/flink-planner"
+if [ ! -d "venv" ]; then
+    echo "   Creating Python virtual environment..."
+    python3 -m venv venv
+    source venv/bin/activate
+    pip install -q -r requirements.txt
+else
+    source venv/bin/activate
+fi
+
+python planner_job.py > "$PROJECT_ROOT/logs/flink-planner.log" 2>&1 &
+FLINK_PID=$!
+echo "$FLINK_PID" >> "$PROJECT_ROOT/thesis-backend-pids.txt"
+echo -e "${GREEN}✓ PyFlink Planner started (PID: $FLINK_PID)${NC}"
+deactivate
 
 echo ""
 echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-echo -e "${BLUE}   PHASE 3: API Gateway${NC}"
+echo -e "${BLUE}   PHASE 4: API Gateway${NC}"
 echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 echo ""
 
@@ -164,7 +196,7 @@ wait_for_http "http://localhost:3001/health" "API Gateway"
 
 echo ""
 echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-echo -e "${BLUE}   PHASE 4: Frontend${NC}"
+echo -e "${BLUE}   PHASE 5: Frontend${NC}"
 echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 echo ""
 
@@ -198,16 +230,23 @@ echo -e "${GREEN}╚════════════════════
 echo ""
 echo -e "${BLUE}📊 Service Endpoints:${NC}"
 echo ""
-echo -e "${GREEN}   Frontend:         ${NC}http://localhost:3000"
-echo -e "${GREEN}   API Gateway:      ${NC}http://localhost:3001"
-echo -e "${GREEN}   Kafka UI:         ${NC}http://localhost:8080"
-echo -e "${GREEN}   Flink Dashboard:  ${NC}http://localhost:8081"
+echo -e "${GREEN}   Frontend:              ${NC}http://localhost:3000"
+echo -e "${GREEN}   API Gateway:           ${NC}http://localhost:3001"
+echo -e "${GREEN}   Kafka UI:              ${NC}http://localhost:8080"
 echo ""
-echo -e "${BLUE}📁 Logs Directory:${NC}    $PROJECT_ROOT/logs/"
-echo -e "${BLUE}🔧 PID File:${NC}          thesis-backend-pids.txt"
+echo -e "${BLUE}🤖 Backend Agents:${NC}"
+echo ""
+echo -e "   • Orchestrator Agent    (Kafka consumer)"
+echo -e "   • Knowledge Agent       (Kafka consumer - RAG)"
+echo -e "   • Investment Agent      (Kafka consumer)"
+echo -e "   • News Agent            (Kafka consumer)"
+echo -e "   • PyFlink Planner       (Kafka consumer/producer)"
+echo ""
+echo -e "${BLUE}📁 Logs Directory:${NC}         $PROJECT_ROOT/logs/"
+echo -e "${BLUE}🔧 PID File:${NC}               thesis-backend-pids.txt"
 echo ""
 echo -e "${YELLOW}💡 To stop all services, run:${NC} ./stop-all-services.sh"
+echo -e "${YELLOW}💡 To view logs:${NC}             tail -f logs/<service-name>.log"
 echo ""
 echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 echo ""
-

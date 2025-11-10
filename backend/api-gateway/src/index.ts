@@ -3,10 +3,10 @@ import cors from 'cors';
 import { config } from './config';
 import logger from './services/logger';
 import kafkaService from './services/kafka';
-import mongodb from './services/mongodb';
+import db from './services/database';
 
 // Routes
-import authRoutes from './routes/auth.routes';
+import usersRoutes from './routes/users.routes';
 import newsRoutes from './routes/news.routes';
 import agentRoutes from './routes/agent.routes';
 import ragRoutes from './routes/rag.routes';
@@ -39,7 +39,7 @@ app.get('/health', (req: Request, res: Response) => {
 });
 
 // API Routes
-app.use('/api/auth', authRoutes);
+app.use('/api/users', usersRoutes);
 app.use('/api/news', newsRoutes);
 app.use('/api/agent', agentRoutes);
 app.use('/api/rag', ragRoutes);
@@ -64,12 +64,8 @@ async function start() {
       port: config.port
     });
 
-    // Connect to MongoDB (optional)
-    try {
-      await mongodb.connect();
-    } catch (error) {
-      logger.warn('MongoDB connection failed - continuing without it', { error });
-    }
+    // Connect to PostgreSQL
+    await db.connect();
     
     // Connect to Kafka
     await kafkaService.getProducer();
@@ -91,14 +87,14 @@ async function start() {
 process.on('SIGTERM', async () => {
   logger.info('SIGTERM received, shutting down gracefully...');
   await kafkaService.disconnect();
-  await mongodb.disconnect();
+  await db.disconnect();
   process.exit(0);
 });
 
 process.on('SIGINT', async () => {
   logger.info('SIGINT received, shutting down gracefully...');
   await kafkaService.disconnect();
-  await mongodb.disconnect();
+  await db.disconnect();
   process.exit(0);
 });
 

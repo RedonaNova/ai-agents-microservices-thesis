@@ -1,29 +1,25 @@
 {
-  "name": "investment-agent",
-  "version": "2.0.0",
-  "description": "Investment Agent - Portfolio advice, market analysis, risk assessment",
+  "name": "knowledge-agent",
+  "version": "1.0.0",
+  "description": "Knowledge Agent - RAG with semantic search",
   "main": "dist/index.js",
   "scripts": {
     "dev": "tsx watch src/index.ts",
     "build": "tsc",
     "start": "node dist/index.js"
   },
-  "keywords": ["investment", "portfolio", "ai", "kafka"],
+  "keywords": ["rag", "knowledge", "semantic-search", "kafka"],
   "license": "MIT",
   "dependencies": {
     "kafkajs": "^2.2.4",
     "dotenv": "^16.4.5",
     "winston": "^3.11.0",
-    "uuid": "^9.0.1",
-    "pg": "^8.11.3",
-    "@google/generative-ai": "^0.21.0"
+    "pg": "^8.11.3"
   },
   "devDependencies": {
     "@types/node": "^20.10.6",
-    "@types/uuid": "^9.0.7",
     "@types/pg": "^8.10.9",
     "tsx": "^4.7.0",
     "typescript": "^5.3.3"
   }
 }
-

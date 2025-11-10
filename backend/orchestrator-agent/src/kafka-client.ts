@@ -1,4 +1,4 @@
-import { Kafka, Consumer, Producer, EachMessagePayload } from 'kafkajs';
+import { Kafka, Consumer, Producer } from 'kafkajs';
 import logger from './logger';
 import dotenv from 'dotenv';
 import path from 'path';
@@ -45,7 +45,7 @@ class KafkaClient {
       ]);
       
       this.isConnected = true;
-      logger.info('Connected to Kafka');
+      logger.info('✅ Connected to Kafka');
     } catch (error: any) {
       logger.error('Failed to connect to Kafka', { error: error.message });
       throw error;
@@ -53,16 +53,16 @@ class KafkaClient {
   }
 
   /**
-   * Subscribe to user-requests topic
+   * Subscribe to topics (new architecture)
    */
-  async subscribe(): Promise<void> {
+  async subscribe(topics: string[]): Promise<void> {
     try {
       await this.consumer.subscribe({
-        topics: ['user-requests'],
+        topics,
         fromBeginning: false
       });
       
-      logger.info('Subscribed to user-requests topic');
+      logger.info(`✅ Subscribed to topics: ${topics.join(', ')}`);
     } catch (error: any) {
       logger.error('Failed to subscribe to topics', { error: error.message });
       throw error;
@@ -70,26 +70,34 @@ class KafkaClient {
   }
 
   /**
-   * Start consuming messages
+   * Start consuming messages (updated for new architecture)
    */
-  async startConsuming(messageHandler: (payload: EachMessagePayload) => Promise<void>): Promise<void> {
+  async startConsuming(
+    messageHandler: (topic: string, message: any) => Promise<void>
+  ): Promise<void> {
     try {
       await this.consumer.run({
-        eachMessage: async (payload) => {
+        eachMessage: async ({ topic, partition, message }) => {
           try {
-            await messageHandler(payload);
+            const payload = JSON.parse(message.value?.toString() || '{}');
+            logger.debug(`📨 Received message from ${topic}`, { 
+              partition, 
+              offset: message.offset 
+            });
+            
+            await messageHandler(topic, payload);
           } catch (error: any) {
             logger.error('Error processing message', { 
               error: error.message,
-              topic: payload.topic,
-              partition: payload.partition,
-              offset: payload.message.offset
+              topic,
+              partition,
+              offset: message.offset
             });
           }
         }
       });
       
-      logger.info('Started consuming messages');
+      logger.info('✅ Started consuming messages');
     } catch (error: any) {
       logger.error('Failed to start consuming', { error: error.message });
       throw error;
@@ -97,9 +105,9 @@ class KafkaClient {
   }
 
   /**
-   * Send message to agent topic
+   * Send event to topic (generic method)
    */
-  async sendToAgent(topic: string, message: any, key?: string): Promise<void> {
+  async sendEvent(topic: string, key: string, message: any): Promise<void> {
     if (!this.isConnected) {
       throw new Error('Kafka not connected');
     }
@@ -109,14 +117,14 @@ class KafkaClient {
         topic,
         messages: [
           {
-            key: key || message.requestId || null,
+            key,
             value: JSON.stringify(message),
             timestamp: Date.now().toString()
           }
         ]
       });
       
-      logger.debug('Message sent to agent', { topic, requestId: message.requestId });
+      logger.debug(`✉️  Sent message to ${topic}`, { key });
     } catch (error: any) {
       logger.error('Failed to send message', { 
         error: error.message, 
@@ -124,13 +132,6 @@ class KafkaClient {
       });
       throw error;
     }
-  }
-
-  /**
-   * Send user response
-   */
-  async sendUserResponse(response: any): Promise<void> {
-    await this.sendToAgent('user-responses', response, response.userId);
   }
 
   /**
@@ -153,4 +154,3 @@ class KafkaClient {
 
 // Export singleton instance
 export default new KafkaClient();
-

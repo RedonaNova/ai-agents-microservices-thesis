@@ -12,58 +12,78 @@ PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$PROJECT_ROOT"
 
 echo -e "${BLUE}╔══════════════════════════════════════════════════════════════════╗${NC}"
-echo -e "${BLUE}║          Stopping Thesis Demo - All Services                     ║${NC}"
+echo -e "${BLUE}║               Stopping All Thesis Demo Services                  ║${NC}"
 echo -e "${BLUE}╚══════════════════════════════════════════════════════════════════╝${NC}"
 echo ""
 
-# Stop backend services using PID file
-if [ -f "thesis-backend-pids.txt" ]; then
-    echo -e "${YELLOW}🛑 Stopping Backend Services...${NC}"
-    while IFS= read -r pid; do
+# Function to stop a process
+stop_process() {
+    local pid=$1
+    local name=$2
+    
+    if ps -p $pid > /dev/null 2>&1; then
+        echo -e "${YELLOW}⏹️  Stopping $name (PID: $pid)...${NC}"
+        kill $pid 2>/dev/null
+        sleep 1
+        
+        # Force kill if still running
         if ps -p $pid > /dev/null 2>&1; then
-            echo "   Stopping process $pid..."
-            kill $pid 2>/dev/null
-            # Wait for graceful shutdown
-            sleep 1
-            # Force kill if still running
-            if ps -p $pid > /dev/null 2>&1; then
-                kill -9 $pid 2>/dev/null
-            fi
+            kill -9 $pid 2>/dev/null
+        fi
+        
+        echo -e "${GREEN}✓ $name stopped${NC}"
+    else
+        echo -e "${YELLOW}⚠️  $name (PID: $pid) not running${NC}"
+    fi
+}
+
+echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+echo -e "${BLUE}   PHASE 1: Stopping Backend Services${NC}"
+echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+echo ""
+
+# Stop services from PID file
+if [ -f "thesis-backend-pids.txt" ]; then
+    while read pid; do
+        if [ ! -z "$pid" ]; then
+            stop_process $pid "Service"
         fi
     done < thesis-backend-pids.txt
-    rm thesis-backend-pids.txt
-    echo -e "${GREEN}✓ Backend services stopped${NC}"
+    
+    rm -f thesis-backend-pids.txt
+    echo -e "${GREEN}✓ All backend services stopped${NC}"
 else
-    echo -e "${YELLOW}⚠ No PID file found, using fallback methods...${NC}"
+    echo -e "${YELLOW}⚠️  No PID file found${NC}"
 fi
 
 echo ""
-echo -e "${YELLOW}🧹 Cleaning up any remaining processes...${NC}"
 
-# Fallback: kill by process name patterns
-pkill -f "orchestrator-agent" 2>/dev/null && echo "   ✓ Killed orchestrator-agent"
-pkill -f "investment-agent" 2>/dev/null && echo "   ✓ Killed investment-agent"
-pkill -f "news-intelligence-agent" 2>/dev/null && echo "   ✓ Killed news-intelligence-agent"
-pkill -f "notification-agent" 2>/dev/null && echo "   ✓ Killed notification-agent"
-pkill -f "rag-service" 2>/dev/null && echo "   ✓ Killed rag-service"
-pkill -f "api-gateway" 2>/dev/null && echo "   ✓ Killed api-gateway"
-
-# Kill frontend if running on port 3000
-if lsof -ti:3000 > /dev/null 2>&1; then
-    echo "   ✓ Killing process on port 3000 (frontend)"
-    lsof -ti:3000 | xargs kill -9 2>/dev/null
-fi
+# Stop any remaining Node.js processes on our ports
+echo -e "${YELLOW}🔍 Checking for processes on known ports...${NC}"
+for port in 3000 3001 3002 3003 3004 3005 3006 3007; do
+    if lsof -ti:$port > /dev/null 2>&1; then
+        echo -e "${YELLOW}⏹️  Stopping process on port $port...${NC}"
+        lsof -ti:$port | xargs kill -9 2>/dev/null
+        echo -e "${GREEN}✓ Port $port cleared${NC}"
+    fi
+done
 
 echo ""
-echo -e "${YELLOW}🐳 Stopping Docker Compose services...${NC}"
+echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+echo -e "${BLUE}   PHASE 2: Stopping Docker Compose Services${NC}"
+echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+echo ""
+
 cd "$PROJECT_ROOT/backend"
+echo -e "${YELLOW}🐳 Stopping Docker Compose...${NC}"
 docker-compose down
+
+echo -e "${GREEN}✓ Docker Compose services stopped${NC}"
 
 echo ""
 echo -e "${GREEN}╔══════════════════════════════════════════════════════════════════╗${NC}"
-echo -e "${GREEN}║              ✅ ALL SERVICES STOPPED ✅                           ║${NC}"
+echo -e "${GREEN}║               ✅ ALL SERVICES STOPPED ✅                          ║${NC}"
 echo -e "${GREEN}╚══════════════════════════════════════════════════════════════════╝${NC}"
 echo ""
-echo -e "${BLUE}💡 To start services again, run:${NC} ./start-all-services.sh"
+echo -e "${YELLOW}💡 To start services again, run:${NC} ./start-all-services.sh"
 echo ""
-
