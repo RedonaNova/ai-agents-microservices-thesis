@@ -1,4 +1,4 @@
-import { Producer, Consumer, EachMessagePayload } from 'kafkajs';
+import { Kafka, Producer, Consumer, EachMessagePayload } from 'kafkajs';
 declare class KafkaService {
     private kafka;
     private producer;
@@ -19,6 +19,8 @@ declare class KafkaService {
      */
     private startResponseConsumer;
     disconnect(): Promise<void>;
+    getKafkaInstance(): Kafka;
+    getConsumer(groupId: string): Consumer;
 }
 declare const _default: KafkaService;
 export default _default;

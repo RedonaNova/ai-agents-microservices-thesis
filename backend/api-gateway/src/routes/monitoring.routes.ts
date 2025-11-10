@@ -1,5 +1,5 @@
 import express from 'express';
-import { kafka } from '../services/kafka';
+import kafkaService from '../services/kafka';
 
 const router = express.Router();
 
@@ -150,6 +150,7 @@ router.post('/heartbeat', (req, res) => {
  */
 router.get('/kafka/topics', async (req, res) => {
   try {
+    const kafka = kafkaService.getKafkaInstance();
     const admin = kafka.admin();
     await admin.connect();
     

@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const kafka_1 = __importDefault(require("../services/kafka"));
-const mongodb_1 = __importDefault(require("../services/mongodb"));
+const database_1 = __importDefault(require("../services/database"));
 const logger_1 = __importDefault(require("../services/logger"));
 const uuid_1 = require("uuid");
 const router = (0, express_1.Router)();
@@ -22,14 +22,8 @@ router.get('/', async (req, res) => {
         let watchlistSymbols = [];
         if (userId) {
             try {
-                const db = mongodb_1.default.getConnection().db;
-                const user = await db.collection('user').findOne({ id: userId });
-                if (user) {
-                    const watchlist = await db.collection('watchlists')
-                        .find({ userId: userId })
-                        .toArray();
-                    watchlistSymbols = watchlist.map((item) => item.symbol);
-                }
+                const result = await database_1.default.query('SELECT wi.symbol FROM watchlist_items wi JOIN watchlists w ON wi.watchlist_id = w.id WHERE w.user_id = $1', [userId]);
+                watchlistSymbols = result.rows.map((item) => item.symbol);
             }
             catch (error) {
                 logger_1.default.warn('Failed to fetch watchlist', { userId, error });

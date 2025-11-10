@@ -1,0 +1,28 @@
+
+> knowledge-agent@1.0.0 dev
+> tsx watch src/index.ts
+
+{"level":"WARN","timestamp":"2025-11-10T16:20:38.094Z","logger":"kafkajs","message":"KafkaJS v2.0.0 switched default partitioner. To retain the same partitioning behavior as in previous versions, create the producer with the option \"createPartitioner: Partitioners.LegacyPartitioner\". See the migration guide at https://kafka.js.org/docs/migration-guide-v2.0.0#producer-new-default-partitioner for details. Silence this warning by setting the environment variable \"KAFKAJS_NO_PARTITIONER_WARNING=1\""}
+[2025-11-10T16:20:38.096Z] ========================================== 
+[2025-11-10T16:20:38.096Z] 🚀 Starting Knowledge Agent (RAG) 
+[2025-11-10T16:20:38.097Z] ========================================== 
+[2025-11-10T16:20:38.097Z] Connecting to PostgreSQL... 
+[2025-11-10T16:20:38.162Z] ✅ Loaded 24 knowledge base entries 
+[2025-11-10T16:20:38.162Z] Connecting to Kafka... 
+(node:66662) TimeoutNegativeWarning: -1762791638175 is a negative number.
+Timeout duration was set to 1.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[2025-11-10T16:20:38.193Z] ✅ Knowledge Agent ready 
+[2025-11-10T16:20:38.193Z] Listening for knowledge queries... 
+[2025-11-10T16:20:38.193Z] ========================================== 
+{"level":"INFO","timestamp":"2025-11-10T16:20:38.193Z","logger":"kafkajs","message":"[Consumer] Starting","groupId":"knowledge-agent-group"}
+{"level":"INFO","timestamp":"2025-11-10T16:20:41.281Z","logger":"kafkajs","message":"[ConsumerGroup] Consumer has joined the group","groupId":"knowledge-agent-group","memberId":"knowledge-agent-5cecddcd-54fb-4034-9d22-640f876dbfba","leaderId":"knowledge-agent-5cecddcd-54fb-4034-9d22-640f876dbfba","isLeader":true,"memberAssignment":{"knowledge.queries":[0,1,2]},"groupProtocol":"RoundRobinAssigner","duration":3086}
+{"level":"ERROR","timestamp":"2025-11-10T16:21:06.364Z","logger":"kafkajs","message":"[Connection] Response Heartbeat(key: 12, version: 3)","broker":"localhost:9092","clientId":"knowledge-agent","error":"The group is rebalancing, so a rejoin is needed","correlationId":13,"size":10}
+{"level":"ERROR","timestamp":"2025-11-10T16:21:06.369Z","logger":"kafkajs","message":"[Connection] Response Heartbeat(key: 12, version: 3)","broker":"localhost:9092","clientId":"knowledge-agent","error":"The group is rebalancing, so a rejoin is needed","correlationId":14,"size":10}
+{"level":"ERROR","timestamp":"2025-11-10T16:21:06.373Z","logger":"kafkajs","message":"[Connection] Response Heartbeat(key: 12, version: 3)","broker":"localhost:9092","clientId":"knowledge-agent","error":"The group is rebalancing, so a rejoin is needed","correlationId":15,"size":10}
+{"level":"WARN","timestamp":"2025-11-10T16:21:06.373Z","logger":"kafkajs","message":"[Runner] The group is rebalancing, re-joining","groupId":"knowledge-agent-group","memberId":"knowledge-agent-5cecddcd-54fb-4034-9d22-640f876dbfba","error":"The group is rebalancing, so a rejoin is needed"}
+{"level":"INFO","timestamp":"2025-11-10T16:21:06.393Z","logger":"kafkajs","message":"[ConsumerGroup] Consumer has joined the group","groupId":"knowledge-agent-group","memberId":"knowledge-agent-5cecddcd-54fb-4034-9d22-640f876dbfba","leaderId":"knowledge-agent-5cecddcd-54fb-4034-9d22-640f876dbfba","isLeader":true,"memberAssignment":{"knowledge.queries":[0,1]},"groupProtocol":"RoundRobinAssigner","duration":20}
+{"level":"ERROR","timestamp":"2025-11-10T16:21:16.437Z","logger":"kafkajs","message":"[Connection] Response Heartbeat(key: 12, version: 3)","broker":"localhost:9092","clientId":"knowledge-agent","error":"The group is rebalancing, so a rejoin is needed","correlationId":23,"size":10}
+{"level":"ERROR","timestamp":"2025-11-10T16:21:16.439Z","logger":"kafkajs","message":"[Connection] Response Heartbeat(key: 12, version: 3)","broker":"localhost:9092","clientId":"knowledge-agent","error":"The group is rebalancing, so a rejoin is needed","correlationId":24,"size":10}
+{"level":"WARN","timestamp":"2025-11-10T16:21:16.439Z","logger":"kafkajs","message":"[Runner] The group is rebalancing, re-joining","groupId":"knowledge-agent-group","memberId":"knowledge-agent-5cecddcd-54fb-4034-9d22-640f876dbfba","error":"The group is rebalancing, so a rejoin is needed"}
+{"level":"INFO","timestamp":"2025-11-10T16:21:16.464Z","logger":"kafkajs","message":"[ConsumerGroup] Consumer has joined the group","groupId":"knowledge-agent-group","memberId":"knowledge-agent-5cecddcd-54fb-4034-9d22-640f876dbfba","leaderId":"knowledge-agent-5cecddcd-54fb-4034-9d22-640f876dbfba","isLeader":true,"memberAssignment":{"knowledge.queries":[0,1,2]},"groupProtocol":"RoundRobinAssigner","duration":25}

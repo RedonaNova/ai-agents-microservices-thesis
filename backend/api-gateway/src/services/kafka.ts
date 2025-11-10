@@ -133,6 +133,18 @@ class KafkaService {
       logger.info(`Kafka consumer ${groupId} disconnected`);
     }
   }
+
+  getKafkaInstance(): Kafka {
+    return this.kafka;
+  }
+
+  getConsumer(groupId: string): Consumer {
+    if (!this.consumers.has(groupId)) {
+      const consumer = this.kafka.consumer({ groupId });
+      this.consumers.set(groupId, consumer);
+    }
+    return this.consumers.get(groupId)!;
+  }
 }
 
 export default new KafkaService();

@@ -9,7 +9,7 @@ interface EmailOptions {
 }
 
 class EmailService {
-  private transporter: Transporter;
+  private transporter: Transporter | null = null;
   private enabled: boolean;
 
   constructor() {
@@ -17,7 +17,7 @@ class EmailService {
     this.enabled = !!(process.env.EMAIL_USER && process.env.EMAIL_PASS);
 
     if (this.enabled) {
-      this.transporter = nodemailer.createTransporter({
+      this.transporter = nodemailer.createTransport({
         host: process.env.EMAIL_HOST || 'smtp.gmail.com',
         port: parseInt(process.env.EMAIL_PORT || '587'),
         secure: false, // true for 465, false for other ports
@@ -117,7 +117,7 @@ class EmailService {
   }
 
   async send(options: EmailOptions): Promise<void> {
-    if (!this.enabled) {
+    if (!this.enabled || !this.transporter) {
       logger.info(`[DEMO MODE] Email to ${options.to}: ${options.subject}`);
       return;
     }
@@ -139,7 +139,7 @@ class EmailService {
   }
 
   async verify(): Promise<boolean> {
-    if (!this.enabled) {
+    if (!this.enabled || !this.transporter) {
       return false;
     }
 

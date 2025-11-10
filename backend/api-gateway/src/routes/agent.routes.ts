@@ -115,7 +115,7 @@ router.get('/stream/:requestId', async (req: Request, res: Response) => {
     await consumer.subscribe({ topic: 'agent.responses', fromBeginning: false });
 
     await consumer.run({
-      eachMessage: async ({ message }) => {
+      eachMessage: async ({ message }: { message: any }) => {
         try {
           const response = JSON.parse(message.value?.toString() || '{}');
           

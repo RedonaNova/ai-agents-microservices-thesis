@@ -8,12 +8,13 @@ const cors_1 = __importDefault(require("cors"));
 const config_1 = require("./config");
 const logger_1 = __importDefault(require("./services/logger"));
 const kafka_1 = __importDefault(require("./services/kafka"));
-const mongodb_1 = __importDefault(require("./services/mongodb"));
+const database_1 = __importDefault(require("./services/database"));
 // Routes
-const auth_routes_1 = __importDefault(require("./routes/auth.routes"));
+const users_routes_1 = __importDefault(require("./routes/users.routes"));
 const news_routes_1 = __importDefault(require("./routes/news.routes"));
 const agent_routes_1 = __importDefault(require("./routes/agent.routes"));
 const rag_routes_1 = __importDefault(require("./routes/rag.routes"));
+const monitoring_routes_1 = __importDefault(require("./routes/monitoring.routes"));
 const app = (0, express_1.default)();
 // Middleware
 app.use((0, cors_1.default)({ origin: config_1.config.corsOrigin, credentials: true }));
@@ -37,10 +38,11 @@ app.get('/health', (req, res) => {
     });
 });
 // API Routes
-app.use('/api/auth', auth_routes_1.default);
+app.use('/api/users', users_routes_1.default);
 app.use('/api/news', news_routes_1.default);
 app.use('/api/agent', agent_routes_1.default);
 app.use('/api/rag', rag_routes_1.default);
+app.use('/api/monitoring', monitoring_routes_1.default);
 // 404 handler
 app.use((req, res) => {
     res.status(404).json({ error: 'Not found' });
@@ -57,13 +59,8 @@ async function start() {
             env: config_1.config.nodeEnv,
             port: config_1.config.port
         });
-        // Connect to MongoDB (optional)
-        try {
-            await mongodb_1.default.connect();
-        }
-        catch (error) {
-            logger_1.default.warn('MongoDB connection failed - continuing without it', { error });
-        }
+        // Connect to PostgreSQL
+        await database_1.default.connect();
         // Connect to Kafka
         await kafka_1.default.getProducer();
         // Start Express server
@@ -83,13 +80,13 @@ async function start() {
 process.on('SIGTERM', async () => {
     logger_1.default.info('SIGTERM received, shutting down gracefully...');
     await kafka_1.default.disconnect();
-    await mongodb_1.default.disconnect();
+    await database_1.default.disconnect();
     process.exit(0);
 });
 process.on('SIGINT', async () => {
     logger_1.default.info('SIGINT received, shutting down gracefully...');
     await kafka_1.default.disconnect();
-    await mongodb_1.default.disconnect();
+    await database_1.default.disconnect();
     process.exit(0);
 });
 // Start the server

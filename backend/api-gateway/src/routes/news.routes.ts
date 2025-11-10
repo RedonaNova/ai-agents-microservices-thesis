@@ -1,6 +1,6 @@
 import { Router, Request, Response } from 'express';
 import kafkaService from '../services/kafka';
-import mongodb from '../services/mongodb';
+import db from '../services/database';
 import logger from '../services/logger';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -20,15 +20,11 @@ router.get('/', async (req: Request, res: Response) => {
     let watchlistSymbols: string[] = [];
     if (userId) {
       try {
-        const db = mongodb.getConnection().db;
-        const user = await db.collection('user').findOne({ id: userId });
-        
-        if (user) {
-          const watchlist = await db.collection('watchlists')
-            .find({ userId: userId })
-            .toArray();
-          watchlistSymbols = watchlist.map((item: any) => item.symbol);
-        }
+        const result = await db.query(
+          'SELECT wi.symbol FROM watchlist_items wi JOIN watchlists w ON wi.watchlist_id = w.id WHERE w.user_id = $1',
+          [userId]
+        );
+        watchlistSymbols = result.rows.map((item: any) => item.symbol);
       } catch (error) {
         logger.warn('Failed to fetch watchlist', { userId, error });
       }

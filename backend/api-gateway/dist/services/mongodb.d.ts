@@ -1,9 +1,8 @@
-import mongoose from 'mongoose';
 declare class MongoDBService {
     private isConnected;
     connect(): Promise<void>;
     disconnect(): Promise<void>;
-    getConnection(): mongoose.Connection;
+    getConnection(): any;
 }
 declare const _default: MongoDBService;
 export default _default;

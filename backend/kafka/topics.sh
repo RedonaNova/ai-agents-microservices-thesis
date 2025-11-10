@@ -19,11 +19,22 @@ echo ""
 
 # Wait for Kafka to be ready
 echo "⏳ Waiting for Kafka broker to be ready..."
-while ! kafka-broker-api-versions --bootstrap-server $KAFKA_BROKER > /dev/null 2>&1; do
-    echo "   Kafka not ready yet, waiting..."
-    sleep 3
+MAX_WAIT=30
+COUNTER=0
+while [ $COUNTER -lt $MAX_WAIT ]; do
+    if docker exec thesis-kafka kafka-broker-api-versions --bootstrap-server localhost:9092 > /dev/null 2>&1; then
+        echo "✅ Kafka is ready!"
+        break
+    fi
+    echo "   Kafka not ready yet, waiting... ($COUNTER/$MAX_WAIT)"
+    sleep 2
+    COUNTER=$((COUNTER+1))
 done
-echo "✅ Kafka is ready!"
+
+if [ $COUNTER -eq $MAX_WAIT ]; then
+    echo "❌ Kafka did not become ready in time"
+    exit 1
+fi
 echo ""
 
 # Function to create topic
@@ -34,7 +45,7 @@ create_topic() {
     echo "📨 Creating topic: $topic_name"
     echo "   Description: $description"
     
-    kafka-topics --bootstrap-server $KAFKA_BROKER \
+    docker exec thesis-kafka kafka-topics --bootstrap-server localhost:9092 \
         --create \
         --if-not-exists \
         --topic $topic_name \
@@ -42,7 +53,7 @@ create_topic() {
         --replication-factor $REPLICATION_FACTOR \
         --config retention.ms=604800000 \
         --config compression.type=snappy \
-        --config max.message.bytes=10485760
+        --config max.message.bytes=10485760 2>&1 | grep -v "^$"
     
     echo "   ✅ Created"
     echo ""
@@ -76,7 +87,7 @@ echo "━━━━━━━━━━━━━━━━━━━━━━━━�
 echo "📊 Topic List:"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 
-kafka-topics --bootstrap-server $KAFKA_BROKER --list | grep -E "user\.|agent\.|planning\.|execution\.|knowledge\.|service\.|news\.|monitoring\." | sort
+docker exec thesis-kafka kafka-topics --bootstrap-server localhost:9092 --list | grep -E "user\.|agent\.|planning\.|execution\.|knowledge\.|service\.|news\.|monitoring\." | sort
 
 echo ""
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
@@ -84,9 +95,9 @@ echo "✅ All topics created successfully!"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo ""
 echo "💡 To view topic details:"
-echo "   kafka-topics --bootstrap-server $KAFKA_BROKER --describe --topic <topic-name>"
+echo "   docker exec thesis-kafka kafka-topics --bootstrap-server localhost:9092 --describe --topic <topic-name>"
 echo ""
 echo "💡 To consume messages (for debugging):"
-echo "   kafka-console-consumer --bootstrap-server $KAFKA_BROKER --topic <topic-name> --from-beginning"
+echo "   docker exec thesis-kafka kafka-console-consumer --bootstrap-server localhost:9092 --topic <topic-name> --from-beginning"
 echo ""
 
