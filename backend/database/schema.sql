@@ -4,6 +4,8 @@
 -- Drop existing tables if rebuilding
 DROP TABLE IF EXISTS monitoring_events CASCADE;
 DROP TABLE IF EXISTS knowledge_base CASCADE;
+DROP TABLE IF EXISTS watchlist_items CASCADE;
+DROP TABLE IF EXISTS watchlists CASCADE;
 DROP TABLE IF EXISTS user_watchlist CASCADE;
 DROP TABLE IF EXISTS user_portfolio CASCADE;
 DROP TABLE IF EXISTS users CASCADE;
@@ -51,7 +53,7 @@ CREATE TABLE user_portfolio (
 CREATE INDEX idx_portfolio_user_id ON user_portfolio(user_id);
 CREATE INDEX idx_portfolio_symbol ON user_portfolio(symbol);
 
--- User Watchlist Table
+-- User Watchlist Table (legacy - for backwards compatibility)
 CREATE TABLE user_watchlist (
     id SERIAL PRIMARY KEY,
     user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
@@ -64,6 +66,34 @@ CREATE TABLE user_watchlist (
 
 CREATE INDEX idx_watchlist_user_id ON user_watchlist(user_id);
 CREATE INDEX idx_watchlist_symbol ON user_watchlist(symbol);
+
+-- Watchlists Table (new structure - named watchlists)
+CREATE TABLE watchlists (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    name VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    
+    UNIQUE(user_id, name)
+);
+
+CREATE INDEX idx_watchlists_user_id ON watchlists(user_id);
+CREATE INDEX idx_watchlists_created_at ON watchlists(created_at);
+
+-- Watchlist Items Table
+CREATE TABLE watchlist_items (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    watchlist_id UUID NOT NULL REFERENCES watchlists(id) ON DELETE CASCADE,
+    symbol VARCHAR(50) NOT NULL,
+    is_mse BOOLEAN DEFAULT FALSE,
+    added_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    
+    UNIQUE(watchlist_id, symbol)
+);
+
+CREATE INDEX idx_watchlist_items_watchlist_id ON watchlist_items(watchlist_id);
+CREATE INDEX idx_watchlist_items_symbol ON watchlist_items(symbol);
 
 -- Knowledge Base Table (for RAG/FAISS)
 CREATE TABLE knowledge_base (

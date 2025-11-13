@@ -113,7 +113,21 @@ Provide:
 2. Top sectors performing well (1-2 sentences)
 3. Key trends to watch (1-2 sentences)`;
   } else {
-    prompt = `${query}\n\nProvide a helpful response based on MSE stock market data.`;
+    // Generic analysis with MSE data
+    prompt = `You are an investment analyst for the Mongolian Stock Exchange (MSE).
+
+User Query: ${query || 'Provide market analysis'}
+
+Current MSE Market Data:
+${mseData.slice(0, 15).map(s => `- ${s.symbol} (${s.name || 'N/A'}): ₮${s.closing_price?.toFixed(2) || 'N/A'} | Volume: ${s.volume?.toLocaleString() || 'N/A'} | Change: ${s.change_percent >= 0 ? '+' : ''}${s.change_percent?.toFixed(2) || 'N/A'}%`).join('\n')}
+
+Provide a detailed, data-driven analysis that:
+1. Uses the ACTUAL MSE data provided above
+2. Mentions specific stock symbols, prices, and volumes
+3. Answers the user's query comprehensively
+4. Keeps it professional and actionable
+
+Important: Use the real data from the MSE database above, not generic responses.`;
   }
   
   try {
@@ -167,6 +181,28 @@ async function handleAgentTask(message: any) {
         }),
       }],
     });
+    
+    // Save response to database for easy retrieval
+    try {
+      await db.query(
+        `INSERT INTO agent_responses_cache 
+         (request_id, user_id, agent_type, query, response, processing_time_ms)
+         VALUES ($1, $2, $3, $4, $5, $6)
+         ON CONFLICT (request_id) DO UPDATE 
+         SET response = EXCLUDED.response, processing_time_ms = EXCLUDED.processing_time_ms`,
+        [
+          requestId || taskId,
+          payload?.userId || 'guest',
+          'investment',
+          payload?.query || action || 'Investment query',
+          result,
+          Date.now() - startTime
+        ]
+      );
+      log(`✅ Response saved to database`, { requestId: requestId || taskId });
+    } catch (dbError: any) {
+      log(`⚠️ Failed to save response to database`, { error: dbError.message });
+    }
     
     log(`✅ Task completed`, { taskId, duration: Date.now() - startTime });
     

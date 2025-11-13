@@ -33,30 +33,76 @@ agents.forEach(agent => {
 
 /**
  * GET /api/monitoring/agents
- * Returns status of all agents
+ * Returns status of all agents by checking Kafka consumer groups
  */
-router.get('/agents', (req, res) => {
-  const now = Date.now();
-  const statuses = Array.from(agentStatus.entries()).map(([id, data]) => {
-    // Consider agent inactive if no heartbeat in last 60 seconds
-    const isActive = (now - data.lastHeartbeat) < 60000;
+router.get('/agents', async (req, res) => {
+  try {
+    const kafka = kafkaService.getKafkaInstance();
+    const admin = kafka.admin();
+    await admin.connect();
     
-    return {
-      id,
-      name: data.name,
-      status: data.lastHeartbeat === 0 ? 'inactive' : (isActive ? 'active' : 'inactive'),
-      lastHeartbeat: data.lastHeartbeat,
-      lastSeen: data.lastHeartbeat > 0 ? `${Math.floor((now - data.lastHeartbeat) / 1000)}s ago` : 'Never',
-      messageCount: data.messageCount,
-      avgResponseTime: data.avgResponseTime,
+    // Get all consumer groups
+    const { groups } = await admin.listGroups();
+    const consumerGroupIds = groups.map((g: any) => g.groupId);
+    
+    await admin.disconnect();
+    
+    const now = Date.now();
+    
+    // Check which agents are active based on consumer groups
+    const agentMapping: Record<string, {name: string, group: string}> = {
+      'orchestrator': { name: 'Orchestrator Agent', group: 'orchestrator-group' },
+      'investment': { name: 'Investment Agent', group: 'investment-agent-group' },
+      'news': { name: 'News Agent', group: 'news-agent-group' },
+      'knowledge': { name: 'Knowledge Agent', group: 'knowledge-agent-group' },
+      'flink-planner': { name: 'PyFlink Planner', group: 'flink-planner-group' },
     };
-  });
+    
+    const statuses = Object.entries(agentMapping).map(([id, info]) => {
+      const isActive = consumerGroupIds.includes(info.group);
+      
+      return {
+        id,
+        name: info.name,
+        status: isActive ? 'active' : 'inactive',
+        consumerGroup: info.group,
+        lastSeen: isActive ? 'Active now' : 'Not connected',
+        type: 'kafka-consumer',
+      };
+    });
 
-  res.json({
-    success: true,
-    timestamp: now,
-    agents: statuses,
-  });
+    res.json({
+      success: true,
+      timestamp: now,
+      agents: statuses,
+      totalConsumerGroups: consumerGroupIds.length,
+    });
+  } catch (error) {
+    console.error('Error checking agent status:', error);
+    
+    // Fallback to heartbeat-based status
+    const now = Date.now();
+    const statuses = Array.from(agentStatus.entries()).map(([id, data]) => {
+      const isActive = (now - data.lastHeartbeat) < 60000;
+      
+      return {
+        id,
+        name: data.name,
+        status: data.lastHeartbeat === 0 ? 'inactive' : (isActive ? 'active' : 'inactive'),
+        lastHeartbeat: data.lastHeartbeat,
+        lastSeen: data.lastHeartbeat > 0 ? `${Math.floor((now - data.lastHeartbeat) / 1000)}s ago` : 'Never',
+        messageCount: data.messageCount,
+        avgResponseTime: data.avgResponseTime,
+      };
+    });
+
+    res.json({
+      success: true,
+      timestamp: now,
+      agents: statuses,
+      note: 'Using heartbeat fallback (Kafka check failed)',
+    });
+  }
 });
 
 /**

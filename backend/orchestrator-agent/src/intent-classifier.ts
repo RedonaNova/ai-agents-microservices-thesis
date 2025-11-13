@@ -40,7 +40,7 @@ class IntentClassifier {
 
       // Use Gemini for classification
       const prompt = INTENT_CLASSIFICATION_PROMPT.replace('{QUERY}', query);
-      const response = await geminiClient.generateText(prompt);
+      const response = await geminiClient.generateResponse(prompt, 0.3);
       
       // Extract intent
       const intent = response.trim().toLowerCase();
@@ -63,7 +63,9 @@ class IntentClassifier {
       // Limit cache size
       if (this.cache.size > 100) {
         const firstKey = this.cache.keys().next().value;
-        this.cache.delete(firstKey);
+        if (firstKey) {
+          this.cache.delete(firstKey);
+        }
       }
 
       logger.info('Intent classified', { query, intent: finalIntent });

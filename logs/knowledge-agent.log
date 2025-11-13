@@ -2,67 +2,68 @@
 > knowledge-agent@1.0.0 dev
 > tsx watch src/index.ts
 
-{"level":"WARN","timestamp":"2025-11-10T16:20:38.094Z","logger":"kafkajs","message":"KafkaJS v2.0.0 switched default partitioner. To retain the same partitioning behavior as in previous versions, create the producer with the option \"createPartitioner: Partitioners.LegacyPartitioner\". See the migration guide at https://kafka.js.org/docs/migration-guide-v2.0.0#producer-new-default-partitioner for details. Silence this warning by setting the environment variable \"KAFKAJS_NO_PARTITIONER_WARNING=1\""}
-[2025-11-10T16:20:38.096Z] ========================================== 
-[2025-11-10T16:20:38.096Z] 🚀 Starting Knowledge Agent (RAG) 
-[2025-11-10T16:20:38.097Z] ========================================== 
-[2025-11-10T16:20:38.097Z] Connecting to PostgreSQL... 
-[2025-11-10T16:20:38.162Z] ✅ Loaded 24 knowledge base entries 
-[2025-11-10T16:20:38.162Z] Connecting to Kafka... 
-(node:66662) TimeoutNegativeWarning: -1762791638175 is a negative number.
+{"level":"WARN","timestamp":"2025-11-12T15:56:08.352Z","logger":"kafkajs","message":"KafkaJS v2.0.0 switched default partitioner. To retain the same partitioning behavior as in previous versions, create the producer with the option \"createPartitioner: Partitioners.LegacyPartitioner\". See the migration guide at https://kafka.js.org/docs/migration-guide-v2.0.0#producer-new-default-partitioner for details. Silence this warning by setting the environment variable \"KAFKAJS_NO_PARTITIONER_WARNING=1\""}
+[2025-11-12T15:56:08.355Z] ========================================== 
+[2025-11-12T15:56:08.355Z] 🚀 Starting Knowledge Agent (RAG) 
+[2025-11-12T15:56:08.355Z] ========================================== 
+[2025-11-12T15:56:08.355Z] Connecting to PostgreSQL... 
+[2025-11-12T15:56:08.422Z] ✅ Loaded 4 knowledge base entries 
+[2025-11-12T15:56:08.422Z] Connecting to Kafka... 
+(node:37496) TimeoutNegativeWarning: -1762962968439 is a negative number.
 Timeout duration was set to 1.
 (Use `node --trace-warnings ...` to show where the warning was created)
-[2025-11-10T16:20:38.193Z] ✅ Knowledge Agent ready 
-[2025-11-10T16:20:38.193Z] Listening for knowledge queries... 
-[2025-11-10T16:20:38.193Z] ========================================== 
-{"level":"INFO","timestamp":"2025-11-10T16:20:38.193Z","logger":"kafkajs","message":"[Consumer] Starting","groupId":"knowledge-agent-group"}
-{"level":"INFO","timestamp":"2025-11-10T16:20:41.281Z","logger":"kafkajs","message":"[ConsumerGroup] Consumer has joined the group","groupId":"knowledge-agent-group","memberId":"knowledge-agent-5cecddcd-54fb-4034-9d22-640f876dbfba","leaderId":"knowledge-agent-5cecddcd-54fb-4034-9d22-640f876dbfba","isLeader":true,"memberAssignment":{"knowledge.queries":[0,1,2]},"groupProtocol":"RoundRobinAssigner","duration":3086}
-{"level":"ERROR","timestamp":"2025-11-10T16:21:06.364Z","logger":"kafkajs","message":"[Connection] Response Heartbeat(key: 12, version: 3)","broker":"localhost:9092","clientId":"knowledge-agent","error":"The group is rebalancing, so a rejoin is needed","correlationId":13,"size":10}
-{"level":"ERROR","timestamp":"2025-11-10T16:21:06.369Z","logger":"kafkajs","message":"[Connection] Response Heartbeat(key: 12, version: 3)","broker":"localhost:9092","clientId":"knowledge-agent","error":"The group is rebalancing, so a rejoin is needed","correlationId":14,"size":10}
-{"level":"ERROR","timestamp":"2025-11-10T16:21:06.373Z","logger":"kafkajs","message":"[Connection] Response Heartbeat(key: 12, version: 3)","broker":"localhost:9092","clientId":"knowledge-agent","error":"The group is rebalancing, so a rejoin is needed","correlationId":15,"size":10}
-{"level":"WARN","timestamp":"2025-11-10T16:21:06.373Z","logger":"kafkajs","message":"[Runner] The group is rebalancing, re-joining","groupId":"knowledge-agent-group","memberId":"knowledge-agent-5cecddcd-54fb-4034-9d22-640f876dbfba","error":"The group is rebalancing, so a rejoin is needed"}
-{"level":"INFO","timestamp":"2025-11-10T16:21:06.393Z","logger":"kafkajs","message":"[ConsumerGroup] Consumer has joined the group","groupId":"knowledge-agent-group","memberId":"knowledge-agent-5cecddcd-54fb-4034-9d22-640f876dbfba","leaderId":"knowledge-agent-5cecddcd-54fb-4034-9d22-640f876dbfba","isLeader":true,"memberAssignment":{"knowledge.queries":[0,1]},"groupProtocol":"RoundRobinAssigner","duration":20}
-{"level":"ERROR","timestamp":"2025-11-10T16:21:16.437Z","logger":"kafkajs","message":"[Connection] Response Heartbeat(key: 12, version: 3)","broker":"localhost:9092","clientId":"knowledge-agent","error":"The group is rebalancing, so a rejoin is needed","correlationId":23,"size":10}
-{"level":"ERROR","timestamp":"2025-11-10T16:21:16.439Z","logger":"kafkajs","message":"[Connection] Response Heartbeat(key: 12, version: 3)","broker":"localhost:9092","clientId":"knowledge-agent","error":"The group is rebalancing, so a rejoin is needed","correlationId":24,"size":10}
-{"level":"WARN","timestamp":"2025-11-10T16:21:16.439Z","logger":"kafkajs","message":"[Runner] The group is rebalancing, re-joining","groupId":"knowledge-agent-group","memberId":"knowledge-agent-5cecddcd-54fb-4034-9d22-640f876dbfba","error":"The group is rebalancing, so a rejoin is needed"}
-{"level":"INFO","timestamp":"2025-11-10T16:21:16.464Z","logger":"kafkajs","message":"[ConsumerGroup] Consumer has joined the group","groupId":"knowledge-agent-group","memberId":"knowledge-agent-5cecddcd-54fb-4034-9d22-640f876dbfba","leaderId":"knowledge-agent-5cecddcd-54fb-4034-9d22-640f876dbfba","isLeader":true,"memberAssignment":{"knowledge.queries":[0,1,2]},"groupProtocol":"RoundRobinAssigner","duration":25}
-12:50:06 AM [tsx] change in ./src/index.ts Restarting...
-[2025-11-10T16:50:06.215Z] Shutting down... 
-{"level":"INFO","timestamp":"2025-11-10T16:50:11.177Z","logger":"kafkajs","message":"[Runner] consumer not running, exiting","groupId":"knowledge-agent-group","memberId":"knowledge-agent-5cecddcd-54fb-4034-9d22-640f876dbfba"}
-{"level":"INFO","timestamp":"2025-11-10T16:50:11.214Z","logger":"kafkajs","message":"[Consumer] Stopped","groupId":"knowledge-agent-group"}
-12:50:11 AM [tsx] Process didn't exit in 5s. Force killing...
-c{"level":"WARN","timestamp":"2025-11-10T16:50:12.170Z","logger":"kafkajs","message":"KafkaJS v2.0.0 switched default partitioner. To retain the same partitioning behavior as in previous versions, create the producer with the option \"createPartitioner: Partitioners.LegacyPartitioner\". See the migration guide at https://kafka.js.org/docs/migration-guide-v2.0.0#producer-new-default-partitioner for details. Silence this warning by setting the environment variable \"KAFKAJS_NO_PARTITIONER_WARNING=1\""}
-[2025-11-10T16:50:12.173Z] ========================================== 
-[2025-11-10T16:50:12.174Z] 🚀 Starting Knowledge Agent (RAG) 
-[2025-11-10T16:50:12.174Z] ========================================== 
-[2025-11-10T16:50:12.174Z] Connecting to PostgreSQL... 
-[2025-11-10T16:50:12.268Z] ✅ Loaded 24 knowledge base entries 
-[2025-11-10T16:50:12.269Z] Connecting to Kafka... 
-(node:81807) TimeoutNegativeWarning: -1762793412281 is a negative number.
-Timeout duration was set to 1.
-(Use `node --trace-warnings ...` to show where the warning was created)
-[2025-11-10T16:50:12.296Z] ✅ Knowledge Agent ready 
-[2025-11-10T16:50:12.296Z] Listening for knowledge queries... 
-[2025-11-10T16:50:12.296Z] ========================================== 
-{"level":"INFO","timestamp":"2025-11-10T16:50:12.296Z","logger":"kafkajs","message":"[Consumer] Starting","groupId":"knowledge-agent-group"}
-{"level":"INFO","timestamp":"2025-11-10T16:50:15.330Z","logger":"kafkajs","message":"[ConsumerGroup] Consumer has joined the group","groupId":"knowledge-agent-group","memberId":"knowledge-agent-9035fadc-a252-46d3-a87b-8bfee14d8973","leaderId":"knowledge-agent-9035fadc-a252-46d3-a87b-8bfee14d8973","isLeader":true,"memberAssignment":{"knowledge.queries":[0,1,2]},"groupProtocol":"RoundRobinAssigner","duration":3032}
-12:55:01 AM [tsx] change in ./src/index.ts Restarting...
-[2025-11-10T16:55:01.483Z] Shutting down... 
-{"level":"INFO","timestamp":"2025-11-10T16:55:05.791Z","logger":"kafkajs","message":"[Runner] consumer not running, exiting","groupId":"knowledge-agent-group","memberId":"knowledge-agent-9035fadc-a252-46d3-a87b-8bfee14d8973"}
-{"level":"INFO","timestamp":"2025-11-10T16:55:05.799Z","logger":"kafkajs","message":"[Consumer] Stopped","groupId":"knowledge-agent-group"}
-12:55:06 AM [tsx] Process didn't exit in 5s. Force killing...
-c{"level":"WARN","timestamp":"2025-11-10T16:55:07.002Z","logger":"kafkajs","message":"KafkaJS v2.0.0 switched default partitioner. To retain the same partitioning behavior as in previous versions, create the producer with the option \"createPartitioner: Partitioners.LegacyPartitioner\". See the migration guide at https://kafka.js.org/docs/migration-guide-v2.0.0#producer-new-default-partitioner for details. Silence this warning by setting the environment variable \"KAFKAJS_NO_PARTITIONER_WARNING=1\""}
-[2025-11-10T16:55:07.005Z] ========================================== 
-[2025-11-10T16:55:07.005Z] 🚀 Starting Knowledge Agent (RAG) 
-[2025-11-10T16:55:07.005Z] ========================================== 
-[2025-11-10T16:55:07.005Z] Connecting to PostgreSQL... 
-[2025-11-10T16:55:07.061Z] ✅ Loaded 24 knowledge base entries 
-[2025-11-10T16:55:07.061Z] Connecting to Kafka... 
-(node:84990) TimeoutNegativeWarning: -1762793707074 is a negative number.
-Timeout duration was set to 1.
-(Use `node --trace-warnings ...` to show where the warning was created)
-[2025-11-10T16:55:07.087Z] ✅ Knowledge Agent ready 
-[2025-11-10T16:55:07.087Z] Listening for knowledge queries... 
-[2025-11-10T16:55:07.087Z] ========================================== 
-{"level":"INFO","timestamp":"2025-11-10T16:55:07.087Z","logger":"kafkajs","message":"[Consumer] Starting","groupId":"knowledge-agent-group"}
-{"level":"INFO","timestamp":"2025-11-10T16:55:10.127Z","logger":"kafkajs","message":"[ConsumerGroup] Consumer has joined the group","groupId":"knowledge-agent-group","memberId":"knowledge-agent-d63a3349-537e-4d4b-9ac4-f01f3232529d","leaderId":"knowledge-agent-d63a3349-537e-4d4b-9ac4-f01f3232529d","isLeader":true,"memberAssignment":{"knowledge.queries":[0,1,2]},"groupProtocol":"RoundRobinAssigner","duration":3038}
+[2025-11-12T15:56:08.466Z] ✅ Knowledge Agent ready 
+[2025-11-12T15:56:08.466Z] Listening for knowledge queries... 
+[2025-11-12T15:56:08.466Z] ========================================== 
+{"level":"INFO","timestamp":"2025-11-12T15:56:08.467Z","logger":"kafkajs","message":"[Consumer] Starting","groupId":"knowledge-agent-group"}
+{"level":"INFO","timestamp":"2025-11-12T15:56:11.576Z","logger":"kafkajs","message":"[ConsumerGroup] Consumer has joined the group","groupId":"knowledge-agent-group","memberId":"knowledge-agent-9374be06-7047-482a-9f35-4d982c51054c","leaderId":"knowledge-agent-9374be06-7047-482a-9f35-4d982c51054c","isLeader":true,"memberAssignment":{"knowledge.queries":[0,1,2]},"groupProtocol":"RoundRobinAssigner","duration":3107}
+{"level":"WARN","timestamp":"2025-11-12T16:09:50.265Z","logger":"kafkajs","message":"[RequestQueue] Response without match","clientId":"knowledge-agent","broker":"localhost:9092","correlationId":4}
+{"level":"WARN","timestamp":"2025-11-12T17:06:17.645Z","logger":"kafkajs","message":"[RequestQueue] Response without match","clientId":"knowledge-agent","broker":"localhost:9092","correlationId":5}
+{"level":"WARN","timestamp":"2025-11-13T00:14:31.705Z","logger":"kafkajs","message":"[RequestQueue] Response without match","clientId":"knowledge-agent","broker":"localhost:9092","correlationId":7}
+{"level":"WARN","timestamp":"2025-11-13T00:36:17.608Z","logger":"kafkajs","message":"[RequestQueue] Response without match","clientId":"knowledge-agent","broker":"localhost:9092","correlationId":173}
+{"level":"WARN","timestamp":"2025-11-13T01:03:49.542Z","logger":"kafkajs","message":"[RequestQueue] Response without match","clientId":"knowledge-agent","broker":"localhost:9092","correlationId":174}
+node:events:486
+      throw er; // Unhandled 'error' event
+      ^
+
+error: terminating connection due to administrator command
+    at Parser.parseErrorMessage (/home/it/apps/thesis-report/backend/knowledge-agent/node_modules/pg-protocol/src/parser.ts:369:69)
+    at Parser.handlePacket (/home/it/apps/thesis-report/backend/knowledge-agent/node_modules/pg-protocol/src/parser.ts:187:21)
+    at Parser.parse (/home/it/apps/thesis-report/backend/knowledge-agent/node_modules/pg-protocol/src/parser.ts:102:30)
+    at Socket.<anonymous> (/home/it/apps/thesis-report/backend/knowledge-agent/node_modules/pg-protocol/src/index.ts:7:48)
+    at Socket.emit (node:events:508:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+Emitted 'error' event on Client instance at:
+    at Client._handleErrorEvent (/home/it/apps/thesis-report/backend/knowledge-agent/node_modules/pg/lib/client.js:350:10)
+    at Client._handleErrorMessage (/home/it/apps/thesis-report/backend/knowledge-agent/node_modules/pg/lib/client.js:361:12)
+    at Connection.emit (node:events:508:28)
+    at /home/it/apps/thesis-report/backend/knowledge-agent/node_modules/pg/lib/connection.js:116:12
+    at Parser.parse (/home/it/apps/thesis-report/backend/knowledge-agent/node_modules/pg-protocol/src/parser.ts:103:9)
+    at Socket.<anonymous> (/home/it/apps/thesis-report/backend/knowledge-agent/node_modules/pg-protocol/src/index.ts:7:48)
+    at Socket.emit (node:events:508:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5) {
+  length: 116,
+  severity: 'FATAL',
+  code: '57P01',
+  detail: undefined,
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'postgres.c',
+  line: '3286',
+  routine: 'ProcessInterrupts'
+}
+
+Node.js v24.11.0

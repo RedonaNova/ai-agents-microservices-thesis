@@ -2,51 +2,67 @@
 > investment-agent@2.0.0 dev
 > tsx watch src/index.ts
 
-{"level":"WARN","timestamp":"2025-11-10T16:51:54.379Z","logger":"kafkajs","message":"KafkaJS v2.0.0 switched default partitioner. To retain the same partitioning behavior as in previous versions, create the producer with the option \"createPartitioner: Partitioners.LegacyPartitioner\". See the migration guide at https://kafka.js.org/docs/migration-guide-v2.0.0#producer-new-default-partitioner for details. Silence this warning by setting the environment variable \"KAFKAJS_NO_PARTITIONER_WARNING=1\""}
-[2025-11-10T16:51:54.382Z] ========================================== 
-[2025-11-10T16:51:54.383Z] 🚀 Starting Investment Agent v2.0 
-[2025-11-10T16:51:54.383Z] ========================================== 
-[2025-11-10T16:51:54.383Z] Connecting to PostgreSQL... 
-[2025-11-10T16:51:54.431Z] Connecting to Kafka... 
-(node:83378) TimeoutNegativeWarning: -1762793514447 is a negative number.
+{"level":"WARN","timestamp":"2025-11-12T15:56:09.440Z","logger":"kafkajs","message":"KafkaJS v2.0.0 switched default partitioner. To retain the same partitioning behavior as in previous versions, create the producer with the option \"createPartitioner: Partitioners.LegacyPartitioner\". See the migration guide at https://kafka.js.org/docs/migration-guide-v2.0.0#producer-new-default-partitioner for details. Silence this warning by setting the environment variable \"KAFKAJS_NO_PARTITIONER_WARNING=1\""}
+[2025-11-12T15:56:09.442Z] ========================================== 
+[2025-11-12T15:56:09.443Z] 🚀 Starting Investment Agent v2.0 
+[2025-11-12T15:56:09.443Z] ========================================== 
+[2025-11-12T15:56:09.443Z] Connecting to PostgreSQL... 
+[2025-11-12T15:56:09.482Z] Connecting to Kafka... 
+(node:37552) TimeoutNegativeWarning: -1762962969498 is a negative number.
 Timeout duration was set to 1.
 (Use `node --trace-warnings ...` to show where the warning was created)
-[2025-11-10T16:51:54.463Z] ✅ Investment Agent ready 
-[2025-11-10T16:51:54.463Z] Listening for investment tasks... 
-[2025-11-10T16:51:54.463Z] ========================================== 
-{"level":"INFO","timestamp":"2025-11-10T16:51:54.464Z","logger":"kafkajs","message":"[Consumer] Starting","groupId":"investment-agent-group"}
-{"level":"INFO","timestamp":"2025-11-10T16:51:56.213Z","logger":"kafkajs","message":"[ConsumerGroup] Consumer has joined the group","groupId":"investment-agent-group","memberId":"investment-agent-899dad0f-377e-4535-8940-358f9a9437e7","leaderId":"investment-agent-899dad0f-377e-4535-8940-358f9a9437e7","isLeader":true,"memberAssignment":{"agent.tasks":[0,1,2],"execution.plans":[0,1,2]},"groupProtocol":"RoundRobinAssigner","duration":1748}
-[2025-11-10T16:52:18.355Z] 📥 Processing task {
-  "taskId": "a3214206-d535-48b2-b2c9-94490e8c21f1",
-  "action": "process_query",
-  "agentType": "investment"
+[2025-11-12T15:56:09.565Z] ✅ Investment Agent ready 
+[2025-11-12T15:56:09.565Z] Listening for investment tasks... 
+[2025-11-12T15:56:09.566Z] ========================================== 
+{"level":"INFO","timestamp":"2025-11-12T15:56:09.566Z","logger":"kafkajs","message":"[Consumer] Starting","groupId":"investment-agent-group"}
+{"level":"INFO","timestamp":"2025-11-12T15:56:12.683Z","logger":"kafkajs","message":"[ConsumerGroup] Consumer has joined the group","groupId":"investment-agent-group","memberId":"investment-agent-dcfcb6f0-3833-4dbd-9082-3952bb917841","leaderId":"investment-agent-dcfcb6f0-3833-4dbd-9082-3952bb917841","isLeader":true,"memberAssignment":{"agent.tasks":[0,1,2],"execution.plans":[0,1,2]},"groupProtocol":"RoundRobinAssigner","duration":3115}
+{"level":"WARN","timestamp":"2025-11-12T16:09:50.706Z","logger":"kafkajs","message":"[RequestQueue] Response without match","clientId":"investment-agent","broker":"localhost:9092","correlationId":4}
+{"level":"WARN","timestamp":"2025-11-12T17:06:18.087Z","logger":"kafkajs","message":"[RequestQueue] Response without match","clientId":"investment-agent","broker":"localhost:9092","correlationId":5}
+{"level":"WARN","timestamp":"2025-11-13T00:14:32.696Z","logger":"kafkajs","message":"[RequestQueue] Response without match","clientId":"investment-agent","broker":"localhost:9092","correlationId":7}
+{"level":"WARN","timestamp":"2025-11-13T00:36:18.411Z","logger":"kafkajs","message":"[RequestQueue] Response without match","clientId":"investment-agent","broker":"localhost:9092","correlationId":173}
+{"level":"WARN","timestamp":"2025-11-13T01:03:49.822Z","logger":"kafkajs","message":"[RequestQueue] Response without match","clientId":"investment-agent","broker":"localhost:9092","correlationId":174}
+node:events:486
+      throw er; // Unhandled 'error' event
+      ^
+
+error: terminating connection due to administrator command
+    at Parser.parseErrorMessage (/home/it/apps/thesis-report/backend/investment-agent/node_modules/pg-protocol/src/parser.ts:369:69)
+    at Parser.handlePacket (/home/it/apps/thesis-report/backend/investment-agent/node_modules/pg-protocol/src/parser.ts:187:21)
+    at Parser.parse (/home/it/apps/thesis-report/backend/investment-agent/node_modules/pg-protocol/src/parser.ts:102:30)
+    at Socket.<anonymous> (/home/it/apps/thesis-report/backend/investment-agent/node_modules/pg-protocol/src/index.ts:7:48)
+    at Socket.emit (node:events:508:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+Emitted 'error' event on Client instance at:
+    at Client._handleErrorEvent (/home/it/apps/thesis-report/backend/investment-agent/node_modules/pg/lib/client.js:350:10)
+    at Client._handleErrorMessage (/home/it/apps/thesis-report/backend/investment-agent/node_modules/pg/lib/client.js:361:12)
+    at Connection.emit (node:events:508:28)
+    at /home/it/apps/thesis-report/backend/investment-agent/node_modules/pg/lib/connection.js:116:12
+    at Parser.parse (/home/it/apps/thesis-report/backend/investment-agent/node_modules/pg-protocol/src/parser.ts:103:9)
+    at Socket.<anonymous> (/home/it/apps/thesis-report/backend/investment-agent/node_modules/pg-protocol/src/index.ts:7:48)
+    at Socket.emit (node:events:508:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5) {
+  length: 116,
+  severity: 'FATAL',
+  code: '57P01',
+  detail: undefined,
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'postgres.c',
+  line: '3286',
+  routine: 'ProcessInterrupts'
 }
-[2025-11-10T16:52:18.387Z] ❌ Error fetching MSE data {
-  "error": "column c.industry does not exist"
-}
-[2025-11-10T16:52:19.302Z] ❌ Gemini API error {
-  "error": "[GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent: [429 Too Many Requests] Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details."
-}
-[2025-11-10T16:52:19.318Z] ✅ Task completed {
-  "taskId": "a3214206-d535-48b2-b2c9-94490e8c21f1",
-  "duration": 963
-}
-12:55:01 AM [tsx] change in ./src/index.ts Restarting...
-[2025-11-10T16:55:01.509Z] Shutting down... 
-{"level":"INFO","timestamp":"2025-11-10T16:55:04.581Z","logger":"kafkajs","message":"[Runner] consumer not running, exiting","groupId":"investment-agent-group","memberId":"investment-agent-899dad0f-377e-4535-8940-358f9a9437e7"}
-{"level":"INFO","timestamp":"2025-11-10T16:55:04.589Z","logger":"kafkajs","message":"[Consumer] Stopped","groupId":"investment-agent-group"}
-12:55:06 AM [tsx] Process didn't exit in 5s. Force killing...
-c{"level":"WARN","timestamp":"2025-11-10T16:55:07.033Z","logger":"kafkajs","message":"KafkaJS v2.0.0 switched default partitioner. To retain the same partitioning behavior as in previous versions, create the producer with the option \"createPartitioner: Partitioners.LegacyPartitioner\". See the migration guide at https://kafka.js.org/docs/migration-guide-v2.0.0#producer-new-default-partitioner for details. Silence this warning by setting the environment variable \"KAFKAJS_NO_PARTITIONER_WARNING=1\""}
-[2025-11-10T16:55:07.036Z] ========================================== 
-[2025-11-10T16:55:07.036Z] 🚀 Starting Investment Agent v2.0 
-[2025-11-10T16:55:07.036Z] ========================================== 
-[2025-11-10T16:55:07.036Z] Connecting to PostgreSQL... 
-[2025-11-10T16:55:07.068Z] Connecting to Kafka... 
-(node:84996) TimeoutNegativeWarning: -1762793707080 is a negative number.
-Timeout duration was set to 1.
-(Use `node --trace-warnings ...` to show where the warning was created)
-[2025-11-10T16:55:07.092Z] ✅ Investment Agent ready 
-[2025-11-10T16:55:07.092Z] Listening for investment tasks... 
-[2025-11-10T16:55:07.092Z] ========================================== 
-{"level":"INFO","timestamp":"2025-11-10T16:55:07.093Z","logger":"kafkajs","message":"[Consumer] Starting","groupId":"investment-agent-group"}
-{"level":"INFO","timestamp":"2025-11-10T16:55:10.128Z","logger":"kafkajs","message":"[ConsumerGroup] Consumer has joined the group","groupId":"investment-agent-group","memberId":"investment-agent-c1ef82c0-727c-4f91-b72a-aca5eabdc91e","leaderId":"investment-agent-c1ef82c0-727c-4f91-b72a-aca5eabdc91e","isLeader":true,"memberAssignment":{"agent.tasks":[0,1,2],"execution.plans":[0,1,2]},"groupProtocol":"RoundRobinAssigner","duration":3034}
+
+Node.js v24.11.0

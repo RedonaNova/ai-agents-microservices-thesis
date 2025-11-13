@@ -2,57 +2,19 @@
 > api-gateway@1.0.0 dev
 > tsx watch src/index.ts
 
-[32minfo[39m: ✅ Email service configured {"service":"api-gateway","timestamp":"2025-11-10T17:25:21.269Z"}
-[32minfo[39m: ✅ Gemini AI configured for email generation {"service":"api-gateway","timestamp":"2025-11-10T17:25:21.277Z"}
-[32minfo[39m: Starting API Gateway... {"env":"development","port":3001,"service":"api-gateway","timestamp":"2025-11-10T17:25:21.319Z"}
-[32minfo[39m: ✅ PostgreSQL connected successfully {"service":"api-gateway","timestamp":"2025-11-10T17:25:21.371Z"}
-{"level":"WARN","timestamp":"2025-11-10T17:25:21.374Z","logger":"kafkajs","message":"KafkaJS v2.0.0 switched default partitioner. To retain the same partitioning behavior as in previous versions, create the producer with the option \"createPartitioner: Partitioners.LegacyPartitioner\". See the migration guide at https://kafka.js.org/docs/migration-guide-v2.0.0#producer-new-default-partitioner for details. Silence this warning by setting the environment variable \"KAFKAJS_NO_PARTITIONER_WARNING=1\""}
-(node:95238) TimeoutNegativeWarning: -1762795521395 is a negative number.
+[32minfo[39m: ✅ Email service configured {"service":"api-gateway","timestamp":"2025-11-12T15:56:12.108Z"}
+[32minfo[39m: ✅ Gemini AI configured for email generation {"service":"api-gateway","timestamp":"2025-11-12T15:56:12.112Z"}
+[32minfo[39m: Starting API Gateway... {"env":"development","port":3001,"service":"api-gateway","timestamp":"2025-11-12T15:56:12.141Z"}
+[32minfo[39m: ✅ PostgreSQL connected successfully {"service":"api-gateway","timestamp":"2025-11-12T15:56:12.193Z"}
+{"level":"WARN","timestamp":"2025-11-12T15:56:12.196Z","logger":"kafkajs","message":"KafkaJS v2.0.0 switched default partitioner. To retain the same partitioning behavior as in previous versions, create the producer with the option \"createPartitioner: Partitioners.LegacyPartitioner\". See the migration guide at https://kafka.js.org/docs/migration-guide-v2.0.0#producer-new-default-partitioner for details. Silence this warning by setting the environment variable \"KAFKAJS_NO_PARTITIONER_WARNING=1\""}
+(node:37626) TimeoutNegativeWarning: -1762962972256 is a negative number.
 Timeout duration was set to 1.
 (Use `node --trace-warnings ...` to show where the warning was created)
-[32minfo[39m: Kafka producer connected {"service":"api-gateway","timestamp":"2025-11-10T17:25:21.397Z"}
-[32minfo[39m: API Gateway listening on port 3001 {"service":"api-gateway","timestamp":"2025-11-10T17:25:21.401Z"}
-[32minfo[39m: CORS enabled for: http://localhost:3000 {"service":"api-gateway","timestamp":"2025-11-10T17:25:21.402Z"}
-[32minfo[39m: Kafka broker: localhost:9092 {"service":"api-gateway","timestamp":"2025-11-10T17:25:21.403Z"}
-[32minfo[39m: API Gateway is ready! {"service":"api-gateway","timestamp":"2025-11-10T17:25:21.403Z"}
-[32minfo[39m: POST /api/users/register {"ip":"::1","service":"api-gateway","timestamp":"2025-11-10T17:27:13.099Z","userAgent":"curl/8.5.0"}
-[32minfo[39m: Event sent to user.events {"key":"1","service":"api-gateway","timestamp":"2025-11-10T17:27:13.441Z"}
-[32minfo[39m: Event sent to monitoring.events {"key":"api-gateway","service":"api-gateway","timestamp":"2025-11-10T17:27:13.570Z"}
-[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-11-10T17:27:13.610Z","userAgent":"curl/8.5.0"}
-[32minfo[39m: Email sent successfully {"service":"api-gateway","subject":"🎉 Welcome to Redona - Your AI Investment Advisor","timestamp":"2025-11-10T17:27:40.199Z","to":"demo@redona.com"}
-[32minfo[39m: ✅ Welcome email sent {"service":"api-gateway","timestamp":"2025-11-10T17:27:40.200Z","to":"demo@redona.com"}
-[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-11-10T17:29:47.040Z","userAgent":"curl/8.5.0"}
-1:30:16 AM [tsx] change in ./src/utils/finnhub.ts Restarting...
-[32minfo[39m: SIGTERM received, shutting down gracefully... {"service":"api-gateway","timestamp":"2025-11-10T17:30:16.951Z"}
-[32minfo[39m: Kafka producer disconnected {"service":"api-gateway","timestamp":"2025-11-10T17:30:16.952Z"}
-[32minfo[39m: PostgreSQL disconnected {"service":"api-gateway","timestamp":"2025-11-10T17:30:16.953Z"}
-c[32minfo[39m: ✅ Email service configured {"service":"api-gateway","timestamp":"2025-11-10T17:30:18.178Z"}
-[32minfo[39m: ✅ Gemini AI configured for email generation {"service":"api-gateway","timestamp":"2025-11-10T17:30:18.183Z"}
-[32minfo[39m: Starting API Gateway... {"env":"development","port":3001,"service":"api-gateway","timestamp":"2025-11-10T17:30:18.225Z"}
-[32minfo[39m: ✅ PostgreSQL connected successfully {"service":"api-gateway","timestamp":"2025-11-10T17:30:18.273Z"}
-{"level":"WARN","timestamp":"2025-11-10T17:30:18.276Z","logger":"kafkajs","message":"KafkaJS v2.0.0 switched default partitioner. To retain the same partitioning behavior as in previous versions, create the producer with the option \"createPartitioner: Partitioners.LegacyPartitioner\". See the migration guide at https://kafka.js.org/docs/migration-guide-v2.0.0#producer-new-default-partitioner for details. Silence this warning by setting the environment variable \"KAFKAJS_NO_PARTITIONER_WARNING=1\""}
-(node:97077) TimeoutNegativeWarning: -1762795818296 is a negative number.
-Timeout duration was set to 1.
-(Use `node --trace-warnings ...` to show where the warning was created)
-[32minfo[39m: Kafka producer connected {"service":"api-gateway","timestamp":"2025-11-10T17:30:18.299Z"}
-[32minfo[39m: API Gateway listening on port 3001 {"service":"api-gateway","timestamp":"2025-11-10T17:30:18.304Z"}
-[32minfo[39m: CORS enabled for: http://localhost:3000 {"service":"api-gateway","timestamp":"2025-11-10T17:30:18.304Z"}
-[32minfo[39m: Kafka broker: localhost:9092 {"service":"api-gateway","timestamp":"2025-11-10T17:30:18.305Z"}
-[32minfo[39m: API Gateway is ready! {"service":"api-gateway","timestamp":"2025-11-10T17:30:18.305Z"}
-1:30:57 AM [tsx] change in ./src/utils/finnhub.ts Restarting...
-[32minfo[39m: SIGTERM received, shutting down gracefully... {"service":"api-gateway","timestamp":"2025-11-10T17:30:57.247Z"}
-[32minfo[39m: Kafka producer disconnected {"service":"api-gateway","timestamp":"2025-11-10T17:30:57.249Z"}
-[32minfo[39m: PostgreSQL disconnected {"service":"api-gateway","timestamp":"2025-11-10T17:30:57.250Z"}
-c[32minfo[39m: ✅ Email service configured {"service":"api-gateway","timestamp":"2025-11-10T17:30:58.452Z"}
-[32minfo[39m: ✅ Gemini AI configured for email generation {"service":"api-gateway","timestamp":"2025-11-10T17:30:58.457Z"}
-[32minfo[39m: Starting API Gateway... {"env":"development","port":3001,"service":"api-gateway","timestamp":"2025-11-10T17:30:58.496Z"}
-[32minfo[39m: ✅ PostgreSQL connected successfully {"service":"api-gateway","timestamp":"2025-11-10T17:30:58.558Z"}
-{"level":"WARN","timestamp":"2025-11-10T17:30:58.561Z","logger":"kafkajs","message":"KafkaJS v2.0.0 switched default partitioner. To retain the same partitioning behavior as in previous versions, create the producer with the option \"createPartitioner: Partitioners.LegacyPartitioner\". See the migration guide at https://kafka.js.org/docs/migration-guide-v2.0.0#producer-new-default-partitioner for details. Silence this warning by setting the environment variable \"KAFKAJS_NO_PARTITIONER_WARNING=1\""}
-(node:97213) TimeoutNegativeWarning: -1762795858581 is a negative number.
-Timeout duration was set to 1.
-(Use `node --trace-warnings ...` to show where the warning was created)
-[32minfo[39m: Kafka producer connected {"service":"api-gateway","timestamp":"2025-11-10T17:30:58.583Z"}
-[32minfo[39m: API Gateway listening on port 3001 {"service":"api-gateway","timestamp":"2025-11-10T17:30:58.586Z"}
-[32minfo[39m: CORS enabled for: http://localhost:3000 {"service":"api-gateway","timestamp":"2025-11-10T17:30:58.587Z"}
-[32minfo[39m: Kafka broker: localhost:9092 {"service":"api-gateway","timestamp":"2025-11-10T17:30:58.588Z"}
-[32minfo[39m: API Gateway is ready! {"service":"api-gateway","timestamp":"2025-11-10T17:30:58.588Z"}
+[32minfo[39m: Kafka producer connected {"service":"api-gateway","timestamp":"2025-11-12T15:56:12.258Z"}
+[32minfo[39m: API Gateway listening on port 3001 {"service":"api-gateway","timestamp":"2025-11-12T15:56:12.262Z"}
+[32minfo[39m: CORS enabled for: http://localhost:3000 {"service":"api-gateway","timestamp":"2025-11-12T15:56:12.262Z"}
+[32minfo[39m: Kafka broker: localhost:9092 {"service":"api-gateway","timestamp":"2025-11-12T15:56:12.263Z"}
+[32minfo[39m: API Gateway is ready! {"service":"api-gateway","timestamp":"2025-11-12T15:56:12.263Z"}
+[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-11-12T15:56:12.548Z","userAgent":"curl/8.5.0"}
+[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-11-13T01:06:53.555Z","userAgent":"PostmanRuntime/7.50.0"}
+[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-11-13T01:06:55.221Z","userAgent":"PostmanRuntime/7.50.0"}

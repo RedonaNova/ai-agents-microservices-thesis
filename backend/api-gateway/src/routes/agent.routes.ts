@@ -73,13 +73,38 @@ router.post('/query', async (req: Request, res: Response) => {
 router.get('/response/:requestId', async (req: Request, res: Response) => {
   try {
     const { requestId } = req.params;
+    const db = require('../services/database').default;
     
-    // This would typically check a cache/database for the response
-    // For SSE implementation, responses are streamed directly
+    // Check database for cached response
+    const result = await db.query(
+      `SELECT request_id, agent_type, query, response, status, processing_time_ms, created_at
+       FROM agent_responses_cache
+       WHERE request_id = $1`,
+      [requestId]
+    );
     
+    if (result.rows.length > 0) {
+      const cachedResponse = result.rows[0];
+      
+      return res.json({
+        success: true,
+        found: true,
+        requestId: cachedResponse.request_id,
+        agentType: cachedResponse.agent_type,
+        query: cachedResponse.query,
+        response: cachedResponse.response,
+        status: cachedResponse.status,
+        processingTimeMs: cachedResponse.processing_time_ms,
+        completedAt: cachedResponse.created_at,
+      });
+    }
+    
+    // Response not found yet (still processing or doesn't exist)
     res.json({
       success: true,
-      message: 'Use SSE endpoint for real-time responses',
+      found: false,
+      message: 'Response not ready yet. Try again in a few seconds.',
+      requestId,
       sseEndpoint: `/api/agent/stream/${requestId}`,
     });
   } catch (error) {

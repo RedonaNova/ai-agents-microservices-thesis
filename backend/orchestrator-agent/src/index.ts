@@ -265,7 +265,7 @@ class OrchestratorAgent {
   private shouldUseRAG(intent: string, query: string): boolean {
     // Use RAG for questions about specific companies or market knowledge
     const ragIntents = ['portfolio', 'market', 'company_info'];
-    const ragKeywords = ['компани', 'APU', 'TDB', 'банк', 'уул уурхай'];
+    const ragKeywords = ['компани', 'APU', 'TDB', 'банк', "Khan", 'уул уурхай'];
     
     return ragIntents.includes(intent) || 
            ragKeywords.some(keyword => query.toLowerCase().includes(keyword.toLowerCase()));

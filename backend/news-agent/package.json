@@ -25,6 +25,7 @@
     "winston": "^3.11.0"
   },
   "devDependencies": {
+    "@types/kafkajs-snappy": "^1.0.0",
     "@types/node": "^20.10.6",
     "@types/uuid": "^9.0.7",
     "tsx": "^4.7.0",
