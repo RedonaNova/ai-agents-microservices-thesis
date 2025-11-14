@@ -1,0 +1,17 @@
+[PLACEHOLDER IMAGE]
+Монолит агентын архитектур
+
+User -> Orchestrator Agent
+Orchestrator -> Knowledge Agent (tight coupling)
+Orchestrator -> Investment Agent (tight coupling)
+Orchestrator -> News Agent (tight coupling)
+Orchestrator -> Transaction Agent (tight coupling)
+
+NxM connections between all agents
+If one agent fails -> cascading failure to all dependent agents
+
+Replace with actual diagram showing:
+- User connecting to Orchestrator
+- Orchestrator having direct connections to all agents
+- NxM tight coupling issue illustrated
+- Red X showing failure propagation

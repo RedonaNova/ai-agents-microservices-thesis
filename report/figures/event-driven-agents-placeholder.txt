@@ -1,0 +1,30 @@
+[PLACEHOLDER IMAGE]
+Үйл явдлаар удирдагдах олон агентын систем
+
+Event Producer Groups:
+- Orchestrator Agent
+- Knowledge Agent
+- Investment Agent
+- News Agent
+- User Agent
+
+         ↓ (publish events)
+
+Event Broker (Apache Kafka):
+- Topics
+- Partitions
+- Consumer Groups
+
+         ↓ (subscribe to events)
+
+Event Consumer Components:
+- Tools (APIs, databases, external services)
+- System (integration layer)
+- Log/Analytics (monitoring, observability)
+- Routing to other agents (recursive calls)
+
+Replace with actual diagram showing:
+- Multiple producer agents on the left
+- Central event broker in the middle
+- Consumer components on the right
+- Event flow with arrows

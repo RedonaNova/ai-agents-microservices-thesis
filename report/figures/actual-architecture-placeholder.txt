@@ -1,0 +1,31 @@
+[PLACEHOLDER IMAGE]
+Бодит хэрэгжүүлсэн архитектур: Kafka-Flink суурилсан олон агентын систем
+
+Frontend (Next.js)
+    ↓ HTTP Request
+API Gateway (Node.js, Express, JWT)
+    ↓ Kafka topic: user-requests
+Intent Classification & Orchestration
+    - Orchestrator Agent (TypeScript, Gemini AI)
+    - Apache Flink (stream processing)
+    - LLM-based decision making
+    ↓ Kafka topic: orchestrator-tasks
+Specialized Agents (parallel processing):
+    - User Agent (user management)
+    - Transaction Agent (payment processing)
+    - Knowledge Agent (RAG, vector search)
+    - Investment Agent (MSE data analysis)
+    - News Agent (news aggregation)
+    ↓ Recursive calls back to Orchestrator if needed
+    ↓ Kafka topic: agent-responses
+API Gateway
+    ↓ SSE (Server-Sent Events)
+Frontend (real-time updates)
+
+Replace with actual architectural diagram showing:
+- Full flow from frontend to backend
+- Kafka topics between each layer
+- Orchestrator with Flink + LLM
+- Multiple specialized agents in parallel
+- Recursive flow back to orchestrator
+- SSE streaming to frontend
