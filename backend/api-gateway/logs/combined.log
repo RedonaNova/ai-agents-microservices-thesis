@@ -753,3 +753,4 @@
 {"ip":"::1","level":"info","message":"GET /health","service":"api-gateway","timestamp":"2025-11-12T15:56:12.548Z","userAgent":"curl/8.5.0"}
 {"ip":"::1","level":"info","message":"GET /api/monitoring/agents","service":"api-gateway","timestamp":"2025-11-13T01:06:53.555Z","userAgent":"PostmanRuntime/7.50.0"}
 {"ip":"::1","level":"info","message":"GET /api/monitoring/agents","service":"api-gateway","timestamp":"2025-11-13T01:06:55.221Z","userAgent":"PostmanRuntime/7.50.0"}
+{"level":"info","message":"✅ Email service configured","service":"api-gateway","timestamp":"2025-11-18T02:43:49.456Z"}

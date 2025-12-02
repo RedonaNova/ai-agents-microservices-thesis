@@ -2,19 +2,8 @@
 > api-gateway@1.0.0 dev
 > tsx watch src/index.ts
 
-[32minfo[39m: ✅ Email service configured {"service":"api-gateway","timestamp":"2025-11-12T15:56:12.108Z"}
-[32minfo[39m: ✅ Gemini AI configured for email generation {"service":"api-gateway","timestamp":"2025-11-12T15:56:12.112Z"}
-[32minfo[39m: Starting API Gateway... {"env":"development","port":3001,"service":"api-gateway","timestamp":"2025-11-12T15:56:12.141Z"}
-[32minfo[39m: ✅ PostgreSQL connected successfully {"service":"api-gateway","timestamp":"2025-11-12T15:56:12.193Z"}
-{"level":"WARN","timestamp":"2025-11-12T15:56:12.196Z","logger":"kafkajs","message":"KafkaJS v2.0.0 switched default partitioner. To retain the same partitioning behavior as in previous versions, create the producer with the option \"createPartitioner: Partitioners.LegacyPartitioner\". See the migration guide at https://kafka.js.org/docs/migration-guide-v2.0.0#producer-new-default-partitioner for details. Silence this warning by setting the environment variable \"KAFKAJS_NO_PARTITIONER_WARNING=1\""}
-(node:37626) TimeoutNegativeWarning: -1762962972256 is a negative number.
-Timeout duration was set to 1.
-(Use `node --trace-warnings ...` to show where the warning was created)
-[32minfo[39m: Kafka producer connected {"service":"api-gateway","timestamp":"2025-11-12T15:56:12.258Z"}
-[32minfo[39m: API Gateway listening on port 3001 {"service":"api-gateway","timestamp":"2025-11-12T15:56:12.262Z"}
-[32minfo[39m: CORS enabled for: http://localhost:3000 {"service":"api-gateway","timestamp":"2025-11-12T15:56:12.262Z"}
-[32minfo[39m: Kafka broker: localhost:9092 {"service":"api-gateway","timestamp":"2025-11-12T15:56:12.263Z"}
-[32minfo[39m: API Gateway is ready! {"service":"api-gateway","timestamp":"2025-11-12T15:56:12.263Z"}
-[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-11-12T15:56:12.548Z","userAgent":"curl/8.5.0"}
-[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-11-13T01:06:53.555Z","userAgent":"PostmanRuntime/7.50.0"}
-[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-11-13T01:06:55.221Z","userAgent":"PostmanRuntime/7.50.0"}
+[32minfo[39m: ✅ Email service configured {"service":"api-gateway","timestamp":"2025-11-18T02:43:49.456Z"}
+[32minfo[39m: ✅ Gemini AI configured for email generation {"service":"api-gateway","timestamp":"2025-11-18T02:43:49.459Z"}
+[32minfo[39m: Starting API Gateway... {"env":"development","port":3001,"service":"api-gateway","timestamp":"2025-11-18T02:43:49.533Z"}
+[31merror[39m: ❌ PostgreSQL connection failed: connect ECONNREFUSED 127.0.0.1:5432 {"address":"127.0.0.1","code":"ECONNREFUSED","errno":-111,"port":5432,"service":"api-gateway","stack":"Error: connect ECONNREFUSED 127.0.0.1:5432\n    at /home/it/apps/thesis-report/backend/api-gateway/node_modules/pg-pool/index.js:45:11\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async DatabaseService.connect (/home/it/apps/thesis-report/backend/api-gateway/src/services/database.ts:27:22)\n    at async start (/home/it/apps/thesis-report/backend/api-gateway/src/index.ts:72:5)","syscall":"connect","timestamp":"2025-11-18T02:43:49.543Z"}
+[31merror[39m: Failed to start API Gateway {"error":{"address":"127.0.0.1","code":"ECONNREFUSED","errno":-111,"port":5432,"syscall":"connect"},"service":"api-gateway","timestamp":"2025-11-18T02:43:49.544Z"}

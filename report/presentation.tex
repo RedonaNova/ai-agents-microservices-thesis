@@ -319,7 +319,6 @@
 
 \begin{frame}{Монолит агентуудын эрсдэл}
     \centering
-    \includegraphics[width=0.65\textwidth]{figures/agentMonolith.png}
     
     \vspace{0.2cm}
     
@@ -334,7 +333,6 @@
 
 \begin{frame}{Event-Driven агентын систем}
     \centering
-    \includegraphics[width=0.8\textwidth]{figures/agentMicroservice.png}
     
     \vspace{0.2cm}
     
@@ -349,7 +347,6 @@
 
 \begin{frame}{Бодит хэрэгжүүлсэн архитектур}
     \centering
-    \includegraphics[width=0.9\textwidth]{figures/charMicroservice.png}
     
     \vspace{0.15cm}
     
@@ -391,25 +388,264 @@
     \end{block}
 \end{frame}
 
-\begin{frame}{Хэрэгжүүлсэн агентууд}
-    \footnotesize
-    \begin{table}
-        \begin{tabular}{p{0.22\textwidth} p{0.73\textwidth}}
-            \toprule
-            \textbf{Агент} & \textbf{Үүрэг} \\
-            \midrule
-            Orchestrator & Gemini AI ашиглан хүсэлтүүдийг ангиллаж, агентууд руу даалгавар шилжүүлэх \\
-            \midrule
-            Knowledge & RAG систем, vector search ашиглан мэдлэг хайх \\
-            \midrule
-            Investment & МХБ өгөгдөл дүн шинжилж, зөвлөмж өгөх \\
-            \midrule
-            News & Finnhub API-ээр мэдээ цуглуулж хураангуйлах \\
-            \midrule
-            PyFlink Planner & Рекурсив эсвэл жирийн чиглүүлэг хийх \\
-            \bottomrule
-        \end{tabular}
-    \end{table}
+\begin{frame}{Бүрэн хэрэгжүүлсэн хэсгүүд}
+    \begin{block}{Infrastructure (100\%)}
+        \footnotesize
+        \begin{itemize}
+            \item Docker Compose setup for all services
+            \item Apache Kafka 3.5 with Zookeeper
+            \item PostgreSQL 16 with pgvector extension
+            \item Redis 7 for caching and sessions
+            \item 12 Kafka topics created and configured
+        \end{itemize}
+    \end{block}
+    
+    \begin{block}{API Gateway (100\%)}
+        \footnotesize
+        \begin{itemize}
+            \item Authentication (register, login, JWT)
+            \item Watchlist management (CRUD operations)
+            \item AI Agent interaction (query, SSE streaming)
+            \item News \& notifications (daily digest)
+            \item Monitoring endpoints
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{Бүрэн хэрэгжүүлсэн агентууд}
+    \begin{columns}[t]
+        \column{0.5\textwidth}
+        \begin{block}{Orchestrator Agent (100\%)}
+            \footnotesize
+            \begin{itemize}
+                \item Intent classification (6 categories)
+                \item Gemini AI integration
+                \item Dynamic routing
+                \item Request caching
+                \item Monitoring events
+            \end{itemize}
+        \end{block}
+        
+        \begin{block}{Knowledge Agent (100\%)}
+            \footnotesize
+            \begin{itemize}
+                \item RAG system with vector search
+                \item Sentence-Transformers embeddings
+                \item PostgreSQL pgvector
+                \item Semantic similarity search
+            \end{itemize}
+        \end{block}
+        
+        \column{0.5\textwidth}
+        \begin{block}{Investment Agent (100\%)}
+            \footnotesize
+            \begin{itemize}
+                \item MSE data integration
+                \item Real-time stock analysis
+                \item Gemini AI-powered insights
+                \item Response caching
+            \end{itemize}
+        \end{block}
+        
+        \begin{block}{News Agent (100\%)}
+            \footnotesize
+            \begin{itemize}
+                \item Finnhub API integration
+                \item Watchlist-based filtering
+                \item Gemini AI summarization
+                \item Daily news digest emails
+            \end{itemize}
+        \end{block}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Kafka Topics ба Database}
+    \begin{columns}[t]
+        \column{0.5\textwidth}
+        \begin{block}{Kafka Topics (12)}
+            \footnotesize
+            \begin{itemize}
+                \item \texttt{user.requests}
+                \item \texttt{user.events}
+                \item \texttt{agent.tasks}
+                \item \texttt{agent.responses}
+                \item \texttt{knowledge.queries}
+                \item \texttt{knowledge.results}
+                \item \texttt{planning.tasks}
+                \item \texttt{monitoring.events}
+            \end{itemize}
+        \end{block}
+        
+        \column{0.5\textwidth}
+        \begin{block}{Database Tables (10+)}
+            \footnotesize
+            \begin{itemize}
+                \item \texttt{users}
+                \item \texttt{user\_portfolio}
+                \item \texttt{watchlists}
+                \item \texttt{watchlist\_items}
+                \item \texttt{knowledge\_base}
+                \item \texttt{mse\_companies}
+                \item \texttt{mse\_trading\_history}
+                \item \texttt{agent\_responses\_cache}
+            \end{itemize}
+        \end{block}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{API Gateway Endpoints}
+    \begin{columns}[t]
+        \column{0.5\textwidth}
+        \begin{block}{Authentication}
+            \footnotesize
+            \begin{itemize}
+                \item \texttt{POST /api/users/register}
+                \item \texttt{POST /api/users/login}
+                \item \texttt{GET /api/users/profile}
+                \item \texttt{PUT /api/users/profile}
+            \end{itemize}
+        \end{block}
+        
+        \begin{block}{Watchlist}
+            \footnotesize
+            \begin{itemize}
+                \item \texttt{GET /api/watchlist}
+                \item \texttt{POST /api/watchlist}
+                \item \texttt{POST /api/watchlist/:id/items}
+                \item \texttt{DELETE /api/watchlist/:id}
+            \end{itemize}
+        \end{block}
+        
+        \column{0.5\textwidth}
+        \begin{block}{AI Agents}
+            \footnotesize
+            \begin{itemize}
+                \item \texttt{POST /api/agent/query}
+                \item \texttt{GET /api/agent/response/:id}
+                \item \texttt{GET /api/agent/stream/:id}
+            \end{itemize}
+        \end{block}
+        
+        \begin{block}{News \& Monitoring}
+            \footnotesize
+            \begin{itemize}
+                \item \texttt{POST /api/daily-news/send}
+                \item \texttt{GET /api/monitoring/agents}
+                \item \texttt{GET /api/monitoring/metrics}
+            \end{itemize}
+        \end{block}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Orchestrator Agent - Дэлгэрэнгүй}
+    \begin{block}{Intent Classification (6 категори)}
+        \footnotesize
+        \begin{itemize}
+            \item \texttt{portfolio\_advice} - Хөрөнгө оруулалтын зөвлөмж
+            \item \texttt{market\_analysis} - Зах зээлийн шинжилгээ
+            \item \texttt{news\_query} - Мэдээ, сэтгэл хөдлөл
+            \item \texttt{historical\_analysis} - Түүхэн өгөгдөл
+            \item \texttt{risk\_assessment} - Эрсдэлийн үнэлгээ
+            \item \texttt{general\_query} - Ерөнхий асуулт
+        \end{itemize}
+    \end{block}
+    
+    \begin{block}{Чадварууд}
+        \footnotesize
+        \begin{itemize}
+            \item Complexity detection (simple vs multi-agent)
+            \item Dynamic routing to specialized agents
+            \item Request caching for performance
+            \item Monitoring event publishing
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{Knowledge Agent - RAG System}
+    \begin{block}{RAG Features}
+        \footnotesize
+        \begin{itemize}
+            \item Semantic search with vector embeddings
+            \item Sentence-Transformers (all-MiniLM-L6-v2)
+            \item 384-dimension vectors
+            \item PostgreSQL pgvector extension
+            \item Cosine similarity search
+        \end{itemize}
+    \end{block}
+    
+    \begin{block}{Knowledge Base}
+        \footnotesize
+        \begin{itemize}
+            \item MSE company profiles
+            \item Agent capabilities information
+            \item Financial domain knowledge
+            \item Similarity threshold: 0.7
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{Investment Agent ба News Agent}
+    \begin{columns}[t]
+        \column{0.5\textwidth}
+        \begin{block}{Investment Agent}
+            \footnotesize
+            \begin{itemize}
+                \item MSE data integration
+                \item Real-time stock analysis
+                \item Stock price analysis
+                \item Volume trends
+                \item Sector performance
+                \item Portfolio recommendations
+                \item Market overview
+                \item Response caching
+            \end{itemize}
+        \end{block}
+        
+        \column{0.5\textwidth}
+        \begin{block}{News Agent}
+            \footnotesize
+            \begin{itemize}
+                \item Finnhub API integration
+                \item Watchlist-based filtering
+                \item Gemini AI summarization
+                \item Sentiment analysis
+                \item Daily news digest emails
+                \item HTML email templates
+                \item Personalized content
+            \end{itemize}
+        \end{block}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{PyFlink Planner ба Frontend}
+    \begin{columns}[t]
+        \column{0.5\textwidth}
+        \begin{block}{PyFlink Planner (70\%)}
+            \footnotesize
+            \begin{itemize}
+                \item Kafka consumer/producer loop
+                \item Basic task routing
+                \item Consumes from \texttt{planning.tasks}
+                \item Publishes to \texttt{planning.results}
+                \item ⏳ Stateful computation (pending)
+                \item ⏳ Complex event processing (pending)
+            \end{itemize}
+        \end{block}
+        
+        \column{0.5\textwidth}
+        \begin{block}{Frontend (60\%)}
+            \footnotesize
+            \begin{itemize}
+                \item Next.js 14 App Router
+                \item User authentication
+                \item Dashboard layout
+                \item AI Chat interface
+                \item Watchlist management
+                \item Responsive design
+                \item ⏳ Real-time updates (pending)
+            \end{itemize}
+        \end{block}
+    \end{columns}
 \end{frame}
 
 \begin{frame}{Технологийн стек}

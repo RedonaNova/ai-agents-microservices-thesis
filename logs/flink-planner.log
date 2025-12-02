@@ -8,13 +8,7 @@
 ✅ Imported Gemini AI
 ✅ Configured Gemini AI (gemini-2.0-flash)
 
-[2025-11-12T23:56:11.260814] Kafka Broker: localhost:9092
-[2025-11-12T23:56:11.260889] Gemini AI: Enabled
+[2025-11-18T10:43:48.922872] Kafka Broker: localhost:9092
+[2025-11-18T10:43:48.922887] Gemini AI: Enabled
 
-[2025-11-12T23:56:11.374630] ✅ Connected to Kafka consumer
-[2025-11-12T23:56:11.486087] ✅ Connected to Kafka producer
-==================================================
-[2025-11-12T23:56:11.486555] 📥 Listening on: planning.tasks
-[2025-11-12T23:56:11.486583] 📤 Publishing to: execution.plans, agent.tasks, monitoring.events
-==================================================
-
+[2025-11-18T10:43:48.974107] ❌ Failed to create Kafka consumer: NoBrokersAvailable
