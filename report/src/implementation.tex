@@ -1,8 +1,18 @@
 \chapter{Хэрэгжүүлэлт}
 
-Энэхүү бүлэгт өмнөх бүлгүүдэд судалсан онол, санал болгосон зохиомжийн дагуу демо системийг хөгжүүлж туршина. Эхлээд системийн архитектур, агентуудын үүргийг тайлбарлаад, дараа нь технологийн стек, хэрэгжүүлэлтийн явцыг дэлгэрэнгүй авч үзнэ.
+Энэхүү бүлэгт өмнөх бүлгүүдэд судалсан онол, санал болгосон зохиомжийн дагуу демо системийг хөгжүүлж туршина. Эхлээд системийн архитектур, агентуудын үүрэг, ажиллах зарчмыг тайлбарлаад, дараа нь хэрэглэгчийн боломжууд, өгөгдлийн урсгал, технологийн стек, туршилтын үр дүнг дэлгэрэнгүй авч үзнэ.
 
-Демо систем нь Монголын Хөрөнгийн Биржийн бодит өгөгдөлд суурилсан хувьцааны шинжилгээний веб платформ юм. Систем нь хиймэл оюун агентуудыг микросервис архитектурт EDA байдлаар нэвтрүүлж, хэрэглэгчдэд хувь хүнд тохирсон дүн шинжилгээ, зөвлөмж өгөх боломжийг олгоно.
+\section{Демо системийн тойм}
+
+Демо систем нь Монголын Хөрөнгийн Биржийн (МХБ) бодит өгөгдөлд суурилсан хувьцааны шинжилгээний веб платформ юм. Систем нь хиймэл оюун агентуудыг микросервис архитектурт үйл явдлаар удирдагдах архитектур (EDA) хэлбэрээр нэвтрүүлж, хэрэглэгчдэд хувь хүнд тохирсон монгол хэл дээрх дүн шинжилгээ, зөвлөмж өгөх боломжийг олгоно.
+
+Системийн гол онцлогууд:
+\begin{itemize}
+    \item \textbf{Олон агентын архитектур:} Зохион байгуулагч, хөрөнгө оруулалтын, мэдээний, мэдлэгийн, төлөвлөгч гэсэн таван агент
+    \item \textbf{Хувийн зөвлөмж:} Хэрэглэгчийн профайл (эрсдлийн хүлээцтэй байдал, хөрөнгө оруулалтын зорилго) дээр суурилсан шинжилгээ
+    \item \textbf{Монгол хэлний дэмжлэг:} Бүх хиймэл оюуны хариултууд монгол хэлээр
+    \item \textbf{Бодит цагийн өгөгдөл:} МХБ-ийн 2015-2024 оны арилжааны түүх болон одоогийн үнийн мэдээлэл
+\end{itemize}
 
 \section{Системийн архитектур}
 
@@ -13,60 +23,271 @@
     \label{fig:implemented-architecture}
 \end{figure}
 
-Зураг \ref{fig:implemented-architecture}-т демо системийн архитектурыг дүрсэлсэн. Зураг \ref{fig:implemented-architecture}-аас харахад систем нь дараах бүрэлдэхүүнүүдтэй:
+Зураг \ref{fig:implemented-architecture}-т демо системийн бүрэн архитектурыг дүрсэлсэн. Системийн гол бүрэлдэхүүнүүдийг дараах дарааллаар тайлбарлана.
 
+\subsection{Frontend давхарга}
+
+Next.js 16 фреймворк ашиглан React дээр суурилсан хэрэглэгчийн интерфэйс хөгжүүлсэн. TypeScript хэл ашигласан нь төрлийн аюулгүй байдлыг хангаж, Tailwind CSS болон Shadcn/UI компонентууд ашигласан нь хурдан, уян хатан дизайн хийх боломжийг олгосон. TradingView виджетүүд ашиглан олон улсын хувьцааны график харуулна.
+
+\subsection{API Gateway давхарга}
+
+Express.js 4.18 ашиглан RESTful API бүтээсэн. API Gateway нь хэрэглэгчийн бүх хүсэлтийг хүлээн авч, Kafka руу үйл явдал хэлбэрээр дамжуулах үүрэгтэй. Мөн JWT токен ашиглан хэрэглэгчийн таниулалт хийж, Server-Sent Events (SSE) ашиглан бодит цагийн хариултыг хэрэглэгч рүү дамжуулна.
+
+Гол endpoints:
 \begin{itemize}
-    \item \textbf{Frontend:} Next.js 16 ашиглан хэрэглэгчийн интерфэйс хөгжүүлсэн
-    \item \textbf{API Gateway:} HTTP/REST хүсэлтийг хүлээн авч, Kafka руу эвент хэлбэрээр дамжуулна
-    \item \textbf{Apache Kafka:} Төв мэдээллийн систем болж, бүх агентууд үүгээр дамжин харилцана
-    \item \textbf{Агентууд:} Зохион байгуулагч, хөрөнгө оруулалтын, мэдээний, PyFlink төлөвлөгч агентууд
-    \item \textbf{PostgreSQL 16:} Хэрэглэгчид, хувьцааны мэдээлэл, арилжааны түүх хадгална
-    \item \textbf{Redis 7:} Session болон response caching-д ашиглагдана
+    \item \texttt{POST /api/agent/query} - Хэрэглэгчийн асуултыг хүлээн авч, зохион байгуулагч руу илгээх
+    \item \texttt{GET /api/agent/response/:id} - Агентын хариултыг polling хэлбэрээр авах
+    \item \texttt{GET /api/agent/stream/:id} - SSE ашиглан бодит цагийн хариулт авах
+    \item \texttt{POST /api/agent/analyze-watchlist} - Ажиглах жагсаалтын МХБ хувьцааг шинжлэх
 \end{itemize}
 
-\subsection{Агентуудын үүрэг}
+\subsection{Apache Kafka давхарга}
 
-\begin{longtable}{p{0.23\textwidth} p{0.27\textwidth} p{0.42\textwidth}}
-\caption{Хэрэгжүүлсэн агентуудын үүрэг} \label{tab:impl-agents-roles} \\
-\textbf{Агент} & \textbf{Гол үүрэг} & \textbf{Технологийн чадвар} \\
+Apache Kafka 3.5 нь системийн төв мэдээллийн сүлжээ болж, бүх агентууд үүгээр дамжин харилцана. Zookeeper 3.8 нь Kafka кластерийн байршуулалтыг удирдана.
+
+\subsection{Агентуудын давхарга}
+
+Таван агент бие даасан микросервис хэлбэрээр Docker контейнерт ажиллана. Агент бүр өөрийн Kafka consumer, producer-тэй бөгөөд бусад агентуудаас хараат бус ажиллах боломжтой.
+
+\subsection{Өгөгдлийн давхарга}
+
+PostgreSQL 16 нь хэрэглэгчид, хувьцааны мэдээлэл, арилжааны түүх, агентуудын хариултыг хадгална. Redis 7 нь session болон response caching-д ашиглагдана.
+
+\section{Агентуудын дэлгэрэнгүй тайлбар}
+
+Энэхүү хэсэгт агент бүрийн үүрэг, ажиллах зарчим, Kafka сэдвүүдтэй харилцах байдлыг дэлгэрэнгүй тайлбарлана.
+
+\subsection{Зохион байгуулагч агент (Orchestrator Agent)}
+
+Зохион байгуулагч агент нь системийн төв тархи болж, хэрэглэгчийн хүсэлтийг ангилж, зохих агент руу чиглүүлэх үүрэгтэй. Энэ нь ReAct (Reasoning and Acting) загварын гол бүрэлдэхүүн юм.
+
+\textbf{Гол үүргүүд:}
+\begin{enumerate}
+    \item \textbf{Intent Classification:} Google Gemini 2.5 Flash ашиглан хэрэглэгчийн асуултыг portfolio, market\_analysis, news, risk\_assessment, historical\_analysis, general\_query гэсэн ангилалд хуваана
+    \item \textbf{Complexity Detection:} Асуулт энгийн эсвэл олон агент шаардсан нарийн төвөгтэй эсэхийг тодорхойлно
+    \item \textbf{User Profile Fetching:} PostgreSQL-ээс хэрэглэгчийн investment\_goal, risk\_tolerance, preferred\_industries мэдээллийг авч, хувийн зөвлөмж өгөхөд ашиглана
+    \item \textbf{RAG Context Request:} Шаардлагатай бол мэдлэгийн агент руу хүсэлт илгээж, нэмэлт контекст авна
+    \item \textbf{Routing:} Энгийн асуултыг шууд agent.tasks руу, нарийн төвөгтэй асуултыг planning.tasks руу илгээнэ
+\end{enumerate}
+
+\textbf{Ажиллах урсгал (Код \ref{code:orchestrator}):}
+
+Зохион байгуулагч агент нь user.requests topic-оос хүсэлт хүлээн авч, Gemini AI ашиглан intent ангилна. Дараа нь хэрэглэгчийн профайл авч, нарийн төвөгтэй байдлыг шалгаад, тохирох агент руу чиглүүлнэ.
+
+\begin{lstlisting}[language=JavaScript, caption=Orchestrator Agent main flow, label=code:orchestrator]
+const intent = await intentClassifier.classify(query);
+const userProfile = await getUserProfile(userId);
+const complexity = await complexityDetector.detect(query);
+
+if (complexity.level === 'simple') {
+  await routeToAgent(requestId, userId, intent, query);
+} else {
+  await routeToPlanner(requestId, userId, intent, query);
+}
+\end{lstlisting}
+
+\textbf{Kafka topics:}
+\begin{itemize}
+    \item \textbf{Subscribe:} user.requests, knowledge.results
+    \item \textbf{Publish:} agent.tasks, planning.tasks, knowledge.queries, monitoring.events
+\end{itemize}
+
+\subsection{Хөрөнгө оруулалтын агент (Investment Agent)}
+
+Хөрөнгө оруулалтын агент нь МХБ хувьцааны дүн шинжилгээ хийж, хэрэглэгчийн профайлд суурилсан монгол хэл дээрх хувийн зөвлөмж өгөх үүрэгтэй.
+
+\textbf{Гол үүргүүд:}
+\begin{enumerate}
+    \item \textbf{МХБ өгөгдөл татах:} PostgreSQL-ээс mse\_trading\_status (одоогийн үнэ) болон mse\_trading\_history (түүхэн өгөгдөл) хүснэгтээс мэдээлэл авна
+    \item \textbf{Хувийн зөвлөмж үүсгэх:} Хэрэглэгчийн investmentGoal, riskTolerance, preferredIndustries мэдээлэлд суурилан AI промпт бэлдэнэ
+    \item \textbf{Монгол хариулт үүсгэх:} Gemini 2.5 Flash ашиглан монгол хэл дээр товч, мэргэжлийн хариулт үүсгэнэ
+    \item \textbf{Хариулт хадгалах:} agent\_responses\_cache хүснэгтэд хариултыг хадгалж, дараа нь polling хийхэд ашиглана
+\end{enumerate}
+
+\textbf{Дэмжигдэх үйлдлүүд:}
+\begin{itemize}
+    \item \texttt{analyze\_portfolio} - Багцын шинжилгээ
+    \item \texttt{provide\_advice} - Хөрөнгө оруулалтын зөвлөмж
+    \item \texttt{analyze\_market} - Зах зээлийн шинжилгээ
+    \item \texttt{analyze\_watchlist} - Ажиглах жагсаалтын хувьцааг шинжлэх
+\end{itemize}
+
+\textbf{Хувийн зөвлөмжийн логик (Код \ref{code:personalization}):}
+
+Хэрэглэгчийн профайлаас контекст бүрдүүлж, Gemini AI руу промпт илгээнэ. Эрсдлийн хүлээцтэй байдал "Low" бол аюулгүй хувьцаа, "High" бол өндөр өсөлттэй хувьцаа санал болгоно.
+
+\begin{lstlisting}[language=JavaScript, caption=Personalization context building, label=code:personalization]
+const personalizationContext = `
+User Profile:
+- Goal: ${userProfile.investmentGoal}
+- Risk: ${userProfile.riskTolerance}
+- Industries: ${userProfile.preferredIndustries}
+`;
+
+const prompt = `MSE Analyst. MONGOLIAN, BRIEF.
+${personalizationContext}
+MSE Data: ${mseData}
+Provide advice.`;
+
+const result = await model.generateContent(prompt);
+\end{lstlisting}
+
+\subsection{Мэдээний агент (News Agent)}
+
+Мэдээний агент нь Finnhub API-аас олон улсын санхүүгийн мэдээ татаж, утга зүйн шинжилгээ хийж, хураангуй бэлдэх үүрэгтэй.
+
+\textbf{Гол үүргүүд:}
+\begin{enumerate}
+    \item \textbf{Мэдээ татах:} Finnhub API-аас сүүлийн 7 хоногийн мэдээг татна
+    \item \textbf{Sentiment analysis:} Gemini AI ашиглан мэдээ бүрийг positive, negative, neutral гэж ангилна
+    \item \textbf{Хураангуй үүсгэх:} Олон мэдээг нэгтгэж, зах зээлийн ерөнхий мэдрэмжийн хураангуй бэлдэнэ
+\end{enumerate}
+
+\subsection{Мэдлэгийн агент (Knowledge Agent)}
+
+Мэдлэгийн агент нь RAG (Retrieval-Augmented Generation) системийн үүргийг гүйцэтгэж, мэдлэгийн сангаас холбогдолтой мэдээллийг хайж олно.
+
+\textbf{Гол үүргүүд:}
+\begin{enumerate}
+    \item \textbf{Мэдлэгийн сан ачаалах:} PostgreSQL-ийн knowledge\_base хүснэгтээс компанийн профайл, бизнес дүрэм, агентуудын чадварын мэдээллийг ачаална
+    \item \textbf{Semantic search:} Түлхүүр үгийн тохирол болон metadata фильтер ашиглан хамгийн холбогдолтой баримтуудыг олно
+    \item \textbf{Контекст дамжуулах:} Олдсон баримтуудыг knowledge.results сэдвээр буцаана
+\end{enumerate}
+
+\textbf{Мэдлэгийн сангийн агуулга:}
+\begin{itemize}
+    \item МХБ компаниудын профайл (APU, TDB гэх мэт)
+    \item Арилжааны дүрэм (арилжааны цаг, хязгаарлалт)
+    \item Эрсдлийн менежментийн зөвлөмж
+    \item Агент бүрийн чадварын тайлбар (зохион байгуулагчид туслах)
+\end{itemize}
+
+\subsection{PyFlink төлөвлөгч агент (Flink Planner)}
+
+PyFlink төлөвлөгч нь нарийн төвөгтэй, олон алхамт даалгаврыг төлөвлөж, гүйцэтгэлийн дараалал үүсгэх үүрэгтэй.
+
+\textbf{Гол үүргүүд:}
+\begin{enumerate}
+    \item \textbf{Гүйцэтгэлийн төлөвлөгөө үүсгэх:} Gemini AI эсвэл дүрмэнд суурилсан логик ашиглан олон алхамт төлөвлөгөө боловсруулна
+    \item \textbf{Агентуудад даалгавар хуваарилах:} Төлөвлөгөөний алхам бүрийг тохирох агент руу agent.tasks сэдвээр илгээнэ
+    \item \textbf{Параллель гүйцэтгэл:} Хамааралгүй алхмуудыг зэрэг гүйцэтгэх боломжийг олгоно
+\end{enumerate}
+
+\section{Kafka сэдвүүд ба өгөгдлийн урсгал}
+
+Систем нь 8 гол Kafka сэдэв ашиглана. Хүснэгт \ref{tab:kafka-topics}-д сэдэв бүрийн үүргийг тайлбарлав.
+
+\begin{longtable}{p{0.25\textwidth} p{0.65\textwidth}}
+\caption{Kafka сэдвүүдийн тайлбар} \label{tab:kafka-topics} \\
+\textbf{Сэдэв} & \textbf{Үүрэг} \\
 \hline
 \endfirsthead
-\caption[]{Хэрэгжүүлсэн агентуудын үүрэг (үргэлжлэл)} \\
-\textbf{Агент} & \textbf{Гол үүрэг} & \textbf{Технологийн чадвар} \\
+user.requests & Хэрэглэгчийн асуултууд API Gateway-ээс зохион байгуулагч руу \\
 \hline
-\endhead
-Orchestrator Agent & Зохион байгуулагч & Gemini суурь загвараар хүсэлтүүдийг ангиллаж, агентууд руу даалгавар шилжүүлж, хариу нэгтгэх \\
+agent.tasks & Зохион байгуулагчаас мэргэшсэн агентууд руу даалгавар \\
 \hline
-Knowledge Agent & Зохион байгуулагчийн санах ой (Бүх агентийн мэдлэг агуулагдана) & RAG систем, vector search, зэргээр хайж дүрмийн дагуу үр дүнгээ нэгтгэнэ  \\
+agent.responses & Агентуудын хариулт буцаах \\
 \hline
-Investment Agent & Шинжилгээ & МХБ өгөгдөл дүн шинжилж, хөрөнгө оруулалтын зөвлөмж өгөх \\
+knowledge.queries & Мэдлэгийн агент руу RAG хайлтын хүсэлт \\
 \hline
-News Agent & Мэдээтэй холбоотой үйл ажиллагааг дэмжих & Finnhub API-ээр гадаад мэдээ цуглуулж хураангуйлж утга зүйн анализ хийж дамжуулах \\
+knowledge.results & Мэдлэгийн агентын хайлтын үр дүн \\
 \hline
-PyFlink Planner & Төлөвлөгч & Үндсэн Kafka consumer/producer-ийг рекурсив эсвэл жирийн чиглүүлэг хийхэд тусална \\
+planning.tasks & PyFlink Planner руу нарийн төвөгтэй даалгавар \\
+\hline
+execution.plans & Төлөвлөгчийн үүсгэсэн гүйцэтгэлийн төлөвлөгөө \\
+\hline
+monitoring.events & Системийн мониторинг, лог бичлэг \\
 \hline
 \end{longtable}
 
-\subsection{Kafka сэдвүүд}
+\textbf{Өгөгдлийн урсгалын жишээ:}
 
-Систем нь 12 Kafka сэдэв ашигладаг. user.requests нь хэрэглэгчийн асуултууд зохион байгуулагч руу илгээгдэх сэдэв юм. user.events нь хэрэглэгчийн бүртгэл, нэвтрэлт, profile өөрчлөлт зэрэг үйл явдлууд бичигдэнэ. agent.tasks нь зохион байгуулагчаас мэргэшсэн агентууд руу даалгавар илгээх сэдэв юм. agent.responses нь агентуудын хариулт буцах сэдэв юм. knowledge.queries нь RAG системд асуулт илгээх сэдэв юм. knowledge.results нь RAG системийн үр дүн буцах сэдэв юм. monitoring.events нь системийн мониторинг, лог бичлэг хийх сэдэв юм. planning.tasks нь PyFlink Planner руу нарийн төвөгтэй даалгавар илгээх сэдэв юм.
+Хэрэглэгч ``APU хувьцааны шинжилгээ хийж өгнө үү'' гэж асуухад дараах урсгал өрнөнө:
+
+\begin{enumerate}
+    \item Frontend $\rightarrow$ API Gateway: HTTP POST /api/agent/query
+    \item API Gateway $\rightarrow$ Kafka: user.requests сэдэв рүү мессеж бичих
+    \item Orchestrator: user.requests-аас уншиж, intent ангилах (portfolio)
+    \item Orchestrator: Хэрэглэгчийн профайл PostgreSQL-ээс авах
+    \item Orchestrator $\rightarrow$ Kafka: agent.tasks сэдэв рүү даалгавар илгээх
+    \item Investment Agent: agent.tasks-аас уншиж, МХБ өгөгдөл татах
+    \item Investment Agent: Gemini AI-аар монгол хариулт үүсгэх
+    \item Investment Agent $\rightarrow$ Kafka: agent.responses сэдэв рүү хариулт бичих
+    \item Investment Agent $\rightarrow$ PostgreSQL: agent\_responses\_cache-д хадгалах
+    \item API Gateway: Polling эсвэл SSE-ээр хариултыг Frontend руу дамжуулах
+\end{enumerate}
+
+\section{Өгөгдлийн сангийн бүтэц}
+
+PostgreSQL 16 өгөгдлийн санд дараах гол хүснэгтүүд байна:
+
+\begin{longtable}{p{0.28\textwidth} p{0.62\textwidth}}
+\caption{Өгөгдлийн сангийн хүснэгтүүд} \label{tab:db-tables} \\
+\textbf{Хүснэгт} & \textbf{Агуулга} \\
+\hline
+\endfirsthead
+users & Хэрэглэгчийн мэдээлэл, профайл (investment\_goal, risk\_tolerance, preferred\_industries) \\
+\hline
+watchlists & Хэрэглэгчийн ажиглах жагсаалтууд \\
+\hline
+watchlist\_items & Жагсаалт доторх хувьцаанууд (is\_mse флагтай) \\
+\hline
+mse\_companies & МХБ-д бүртгэлтэй компаниуд (symbol, name, sector) \\
+\hline
+mse\_trading\_status & Одоогийн арилжааны үнэ, хэмжээ \\
+\hline
+mse\_trading\_history & 2015-2024 оны арилжааны түүх \\
+\hline
+knowledge\_base & RAG системийн мэдлэгийн сан \\
+\hline
+agent\_responses\_cache & Агентуудын хариултын кэш \\
+\hline
+monitoring\_events & Системийн мониторингийн лог \\
+\hline
+\end{longtable}
+
+\section{Хэрэглэгчийн боломжууд}
+
+Систем хэрэглэгчдэд дараах боломжуудыг олгоно:
+
+\subsection{Бүртгэл ба нэвтрэлт}
+
+Хэрэглэгч бүртгүүлэхдээ хөрөнгө оруулалтын профайл бөглөнө:
+\begin{itemize}
+    \item Хөрөнгө оруулалтын зорилго (Growth, Income, Balanced, Conservative)
+    \item Эрсдлийн хүлээцтэй байдал (Low, Medium, High)
+    \item Сонирхсон салбарууд (Technology, Finance, Mining гэх мэт)
+\end{itemize}
+
+Бүртгэлийн дараа хиймэл оюун ашиглан хувийн мэндчилгээний э-мэйл монгол хэлээр илгээгдэнэ.
+
+\subsection{Ажиглах жагсаалт}
+
+Хэрэглэгч дэлхийн болон МХБ хувьцааг ажиглах жагсаалтад нэмж болно. МХБ хувьцааны хувьд хиймэл оюуны шинжилгээ авах боломжтой.
+
+\subsection{AI чатбот}
+
+Хэрэглэгч монгол эсвэл англи хэлээр асуулт асууж болно. Жишээ асуултууд:
+\begin{itemize}
+    \item ``APU хувьцааны сүүлийн үнэ ямар байна вэ?''
+    \item ``Миний ажиглаж буй хувьцаануудыг шинжилж өгнө үү''
+    \item ``Зах зээлийн ерөнхий байдал ямар байна?''
+\end{itemize}
+
+\subsection{Өдөр тутмын мэдээ}
+
+Хэрэглэгч өдөр бүр өөрийн ажиглаж буй хувьцааны мэдээг э-мэйлээр авах боломжтой. Finnhub API-аас мэдээ татаж, Gemini AI-аар хураангуйлж илгээнэ.
 
 \section{Технологийн стек}
 
-Системийн хөгжүүлэлтэд орчин үеийн веб технологиудыг ашиглана.
-
-\subsection{Frontend Технологи}
+\subsection{Frontend технологи}
 
 \begin{longtable}{p{0.25\textwidth} p{0.65\textwidth}}
 \caption{Frontend технологийн стек} \label{tab:frontend-tech} \\
 \textbf{Технологи} & \textbf{Хэрэглээ} \\
 \hline
 \endfirsthead
-\caption[]{Frontend технологийн стек (үргэлжлэл)} \\
-\textbf{Технологи} & \textbf{Хэрэглээ} \\
-\hline
-\endhead
-Nextjs 16 & React-д суурилсан фреймворк, App Router, server-side rendering \\
+Next.js 16 & React-д суурилсан фреймворк, App Router, server-side rendering \\
 \hline
 React 19 & UI сангийн үндэс, component-based архитектур \\
 \hline
@@ -74,21 +295,19 @@ TypeScript 5 & Static type checking, compile-time алдаа илрүүлэлт 
 \hline
 Tailwind CSS & Utility-first CSS, хурдан responsive дизайн \\
 \hline
-Shadcn/ui & Radix UI дээр суурилсан accessible компонентууд \\
+Shadcn/UI & Radix UI дээр суурилсан accessible компонентууд \\
+\hline
+TradingView & Олон улсын хувьцааны график, виджетүүд \\
 \hline
 \end{longtable}
 
-\subsection{Backend Технологи}
+\subsection{Backend технологи}
 
 \begin{longtable}{p{0.25\textwidth} p{0.65\textwidth}}
 \caption{Backend технологийн стек} \label{tab:backend-tech} \\
 \textbf{Технологи} & \textbf{Хэрэглээ} \\
 \hline
 \endfirsthead
-\caption[]{Backend технологийн стек (үргэлжлэл)} \\
-\textbf{Технологи} & \textbf{Хэрэглээ} \\
-\hline
-\endhead
 Node.js 20 & API Gateway болон агентуудын runtime орчин \\
 \hline
 Express.js 4.18 & RESTful API фреймворк, middleware систем \\
@@ -97,13 +316,15 @@ TypeScript 5 & Backend кодын type safety хангах \\
 \hline
 Python 3.10 & PyFlink Planner агентын хэл \\
 \hline
-Apache Kafka 3.5 & EDA, message broker \\
+Apache Kafka 3.5 & Үйл явдлаар удирдагдах архитектурын message broker \\
 \hline
-Zookeeper 3.8 & Kafka кластерийн байршуулалт \\
+Zookeeper 3.8 & Kafka кластерийн зохицуулалт \\
 \hline
 PostgreSQL 16 & Үндсэн өгөгдлийн сан \\
 \hline
-Redis 7 & Өгөгдөл хадгалах сав \\
+Redis 7 & Session болон response caching \\
+\hline
+Docker & Контейнержуулалт, бие даасан байршуулалт \\
 \hline
 \end{longtable}
 
@@ -114,46 +335,62 @@ Redis 7 & Өгөгдөл хадгалах сав \\
 \textbf{Технологи} & \textbf{Хэрэглээ} \\
 \hline
 \endfirsthead
-\caption[]{Хиймэл оюуны технологи (үргэлжлэл)} \\
-\textbf{Технологи} & \textbf{Хэрэглээ} \\
+Google Gemini 2.5 Flash & Intent classification, хариулт үүсгэх, sentiment analysis \\
 \hline
-\endhead
-Google Gemini 2.0, 2.5 Хүсэлтийг ангилах, генерац хийх, хураангуйн боловсруулах \\
+Finnhub API & Олон улсын санхүүгийн мэдээний эх сурвалж \\
 \hline
-Sentence-Transformers & Text embedding (all-MiniLM-L6-v2 загвар, 384-dim vectors) \\
-\hline
-Finnhub API & Олон улсын зах зээлийн мэдээний эх сурвалж \\
-\hline
-TradingView Widgets & Хувьцааны тоон үзүүлэлт авах \\
+Nodemailer & Э-мэйл илгээх сервис \\
 \hline
 \end{longtable}
 
+\section{Туршилтын үр дүн}
+
+\subsection{Гүйцэтгэлийн хэмжилт}
+
+Системийн гүйцэтгэлийг хэмжихэд дараах үр дүн гарсан:
+
+\begin{longtable}{p{0.45\textwidth} p{0.25\textwidth}}
+\caption{Гүйцэтгэлийн хэмжилт} \label{tab:performance} \\
+\textbf{Үйлдэл} & \textbf{Хугацаа} \\
+\hline
+\endfirsthead
+PostgreSQL-ээс МХБ өгөгдөл татах & 50-100ms \\
+\hline
+Kafka мессеж дамжуулалт & 5-10ms \\
+\hline
+API Gateway endpoint хариу & 200-500ms \\
+\hline
+Gemini AI хариулт үүсгэх & 3-8 секунд \\
+\hline
+Бүрэн AI шинжилгээний процесс & 5-12 секунд \\
+\hline
+\end{longtable}
+
+\subsection{Амжилттай туршигдсан функцүүд}
+
+Дараах функцүүд бүрэн ажиллаж байна:
+\begin{itemize}
+    \item Хэрэглэгчийн бүртгэл, нэвтрэлт, JWT таниулалт
+    \item Ажиглах жагсаалт үүсгэх, хувьцаа нэмэх/хасах
+    \item МХБ хувьцааны AI шинжилгээ (монгол хэлээр)
+    \item Хувийн зөвлөмж (хэрэглэгчийн профайлд суурилсан)
+    \item Бүртгэлийн э-мэйл (монгол хэлээр, AI-аар хувийн болгосон)
+    \item Өдөр тутмын мэдээний э-мэйл
+    \item Агентуудын мониторинг API
+    \item SSE болон polling-аар бодит цагийн хариулт авах
+\end{itemize}
+
 \subsection{Байршуулалт}
 
-Docker болон Docker Compose нь бүх сервисийг контейнержуулахад ашиглагдсан. Агент бүр өөрийн Docker контейнерт ажиллаж, бие даан өргөжих боломжтой. Vercel Hobby Plan ашиглаж демог нэвтрүүлсэн. Хаяг: https://stock-tracker-app-topaz.vercel.app/
+Docker болон Docker Compose ашиглан бүх сервисийг контейнержуулсан. Агент бүр өөрийн Docker контейнерт ажиллаж, бие даан өргөжих боломжтой. Frontend-ийг Vercel Hobby Plan ашиглан байршуулсан. 
 
-\section{Системийн ажиллагааны жишээ}
+Хаяг: \url{https://stock-tracker-app-topaz.vercel.app/}
 
-Энэ хэсэгт системийн гол функцүүд хэрхэн ажилладагийг тайлбарлана.
+\section{Бүлгийн дүгнэлт}
 
-\subsection{Хувьцааны дүн шинжилгээ}
+Энэхүү бүлэгт хиймэл оюун агентуудыг микросервис архитектурт нэвтрүүлсэн демо системийн хэрэгжүүлэлтийг дэлгэрэнгүй тайлбарлав. Зохион байгуулагч агент нь ReAct загварын гол бүрэлдэхүүн болж, хэрэглэгчийн хүсэлтийг ангилж, хэрэглэгчийн профайл авч, зохих агент руу чиглүүлэх үүргийг амжилттай гүйцэтгэж байна.
 
-Хэрэглэгч AI чат бот руу "APU хувьцааны сүүлийн үнэ, арилжааны хэмжээг харуулаад ирээдүйд өсөх магадлал байгаа юу?" гэж асуулт асуухад дараах үйл явц өрнөнө.
+Хөрөнгө оруулалтын агент нь МХБ өгөгдөлд суурилан хувийн зөвлөмж монгол хэлээр өгч байгаа нь системийн гол онцлог юм. Мэдээний агент нь Finnhub API-аас мэдээ татаж, утга зүйн шинжилгээ хийж байна. Мэдлэгийн агент нь RAG системийн үүргийг гүйцэтгэж, нэмэлт контекст өгч байна.
 
-Зураг \ref{fig:implemented-architecture}-т үзүүлсэн архитектурын дагуу API Gateway нь хүсэлтийг хүлээн авч, Kafka-ийн user.requests сэдэв рүү илгээнэ. Зохион байгуулагч агент нь Gemini AI ашиглан хүсэлтийг ангилж, хөрөнгө оруулалтын агент руу agent.tasks сэдвээр даалгавар илгээнэ. Хөрөнгө оруулалтын агент нь PostgreSQL-ээс APU хувьцааны мэдээллийг авч, Gemini AI-аар дүн шинжилгээтэй хариулт үүсгэнэ. Хариулт нь agent.responses сэдвээр буцаж, API Gateway SSE холболтоор фронтенд руу дамжуулна.
+Apache Kafka ашигласан нь агентуудыг салангид, бие даасан байлгаж, хэвтээ өргөжих боломжийг олгосон. Ийнхүү онолын хэсэгт судалсан микросервис архитектур, үйл явдлаар удирдагдах архитектур, хиймэл оюун агентуудын зарчмуудыг практикт амжилттай хэрэгжүүлсэн.
 
-\subsection{Өдөр тутмын мэдээ илгээх}
-
-Зураг \ref{fig:dailyEmail}-т үзүүлснээр хэрэглэгч өдөр бүр өөрийн сонирхож буй хувьцааны мэдээг э-мэйлээр авах боломжтой. Систем нь хэрэглэгчийн watchlist-ийн хувьцаануудтай холбоотой мэдээг Finnhub API-аас татаж, Gemini AI-аар хураангуйлж, утга зүйн шинжилгээ хийсний дараа э-мэйлээр илгээнэ.
-
-\section{Хөгжүүлэлтийн явц}
-
-Системийн хэрэгжилт ойролцоогоор 70\% хийгдсэн. Бүрэн хэрэгжсэн хэсгүүд нь Docker, Kafka, PostgreSQL, Redis-ийн суурилуулалт ба агентууд (зохион байгуулагч, хөрөнгө оруулалтын, мэдээний, flink төлөвлөгч), API Gateway, Фронт дээр  https://stock-tracker-app-topaz.vercel.app/ хаягаар байршуулсан байна. 
-
-\subsection{Туршилтын үр дүн}
-
-Гүйцэтгэлийн хувьд датабаазаас мэдээлэл авахад 50-100ms, Kafka мессежийн хугацаа 5-10ms, API Gateway endpoints 200-500ms, суурь загвар ашиглан өгөгдөл гаргахад 10-20 секунд, нийт AI ашиглаж дүн шинжилгээний процесс ойролцоогоор 10-17 секунд байна. 
-
-Одоогоор EDA дээрх шинжилгээний API (Kafka → Зохион байгуулагч агент → Хөрөнгө оруулалтын агент → харуй) бүрэн ажиллаж байна. SSE streaming болон polling-аас үр дүнгээ харж байгаа. Monitoring API дээр бүх агент идэвхтэй гэсэн төлөвлөлт харуулж байна.
-
-Өдөр тутмын мэдээний эмэйл илгээх, бүртгэлийн эмэйл илгээх зэрэг хиймэл оюуны тусламжтай агентууд амжилттай ажиллаж байна.
