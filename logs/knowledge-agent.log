@@ -2,20 +2,43 @@
 > knowledge-agent@1.0.0 dev
 > tsx watch src/index.ts
 
-{"level":"WARN","timestamp":"2025-12-04T06:45:25.440Z","logger":"kafkajs","message":"KafkaJS v2.0.0 switched default partitioner. To retain the same partitioning behavior as in previous versions, create the producer with the option \"createPartitioner: Partitioners.LegacyPartitioner\". See the migration guide at https://kafka.js.org/docs/migration-guide-v2.0.0#producer-new-default-partitioner for details. Silence this warning by setting the environment variable \"KAFKAJS_NO_PARTITIONER_WARNING=1\""}
-[2025-12-04T06:45:25.442Z] ========================================== 
-[2025-12-04T06:45:25.442Z] 🚀 Starting Knowledge Agent (RAG) 
-[2025-12-04T06:45:25.442Z] ========================================== 
-[2025-12-04T06:45:25.442Z] Connecting to PostgreSQL... 
-[2025-12-04T06:45:25.498Z] ✅ Loaded 4 knowledge base entries 
-[2025-12-04T06:45:25.498Z] Connecting to Kafka... 
-(node:30972) TimeoutNegativeWarning: -1764830725508 is a negative number.
+{"level":"WARN","timestamp":"2025-12-04T13:14:31.924Z","logger":"kafkajs","message":"KafkaJS v2.0.0 switched default partitioner. To retain the same partitioning behavior as in previous versions, create the producer with the option \"createPartitioner: Partitioners.LegacyPartitioner\". See the migration guide at https://kafka.js.org/docs/migration-guide-v2.0.0#producer-new-default-partitioner for details. Silence this warning by setting the environment variable \"KAFKAJS_NO_PARTITIONER_WARNING=1\""}
+[2025-12-04T13:14:31.926Z] ========================================== 
+[2025-12-04T13:14:31.926Z] 🚀 Starting Knowledge Agent (RAG) 
+[2025-12-04T13:14:31.926Z] ========================================== 
+[2025-12-04T13:14:31.926Z] Connecting to PostgreSQL... 
+[2025-12-04T13:14:32.000Z] ✅ Loaded 4 knowledge base entries 
+[2025-12-04T13:14:32.000Z] Connecting to Kafka... 
+(node:20113) TimeoutNegativeWarning: -1764854072014 is a negative number.
 Timeout duration was set to 1.
 (Use `node --trace-warnings ...` to show where the warning was created)
-[2025-12-04T06:45:25.520Z] ✅ Knowledge Agent ready 
-[2025-12-04T06:45:25.521Z] Listening for knowledge queries... 
-[2025-12-04T06:45:25.521Z] ========================================== 
-{"level":"INFO","timestamp":"2025-12-04T06:45:25.521Z","logger":"kafkajs","message":"[Consumer] Starting","groupId":"knowledge-agent-group"}
-{"level":"INFO","timestamp":"2025-12-04T06:45:28.557Z","logger":"kafkajs","message":"[ConsumerGroup] Consumer has joined the group","groupId":"knowledge-agent-group","memberId":"knowledge-agent-c463b6e6-cebe-4448-9fb2-35600039ca19","leaderId":"knowledge-agent-c463b6e6-cebe-4448-9fb2-35600039ca19","isLeader":true,"memberAssignment":{"knowledge.queries":[0,1,2]},"groupProtocol":"RoundRobinAssigner","duration":3034}
-[2025-12-04T06:45:58.674Z] 📚 Processing knowledge query {"queryId":"2147e8f4-8a4e-4946-9e78-4b1f83f153fb","query":"KHAN хувьцааны талаар товч мэдээлэл өгнө үү"}
-[2025-12-04T06:45:58.696Z] ✅ Returned 0 results {"queryId":"2147e8f4-8a4e-4946-9e78-4b1f83f153fb"}
+[2025-12-04T13:14:32.028Z] ✅ Knowledge Agent ready 
+[2025-12-04T13:14:32.028Z] Listening for knowledge queries... 
+[2025-12-04T13:14:32.028Z] ========================================== 
+{"level":"INFO","timestamp":"2025-12-04T13:14:32.029Z","logger":"kafkajs","message":"[Consumer] Starting","groupId":"knowledge-agent-group"}
+{"level":"INFO","timestamp":"2025-12-04T13:14:35.093Z","logger":"kafkajs","message":"[ConsumerGroup] Consumer has joined the group","groupId":"knowledge-agent-group","memberId":"knowledge-agent-97e92051-8050-407a-b019-f574fb36007a","leaderId":"knowledge-agent-97e92051-8050-407a-b019-f574fb36007a","isLeader":true,"memberAssignment":{"knowledge.queries":[0,1,2]},"groupProtocol":"RoundRobinAssigner","duration":3063}
+[2025-12-04T13:31:13.820Z] 📚 Processing knowledge query {"queryId":"2145eefc-e534-41dd-a73e-5241b5887efe","query":"Миний ажиглаж буй хувьцаануудыг (APU-O-0000, KHAN-O-0000) шинжилж, хөрөнгө оруулалтын зөвлөгөө өгнө үү."}
+[2025-12-04T13:31:13.920Z] ✅ Returned 0 results {"queryId":"2145eefc-e534-41dd-a73e-5241b5887efe"}
+[2025-12-04T13:54:17.393Z] 📚 Processing knowledge query {"queryId":"f3481a49-6a86-4ab8-a00a-52898c5cf5fe","query":"APU хувьцааны талаар товч мэдээлэл өгнө үү"}
+[2025-12-04T13:54:17.442Z] ✅ Returned 1 results {"queryId":"f3481a49-6a86-4ab8-a00a-52898c5cf5fe"}
+node:events:486
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: Connection terminated unexpectedly
+    at Connection.<anonymous> (/home/it/apps/thesis-report/backend/knowledge-agent/node_modules/pg/lib/client.js:136:73)
+    at Object.onceWrapper (node:events:622:28)
+    at Connection.emit (node:events:508:28)
+    at Socket.<anonymous> (/home/it/apps/thesis-report/backend/knowledge-agent/node_modules/pg/lib/connection.js:62:12)
+    at Socket.emit (node:events:508:28)
+    at TCP.<anonymous> (node:net:346:12)
+Emitted 'error' event on Client instance at:
+    at Client._handleErrorEvent (/home/it/apps/thesis-report/backend/knowledge-agent/node_modules/pg/lib/client.js:350:10)
+    at Connection.<anonymous> (/home/it/apps/thesis-report/backend/knowledge-agent/node_modules/pg/lib/client.js:154:16)
+    at Object.onceWrapper (node:events:622:28)
+    at Connection.emit (node:events:508:28)
+    at Socket.<anonymous> (/home/it/apps/thesis-report/backend/knowledge-agent/node_modules/pg/lib/connection.js:62:12)
+    at Socket.emit (node:events:508:28)
+    at TCP.<anonymous> (node:net:346:12)
+
+Node.js v24.11.0

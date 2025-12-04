@@ -1347,3 +1347,62 @@
 {"ip":"::1","level":"info","message":"GET /api/agent/response/e14d552d-8960-445b-85a2-7c2d1c324794","service":"api-gateway","timestamp":"2025-12-04T06:47:11.319Z","userAgent":"PostmanRuntime/7.49.1"}
 {"ip":"::1","level":"info","message":"GET /api/agent/response/e14d552d-8960-445b-85a2-7c2d1c324794","service":"api-gateway","timestamp":"2025-12-04T06:47:12.280Z","userAgent":"PostmanRuntime/7.49.1"}
 {"ip":"::1","level":"info","message":"GET /api/agent/response/e14d552d-8960-445b-85a2-7c2d1c324794","service":"api-gateway","timestamp":"2025-12-04T06:47:15.950Z","userAgent":"PostmanRuntime/7.49.1"}
+{"level":"info","message":"✅ Email service configured","service":"api-gateway","timestamp":"2025-12-04T07:06:25.110Z"}
+{"level":"info","message":"✅ Email service configured","service":"api-gateway","timestamp":"2025-12-04T07:09:39.454Z"}
+{"level":"info","message":"✅ Email service configured","service":"api-gateway","timestamp":"2025-12-04T13:14:37.212Z"}
+{"level":"info","message":"✅ Gemini AI configured for email generation","service":"api-gateway","timestamp":"2025-12-04T13:14:37.214Z"}
+{"env":"development","level":"info","message":"Starting API Gateway...","port":3001,"service":"api-gateway","timestamp":"2025-12-04T13:14:37.237Z"}
+{"level":"info","message":"✅ PostgreSQL connected successfully","service":"api-gateway","timestamp":"2025-12-04T13:14:37.271Z"}
+{"level":"info","message":"Kafka producer connected","service":"api-gateway","timestamp":"2025-12-04T13:14:37.289Z"}
+{"level":"info","message":"API Gateway listening on port 3001","service":"api-gateway","timestamp":"2025-12-04T13:14:37.294Z"}
+{"level":"info","message":"CORS enabled for: http://localhost:3000","service":"api-gateway","timestamp":"2025-12-04T13:14:37.294Z"}
+{"level":"info","message":"Kafka broker: localhost:9092","service":"api-gateway","timestamp":"2025-12-04T13:14:37.294Z"}
+{"level":"info","message":"API Gateway is ready!","service":"api-gateway","timestamp":"2025-12-04T13:14:37.294Z"}
+{"ip":"::1","level":"info","message":"GET /health","service":"api-gateway","timestamp":"2025-12-04T13:14:40.492Z","userAgent":"curl/8.5.0"}
+{"ip":"::1","level":"info","message":"POST /api/users/login","service":"api-gateway","timestamp":"2025-12-04T13:16:24.926Z","userAgent":"PostmanRuntime/7.49.1"}
+{"ip":"::1","level":"info","message":"POST /api/users/register","service":"api-gateway","timestamp":"2025-12-04T13:17:11.619Z","userAgent":"PostmanRuntime/7.49.1"}
+{"key":"5","level":"info","message":"Event sent to user.events","service":"api-gateway","timestamp":"2025-12-04T13:17:11.875Z"}
+{"key":"api-gateway","level":"info","message":"Event sent to monitoring.events","service":"api-gateway","timestamp":"2025-12-04T13:17:11.940Z"}
+{"level":"info","message":"Email sent successfully","service":"api-gateway","subject":"🎉 Redona-д тавтай морил!","timestamp":"2025-12-04T13:17:31.140Z","to":"radnaa2024@gmail.com"}
+{"level":"info","message":"✅ Welcome email sent","service":"api-gateway","timestamp":"2025-12-04T13:17:31.141Z","to":"radnaa2024@gmail.com"}
+{"ip":"::1","level":"info","message":"POST /api/daily-news/test","service":"api-gateway","timestamp":"2025-12-04T13:23:34.997Z","userAgent":"PostmanRuntime/7.49.1"}
+{"level":"info","message":"Email sent successfully","service":"api-gateway","subject":"📰 Өнөөдрийн зах зээлийн мэдээ - Thursday, December 4, 2025","timestamp":"2025-12-04T13:24:23.397Z","to":"radnaa2024@gmail.com"}
+{"articleCount":6,"level":"info","message":"✅ News summary email sent","service":"api-gateway","timestamp":"2025-12-04T13:24:23.400Z","to":"radnaa2024@gmail.com"}
+{"ip":"::1","level":"info","message":"GET /api/agent/response/1983c567-826b-46fe-a378-d354f439991a","service":"api-gateway","timestamp":"2025-12-04T13:28:12.770Z","userAgent":"PostmanRuntime/7.49.1"}
+{"ip":"::1","level":"info","message":"DELETE /api/watchlist/98f8856e-0faa-47ce-aa2a-9020b400178b/items/MSE","service":"api-gateway","timestamp":"2025-12-04T13:29:25.975Z","userAgent":"PostmanRuntime/7.49.1"}
+{"ip":"::1","level":"info","message":"POST /api/users/login","service":"api-gateway","timestamp":"2025-12-04T13:29:29.623Z","userAgent":"PostmanRuntime/7.49.1"}
+{"ip":"::1","level":"info","message":"GET /api/watchlist/98f8856e-0faa-47ce-aa2a-9020b400178b/items","service":"api-gateway","timestamp":"2025-12-04T13:29:31.854Z","userAgent":"PostmanRuntime/7.49.1"}
+{"ip":"::1","level":"info","message":"POST /api/users/login","service":"api-gateway","timestamp":"2025-12-04T13:29:35.313Z","userAgent":"PostmanRuntime/7.49.1"}
+{"ip":"::1","level":"info","message":"POST /api/users/login","service":"api-gateway","timestamp":"2025-12-04T13:29:38.636Z","userAgent":"PostmanRuntime/7.49.1"}
+{"key":"5","level":"info","message":"Event sent to user.events","service":"api-gateway","timestamp":"2025-12-04T13:29:38.843Z"}
+{"ip":"::1","level":"info","message":"GET /api/watchlist/all/symbols","service":"api-gateway","timestamp":"2025-12-04T13:29:56.638Z","userAgent":"PostmanRuntime/7.49.1"}
+{"ip":"::1","level":"info","message":"GET /api/watchlist","service":"api-gateway","timestamp":"2025-12-04T13:30:00.799Z","userAgent":"PostmanRuntime/7.49.1"}
+{"ip":"::1","level":"info","message":"POST /api/watchlist","service":"api-gateway","timestamp":"2025-12-04T13:30:15.779Z","userAgent":"PostmanRuntime/7.49.1"}
+{"key":"5","level":"info","message":"Event sent to user.events","service":"api-gateway","timestamp":"2025-12-04T13:30:15.799Z"}
+{"ip":"::1","level":"info","message":"POST /api/watchlist/2d16ee6a-2b5f-4c08-a5c4-0e67c28ccf1f/items","service":"api-gateway","timestamp":"2025-12-04T13:30:39.258Z","userAgent":"PostmanRuntime/7.49.1"}
+{"key":"5","level":"info","message":"Event sent to user.events","service":"api-gateway","timestamp":"2025-12-04T13:30:39.294Z"}
+{"ip":"::1","level":"info","message":"POST /api/watchlist/2d16ee6a-2b5f-4c08-a5c4-0e67c28ccf1f/items","service":"api-gateway","timestamp":"2025-12-04T13:31:02.133Z","userAgent":"PostmanRuntime/7.49.1"}
+{"key":"5","level":"info","message":"Event sent to user.events","service":"api-gateway","timestamp":"2025-12-04T13:31:02.144Z"}
+{"ip":"::1","level":"info","message":"GET /api/watchlist/all/symbols","service":"api-gateway","timestamp":"2025-12-04T13:31:08.647Z","userAgent":"PostmanRuntime/7.49.1"}
+{"ip":"::1","level":"info","message":"POST /api/agent/analyze-watchlist","service":"api-gateway","timestamp":"2025-12-04T13:31:13.177Z","userAgent":"PostmanRuntime/7.49.1"}
+{"key":"067fa9dc-2cca-4343-8878-8d5e9532065d","level":"info","message":"Event sent to user.requests","service":"api-gateway","timestamp":"2025-12-04T13:31:13.248Z"}
+{"level":"info","message":"Watchlist analysis request sent","requestId":"067fa9dc-2cca-4343-8878-8d5e9532065d","service":"api-gateway","symbols":["APU-O-0000","KHAN-O-0000"],"timestamp":"2025-12-04T13:31:13.248Z","userId":"5"}
+{"ip":"::1","level":"info","message":"GET /api/agent/response/067fa9dc-2cca-4343-8878-8d5e9532065d","service":"api-gateway","timestamp":"2025-12-04T13:31:23.948Z","userAgent":"PostmanRuntime/7.49.1"}
+{"ip":"::1","level":"info","message":"GET /api/agent/response/067fa9dc-2cca-4343-8878-8d5e9532065d","service":"api-gateway","timestamp":"2025-12-04T13:31:25.353Z","userAgent":"PostmanRuntime/7.49.1"}
+{"ip":"::1","level":"info","message":"GET /api/agent/response/067fa9dc-2cca-4343-8878-8d5e9532065d","service":"api-gateway","timestamp":"2025-12-04T13:31:26.146Z","userAgent":"PostmanRuntime/7.49.1"}
+{"ip":"::1","level":"info","message":"GET /api/agent/response/067fa9dc-2cca-4343-8878-8d5e9532065d","service":"api-gateway","timestamp":"2025-12-04T13:31:27.413Z","userAgent":"PostmanRuntime/7.49.1"}
+{"ip":"::1","level":"info","message":"GET /api/agent/response/067fa9dc-2cca-4343-8878-8d5e9532065d","service":"api-gateway","timestamp":"2025-12-04T13:31:28.127Z","userAgent":"PostmanRuntime/7.49.1"}
+{"ip":"::1","level":"info","message":"GET /api/agent/response/067fa9dc-2cca-4343-8878-8d5e9532065d","service":"api-gateway","timestamp":"2025-12-04T13:31:28.854Z","userAgent":"PostmanRuntime/7.49.1"}
+{"ip":"::1","level":"info","message":"GET /api/agent/response/067fa9dc-2cca-4343-8878-8d5e9532065d","service":"api-gateway","timestamp":"2025-12-04T13:31:29.574Z","userAgent":"PostmanRuntime/7.49.1"}
+{"ip":"::1","level":"info","message":"GET /api/agent/response/067fa9dc-2cca-4343-8878-8d5e9532065d","service":"api-gateway","timestamp":"2025-12-04T13:32:09.160Z","userAgent":"PostmanRuntime/7.49.1"}
+{"ip":"::1","level":"info","message":"GET /api/monitoring/agents","service":"api-gateway","timestamp":"2025-12-04T13:33:54.472Z","userAgent":"PostmanRuntime/7.49.1"}
+{"ip":"::1","level":"info","message":"GET /api/monitoring/metrics","service":"api-gateway","timestamp":"2025-12-04T13:34:26.361Z","userAgent":"PostmanRuntime/7.49.1"}
+{"ip":"::1","level":"info","message":"GET /api/monitoring/agents","service":"api-gateway","timestamp":"2025-12-04T13:35:08.199Z","userAgent":"PostmanRuntime/7.49.1"}
+{"ip":"::1","level":"info","message":"POST /api/agent/query","service":"api-gateway","timestamp":"2025-12-04T13:54:14.349Z","userAgent":"PostmanRuntime/7.49.1"}
+{"key":"e90f8172-592a-4022-8cc7-ea83ec31d48e","level":"info","message":"Event sent to user.requests","service":"api-gateway","timestamp":"2025-12-04T13:54:14.592Z"}
+{"level":"info","message":"User query sent to orchestrator","requestId":"e90f8172-592a-4022-8cc7-ea83ec31d48e","service":"api-gateway","timestamp":"2025-12-04T13:54:14.593Z","userId":"5"}
+{"ip":"::1","level":"info","message":"GET /api/monitoring/metrics","service":"api-gateway","timestamp":"2025-12-04T13:54:17.935Z","userAgent":"PostmanRuntime/7.49.1"}
+{"ip":"::1","level":"info","message":"GET /api/monitoring/metrics","service":"api-gateway","timestamp":"2025-12-04T13:54:19.003Z","userAgent":"PostmanRuntime/7.49.1"}
+{"ip":"::1","level":"info","message":"GET /api/monitoring/metrics","service":"api-gateway","timestamp":"2025-12-04T13:54:19.730Z","userAgent":"PostmanRuntime/7.49.1"}
+{"ip":"::1","level":"info","message":"GET /api/monitoring/metrics","service":"api-gateway","timestamp":"2025-12-04T13:54:20.410Z","userAgent":"PostmanRuntime/7.49.1"}
+{"ip":"::1","level":"info","message":"GET /api/monitoring/metrics","service":"api-gateway","timestamp":"2025-12-04T13:54:21.038Z","userAgent":"PostmanRuntime/7.49.1"}

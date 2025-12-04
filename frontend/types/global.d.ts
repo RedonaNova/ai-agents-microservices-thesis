@@ -68,9 +68,21 @@ declare global {
   };
 
   type User = {
-    id: string;
+    id: number | string;
     name: string;
     email: string;
+    investmentGoal?: string;
+    riskTolerance?: string;
+    preferredIndustries?: string[];
+    createdAt?: string;
+    lastLogin?: string;
+  };
+
+  type AuthResponse = {
+    success: boolean;
+    user?: User;
+    token?: string;
+    error?: string;
   };
 
   type UserForNewsEmail = {
