@@ -2,145 +2,34 @@
 > api-gateway@1.0.0 dev
 > tsx watch src/index.ts
 
-[32minfo[39m: ✅ Email service configured {"service":"api-gateway","timestamp":"2025-12-04T02:36:03.637Z"}
-[32minfo[39m: ✅ Gemini AI configured for email generation {"service":"api-gateway","timestamp":"2025-12-04T02:36:03.640Z"}
-[32minfo[39m: Starting API Gateway... {"env":"development","port":3001,"service":"api-gateway","timestamp":"2025-12-04T02:36:03.728Z"}
-[32minfo[39m: ✅ PostgreSQL connected successfully {"service":"api-gateway","timestamp":"2025-12-04T02:36:03.753Z"}
-{"level":"WARN","timestamp":"2025-12-04T02:36:03.755Z","logger":"kafkajs","message":"KafkaJS v2.0.0 switched default partitioner. To retain the same partitioning behavior as in previous versions, create the producer with the option \"createPartitioner: Partitioners.LegacyPartitioner\". See the migration guide at https://kafka.js.org/docs/migration-guide-v2.0.0#producer-new-default-partitioner for details. Silence this warning by setting the environment variable \"KAFKAJS_NO_PARTITIONER_WARNING=1\""}
-(node:81429) TimeoutNegativeWarning: -1764815763797 is a negative number.
+[32minfo[39m: ✅ Email service configured {"service":"api-gateway","timestamp":"2025-12-04T06:45:29.124Z"}
+[32minfo[39m: ✅ Gemini AI configured for email generation {"service":"api-gateway","timestamp":"2025-12-04T06:45:29.127Z"}
+[32minfo[39m: Starting API Gateway... {"env":"development","port":3001,"service":"api-gateway","timestamp":"2025-12-04T06:45:29.150Z"}
+[32minfo[39m: ✅ PostgreSQL connected successfully {"service":"api-gateway","timestamp":"2025-12-04T06:45:29.173Z"}
+{"level":"WARN","timestamp":"2025-12-04T06:45:29.174Z","logger":"kafkajs","message":"KafkaJS v2.0.0 switched default partitioner. To retain the same partitioning behavior as in previous versions, create the producer with the option \"createPartitioner: Partitioners.LegacyPartitioner\". See the migration guide at https://kafka.js.org/docs/migration-guide-v2.0.0#producer-new-default-partitioner for details. Silence this warning by setting the environment variable \"KAFKAJS_NO_PARTITIONER_WARNING=1\""}
+(node:31088) TimeoutNegativeWarning: -1764830729185 is a negative number.
 Timeout duration was set to 1.
 (Use `node --trace-warnings ...` to show where the warning was created)
-[32minfo[39m: Kafka producer connected {"service":"api-gateway","timestamp":"2025-12-04T02:36:03.797Z"}
-[32minfo[39m: API Gateway listening on port 3001 {"service":"api-gateway","timestamp":"2025-12-04T02:36:03.800Z"}
-[32minfo[39m: CORS enabled for: http://localhost:3000 {"service":"api-gateway","timestamp":"2025-12-04T02:36:03.800Z"}
-[32minfo[39m: Kafka broker: localhost:9092 {"service":"api-gateway","timestamp":"2025-12-04T02:36:03.800Z"}
-[32minfo[39m: API Gateway is ready! {"service":"api-gateway","timestamp":"2025-12-04T02:36:03.800Z"}
-[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-04T02:36:03.865Z","userAgent":"curl/8.5.0"}
-[32minfo[39m: POST /api/users/login {"ip":"::1","service":"api-gateway","timestamp":"2025-12-04T02:56:07.835Z","userAgent":"PostmanRuntime/7.49.1"}
-[32minfo[39m: Event sent to user.events {"key":"2","service":"api-gateway","timestamp":"2025-12-04T02:56:08.183Z"}
-[32minfo[39m: GET /api/users/profile {"ip":"::1","service":"api-gateway","timestamp":"2025-12-04T02:56:15.624Z","userAgent":"PostmanRuntime/7.49.1"}
-[32minfo[39m: GET /api/watchlist {"ip":"::1","service":"api-gateway","timestamp":"2025-12-04T02:57:36.278Z","userAgent":"PostmanRuntime/7.49.1"}
-[32minfo[39m: GET /api/monitoring/metrics {"ip":"::1","service":"api-gateway","timestamp":"2025-12-04T02:58:29.224Z","userAgent":"PostmanRuntime/7.49.1"}
-[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-12-04T02:58:35.106Z","userAgent":"PostmanRuntime/7.49.1"}
-11:15:22 AM [tsx] change in ./src/routes/agent.routes.ts Restarting...
-[32minfo[39m: SIGTERM received, shutting down gracefully... {"service":"api-gateway","timestamp":"2025-12-04T03:15:22.492Z"}
-[32minfo[39m: Kafka producer disconnected {"service":"api-gateway","timestamp":"2025-12-04T03:15:22.497Z"}
-[32minfo[39m: PostgreSQL disconnected {"service":"api-gateway","timestamp":"2025-12-04T03:15:22.499Z"}
-c[32minfo[39m: ✅ Email service configured {"service":"api-gateway","timestamp":"2025-12-04T03:15:23.514Z"}
-[32minfo[39m: ✅ Gemini AI configured for email generation {"service":"api-gateway","timestamp":"2025-12-04T03:15:23.517Z"}
-[32minfo[39m: Starting API Gateway... {"env":"development","port":3001,"service":"api-gateway","timestamp":"2025-12-04T03:15:23.671Z"}
-[32minfo[39m: ✅ PostgreSQL connected successfully {"service":"api-gateway","timestamp":"2025-12-04T03:15:23.709Z"}
-{"level":"WARN","timestamp":"2025-12-04T03:15:23.711Z","logger":"kafkajs","message":"KafkaJS v2.0.0 switched default partitioner. To retain the same partitioning behavior as in previous versions, create the producer with the option \"createPartitioner: Partitioners.LegacyPartitioner\". See the migration guide at https://kafka.js.org/docs/migration-guide-v2.0.0#producer-new-default-partitioner for details. Silence this warning by setting the environment variable \"KAFKAJS_NO_PARTITIONER_WARNING=1\""}
-(node:89528) TimeoutNegativeWarning: -1764818123722 is a negative number.
-Timeout duration was set to 1.
-(Use `node --trace-warnings ...` to show where the warning was created)
-[32minfo[39m: Kafka producer connected {"service":"api-gateway","timestamp":"2025-12-04T03:15:23.723Z"}
-[32minfo[39m: API Gateway listening on port 3001 {"service":"api-gateway","timestamp":"2025-12-04T03:15:23.727Z"}
-[32minfo[39m: CORS enabled for: http://localhost:3000 {"service":"api-gateway","timestamp":"2025-12-04T03:15:23.727Z"}
-[32minfo[39m: Kafka broker: localhost:9092 {"service":"api-gateway","timestamp":"2025-12-04T03:15:23.728Z"}
-[32minfo[39m: API Gateway is ready! {"service":"api-gateway","timestamp":"2025-12-04T03:15:23.728Z"}
-[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-04T03:26:53.796Z","userAgent":"curl/8.5.0"}
-[32minfo[39m: POST /api/users/login {"ip":"::1","service":"api-gateway","timestamp":"2025-12-04T03:26:59.155Z","userAgent":"curl/8.5.0"}
-[32minfo[39m: POST /api/users/login {"ip":"::1","service":"api-gateway","timestamp":"2025-12-04T03:27:04.207Z","userAgent":"curl/8.5.0"}
-[32minfo[39m: POST /api/users/register {"ip":"::1","service":"api-gateway","timestamp":"2025-12-04T03:27:09.945Z","userAgent":"curl/8.5.0"}
-[32minfo[39m: Event sent to user.events {"key":"3","service":"api-gateway","timestamp":"2025-12-04T03:27:10.076Z"}
-[32minfo[39m: Event sent to monitoring.events {"key":"api-gateway","service":"api-gateway","timestamp":"2025-12-04T03:27:10.156Z"}
-[32minfo[39m: POST /api/watchlist {"ip":"::1","service":"api-gateway","timestamp":"2025-12-04T03:27:16.771Z","userAgent":"curl/8.5.0"}
-[32minfo[39m: Event sent to user.events {"key":"3","service":"api-gateway","timestamp":"2025-12-04T03:27:16.793Z"}
-[31merror[39m: Error generating personalized intro {"error":{},"service":"api-gateway","timestamp":"2025-12-04T03:27:20.624Z"}
-[32minfo[39m: POST /api/watchlist/e9134959-0a5d-471e-8686-54ec9cf1538a/items {"ip":"::1","service":"api-gateway","timestamp":"2025-12-04T03:27:24.451Z","userAgent":"curl/8.5.0"}
-[32minfo[39m: Event sent to user.events {"key":"3","service":"api-gateway","timestamp":"2025-12-04T03:27:24.467Z"}
-[32minfo[39m: POST /api/watchlist/e9134959-0a5d-471e-8686-54ec9cf1538a/items {"ip":"::1","service":"api-gateway","timestamp":"2025-12-04T03:27:24.480Z","userAgent":"curl/8.5.0"}
-[32minfo[39m: Event sent to user.events {"key":"3","service":"api-gateway","timestamp":"2025-12-04T03:27:24.495Z"}
-[32minfo[39m: POST /api/watchlist/e9134959-0a5d-471e-8686-54ec9cf1538a/items {"ip":"::1","service":"api-gateway","timestamp":"2025-12-04T03:27:24.512Z","userAgent":"curl/8.5.0"}
-[32minfo[39m: Event sent to user.events {"key":"3","service":"api-gateway","timestamp":"2025-12-04T03:27:24.522Z"}
-[32minfo[39m: POST /api/agent/analyze-watchlist {"ip":"::1","service":"api-gateway","timestamp":"2025-12-04T03:27:45.517Z","userAgent":"curl/8.5.0"}
-[32minfo[39m: Event sent to user.requests {"key":"d6e63b75-59a2-48cc-8453-bd7c3ca995a9","service":"api-gateway","timestamp":"2025-12-04T03:27:45.551Z"}
-[32minfo[39m: Watchlist analysis request sent {"requestId":"d6e63b75-59a2-48cc-8453-bd7c3ca995a9","service":"api-gateway","symbols":["SUL-O-0000","TEX-O-0000","TTL-O-0000"],"timestamp":"2025-12-04T03:27:45.552Z","userId":"3"}
-[32minfo[39m: GET /api/agent/response/d6e63b75-59a2-48cc-8453-bd7c3ca995a9 {"ip":"::1","service":"api-gateway","timestamp":"2025-12-04T03:28:11.689Z","userAgent":"curl/8.5.0"}
-[31merror[39m: Failed to send email {"error":"Connection timeout","service":"api-gateway","timestamp":"2025-12-04T03:29:20.652Z","to":"test@test.com"}
-[31merror[39m: Failed to send welcome email {"error":{"code":"ETIMEDOUT","command":"CONN"},"service":"api-gateway","timestamp":"2025-12-04T03:29:20.653Z","to":"test@test.com"}
-[32minfo[39m: POST /api/agent/analyze-watchlist {"ip":"::1","service":"api-gateway","timestamp":"2025-12-04T03:30:12.204Z","userAgent":"curl/8.5.0"}
-[32minfo[39m: Event sent to user.requests {"key":"7fbee2e1-ebed-4480-ae7c-d8fe761cfcb0","service":"api-gateway","timestamp":"2025-12-04T03:30:12.242Z"}
-[32minfo[39m: Watchlist analysis request sent {"requestId":"7fbee2e1-ebed-4480-ae7c-d8fe761cfcb0","service":"api-gateway","symbols":["SUL-O-0000","TEX-O-0000","TTL-O-0000"],"timestamp":"2025-12-04T03:30:12.242Z","userId":"3"}
-[32minfo[39m: GET /api/agent/response/7fbee2e1-ebed-4480-ae7c-d8fe761cfcb0 {"ip":"::1","service":"api-gateway","timestamp":"2025-12-04T03:30:37.391Z","userAgent":"curl/8.5.0"}
-11:31:31 AM [tsx] change in ./src/routes/agent.routes.ts Restarting...
-[32minfo[39m: SIGTERM received, shutting down gracefully... {"service":"api-gateway","timestamp":"2025-12-04T03:31:31.993Z"}
-[32minfo[39m: Kafka producer disconnected {"service":"api-gateway","timestamp":"2025-12-04T03:31:31.995Z"}
-[32minfo[39m: PostgreSQL disconnected {"service":"api-gateway","timestamp":"2025-12-04T03:31:31.996Z"}
-c[32minfo[39m: ✅ Email service configured {"service":"api-gateway","timestamp":"2025-12-04T03:31:33.365Z"}
-[32minfo[39m: ✅ Gemini AI configured for email generation {"service":"api-gateway","timestamp":"2025-12-04T03:31:33.375Z"}
-[32minfo[39m: Starting API Gateway... {"env":"development","port":3001,"service":"api-gateway","timestamp":"2025-12-04T03:31:33.405Z"}
-[32minfo[39m: ✅ PostgreSQL connected successfully {"service":"api-gateway","timestamp":"2025-12-04T03:31:33.441Z"}
-{"level":"WARN","timestamp":"2025-12-04T03:31:33.443Z","logger":"kafkajs","message":"KafkaJS v2.0.0 switched default partitioner. To retain the same partitioning behavior as in previous versions, create the producer with the option \"createPartitioner: Partitioners.LegacyPartitioner\". See the migration guide at https://kafka.js.org/docs/migration-guide-v2.0.0#producer-new-default-partitioner for details. Silence this warning by setting the environment variable \"KAFKAJS_NO_PARTITIONER_WARNING=1\""}
-(node:94444) TimeoutNegativeWarning: -1764819093457 is a negative number.
-Timeout duration was set to 1.
-(Use `node --trace-warnings ...` to show where the warning was created)
-[32minfo[39m: Kafka producer connected {"service":"api-gateway","timestamp":"2025-12-04T03:31:33.459Z"}
-[32minfo[39m: API Gateway listening on port 3001 {"service":"api-gateway","timestamp":"2025-12-04T03:31:33.462Z"}
-[32minfo[39m: CORS enabled for: http://localhost:3000 {"service":"api-gateway","timestamp":"2025-12-04T03:31:33.462Z"}
-[32minfo[39m: Kafka broker: localhost:9092 {"service":"api-gateway","timestamp":"2025-12-04T03:31:33.463Z"}
-[32minfo[39m: API Gateway is ready! {"service":"api-gateway","timestamp":"2025-12-04T03:31:33.463Z"}
-11:42:35 AM [tsx] change in ./src/services/email.ts Restarting...
-[32minfo[39m: SIGTERM received, shutting down gracefully... {"service":"api-gateway","timestamp":"2025-12-04T03:42:35.891Z"}
-[32minfo[39m: Kafka producer disconnected {"service":"api-gateway","timestamp":"2025-12-04T03:42:35.902Z"}
-[32minfo[39m: PostgreSQL disconnected {"service":"api-gateway","timestamp":"2025-12-04T03:42:35.902Z"}
-c[32minfo[39m: ✅ Email service configured {"service":"api-gateway","timestamp":"2025-12-04T03:42:37.261Z"}
-[32minfo[39m: ✅ Gemini AI configured for email generation {"service":"api-gateway","timestamp":"2025-12-04T03:42:37.265Z"}
-[32minfo[39m: Starting API Gateway... {"env":"development","port":3001,"service":"api-gateway","timestamp":"2025-12-04T03:42:37.296Z"}
-[32minfo[39m: ✅ PostgreSQL connected successfully {"service":"api-gateway","timestamp":"2025-12-04T03:42:37.342Z"}
-{"level":"WARN","timestamp":"2025-12-04T03:42:37.345Z","logger":"kafkajs","message":"KafkaJS v2.0.0 switched default partitioner. To retain the same partitioning behavior as in previous versions, create the producer with the option \"createPartitioner: Partitioners.LegacyPartitioner\". See the migration guide at https://kafka.js.org/docs/migration-guide-v2.0.0#producer-new-default-partitioner for details. Silence this warning by setting the environment variable \"KAFKAJS_NO_PARTITIONER_WARNING=1\""}
-(node:96406) TimeoutNegativeWarning: -1764819757368 is a negative number.
-Timeout duration was set to 1.
-(Use `node --trace-warnings ...` to show where the warning was created)
-[32minfo[39m: Kafka producer connected {"service":"api-gateway","timestamp":"2025-12-04T03:42:37.370Z"}
-[32minfo[39m: API Gateway listening on port 3001 {"service":"api-gateway","timestamp":"2025-12-04T03:42:37.375Z"}
-[32minfo[39m: CORS enabled for: http://localhost:3000 {"service":"api-gateway","timestamp":"2025-12-04T03:42:37.376Z"}
-[32minfo[39m: Kafka broker: localhost:9092 {"service":"api-gateway","timestamp":"2025-12-04T03:42:37.377Z"}
-[32minfo[39m: API Gateway is ready! {"service":"api-gateway","timestamp":"2025-12-04T03:42:37.377Z"}
-[32minfo[39m: POST /api/agent/analyze-watchlist {"ip":"::1","service":"api-gateway","timestamp":"2025-12-04T03:42:59.721Z","userAgent":"curl/8.5.0"}
-[32minfo[39m: Event sent to user.requests {"key":"3b87cb91-20b8-456e-8c37-62d7beeaa5bf","service":"api-gateway","timestamp":"2025-12-04T03:42:59.919Z"}
-[32minfo[39m: Watchlist analysis request sent {"requestId":"3b87cb91-20b8-456e-8c37-62d7beeaa5bf","service":"api-gateway","symbols":["SUL-O-0000","TEX-O-0000","TTL-O-0000"],"timestamp":"2025-12-04T03:42:59.920Z","userId":"3"}
-[32minfo[39m: GET /api/agent/response/3b87cb91-20b8-456e-8c37-62d7beeaa5bf {"ip":"::1","service":"api-gateway","timestamp":"2025-12-04T03:43:19.953Z","userAgent":"curl/8.5.0"}
-11:46:51 AM [tsx] change in ./src/services/email.ts Restarting...
-[32minfo[39m: SIGTERM received, shutting down gracefully... {"service":"api-gateway","timestamp":"2025-12-04T03:46:51.735Z"}
-[32minfo[39m: Kafka producer disconnected {"service":"api-gateway","timestamp":"2025-12-04T03:46:51.736Z"}
-[32minfo[39m: PostgreSQL disconnected {"service":"api-gateway","timestamp":"2025-12-04T03:46:51.737Z"}
-c[32minfo[39m: ✅ Email service configured {"service":"api-gateway","timestamp":"2025-12-04T03:46:52.574Z"}
-[32minfo[39m: ✅ Gemini AI configured for email generation {"service":"api-gateway","timestamp":"2025-12-04T03:46:52.577Z"}
-[32minfo[39m: Starting API Gateway... {"env":"development","port":3001,"service":"api-gateway","timestamp":"2025-12-04T03:46:52.607Z"}
-[32minfo[39m: ✅ PostgreSQL connected successfully {"service":"api-gateway","timestamp":"2025-12-04T03:46:52.649Z"}
-{"level":"WARN","timestamp":"2025-12-04T03:46:52.652Z","logger":"kafkajs","message":"KafkaJS v2.0.0 switched default partitioner. To retain the same partitioning behavior as in previous versions, create the producer with the option \"createPartitioner: Partitioners.LegacyPartitioner\". See the migration guide at https://kafka.js.org/docs/migration-guide-v2.0.0#producer-new-default-partitioner for details. Silence this warning by setting the environment variable \"KAFKAJS_NO_PARTITIONER_WARNING=1\""}
-(node:97395) TimeoutNegativeWarning: -1764820012671 is a negative number.
-Timeout duration was set to 1.
-(Use `node --trace-warnings ...` to show where the warning was created)
-[32minfo[39m: Kafka producer connected {"service":"api-gateway","timestamp":"2025-12-04T03:46:52.673Z"}
-[32minfo[39m: API Gateway listening on port 3001 {"service":"api-gateway","timestamp":"2025-12-04T03:46:52.678Z"}
-[32minfo[39m: CORS enabled for: http://localhost:3000 {"service":"api-gateway","timestamp":"2025-12-04T03:46:52.679Z"}
-[32minfo[39m: Kafka broker: localhost:9092 {"service":"api-gateway","timestamp":"2025-12-04T03:46:52.679Z"}
-[32minfo[39m: API Gateway is ready! {"service":"api-gateway","timestamp":"2025-12-04T03:46:52.679Z"}
-11:47:05 AM [tsx] change in ./src/services/email.ts Restarting...
-[32minfo[39m: SIGTERM received, shutting down gracefully... {"service":"api-gateway","timestamp":"2025-12-04T03:47:05.361Z"}
-[32minfo[39m: Kafka producer disconnected {"service":"api-gateway","timestamp":"2025-12-04T03:47:05.363Z"}
-[32minfo[39m: PostgreSQL disconnected {"service":"api-gateway","timestamp":"2025-12-04T03:47:05.364Z"}
-c[32minfo[39m: ✅ Email service configured {"service":"api-gateway","timestamp":"2025-12-04T03:47:05.975Z"}
-[32minfo[39m: ✅ Gemini AI configured for email generation {"service":"api-gateway","timestamp":"2025-12-04T03:47:05.978Z"}
-[32minfo[39m: Starting API Gateway... {"env":"development","port":3001,"service":"api-gateway","timestamp":"2025-12-04T03:47:05.994Z"}
-[32minfo[39m: ✅ PostgreSQL connected successfully {"service":"api-gateway","timestamp":"2025-12-04T03:47:06.014Z"}
-{"level":"WARN","timestamp":"2025-12-04T03:47:06.015Z","logger":"kafkajs","message":"KafkaJS v2.0.0 switched default partitioner. To retain the same partitioning behavior as in previous versions, create the producer with the option \"createPartitioner: Partitioners.LegacyPartitioner\". See the migration guide at https://kafka.js.org/docs/migration-guide-v2.0.0#producer-new-default-partitioner for details. Silence this warning by setting the environment variable \"KAFKAJS_NO_PARTITIONER_WARNING=1\""}
-(node:97546) TimeoutNegativeWarning: -1764820026025 is a negative number.
-Timeout duration was set to 1.
-(Use `node --trace-warnings ...` to show where the warning was created)
-[32minfo[39m: Kafka producer connected {"service":"api-gateway","timestamp":"2025-12-04T03:47:06.026Z"}
-[32minfo[39m: API Gateway listening on port 3001 {"service":"api-gateway","timestamp":"2025-12-04T03:47:06.028Z"}
-[32minfo[39m: CORS enabled for: http://localhost:3000 {"service":"api-gateway","timestamp":"2025-12-04T03:47:06.029Z"}
-[32minfo[39m: Kafka broker: localhost:9092 {"service":"api-gateway","timestamp":"2025-12-04T03:47:06.029Z"}
-[32minfo[39m: API Gateway is ready! {"service":"api-gateway","timestamp":"2025-12-04T03:47:06.029Z"}
-[32minfo[39m: POST /api/agent/analyze-watchlist {"ip":"::1","service":"api-gateway","timestamp":"2025-12-04T04:07:25.009Z","userAgent":"curl/8.5.0"}
-[32minfo[39m: Event sent to user.requests {"key":"88d4ca30-32cb-433e-b82b-d8f4af4a1e21","service":"api-gateway","timestamp":"2025-12-04T04:07:25.228Z"}
-[32minfo[39m: Watchlist analysis request sent {"requestId":"88d4ca30-32cb-433e-b82b-d8f4af4a1e21","service":"api-gateway","symbols":["SUL-O-0000","TEX-O-0000","TTL-O-0000"],"timestamp":"2025-12-04T04:07:25.229Z","userId":"3"}
-[32minfo[39m: GET /api/agent/response/88d4ca30-32cb-433e-b82b-d8f4af4a1e21 {"ip":"::1","service":"api-gateway","timestamp":"2025-12-04T04:07:50.271Z","userAgent":"curl/8.5.0"}
-[32minfo[39m: POST /api/agent/analyze-watchlist {"ip":"::1","service":"api-gateway","timestamp":"2025-12-04T04:08:19.890Z","userAgent":"curl/8.5.0"}
-[32minfo[39m: Event sent to user.requests {"key":"b803c7fc-3559-40f3-9876-029a54301b0d","service":"api-gateway","timestamp":"2025-12-04T04:08:19.899Z"}
-[32minfo[39m: Watchlist analysis request sent {"requestId":"b803c7fc-3559-40f3-9876-029a54301b0d","service":"api-gateway","symbols":["SUL-O-0000","TEX-O-0000","TTL-O-0000"],"timestamp":"2025-12-04T04:08:19.900Z","userId":"3"}
-[32minfo[39m: GET /api/agent/response/b803c7fc-3559-40f3-9876-029a54301b0d {"ip":"::1","service":"api-gateway","timestamp":"2025-12-04T04:08:39.938Z","userAgent":"curl/8.5.0"}
+[32minfo[39m: Kafka producer connected {"service":"api-gateway","timestamp":"2025-12-04T06:45:29.186Z"}
+[32minfo[39m: API Gateway listening on port 3001 {"service":"api-gateway","timestamp":"2025-12-04T06:45:29.188Z"}
+[32minfo[39m: CORS enabled for: http://localhost:3000 {"service":"api-gateway","timestamp":"2025-12-04T06:45:29.188Z"}
+[32minfo[39m: Kafka broker: localhost:9092 {"service":"api-gateway","timestamp":"2025-12-04T06:45:29.188Z"}
+[32minfo[39m: API Gateway is ready! {"service":"api-gateway","timestamp":"2025-12-04T06:45:29.188Z"}
+[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-04T06:45:29.858Z","userAgent":"curl/8.5.0"}
+[32minfo[39m: POST /api/agent/query {"ip":"::1","service":"api-gateway","timestamp":"2025-12-04T06:45:56.027Z","userAgent":"PostmanRuntime/7.49.1"}
+[32minfo[39m: Event sent to user.requests {"key":"1983c567-826b-46fe-a378-d354f439991a","service":"api-gateway","timestamp":"2025-12-04T06:45:56.083Z"}
+[32minfo[39m: User query sent to orchestrator {"requestId":"1983c567-826b-46fe-a378-d354f439991a","service":"api-gateway","timestamp":"2025-12-04T06:45:56.083Z","userId":"2"}
+[32minfo[39m: GET /api/agent/response/46fe {"ip":"::1","service":"api-gateway","timestamp":"2025-12-04T06:46:02.448Z","userAgent":"PostmanRuntime/7.49.1"}
+[31merror[39m: Database query error: {"error":{"code":"22P02","file":"uuid.c","length":136,"line":"133","name":"error","routine":"string_to_uuid","severity":"ERROR","where":"unnamed portal parameter $1 = '...'"},"service":"api-gateway","text":"SELECT request_id, agent_type, query, response, status, processing_time_ms, created_at\n       FROM agent_responses_cache\n       WHERE request_id = $1","timestamp":"2025-12-04T06:46:02.473Z"}
+[31merror[39m: Get response error {"error":{"code":"22P02","file":"uuid.c","length":136,"line":"133","name":"error","routine":"string_to_uuid","severity":"ERROR","where":"unnamed portal parameter $1 = '...'"},"service":"api-gateway","timestamp":"2025-12-04T06:46:02.473Z"}
+[32minfo[39m: GET /api/agent/response/1983c567-826b-46fe-a378-d354f439991a {"ip":"::1","service":"api-gateway","timestamp":"2025-12-04T06:46:12.864Z","userAgent":"PostmanRuntime/7.49.1"}
+[32minfo[39m: POST /api/agent/analyze-watchlist {"ip":"::1","service":"api-gateway","timestamp":"2025-12-04T06:47:02.130Z","userAgent":"PostmanRuntime/7.49.1"}
+[32minfo[39m: Event sent to user.requests {"key":"e14d552d-8960-445b-85a2-7c2d1c324794","service":"api-gateway","timestamp":"2025-12-04T06:47:02.157Z"}
+[32minfo[39m: Watchlist analysis request sent {"requestId":"e14d552d-8960-445b-85a2-7c2d1c324794","service":"api-gateway","symbols":["SUL-O-0000","TEX-O-0000","TTL-O-0000"],"timestamp":"2025-12-04T06:47:02.157Z","userId":"2"}
+[32minfo[39m: GET /api/agent/response/e14d552d-8960-445b-85a2-7c2d1c324794 {"ip":"::1","service":"api-gateway","timestamp":"2025-12-04T06:47:07.396Z","userAgent":"PostmanRuntime/7.49.1"}
+[32minfo[39m: GET /api/agent/response/e14d552d-8960-445b-85a2-7c2d1c324794 {"ip":"::1","service":"api-gateway","timestamp":"2025-12-04T06:47:08.787Z","userAgent":"PostmanRuntime/7.49.1"}
+[32minfo[39m: GET /api/agent/response/e14d552d-8960-445b-85a2-7c2d1c324794 {"ip":"::1","service":"api-gateway","timestamp":"2025-12-04T06:47:09.567Z","userAgent":"PostmanRuntime/7.49.1"}
+[32minfo[39m: GET /api/agent/response/e14d552d-8960-445b-85a2-7c2d1c324794 {"ip":"::1","service":"api-gateway","timestamp":"2025-12-04T06:47:10.490Z","userAgent":"PostmanRuntime/7.49.1"}
+[32minfo[39m: GET /api/agent/response/e14d552d-8960-445b-85a2-7c2d1c324794 {"ip":"::1","service":"api-gateway","timestamp":"2025-12-04T06:47:11.319Z","userAgent":"PostmanRuntime/7.49.1"}
+[32minfo[39m: GET /api/agent/response/e14d552d-8960-445b-85a2-7c2d1c324794 {"ip":"::1","service":"api-gateway","timestamp":"2025-12-04T06:47:12.280Z","userAgent":"PostmanRuntime/7.49.1"}
+[32minfo[39m: GET /api/agent/response/e14d552d-8960-445b-85a2-7c2d1c324794 {"ip":"::1","service":"api-gateway","timestamp":"2025-12-04T06:47:15.950Z","userAgent":"PostmanRuntime/7.49.1"}

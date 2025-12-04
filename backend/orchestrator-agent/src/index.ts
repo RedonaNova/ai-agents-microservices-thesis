@@ -274,7 +274,7 @@ class OrchestratorAgent {
       correlationId: requestId,
       requestId,
       agentType,
-      action: this.getAgentAction(intent),
+      action: this.getAgentAction(intent, context),
       payload: {
         userId,
         query,
@@ -367,7 +367,12 @@ class OrchestratorAgent {
   /**
    * Map intent to agent action
    */
-  private getAgentAction(intent: string): string {
+  private getAgentAction(intent: string, context?: any): string {
+    // If context has watchlistSymbols, use analyze_watchlist
+    if (context?.watchlistSymbols || context?.analysisType === 'watchlist') {
+      return 'analyze_watchlist';
+    }
+    
     const mapping: Record<string, string> = {
       'portfolio': 'analyze_portfolio',
       'portfolio_advice': 'provide_advice',

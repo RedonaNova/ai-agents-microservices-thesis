@@ -13,6 +13,7 @@ import ragRoutes from './routes/rag.routes';
 import monitoringRoutes from './routes/monitoring.routes';
 import watchlistRoutes from './routes/watchlist.routes';
 import dailyNewsRoutes from './routes/daily-news.routes';
+import mseRoutes from './routes/mse.routes';
 
 const app: Express = express();
 
@@ -48,6 +49,7 @@ app.use('/api/rag', ragRoutes);
 app.use('/api/monitoring', monitoringRoutes);
 app.use('/api/watchlist', watchlistRoutes);
 app.use('/api/daily-news', dailyNewsRoutes);
+app.use('/api/mse', mseRoutes);
 
 // 404 handler
 app.use((req: Request, res: Response) => {

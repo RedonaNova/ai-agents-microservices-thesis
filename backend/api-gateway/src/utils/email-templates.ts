@@ -1,13 +1,13 @@
 /**
- * Email Templates
+ * Email Templates - Mongolian
  */
 
 export const WELCOME_EMAIL_TEMPLATE = `<!DOCTYPE html>
-<html lang="en">
+<html lang="mn">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to Redona</title>
+    <title>Redona-д тавтай морил</title>
     <style type="text/css">
         @media (prefers-color-scheme: dark) {
             .email-container { background-color: #141414 !important; border: 1px solid #30333A !important; }
@@ -40,54 +40,54 @@ export const WELCOME_EMAIL_TEMPLATE = `<!DOCTYPE html>
                         <td class="mobile-padding" style="padding: 40px;">
                             
                             <h1 class="mobile-title dark-text" style="margin: 0 0 20px 0; font-size: 28px; font-weight: 600; color: #FDD458; line-height: 1.2;">
-                                Welcome aboard, {{name}}!
+                                Тавтай морил, {{name}}!
                             </h1>
                             
                             {{intro}}
                             
                             <h2 class="dark-text" style="margin: 30px 0 15px 0; font-size: 18px; font-weight: 600; color: #f8f9fa;">
-                                Here's what you can do right now:
+                                Та дараах боломжуудыг ашиглаж болно:
                             </h2>
                             
                             <div class="dark-info-box" style="background-color: #212328; padding: 20px; margin: 20px 0; border-radius: 8px;">
                                 <p class="dark-text" style="margin: 0 0 12px 0; font-size: 16px; font-weight: 500; color: #FDD458;">
-                                    📈 Build Your Watchlist
+                                    📈 Ажиглах жагсаалт үүсгэх
                                 </p>
                                 <p class="mobile-text dark-text-secondary" style="margin: 0; font-size: 14px; line-height: 1.5; color: #CCDADC;">
-                                    Track stocks from both global and Mongolian Stock Exchange (MSE). Get real-time updates on your favorite companies.
+                                    Монголын Хөрөнгийн Бирж (МХБ) болон олон улсын хувьцаануудыг хянаж, бодит цагийн мэдээлэл авах боломжтой.
                                 </p>
                             </div>
                             
                             <div class="dark-info-box" style="background-color: #212328; padding: 20px; margin: 20px 0; border-radius: 8px;">
                                 <p class="dark-text" style="margin: 0 0 12px 0; font-size: 16px; font-weight: 500; color: #FDD458;">
-                                    🤖 Chat with AI Advisor
+                                    🤖 AI зөвлөхтэй ярилцах
                                 </p>
                                 <p class="mobile-text dark-text-secondary" style="margin: 0; font-size: 14px; line-height: 1.5; color: #CCDADC;">
-                                    Ask questions in English or Mongolian. Get personalized investment recommendations powered by our event-driven AI agents.
+                                    Монгол хэлээр асуулт асууж, хувийн хөрөнгө оруулалтын зөвлөгөө авах боломжтой.
                                 </p>
                             </div>
                             
                             <div class="dark-info-box" style="background-color: #212328; padding: 20px; margin: 20px 0; border-radius: 8px;">
                                 <p class="dark-text" style="margin: 0 0 12px 0; font-size: 16px; font-weight: 500; color: #FDD458;">
-                                    📰 Get Daily News
+                                    📰 Өдөр тутмын мэдээ
                                 </p>
                                 <p class="mobile-text dark-text-secondary" style="margin: 0; font-size: 14px; line-height: 1.5; color: #CCDADC;">
-                                    Receive personalized market news based on your watchlist. Stay informed without the noise.
+                                    Таны сонирхолд нийцсэн зах зээлийн мэдээг өдөр бүр хүлээн авах боломжтой.
                                 </p>
                             </div>
                             
                             <div style="text-align: center; margin: 40px 0 20px 0;">
                                 <a href="http://localhost:3000" style="display: inline-block; padding: 14px 32px; background-color: #FDD458; color: #000000; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 16px;">
-                                    Get Started →
+                                    Эхлэх →
                                 </a>
                             </div>
                             
                             <div style="text-align: center; margin: 40px 0 0 0; padding-top: 30px; border-top: 1px solid #30333A;">
                                 <p class="mobile-text dark-text-muted" style="margin: 0 0 10px 0; font-size: 12px; line-height: 1.5; color: #6b7280;">
-                                    You're receiving this because you signed up for Redona.
+                                    Та Redona-д бүртгүүлсэн тул энэ имэйлийг хүлээн авч байна.
                                 </p>
                                 <p class="mobile-text dark-text-muted" style="margin: 0; font-size: 12px; line-height: 1.5; color: #6b7280;">
-                                    © 2025 Redona. Built with ❤️ for smarter investing.
+                                    © 2025 Redona. Ухаалаг хөрөнгө оруулалтын төлөө.
                                 </p>
                             </div>
                         </td>
@@ -101,11 +101,11 @@ export const WELCOME_EMAIL_TEMPLATE = `<!DOCTYPE html>
 </html>`;
 
 export const NEWS_SUMMARY_EMAIL_TEMPLATE = `<!DOCTYPE html>
-<html lang="en">
+<html lang="mn">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Market News Summary</title>
+    <title>Зах зээлийн мэдээний товчлол</title>
     <style type="text/css">
         @media (prefers-color-scheme: dark) {
             .email-container { background-color: #141414 !important; border: 1px solid #30333A !important; }
@@ -142,7 +142,7 @@ export const NEWS_SUMMARY_EMAIL_TEMPLATE = `<!DOCTYPE html>
                         <td class="mobile-padding" style="padding: 40px 40px 40px 40px;">
                             
                             <h1 class="mobile-title dark-text" style="margin: 0 0 20px 0; font-size: 24px; font-weight: 600; color: #FDD458; line-height: 1.2;">
-                                Market News Summary Today
+                                📰 Өнөөдрийн зах зээлийн мэдээ
                             </h1>
                             
                             <p class="mobile-text dark-text-muted" style="margin: 0 0 30px 0; font-size: 14px; line-height: 1.4; color: #6b7280;">
@@ -153,7 +153,7 @@ export const NEWS_SUMMARY_EMAIL_TEMPLATE = `<!DOCTYPE html>
                             
                             <div style="text-align: center; margin: 40px 0 0 0;">
                                 <p style="margin: 0 0 10px 0; font-size: 14px; line-height: 1.5; color: #CCDADC !important;">
-                                    You're receiving this because you subscribed to Redona news updates.
+                                    Та Redona-ийн мэдээний захиалагч тул энэ имэйлийг хүлээн авч байна.
                                 </p>
                                 <p style="margin: 0; font-size: 14px; line-height: 1.5; color: #CCDADC !important;">
                                     © 2025 Redona
@@ -186,4 +186,3 @@ export function fillNewsTemplate(date: string, newsContent: string): string {
     .replace('{{date}}', date)
     .replace('{{newsContent}}', newsContent);
 }
-

@@ -45,58 +45,73 @@ const producer = kafka.producer();
  * Get MSE stock data - prioritize mse_trading_status for current prices,
  * fallback to mse_trading_history for historical data
  */
-async function getMSEData(symbol?: string) {
+async function getMSEData(symbols?: string | string[]) {
   try {
-    // First try to get real-time status data
-    let query = `
-      SELECT 
-        s.symbol, 
-        COALESCE(s.name, c.name) as name, 
-        c.sector, 
-        c.industry,
-        COALESCE(s.current_price, th.closing_price) as closing_price,
-        COALESCE(s.volume, th.volume) as volume,
-        COALESCE(s.updated_at::date, th.trade_date) as trade_date,
-        COALESCE(s.current_price - s.previous_close, th.closing_price - th.previous_close) as change,
-        COALESCE(s.change_percent, ((th.closing_price - th.previous_close) / NULLIF(th.previous_close, 0) * 100)) as change_percent
-      FROM mse_companies c
-      LEFT JOIN mse_trading_status s ON c.symbol = s.symbol
-      LEFT JOIN LATERAL (
-        SELECT * FROM mse_trading_history 
-        WHERE symbol = c.symbol 
-        ORDER BY trade_date DESC 
-        LIMIT 1
-      ) th ON true
-    `;
-    
-    const params: any[] = [];
-    if (symbol) {
-      query += ` WHERE c.symbol ILIKE $1 OR c.symbol = $2`;
-      params.push(`%${symbol}%`, symbol.toUpperCase());
+    // Normalize symbols to array with -O-0000 suffix
+    let symbolList: string[] = [];
+    if (symbols) {
+      const rawSymbols = Array.isArray(symbols) ? symbols : [symbols];
+      symbolList = rawSymbols.map(s => {
+        const upper = s.toUpperCase();
+        return upper.endsWith('-O-0000') ? upper : upper + '-O-0000';
+      });
     }
     
-    query += ` ORDER BY c.symbol LIMIT 50`;
+    // Query trading_status first (current prices), then trading_history as fallback
+    let query: string;
+    let params: any[] = [];
     
-    const result = await db.query(query, params);
-    
-    // If no data from companies table, try direct from trading history
-    if (result.rows.length === 0) {
-      const fallbackQuery = `
-        SELECT DISTINCT ON (symbol)
-          symbol, name, 
-          NULL as sector, NULL as industry,
-          closing_price, volume, trade_date,
-          (closing_price - previous_close) as change,
-          ((closing_price - previous_close) / NULLIF(previous_close, 0) * 100) as change_percent
-        FROM mse_trading_history
-        ${symbol ? 'WHERE symbol ILIKE $1' : ''}
-        ORDER BY symbol, trade_date DESC
+    if (symbolList.length > 0) {
+      // Fetch specific symbols from trading_status
+      query = `
+        SELECT 
+          ts.symbol, 
+          COALESCE(ts.name, c.name, '') as name,
+          COALESCE(c.sector, '') as sector,
+          COALESCE(ts.current_price, 0) as closing_price,
+          COALESCE(ts.volume, 0) as volume,
+          COALESCE(ts.change_percent, 0) as change_percent,
+          ts.last_trade_time as trade_date
+        FROM mse_trading_status ts
+        LEFT JOIN mse_companies c ON ts.symbol = c.symbol
+        WHERE ts.symbol = ANY($1)
+        
+        UNION ALL
+        
+        SELECT DISTINCT ON (th.symbol)
+          th.symbol,
+          COALESCE(th.name, c.name, '') as name,
+          COALESCE(c.sector, '') as sector,
+          COALESCE(th.closing_price, 0) as closing_price,
+          COALESCE(th.volume, 0) as volume,
+          COALESCE(((th.closing_price - th.previous_close) / NULLIF(th.previous_close, 0) * 100), 0) as change_percent,
+          th.trade_date
+        FROM mse_trading_history th
+        LEFT JOIN mse_companies c ON th.symbol = c.symbol
+        WHERE th.symbol = ANY($1)
+          AND th.symbol NOT IN (SELECT symbol FROM mse_trading_status WHERE symbol = ANY($1))
+        ORDER BY th.symbol, th.trade_date DESC
+      `;
+      params = [symbolList];
+    } else {
+      // Fetch all stocks for general analysis
+      query = `
+        SELECT 
+          ts.symbol, 
+          COALESCE(ts.name, '') as name,
+          '' as sector,
+          COALESCE(ts.current_price, 0) as closing_price,
+          COALESCE(ts.volume, 0) as volume,
+          COALESCE(ts.change_percent, 0) as change_percent,
+          ts.last_trade_time as trade_date
+        FROM mse_trading_status ts
+        ORDER BY ts.volume DESC NULLS LAST
         LIMIT 50
       `;
-      const fallbackResult = await db.query(fallbackQuery, symbol ? [`%${symbol}%`] : []);
-      return fallbackResult.rows;
     }
     
+    const result = await db.query(query, params);
+    log('📊 Fetched MSE data', { count: result.rows.length, symbols: symbolList });
     return result.rows;
   } catch (error: any) {
     log('❌ Error fetching MSE data', { error: error.message });
@@ -108,11 +123,16 @@ async function getMSEData(symbol?: string) {
  * Generate AI response using Gemini with personalization
  */
 async function generateAIResponse(action: string, payload: any, context: any = {}) {
-  const { userId, query, symbols, userProfile } = payload;
+  const { userId, query, userProfile } = payload;
   
-  // Fetch relevant data
+  // Get symbols from context (passed by orchestrator) or direct payload
+  const symbols = payload.context?.symbols || payload.symbols || [];
+  
+  log('🔍 Processing request', { action, symbols, hasContext: !!payload.context });
+  
+  // Fetch relevant data - pass all symbols for watchlist analysis
   const mseData = symbols && symbols.length > 0 
-    ? await getMSEData(symbols[0]) 
+    ? await getMSEData(symbols) 
     : await getMSEData();
   
   // Build personalization context from user profile
@@ -137,73 +157,62 @@ async function generateAIResponse(action: string, payload: any, context: any = {
   const formatVolume = (val: any) => val != null && !isNaN(val) ? Number(val).toLocaleString() : 'N/A';
 
   if (action === 'analyze_portfolio' || action === 'provide_advice') {
-    prompt = `Та Монголын Хөрөнгийн Биржийн хөрөнгө оруулалтын зөвлөх юм. ЗААВАЛ МОНГОЛ ХЭЛЭЭР хариулна уу.
+    prompt = `Та МХБ-ийн хөрөнгө оруулалтын зөвлөх. МОНГОЛ ХЭЛЭЭР, ТОВЧ (150 үг хүртэл) хариулна уу.
 
 ${personalizationContext}
 
-Хэрэглэгчийн асуулт: ${query || 'Хөрөнгө оруулалтын зөвлөгөө өгнө үү'}
+Асуулт: ${query || 'Хөрөнгө оруулалтын зөвлөгөө'}
 
-Монголын Хөрөнгийн Биржийн хувьцаанууд:
-${mseData.slice(0, 10).map(s => `- ${s.symbol} (${s.name}): ${formatPrice(s.closing_price)} ₮, ${formatPercent(s.change_percent)}%`).join('\n')}
+МХБ хувьцаа (топ 5):
+${mseData.slice(0, 5).map(s => `${s.symbol}: ${formatPrice(s.closing_price)}₮ (${formatPercent(s.change_percent)}%)`).join(' | ')}
 
-${context.ragResults ? `\nНэмэлт мэдээлэл:\n${context.ragResults.map((r: any) => r.content).join('\n\n')}` : ''}
-
-2-3 догол мөр дотор товч, ашигтай хөрөнгө оруулалтын зөвлөгөө өгнө үү:
-1. Зах зээлийн тойм
-2. Тусгай санал (хэрэглэгчийн профайл дээр суурилсан)
-3. Эрсдлийн анхааруулга
-
-Мэргэжлийн, өгөгдөлд суурилсан хариулт өг.`;
+ТОВЧ ХАРИУЛТ (3 хэсэгт):
+• Зах зээл: (1 өгүүлбэр)
+• Зөвлөмж: (тодорхой хувьцаа дурдах)
+• Эрсдэл: (1 өгүүлбэр)`;
   } else if (action === 'analyze_market') {
-    prompt = `Монголын Хөрөнгийн Биржийн зах зээлийн нөхцөл байдлыг дүн шинжилгээ хий. ЗААВАЛ МОНГОЛ ХЭЛЭЭР хариулна уу.
+    prompt = `МХБ зах зээлийн шинжилгээ. МОНГОЛ, ТОВЧ (100 үг).
 
 ${personalizationContext}
 
-Шилдэг хувьцаанууд:
-${mseData.slice(0, 15).map(s => `- ${s.symbol}: ${formatPrice(s.closing_price)} ₮ (${Number(s.change_percent) >= 0 ? '+' : ''}${formatPercent(s.change_percent)}%)`).join('\n')}
+Топ хувьцаа:
+${mseData.slice(0, 8).map(s => `${s.symbol}: ${formatPrice(s.closing_price)}₮ (${formatPercent(s.change_percent)}%)`).join(' | ')}
 
-Дараахыг өгнө үү:
-1. Зах зээлийн ерөнхий мэдрэмж (1-2 өгүүлбэр)
-2. Сайн ажиллаж буй салбарууд (1-2 өгүүлбэр)
-3. Анхаарах чиг хандлагууд (1-2 өгүүлбэр)`;
+ТОВЧ (3 өгүүлбэр):
+• Зах зээлийн мэдрэмж
+• Идэвхтэй салбар
+• Анхаарах зүйл`;
   } else if (action === 'analyze_watchlist') {
-    // Special action for watchlist analysis
-    const watchlistSymbols = payload.watchlistSymbols || [];
-    const watchlistData = mseData.filter(s => watchlistSymbols.includes(s.symbol));
-    
-    prompt = `Та Монголын Хөрөнгийн Биржийн хөрөнгө оруулалтын шинжээч юм. ЗААВАЛ МОНГОЛ ХЭЛЭЭР хариулна уу.
+    // Special action for watchlist analysis - mseData already filtered by symbols
+    prompt = `МХБ ажиглах жагсаалтын шинжилгээ. МОНГОЛ, ТОВЧ (200 үг хүртэл).
 
 ${personalizationContext}
 
-Хэрэглэгчийн ажиглаж буй хувьцаанууд:
-${watchlistData.length > 0 
-  ? watchlistData.map(s => `- ${s.symbol} (${s.name || 'N/A'}): ${formatPrice(s.closing_price)} ₮ | Хэмжээ: ${formatVolume(s.volume)} | Өөрчлөлт: ${Number(s.change_percent) >= 0 ? '+' : ''}${formatPercent(s.change_percent)}%`).join('\n')
-  : 'Мэдээлэл олдсонгүй'
+Ажиглаж буй хувьцаанууд:
+${mseData.length > 0 
+  ? mseData.map(s => `• ${s.symbol}: ${formatPrice(s.closing_price)}₮ | Хэмжээ: ${formatVolume(s.volume)} | Өөрчлөлт: ${formatPercent(s.change_percent)}%`).join('\n')
+  : 'Хувьцааны мэдээлэл олдсонгүй'
 }
 
-Хэрэглэгчийн ажиглаж буй хувьцаа тус бүрийн талаар дэлгэрэнгүй дүн шинжилгээ хийж, хувийн зөвлөгөө өг:
-1. Хувьцаа бүрийн гүйцэтгэл (үнэ, хэмжээ, өөрчлөлт)
-2. Хэрэглэгчийн профайл дээр суурилсан худалдан авах/зарах/хадгалах зөвлөмж
-3. Эрсдлийн үнэлгээ (хэрэглэгчийн эрсдлийн хүлээцтэй байдалтай харьцуулан)
-4. Ирээдүйн хандлагын таамаглал`;
+ТОВЧ ШИНЖИЛГЭЭ (хувьцаа тус бүрд):
+• [Хувьцаа]: Үнэ, хэмжээ + Зөвлөмж (Авах/Зарах/Хадгалах)
+
+Ерөнхий дүгнэлт: (1-2 өгүүлбэр)`;
   } else {
     // Generic analysis with MSE data
-    prompt = `Та Монголын Хөрөнгийн Биржийн хөрөнгө оруулалтын шинжээч юм. ЗААВАЛ МОНГОЛ ХЭЛЭЭР хариулна уу.
+    prompt = `МХБ шинжээч. МОНГОЛ, ТОВЧ (150 үг хүртэл).
 
 ${personalizationContext}
 
-Хэрэглэгчийн асуулт: ${query || 'Зах зээлийн дүн шинжилгээ хийнэ үү'}
+Асуулт: ${query || 'Зах зээлийн шинжилгээ'}
 
-Одоогийн МХБ-ийн өгөгдөл:
-${mseData.slice(0, 15).map(s => `- ${s.symbol} (${s.name || 'N/A'}): ${formatPrice(s.closing_price)} ₮ | Хэмжээ: ${formatVolume(s.volume)} | Өөрчлөлт: ${Number(s.change_percent) >= 0 ? '+' : ''}${formatPercent(s.change_percent)}%`).join('\n')}
+МХБ өгөгдөл:
+${mseData.slice(0, 8).map(s => `${s.symbol}: ${formatPrice(s.closing_price)}₮ (${formatPercent(s.change_percent)}%)`).join(' | ')}
 
-Дэлгэрэнгүй, өгөгдөлд суурилсан дүн шинжилгээ хий:
-1. Дээрх БОДИТ МХБ өгөгдлийг ашигла
-2. Тодорхой хувьцааны тэмдэг, үнэ, хэмжээг дурдана
-3. Хэрэглэгчийн асуултад бүрэн хариулна
-4. Мэргэжлийн, үйл ажиллагааны чанартай байна
-
-Чухал: Дээрх МХБ-ийн мэдээллийн сангийн бодит өгөгдлийг ашигла, ерөнхий хариултыг бүү ашигла.`;
+ШУУД ХАРИУЛТ:
+• Асуултад хариулах (тодорхой хувьцаа дурдах)
+• Зөвлөмж өгөх
+• Эрсдэл дурдах (1 өгүүлбэр)`;
   }
   
   try {

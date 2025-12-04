@@ -6,15 +6,144 @@
 /home/it/apps/thesis-report/backend/flink-planner/venv/lib/python3.10/site-packages/google/api_core/_python_version_support.py:266: FutureWarning: You are using a Python version (3.10.19) which Google will stop supporting in new releases of google.api_core once it reaches its end of life (2026-10-04). Please upgrade to the latest Python version, or at least Python 3.11, to continue receiving updates for google.api_core past that date.
   warnings.warn(message, FutureWarning)
 ✅ Imported Gemini AI
-✅ Configured Gemini AI (gemini-2.0-flash)
+✅ Configured Gemini AI (gemini-2.5-flash)
 
-[2025-12-04T10:36:02.837969] Kafka Broker: localhost:9092
-[2025-12-04T10:36:02.837986] Gemini AI: Enabled
+[2025-12-04T14:45:28.617957] Kafka Broker: localhost:9092
+[2025-12-04T14:45:28.617979] Gemini AI: Enabled
 
-[2025-12-04T10:36:02.950489] ✅ Connected to Kafka consumer
-[2025-12-04T10:36:03.062203] ✅ Connected to Kafka producer
+[2025-12-04T14:45:28.729960] ✅ Connected to Kafka consumer
+[2025-12-04T14:45:28.841277] ✅ Connected to Kafka producer
 ==================================================
-[2025-12-04T10:36:03.062466] 📥 Listening on: planning.tasks
-[2025-12-04T10:36:03.062481] 📤 Publishing to: execution.plans, agent.tasks, monitoring.events
+[2025-12-04T14:45:28.841427] 📥 Listening on: planning.tasks
+[2025-12-04T14:45:28.841441] 📤 Publishing to: execution.plans, agent.tasks, monitoring.events
 ==================================================
 
+[2025-12-04T14:45:32.067864] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:45:33.071558] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:45:34.118146] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:45:35.122498] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:45:36.125827] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:45:37.129314] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:45:38.133926] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:45:39.138048] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:45:40.142430] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:45:41.147090] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:45:42.153539] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:45:43.157263] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:45:44.160555] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:45:45.164269] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:45:46.168004] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:45:47.218295] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:45:48.222893] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:45:49.226323] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:45:50.229149] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:45:51.640477] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:45:53.197479] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:45:54.200869] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:45:55.204427] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:45:56.207529] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:45:57.210813] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:45:58.214401] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:45:59.217126] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:46:00.220020] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:46:01.223875] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:46:02.228800] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:46:03.233551] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:46:04.236991] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:46:05.240639] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:46:06.244351] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:46:07.249417] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:46:08.253275] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:46:09.256832] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:46:10.259454] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:46:11.263428] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:46:12.266320] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:46:13.269487] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:46:14.273245] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:46:15.276142] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:46:16.279167] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:46:17.282411] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:46:18.285325] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:46:19.288656] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:46:20.292637] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:46:21.295426] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:46:23.266556] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:46:24.269886] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:46:25.272717] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:46:26.276096] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:46:27.279819] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:46:28.285205] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:46:29.288580] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:46:30.291923] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:46:31.294958] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:46:32.298326] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:46:33.301259] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:46:34.304439] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:46:35.308459] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:46:36.312671] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:46:37.315596] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:46:38.318171] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:46:39.321049] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:46:40.347011] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:46:41.350428] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:46:42.352619] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:46:43.355766] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:46:44.359572] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:46:45.362662] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:46:46.366210] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:46:47.369808] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:46:48.372953] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:46:49.376036] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:46:50.379292] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:46:51.382148] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:46:52.384935] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:46:54.361815] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:46:55.365982] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:46:56.368850] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:46:57.371869] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:46:58.374571] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:46:59.377237] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:47:00.379609] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:47:01.381942] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:47:02.385427] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:47:03.388533] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:47:04.391687] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:47:05.394838] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:47:06.420575] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:47:07.424981] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:47:08.427599] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:47:09.431005] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:47:10.434265] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:47:11.438298] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:47:12.443838] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:47:13.446600] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:47:14.449563] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:47:15.452881] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:47:16.456019] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:47:17.458761] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:47:18.462111] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:47:19.520237] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:47:20.523544] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:47:21.527006] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:47:22.529268] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:47:23.532448] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:47:25.530555] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:47:26.533287] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:47:27.536097] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:47:28.539420] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:47:29.541903] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:47:30.544508] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:47:31.548622] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:47:32.553273] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:47:33.557739] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:47:34.561496] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:47:35.564890] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:47:36.567532] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:47:37.571136] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:47:38.573752] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:47:39.577160] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:47:40.580718] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:47:41.584378] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:47:42.587482] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:47:43.591030] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found
+[2025-12-04T14:47:44.593912] ❌ Error processing message: UnsupportedCodecError: Libraries for snappy compression codec not found

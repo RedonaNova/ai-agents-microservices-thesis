@@ -151,9 +151,9 @@ class EmailService {
       // Send email
       await this.send({
         to,
-        subject: '🎉 Welcome to Redona - Your AI Investment Advisor',
+        subject: '🎉 Redona-д тавтай морил!',
         html,
-        text: `Welcome to Redona, ${name}! We're excited to help you make informed investment decisions.`
+        text: `Тавтай морил ${name}! Бид танд ухаалаг хөрөнгө оруулалтын шийдвэр гаргахад туслахад бэлэн байна.`
       });
 
       logger.info('✅ Welcome email sent', { to });
@@ -182,9 +182,9 @@ class EmailService {
       // Send email
       await this.send({
         to,
-        subject: `📰 Your Daily Market News - ${date}`,
+        subject: `📰 Өнөөдрийн зах зээлийн мэдээ - ${date}`,
         html,
-        text: `Market news summary for ${date}`
+        text: `${date}-ны зах зээлийн мэдээний товчлол`
       });
 
       logger.info('✅ News summary email sent', { to, articleCount: articles.length });

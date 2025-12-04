@@ -1,74 +1,67 @@
 /**
- * AI Prompts for Email Generation
+ * AI Prompts for Email Generation - Mongolian
  */
 
-export const PERSONALIZED_WELCOME_EMAIL_PROMPT = `Generate highly personalized HTML content that will be inserted into an email template at the {{intro}} placeholder.
+export const PERSONALIZED_WELCOME_EMAIL_PROMPT = `Имэйл загварын {{intro}} хэсэгт орох HTML контент үүсгэнэ үү.
 
-User profile data:
+Хэрэглэгчийн профайл:
 {{userProfile}}
 
-PERSONALIZATION REQUIREMENTS:
+ХУВИЙН БОЛГОХ ШААРДЛАГА:
 
-You MUST create content that is obviously tailored to THIS specific user by:
+Имэйлийн толгой хэсэгт "Тавтай морил, {{name}}!" гэж бичсэн тул "Тавтай морил" гэж эхлэхгүй. "Манай гишүүн болсонд баярлалаа", "Танд амжилт хүсье", "Бүртгэл амжилттай боллоо" гэх мэт өөр эхлэлүүд ашиглана.
 
-IMPORTANT: Do NOT start the personalized content with "Welcome" since the email header already says "Welcome aboard {{name}}". Use alternative openings like "Thanks for joining", "Great to have you", "You're all set", "Perfect timing", etc.
+1. **Хэрэглэгчийн мэдээллийг ашиглах**:
+   - Хөрөнгө оруулалтын зорилго
+   - Эрсдлийн хүлээцтэй байдал
+   - Сонирхож буй салбарууд
 
-1. **Direct Reference to User Details**: Extract and use specific information from their profile:
-   - Their exact investment goals or objectives
-   - Their stated risk tolerance level
-   - Their preferred sectors/industries mentioned
+2. **Контекст нийцсэн агуулга**:
+   - Шинэ хөрөнгө оруулагч → суралцах, эхлэх талаар бичих
+   - Туршлагатай → дэвшилтэт хэрэгсэл, стратегийн талаар бичих
+   - Тодорхой салбар → тухайн салбарын нэрийг шууд дурдах
 
-2. **Contextual Messaging**: Create content that shows you understand their situation:
-   - New investors → Reference learning/starting their journey
-   - Experienced traders → Reference advanced tools/strategy enhancement  
-   - Specific sectors → Reference those exact industries by name
-   - Conservative approach → Reference safety and informed decisions
-   - Aggressive approach → Reference opportunities and growth potential
+ФОРМАТЛАХ ШААРДЛАГА:
+- ЗӨВХӨН цэвэр HTML буцаана, markdown үгүй, code block үгүй
+- НЭГ догол мөр л ашиглана: <p class="mobile-text" style="margin: 0 0 30px 0; font-size: 16px; line-height: 1.6; color: #CCDADC;">агуулга</p>
+- ЯГ ХОЁР өгүүлбэр бичих
+- Нийт 30-50 үг байх
+- Чухал хэсгүүдэд <strong> ашиглах
 
-3. **Personal Touch**: Make it feel like it was written specifically for them
+Жишээ:
+<p class="mobile-text" style="margin: 0 0 30px 0; font-size: 16px; line-height: 1.6; color: #CCDADC;">Манай гишүүн болсонд баярлалаа! <strong>Технологийн салбарт</strong> хөрөнгө оруулах сонирхолтой тул манай AI зөвлөх танд тохирсон зөвлөгөө өгөх болно.</p>`;
 
-CRITICAL FORMATTING REQUIREMENTS:
-- Return ONLY clean HTML content with NO markdown, NO code blocks, NO backticks
-- Use SINGLE paragraph only: <p class="mobile-text" style="margin: 0 0 30px 0; font-size: 16px; line-height: 1.6; color: #CCDADC;">content</p>
-- Write exactly TWO sentences
-- Keep total content between 35-50 words for readability
-- Use <strong> for key personalized elements
+export const NEWS_SUMMARY_EMAIL_PROMPT = `Зах зээлийн мэдээний товчлолын HTML контент үүсгэнэ үү. МОНГОЛ ХЭЛЭЭР бичнэ.
 
-Example:
-<p class="mobile-text" style="margin: 0 0 30px 0; font-size: 16px; line-height: 1.6; color: #CCDADC;">Thanks for joining! As someone focused on <strong>technology growth stocks</strong>, you'll love our real-time alerts. We'll help you spot opportunities before they become mainstream news.</p>`;
-
-export const NEWS_SUMMARY_EMAIL_PROMPT = `Generate HTML content for a market news summary email.
-
-News data to summarize:
+Мэдээний өгөгдөл:
 {{newsData}}
 
-CRITICAL FORMATTING REQUIREMENTS:
-- Return ONLY clean HTML content with NO markdown, NO code blocks
-- Use clear sections with proper HTML
+ФОРМАТЛАХ ШААРДЛАГА:
+- ЗӨВХӨН цэвэр HTML буцаана, markdown үгүй, code block үгүй
+- Тодорхой хэсгүүдтэй HTML ашиглана
 
-SECTION HEADINGS:
-<h3 class="mobile-news-title dark-text" style="margin: 30px 0 15px 0; font-size: 18px; font-weight: 600; color: #f8f9fa; line-height: 1.3;">Section Title</h3>
+ХЭСГИЙН ГАРЧИГ:
+<h3 class="mobile-news-title dark-text" style="margin: 30px 0 15px 0; font-size: 18px; font-weight: 600; color: #f8f9fa; line-height: 1.3;">Хэсгийн гарчиг</h3>
 
-ARTICLE CONTAINER:
+НИЙТЛЭЛ:
 <div class="dark-info-box" style="background-color: #212328; padding: 24px; margin: 20px 0; border-radius: 8px;">
-<h4 class="dark-text" style="margin: 0 0 16px 0; font-size: 18px; font-weight: 600; color: #FDD458; line-height: 1.4;">Article Title</h4>
+<h4 class="dark-text" style="margin: 0 0 16px 0; font-size: 18px; font-weight: 600; color: #FDD458; line-height: 1.4;">Нийтлэлийн гарчиг</h4>
 <ul style="margin: 16px 0 20px 0; padding-left: 0; margin-left: 0; list-style: none;">
   <li class="dark-text-secondary" style="margin: 0 0 16px 0; padding: 0; font-size: 16px; line-height: 1.6; color: #CCDADC;">
-    <span style="color: #FDD458; font-weight: bold; font-size: 20px; margin-right: 8px;">•</span>Clear explanation in simple terms
+    <span style="color: #FDD458; font-weight: bold; font-size: 20px; margin-right: 8px;">•</span>Товч тайлбар
   </li>
 </ul>
 <div style="background-color: #141414; border: 1px solid #374151; padding: 15px; border-radius: 6px; margin: 16px 0;">
-<p class="dark-text-secondary" style="margin: 0; font-size: 14px; color: #CCDADC; line-height: 1.4;">💡 <strong style="color: #FDD458;">Bottom Line:</strong> Simple explanation</p>
+<p class="dark-text-secondary" style="margin: 0; font-size: 14px; color: #CCDADC; line-height: 1.4;">💡 <strong style="color: #FDD458;">Дүгнэлт:</strong> Энгийн тайлбар</p>
 </div>
 <div style="margin: 20px 0 0 0;">
-<a href="URL" style="color: #FDD458; text-decoration: none; font-weight: 500; font-size: 14px;">Read Full Story →</a>
+<a href="URL" style="color: #FDD458; text-decoration: none; font-weight: 500; font-size: 14px;">Дэлгэрэнгүй унших →</a>
 </div>
 </div>
 
-Content guidelines:
-- Use icons: 📊 Market Overview, 📈 Top Gainers, 📉 Top Losers, 🔥 Breaking News
-- Minimum 3 concise bullet points per article
-- Use PLAIN ENGLISH - no jargon
-- Include "Bottom Line" in everyday language
-- Always include "Read Full Story" with actual URLs`;
-
+Агуулгын удирдамж:
+- Дүрс ашиглах: 📊 Зах зээлийн тойм, 📈 Өссөн хувьцаа, 📉 Буурсан хувьцаа, 🔥 Чухал мэдээ
+- Нийтлэл бүрд хамгийн багадаа 3 товч зүйл
+- МОНГОЛ хэлээр энгийн үгээр бичих
+- "Дүгнэлт" хэсгийг ойлгомжтой бичих
+- "Дэлгэрэнгүй унших" холбоос заавал оруулах`;
