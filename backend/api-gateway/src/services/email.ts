@@ -69,7 +69,7 @@ class EmailService {
 
       const prompt = PERSONALIZED_WELCOME_EMAIL_PROMPT.replace('{{userProfile}}', profileText);
 
-      const model = this.genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
+      const model = this.genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
       const result = await model.generateContent(prompt);
       const response = result.response;
       const text = response.text();
@@ -99,7 +99,7 @@ class EmailService {
       const newsData = JSON.stringify(articles, null, 2);
       const prompt = NEWS_SUMMARY_EMAIL_PROMPT.replace('{{newsData}}', newsData);
 
-      const model = this.genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
+      const model = this.genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
       const result = await model.generateContent(prompt);
       const response = result.response;
       const text = response.text();

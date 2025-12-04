@@ -30,7 +30,7 @@ const db = new Pool({
 
 // Gemini AI
 const genai = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
-const model = genai.getGenerativeModel({ model: 'gemini-2.0-flash' });
+const model = genai.getGenerativeModel({ model: 'gemini-2.5-flash' });
 
 // Kafka
 const kafka = new Kafka({
@@ -42,29 +42,61 @@ const consumer = kafka.consumer({ groupId: 'investment-agent-group' });
 const producer = kafka.producer();
 
 /**
- * Get MSE stock data
+ * Get MSE stock data - prioritize mse_trading_status for current prices,
+ * fallback to mse_trading_history for historical data
  */
 async function getMSEData(symbol?: string) {
   try {
+    // First try to get real-time status data
     let query = `
-      SELECT DISTINCT ON (c.symbol)
-        c.symbol, c.name, c.sector, c.industry,
-        th.closing_price, th.volume, th.trade_date,
-        (th.closing_price - th.previous_close) as change,
-        ((th.closing_price - th.previous_close) / NULLIF(th.previous_close, 0) * 100) as change_percent
+      SELECT 
+        s.symbol, 
+        COALESCE(s.name, c.name) as name, 
+        c.sector, 
+        c.industry,
+        COALESCE(s.current_price, th.closing_price) as closing_price,
+        COALESCE(s.volume, th.volume) as volume,
+        COALESCE(s.updated_at::date, th.trade_date) as trade_date,
+        COALESCE(s.current_price - s.previous_close, th.closing_price - th.previous_close) as change,
+        COALESCE(s.change_percent, ((th.closing_price - th.previous_close) / NULLIF(th.previous_close, 0) * 100)) as change_percent
       FROM mse_companies c
-      LEFT JOIN mse_trading_history th ON c.symbol = th.symbol
+      LEFT JOIN mse_trading_status s ON c.symbol = s.symbol
+      LEFT JOIN LATERAL (
+        SELECT * FROM mse_trading_history 
+        WHERE symbol = c.symbol 
+        ORDER BY trade_date DESC 
+        LIMIT 1
+      ) th ON true
     `;
     
     const params: any[] = [];
     if (symbol) {
-      query += ` WHERE c.symbol = $1`;
-      params.push(symbol.toUpperCase());
+      query += ` WHERE c.symbol ILIKE $1 OR c.symbol = $2`;
+      params.push(`%${symbol}%`, symbol.toUpperCase());
     }
     
-    query += ` ORDER BY c.symbol, th.trade_date DESC LIMIT 50`;
+    query += ` ORDER BY c.symbol LIMIT 50`;
     
     const result = await db.query(query, params);
+    
+    // If no data from companies table, try direct from trading history
+    if (result.rows.length === 0) {
+      const fallbackQuery = `
+        SELECT DISTINCT ON (symbol)
+          symbol, name, 
+          NULL as sector, NULL as industry,
+          closing_price, volume, trade_date,
+          (closing_price - previous_close) as change,
+          ((closing_price - previous_close) / NULLIF(previous_close, 0) * 100) as change_percent
+        FROM mse_trading_history
+        ${symbol ? 'WHERE symbol ILIKE $1' : ''}
+        ORDER BY symbol, trade_date DESC
+        LIMIT 50
+      `;
+      const fallbackResult = await db.query(fallbackQuery, symbol ? [`%${symbol}%`] : []);
+      return fallbackResult.rows;
+    }
+    
     return result.rows;
   } catch (error: any) {
     log('❌ Error fetching MSE data', { error: error.message });
@@ -73,61 +105,105 @@ async function getMSEData(symbol?: string) {
 }
 
 /**
- * Generate AI response using Gemini
+ * Generate AI response using Gemini with personalization
  */
 async function generateAIResponse(action: string, payload: any, context: any = {}) {
-  const { userId, query, symbols } = payload;
+  const { userId, query, symbols, userProfile } = payload;
   
   // Fetch relevant data
   const mseData = symbols && symbols.length > 0 
     ? await getMSEData(symbols[0]) 
     : await getMSEData();
   
-  // Build prompt
+  // Build personalization context from user profile
+  let personalizationContext = '';
+  if (userProfile) {
+    personalizationContext = `
+Хэрэглэгчийн хөрөнгө оруулалтын профайл:
+- Хөрөнгө оруулалтын зорилго: ${userProfile.investmentGoal || 'Тодорхойгүй'}
+- Эрсдлийн хүлээцтэй байдал: ${userProfile.riskTolerance || 'Дунд'}
+- Сонирхож буй салбарууд: ${userProfile.preferredIndustries?.join(', ') || 'Тодорхойгүй'}
+
+ЧУХАЛ: Дээрх профайл дээр суурилан хувийн зөвлөгөө өг. Эрсдлийн хүлээцтэй байдал "Low" бол аюулгүй хувьцаа санал болго, "High" бол өндөр өсөлттэй хувьцаа санал болго.
+`;
+  }
+  
+  // Build prompt - ALL RESPONSES IN MONGOLIAN
   let prompt = '';
   
+  // Helper to format numbers safely
+  const formatPercent = (val: any) => val != null && !isNaN(val) ? Number(val).toFixed(2) : '0.00';
+  const formatPrice = (val: any) => val != null && !isNaN(val) ? Number(val).toFixed(2) : 'N/A';
+  const formatVolume = (val: any) => val != null && !isNaN(val) ? Number(val).toLocaleString() : 'N/A';
+
   if (action === 'analyze_portfolio' || action === 'provide_advice') {
-    prompt = `You are an investment advisor for the Mongolian Stock Exchange.
+    prompt = `Та Монголын Хөрөнгийн Биржийн хөрөнгө оруулалтын зөвлөх юм. ЗААВАЛ МОНГОЛ ХЭЛЭЭР хариулна уу.
 
-User Query: ${query || 'Provide portfolio advice'}
+${personalizationContext}
 
-Available MSE Stocks (sample):
-${mseData.slice(0, 10).map(s => `- ${s.symbol} (${s.name}): ${s.closing_price} MNT, ${s.change_percent?.toFixed(2)}%`).join('\n')}
+Хэрэглэгчийн асуулт: ${query || 'Хөрөнгө оруулалтын зөвлөгөө өгнө үү'}
 
-${context.ragResults ? `\nRelevant Information:\n${context.ragResults.map((r: any) => r.content).join('\n\n')}` : ''}
+Монголын Хөрөнгийн Биржийн хувьцаанууд:
+${mseData.slice(0, 10).map(s => `- ${s.symbol} (${s.name}): ${formatPrice(s.closing_price)} ₮, ${formatPercent(s.change_percent)}%`).join('\n')}
 
-Provide concise, actionable investment advice in 2-3 paragraphs. Focus on:
-1. Market overview
-2. Specific recommendations
-3. Risk considerations
+${context.ragResults ? `\nНэмэлт мэдээлэл:\n${context.ragResults.map((r: any) => r.content).join('\n\n')}` : ''}
 
-Keep it professional and data-driven.`;
+2-3 догол мөр дотор товч, ашигтай хөрөнгө оруулалтын зөвлөгөө өгнө үү:
+1. Зах зээлийн тойм
+2. Тусгай санал (хэрэглэгчийн профайл дээр суурилсан)
+3. Эрсдлийн анхааруулга
+
+Мэргэжлийн, өгөгдөлд суурилсан хариулт өг.`;
   } else if (action === 'analyze_market') {
-    prompt = `Analyze the current Mongolian Stock Exchange market conditions.
+    prompt = `Монголын Хөрөнгийн Биржийн зах зээлийн нөхцөл байдлыг дүн шинжилгээ хий. ЗААВАЛ МОНГОЛ ХЭЛЭЭР хариулна уу.
 
-Top Stocks:
-${mseData.slice(0, 15).map(s => `- ${s.symbol}: ${s.closing_price} MNT (${s.change_percent >= 0 ? '+' : ''}${s.change_percent?.toFixed(2)}%)`).join('\n')}
+${personalizationContext}
 
-Provide:
-1. Overall market sentiment (1-2 sentences)
-2. Top sectors performing well (1-2 sentences)
-3. Key trends to watch (1-2 sentences)`;
+Шилдэг хувьцаанууд:
+${mseData.slice(0, 15).map(s => `- ${s.symbol}: ${formatPrice(s.closing_price)} ₮ (${Number(s.change_percent) >= 0 ? '+' : ''}${formatPercent(s.change_percent)}%)`).join('\n')}
+
+Дараахыг өгнө үү:
+1. Зах зээлийн ерөнхий мэдрэмж (1-2 өгүүлбэр)
+2. Сайн ажиллаж буй салбарууд (1-2 өгүүлбэр)
+3. Анхаарах чиг хандлагууд (1-2 өгүүлбэр)`;
+  } else if (action === 'analyze_watchlist') {
+    // Special action for watchlist analysis
+    const watchlistSymbols = payload.watchlistSymbols || [];
+    const watchlistData = mseData.filter(s => watchlistSymbols.includes(s.symbol));
+    
+    prompt = `Та Монголын Хөрөнгийн Биржийн хөрөнгө оруулалтын шинжээч юм. ЗААВАЛ МОНГОЛ ХЭЛЭЭР хариулна уу.
+
+${personalizationContext}
+
+Хэрэглэгчийн ажиглаж буй хувьцаанууд:
+${watchlistData.length > 0 
+  ? watchlistData.map(s => `- ${s.symbol} (${s.name || 'N/A'}): ${formatPrice(s.closing_price)} ₮ | Хэмжээ: ${formatVolume(s.volume)} | Өөрчлөлт: ${Number(s.change_percent) >= 0 ? '+' : ''}${formatPercent(s.change_percent)}%`).join('\n')
+  : 'Мэдээлэл олдсонгүй'
+}
+
+Хэрэглэгчийн ажиглаж буй хувьцаа тус бүрийн талаар дэлгэрэнгүй дүн шинжилгээ хийж, хувийн зөвлөгөө өг:
+1. Хувьцаа бүрийн гүйцэтгэл (үнэ, хэмжээ, өөрчлөлт)
+2. Хэрэглэгчийн профайл дээр суурилсан худалдан авах/зарах/хадгалах зөвлөмж
+3. Эрсдлийн үнэлгээ (хэрэглэгчийн эрсдлийн хүлээцтэй байдалтай харьцуулан)
+4. Ирээдүйн хандлагын таамаглал`;
   } else {
     // Generic analysis with MSE data
-    prompt = `You are an investment analyst for the Mongolian Stock Exchange (MSE).
+    prompt = `Та Монголын Хөрөнгийн Биржийн хөрөнгө оруулалтын шинжээч юм. ЗААВАЛ МОНГОЛ ХЭЛЭЭР хариулна уу.
 
-User Query: ${query || 'Provide market analysis'}
+${personalizationContext}
 
-Current MSE Market Data:
-${mseData.slice(0, 15).map(s => `- ${s.symbol} (${s.name || 'N/A'}): ₮${s.closing_price?.toFixed(2) || 'N/A'} | Volume: ${s.volume?.toLocaleString() || 'N/A'} | Change: ${s.change_percent >= 0 ? '+' : ''}${s.change_percent?.toFixed(2) || 'N/A'}%`).join('\n')}
+Хэрэглэгчийн асуулт: ${query || 'Зах зээлийн дүн шинжилгээ хийнэ үү'}
 
-Provide a detailed, data-driven analysis that:
-1. Uses the ACTUAL MSE data provided above
-2. Mentions specific stock symbols, prices, and volumes
-3. Answers the user's query comprehensively
-4. Keeps it professional and actionable
+Одоогийн МХБ-ийн өгөгдөл:
+${mseData.slice(0, 15).map(s => `- ${s.symbol} (${s.name || 'N/A'}): ${formatPrice(s.closing_price)} ₮ | Хэмжээ: ${formatVolume(s.volume)} | Өөрчлөлт: ${Number(s.change_percent) >= 0 ? '+' : ''}${formatPercent(s.change_percent)}%`).join('\n')}
 
-Important: Use the real data from the MSE database above, not generic responses.`;
+Дэлгэрэнгүй, өгөгдөлд суурилсан дүн шинжилгээ хий:
+1. Дээрх БОДИТ МХБ өгөгдлийг ашигла
+2. Тодорхой хувьцааны тэмдэг, үнэ, хэмжээг дурдана
+3. Хэрэглэгчийн асуултад бүрэн хариулна
+4. Мэргэжлийн, үйл ажиллагааны чанартай байна
+
+Чухал: Дээрх МХБ-ийн мэдээллийн сангийн бодит өгөгдлийг ашигла, ерөнхий хариултыг бүү ашигла.`;
   }
   
   try {
@@ -136,7 +212,7 @@ Important: Use the real data from the MSE database above, not generic responses.
     return response.text();
   } catch (error: any) {
     log('❌ Gemini API error', { error: error.message });
-    return 'I apologize, but I am unable to provide investment advice at this moment. Please try again later.';
+    return 'Уучлаарай, одоогоор хөрөнгө оруулалтын зөвлөгөө өгөх боломжгүй байна. Дараа дахин оролдоно уу.';
   }
 }
 
@@ -175,7 +251,7 @@ async function handleAgentTask(message: any) {
           },
           metadata: {
             processingTimeMs: Date.now() - startTime,
-            model: 'gemini-2.0-flash',
+            model: 'gemini-2.5-flash',
           },
           timestamp: new Date().toISOString(),
         }),

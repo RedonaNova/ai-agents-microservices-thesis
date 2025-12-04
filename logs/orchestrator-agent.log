@@ -2,44 +2,190 @@
 > orchestrator-agent@1.0.0 dev
 > tsx watch src/index.ts
 
-{"level":"WARN","timestamp":"2025-11-18T02:43:44.401Z","logger":"kafkajs","message":"KafkaJS v2.0.0 switched default partitioner. To retain the same partitioning behavior as in previous versions, create the producer with the option \"createPartitioner: Partitioners.LegacyPartitioner\". See the migration guide at https://kafka.js.org/docs/migration-guide-v2.0.0#producer-new-default-partitioner for details. Silence this warning by setting the environment variable \"KAFKAJS_NO_PARTITIONER_WARNING=1\""}
-[32minfo[39m: ========================================== {"service":"orchestrator-agent","timestamp":"2025-11-18T02:43:44.527Z"}
-[32minfo[39m: 🚀 Starting Orchestrator Agent (v2.0) {"service":"orchestrator-agent","timestamp":"2025-11-18T02:43:44.528Z"}
-[32minfo[39m: ========================================== {"service":"orchestrator-agent","timestamp":"2025-11-18T02:43:44.528Z"}
-[32minfo[39m: Connecting to Kafka... {"service":"orchestrator-agent","timestamp":"2025-11-18T02:43:44.528Z"}
-{"level":"ERROR","timestamp":"2025-11-18T02:43:44.545Z","logger":"kafkajs","message":"[Connection] Connection error: connect ECONNREFUSED 127.0.0.1:9092","broker":"localhost:9092","clientId":"orchestrator-agent","stack":"Error: connect ECONNREFUSED 127.0.0.1:9092\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16)"}
-{"level":"ERROR","timestamp":"2025-11-18T02:43:44.546Z","logger":"kafkajs","message":"[BrokerPool] Failed to connect to seed broker, trying another broker from the list: Connection error: connect ECONNREFUSED 127.0.0.1:9092","retryCount":0,"retryTime":115}
-{"level":"ERROR","timestamp":"2025-11-18T02:43:44.546Z","logger":"kafkajs","message":"[Connection] Connection error: connect ECONNREFUSED 127.0.0.1:9092","broker":"localhost:9092","clientId":"orchestrator-agent","stack":"Error: connect ECONNREFUSED 127.0.0.1:9092\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16)"}
-{"level":"ERROR","timestamp":"2025-11-18T02:43:44.547Z","logger":"kafkajs","message":"[BrokerPool] Failed to connect to seed broker, trying another broker from the list: Connection error: connect ECONNREFUSED 127.0.0.1:9092","retryCount":0,"retryTime":89}
-{"level":"ERROR","timestamp":"2025-11-18T02:43:44.639Z","logger":"kafkajs","message":"[Connection] Connection error: connect ECONNREFUSED 127.0.0.1:9092","broker":"localhost:9092","clientId":"orchestrator-agent","stack":"Error: connect ECONNREFUSED 127.0.0.1:9092\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16)"}
-{"level":"ERROR","timestamp":"2025-11-18T02:43:44.640Z","logger":"kafkajs","message":"[BrokerPool] Failed to connect to seed broker, trying another broker from the list: Connection error: connect ECONNREFUSED 127.0.0.1:9092","retryCount":1,"retryTime":160}
-{"level":"ERROR","timestamp":"2025-11-18T02:43:44.662Z","logger":"kafkajs","message":"[Connection] Connection error: connect ECONNREFUSED 127.0.0.1:9092","broker":"localhost:9092","clientId":"orchestrator-agent","stack":"Error: connect ECONNREFUSED 127.0.0.1:9092\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16)"}
-{"level":"ERROR","timestamp":"2025-11-18T02:43:44.663Z","logger":"kafkajs","message":"[BrokerPool] Failed to connect to seed broker, trying another broker from the list: Connection error: connect ECONNREFUSED 127.0.0.1:9092","retryCount":1,"retryTime":216}
-{"level":"ERROR","timestamp":"2025-11-18T02:43:44.802Z","logger":"kafkajs","message":"[Connection] Connection error: connect ECONNREFUSED 127.0.0.1:9092","broker":"localhost:9092","clientId":"orchestrator-agent","stack":"Error: connect ECONNREFUSED 127.0.0.1:9092\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16)"}
-{"level":"ERROR","timestamp":"2025-11-18T02:43:44.802Z","logger":"kafkajs","message":"[BrokerPool] Failed to connect to seed broker, trying another broker from the list: Connection error: connect ECONNREFUSED 127.0.0.1:9092","retryCount":2,"retryTime":352}
-{"level":"ERROR","timestamp":"2025-11-18T02:43:44.885Z","logger":"kafkajs","message":"[Connection] Connection error: connect ECONNREFUSED 127.0.0.1:9092","broker":"localhost:9092","clientId":"orchestrator-agent","stack":"Error: connect ECONNREFUSED 127.0.0.1:9092\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16)"}
-{"level":"ERROR","timestamp":"2025-11-18T02:43:44.886Z","logger":"kafkajs","message":"[BrokerPool] Failed to connect to seed broker, trying another broker from the list: Connection error: connect ECONNREFUSED 127.0.0.1:9092","retryCount":2,"retryTime":486}
-{"level":"ERROR","timestamp":"2025-11-18T02:43:45.155Z","logger":"kafkajs","message":"[Connection] Connection error: connect ECONNREFUSED 127.0.0.1:9092","broker":"localhost:9092","clientId":"orchestrator-agent","stack":"Error: connect ECONNREFUSED 127.0.0.1:9092\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16)"}
-{"level":"ERROR","timestamp":"2025-11-18T02:43:45.156Z","logger":"kafkajs","message":"[BrokerPool] Failed to connect to seed broker, trying another broker from the list: Connection error: connect ECONNREFUSED 127.0.0.1:9092","retryCount":3,"retryTime":644}
-{"level":"ERROR","timestamp":"2025-11-18T02:43:45.375Z","logger":"kafkajs","message":"[Connection] Connection error: connect ECONNREFUSED 127.0.0.1:9092","broker":"localhost:9092","clientId":"orchestrator-agent","stack":"Error: connect ECONNREFUSED 127.0.0.1:9092\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16)"}
-{"level":"ERROR","timestamp":"2025-11-18T02:43:45.375Z","logger":"kafkajs","message":"[BrokerPool] Failed to connect to seed broker, trying another broker from the list: Connection error: connect ECONNREFUSED 127.0.0.1:9092","retryCount":3,"retryTime":1020}
-{"level":"ERROR","timestamp":"2025-11-18T02:43:45.802Z","logger":"kafkajs","message":"[Connection] Connection error: connect ECONNREFUSED 127.0.0.1:9092","broker":"localhost:9092","clientId":"orchestrator-agent","stack":"Error: connect ECONNREFUSED 127.0.0.1:9092\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16)"}
-{"level":"ERROR","timestamp":"2025-11-18T02:43:45.802Z","logger":"kafkajs","message":"[BrokerPool] Failed to connect to seed broker, trying another broker from the list: Connection error: connect ECONNREFUSED 127.0.0.1:9092","retryCount":4,"retryTime":1074}
-{"level":"ERROR","timestamp":"2025-11-18T02:43:46.399Z","logger":"kafkajs","message":"[Connection] Connection error: connect ECONNREFUSED 127.0.0.1:9092","broker":"localhost:9092","clientId":"orchestrator-agent","stack":"Error: connect ECONNREFUSED 127.0.0.1:9092\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16)"}
-{"level":"ERROR","timestamp":"2025-11-18T02:43:46.399Z","logger":"kafkajs","message":"[BrokerPool] Failed to connect to seed broker, trying another broker from the list: Connection error: connect ECONNREFUSED 127.0.0.1:9092","retryCount":4,"retryTime":2334}
-{"level":"ERROR","timestamp":"2025-11-18T02:43:46.878Z","logger":"kafkajs","message":"[Connection] Connection error: connect ECONNREFUSED 127.0.0.1:9092","broker":"localhost:9092","clientId":"orchestrator-agent","stack":"Error: connect ECONNREFUSED 127.0.0.1:9092\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16)"}
-{"level":"ERROR","timestamp":"2025-11-18T02:43:46.879Z","logger":"kafkajs","message":"[BrokerPool] Failed to connect to seed broker, trying another broker from the list: Connection error: connect ECONNREFUSED 127.0.0.1:9092","retryCount":5,"retryTime":2500}
-{"level":"ERROR","timestamp":"2025-11-18T02:43:48.735Z","logger":"kafkajs","message":"[Connection] Connection error: connect ECONNREFUSED 127.0.0.1:9092","broker":"localhost:9092","clientId":"orchestrator-agent","stack":"Error: connect ECONNREFUSED 127.0.0.1:9092\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16)"}
-{"level":"ERROR","timestamp":"2025-11-18T02:43:48.735Z","logger":"kafkajs","message":"[BrokerPool] Failed to connect to seed broker, trying another broker from the list: Connection error: connect ECONNREFUSED 127.0.0.1:9092","retryCount":5,"retryTime":4200}
-{"level":"ERROR","timestamp":"2025-11-18T02:43:49.384Z","logger":"kafkajs","message":"[Connection] Connection error: connect ECONNREFUSED 127.0.0.1:9092","broker":"localhost:9092","clientId":"orchestrator-agent","stack":"Error: connect ECONNREFUSED 127.0.0.1:9092\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16)"}
-{"level":"ERROR","timestamp":"2025-11-18T02:43:49.384Z","logger":"kafkajs","message":"[BrokerPool] Failed to connect to seed broker, trying another broker from the list: Connection error: connect ECONNREFUSED 127.0.0.1:9092","retryCount":6,"retryTime":4772}
-{"level":"ERROR","timestamp":"2025-11-18T02:43:52.941Z","logger":"kafkajs","message":"[Connection] Connection error: connect ECONNREFUSED 127.0.0.1:9092","broker":"localhost:9092","clientId":"orchestrator-agent","stack":"Error: connect ECONNREFUSED 127.0.0.1:9092\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16)"}
-{"level":"ERROR","timestamp":"2025-11-18T02:43:52.941Z","logger":"kafkajs","message":"[BrokerPool] Failed to connect to seed broker, trying another broker from the list: Connection error: connect ECONNREFUSED 127.0.0.1:9092","retryCount":6,"retryTime":7624}
-{"level":"ERROR","timestamp":"2025-11-18T02:43:54.161Z","logger":"kafkajs","message":"[Connection] Connection error: connect ECONNREFUSED 127.0.0.1:9092","broker":"localhost:9092","clientId":"orchestrator-agent","stack":"Error: connect ECONNREFUSED 127.0.0.1:9092\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16)"}
-{"level":"ERROR","timestamp":"2025-11-18T02:43:54.161Z","logger":"kafkajs","message":"[BrokerPool] Failed to connect to seed broker, trying another broker from the list: Connection error: connect ECONNREFUSED 127.0.0.1:9092","retryCount":7,"retryTime":10054}
-{"level":"ERROR","timestamp":"2025-11-18T02:44:00.567Z","logger":"kafkajs","message":"[Connection] Connection error: connect ECONNREFUSED 127.0.0.1:9092","broker":"localhost:9092","clientId":"orchestrator-agent","stack":"Error: connect ECONNREFUSED 127.0.0.1:9092\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16)"}
-{"level":"ERROR","timestamp":"2025-11-18T02:44:00.568Z","logger":"kafkajs","message":"[BrokerPool] Failed to connect to seed broker, trying another broker from the list: Connection error: connect ECONNREFUSED 127.0.0.1:9092","retryCount":7,"retryTime":17974}
-{"level":"ERROR","timestamp":"2025-11-18T02:44:04.216Z","logger":"kafkajs","message":"[Connection] Connection error: connect ECONNREFUSED 127.0.0.1:9092","broker":"localhost:9092","clientId":"orchestrator-agent","stack":"Error: connect ECONNREFUSED 127.0.0.1:9092\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16)"}
-{"level":"ERROR","timestamp":"2025-11-18T02:44:04.217Z","logger":"kafkajs","message":"[BrokerPool] Failed to connect to seed broker, trying another broker from the list: Connection error: connect ECONNREFUSED 127.0.0.1:9092","retryCount":8,"retryTime":18530}
-[31merror[39m: Failed to connect to Kafka {"error":"Connection error: connect ECONNREFUSED 127.0.0.1:9092","service":"orchestrator-agent","timestamp":"2025-11-18T02:44:04.218Z"}
-[31merror[39m: Failed to start orchestrator agent {"error":"Connection error: connect ECONNREFUSED 127.0.0.1:9092","service":"orchestrator-agent","stack":"KafkaJSNonRetriableError\n  Caused by: KafkaJSConnectionError: Connection error: connect ECONNREFUSED 127.0.0.1:9092\n    at Socket.onError (/home/it/apps/thesis-report/backend/orchestrator-agent/node_modules/kafkajs/src/network/connection.js:210:23)\n    at Socket.emit (node:events:508:28)\n    at emitErrorNT (node:internal/streams/destroy:170:8)\n    at emitErrorCloseNT (node:internal/streams/destroy:129:3)\n    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)","timestamp":"2025-11-18T02:44:04.218Z"}
+{"level":"WARN","timestamp":"2025-12-04T03:28:45.260Z","logger":"kafkajs","message":"KafkaJS v2.0.0 switched default partitioner. To retain the same partitioning behavior as in previous versions, create the producer with the option \"createPartitioner: Partitioners.LegacyPartitioner\". See the migration guide at https://kafka.js.org/docs/migration-guide-v2.0.0#producer-new-default-partitioner for details. Silence this warning by setting the environment variable \"KAFKAJS_NO_PARTITIONER_WARNING=1\""}
+[32minfo[39m: ========================================== {"service":"orchestrator-agent","timestamp":"2025-12-04T03:28:45.353Z"}
+[32minfo[39m: 🚀 Starting Orchestrator Agent (v2.0) {"service":"orchestrator-agent","timestamp":"2025-12-04T03:28:45.360Z"}
+[32minfo[39m: ========================================== {"service":"orchestrator-agent","timestamp":"2025-12-04T03:28:45.360Z"}
+[32minfo[39m: Connecting to Kafka... {"service":"orchestrator-agent","timestamp":"2025-12-04T03:28:45.361Z"}
+(node:93677) TimeoutNegativeWarning: -1764818925391 is a negative number.
+Timeout duration was set to 1.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[32minfo[39m: ✅ Connected to Kafka {"service":"orchestrator-agent","timestamp":"2025-12-04T03:28:45.392Z"}
+[32minfo[39m: Subscribing to topics... {"service":"orchestrator-agent","timestamp":"2025-12-04T03:28:45.393Z"}
+[32minfo[39m: ✅ Subscribed to topics: user.requests, knowledge.results {"service":"orchestrator-agent","timestamp":"2025-12-04T03:28:45.405Z"}
+[32minfo[39m: 📋 Configuration: {"service":"orchestrator-agent","timestamp":"2025-12-04T03:28:45.405Z"}
+[32minfo[39m:   - Input Topic: user.requests {"service":"orchestrator-agent","timestamp":"2025-12-04T03:28:45.405Z"}
+[32minfo[39m:   - Output Topics: agent.tasks, planning.tasks, knowledge.queries {"service":"orchestrator-agent","timestamp":"2025-12-04T03:28:45.406Z"}
+[32minfo[39m:   - Monitoring: monitoring.events {"service":"orchestrator-agent","timestamp":"2025-12-04T03:28:45.406Z"}
+[32minfo[39m:  {"service":"orchestrator-agent","timestamp":"2025-12-04T03:28:45.406Z"}
+[32minfo[39m: Starting message consumption... {"service":"orchestrator-agent","timestamp":"2025-12-04T03:28:45.406Z"}
+{"level":"INFO","timestamp":"2025-12-04T03:28:45.407Z","logger":"kafkajs","message":"[Consumer] Starting","groupId":"orchestrator-group"}
+{"level":"INFO","timestamp":"2025-12-04T03:28:48.444Z","logger":"kafkajs","message":"[ConsumerGroup] Consumer has joined the group","groupId":"orchestrator-group","memberId":"orchestrator-agent-4f175273-e4f9-4211-b7dc-9d8c39eaa2b6","leaderId":"orchestrator-agent-4f175273-e4f9-4211-b7dc-9d8c39eaa2b6","isLeader":true,"memberAssignment":{"user.requests":[0,1,2],"knowledge.results":[0,1,2]},"groupProtocol":"RoundRobinAssigner","duration":3036}
+[32minfo[39m: ✅ Started consuming messages {"service":"orchestrator-agent","timestamp":"2025-12-04T03:28:48.446Z"}
+[32minfo[39m: ========================================== {"service":"orchestrator-agent","timestamp":"2025-12-04T03:28:48.447Z"}
+[32minfo[39m: ✅ Orchestrator Agent is running! {"service":"orchestrator-agent","timestamp":"2025-12-04T03:28:48.447Z"}
+[32minfo[39m: ========================================== {"service":"orchestrator-agent","timestamp":"2025-12-04T03:28:48.447Z"}
+[32minfo[39m: 📥 New user request {"requestId":"d6e63b75-59a2-48cc-8453-bd7c3ca995a9","service":"orchestrator-agent","timestamp":"2025-12-04T03:28:49.029Z","type":"portfolio_advice","userId":"3"}
+[32minfo[39m: 🧠 Intent classified: portfolio_advice {"requestId":"d6e63b75-59a2-48cc-8453-bd7c3ca995a9","service":"orchestrator-agent","timestamp":"2025-12-04T03:28:49.029Z"}
+[32minfo[39m: ⚡ Complexity: simple {"requestId":"d6e63b75-59a2-48cc-8453-bd7c3ca995a9","service":"orchestrator-agent","timestamp":"2025-12-04T03:28:49.031Z"}
+[32minfo[39m: ➡️  Routing to investment agent {"requestId":"d6e63b75-59a2-48cc-8453-bd7c3ca995a9","service":"orchestrator-agent","taskId":"f51c1537-606b-4650-8453-918fb6f446e8","timestamp":"2025-12-04T03:28:49.031Z"}
+[32minfo[39m: 👤 User profile fetched for personalization {"investmentGoal":"Long-term growth","riskTolerance":"moderate","service":"orchestrator-agent","timestamp":"2025-12-04T03:28:49.064Z","userId":"3"}
+[32minfo[39m: 📥 New user request {"requestId":"7fbee2e1-ebed-4480-ae7c-d8fe761cfcb0","service":"orchestrator-agent","timestamp":"2025-12-04T03:30:12.253Z","type":"portfolio_advice","userId":"3"}
+[32minfo[39m: 🧠 Intent classified: portfolio_advice {"requestId":"7fbee2e1-ebed-4480-ae7c-d8fe761cfcb0","service":"orchestrator-agent","timestamp":"2025-12-04T03:30:12.254Z"}
+[32minfo[39m: ⚡ Complexity: simple {"requestId":"7fbee2e1-ebed-4480-ae7c-d8fe761cfcb0","service":"orchestrator-agent","timestamp":"2025-12-04T03:30:12.254Z"}
+[32minfo[39m: ➡️  Routing to investment agent {"requestId":"7fbee2e1-ebed-4480-ae7c-d8fe761cfcb0","service":"orchestrator-agent","taskId":"f8eacb17-551f-4814-8936-cb204d99043d","timestamp":"2025-12-04T03:30:12.255Z"}
+[32minfo[39m: 👤 User profile fetched for personalization {"investmentGoal":"Long-term growth","riskTolerance":"moderate","service":"orchestrator-agent","timestamp":"2025-12-04T03:30:12.282Z","userId":"3"}
+11:31:32 AM [tsx] change in ./src/index.ts Restarting...
+[32minfo[39m: SIGTERM received, shutting down gracefully... {"service":"orchestrator-agent","timestamp":"2025-12-04T03:31:32.138Z"}
+[32minfo[39m: Shutting down orchestrator agent... {"service":"orchestrator-agent","timestamp":"2025-12-04T03:31:32.139Z"}
+[32minfo[39m: Total requests processed: 2 {"service":"orchestrator-agent","timestamp":"2025-12-04T03:31:32.139Z"}
+{"level":"INFO","timestamp":"2025-12-04T03:31:32.452Z","logger":"kafkajs","message":"[Runner] consumer not running, exiting","groupId":"orchestrator-group","memberId":"orchestrator-agent-4f175273-e4f9-4211-b7dc-9d8c39eaa2b6"}
+{"level":"INFO","timestamp":"2025-12-04T03:31:32.465Z","logger":"kafkajs","message":"[Consumer] Stopped","groupId":"orchestrator-group"}
+[32minfo[39m: Disconnected from Kafka {"service":"orchestrator-agent","timestamp":"2025-12-04T03:31:32.466Z"}
+[32minfo[39m: Orchestrator agent stopped {"service":"orchestrator-agent","timestamp":"2025-12-04T03:31:32.466Z"}
+c{"level":"WARN","timestamp":"2025-12-04T03:31:33.144Z","logger":"kafkajs","message":"KafkaJS v2.0.0 switched default partitioner. To retain the same partitioning behavior as in previous versions, create the producer with the option \"createPartitioner: Partitioners.LegacyPartitioner\". See the migration guide at https://kafka.js.org/docs/migration-guide-v2.0.0#producer-new-default-partitioner for details. Silence this warning by setting the environment variable \"KAFKAJS_NO_PARTITIONER_WARNING=1\""}
+[32minfo[39m: ========================================== {"service":"orchestrator-agent","timestamp":"2025-12-04T03:31:33.271Z"}
+[32minfo[39m: 🚀 Starting Orchestrator Agent (v2.0) {"service":"orchestrator-agent","timestamp":"2025-12-04T03:31:33.275Z"}
+[32minfo[39m: ========================================== {"service":"orchestrator-agent","timestamp":"2025-12-04T03:31:33.276Z"}
+[32minfo[39m: Connecting to Kafka... {"service":"orchestrator-agent","timestamp":"2025-12-04T03:31:33.276Z"}
+(node:94452) TimeoutNegativeWarning: -1764819093327 is a negative number.
+Timeout duration was set to 1.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[32minfo[39m: ✅ Connected to Kafka {"service":"orchestrator-agent","timestamp":"2025-12-04T03:31:33.330Z"}
+[32minfo[39m: Subscribing to topics... {"service":"orchestrator-agent","timestamp":"2025-12-04T03:31:33.331Z"}
+[32minfo[39m: ✅ Subscribed to topics: user.requests, knowledge.results {"service":"orchestrator-agent","timestamp":"2025-12-04T03:31:33.345Z"}
+[32minfo[39m: 📋 Configuration: {"service":"orchestrator-agent","timestamp":"2025-12-04T03:31:33.346Z"}
+[32minfo[39m:   - Input Topic: user.requests {"service":"orchestrator-agent","timestamp":"2025-12-04T03:31:33.346Z"}
+[32minfo[39m:   - Output Topics: agent.tasks, planning.tasks, knowledge.queries {"service":"orchestrator-agent","timestamp":"2025-12-04T03:31:33.347Z"}
+[32minfo[39m:   - Monitoring: monitoring.events {"service":"orchestrator-agent","timestamp":"2025-12-04T03:31:33.347Z"}
+[32minfo[39m:  {"service":"orchestrator-agent","timestamp":"2025-12-04T03:31:33.347Z"}
+[32minfo[39m: Starting message consumption... {"service":"orchestrator-agent","timestamp":"2025-12-04T03:31:33.347Z"}
+{"level":"INFO","timestamp":"2025-12-04T03:31:33.348Z","logger":"kafkajs","message":"[Consumer] Starting","groupId":"orchestrator-group"}
+{"level":"INFO","timestamp":"2025-12-04T03:31:36.433Z","logger":"kafkajs","message":"[ConsumerGroup] Consumer has joined the group","groupId":"orchestrator-group","memberId":"orchestrator-agent-02d72339-c088-4ab8-b975-6bd826728162","leaderId":"orchestrator-agent-02d72339-c088-4ab8-b975-6bd826728162","isLeader":true,"memberAssignment":{"user.requests":[0,1,2],"knowledge.results":[0,1,2]},"groupProtocol":"RoundRobinAssigner","duration":3083}
+[32minfo[39m: ✅ Started consuming messages {"service":"orchestrator-agent","timestamp":"2025-12-04T03:31:36.434Z"}
+[32minfo[39m: ========================================== {"service":"orchestrator-agent","timestamp":"2025-12-04T03:31:36.434Z"}
+[32minfo[39m: ✅ Orchestrator Agent is running! {"service":"orchestrator-agent","timestamp":"2025-12-04T03:31:36.434Z"}
+[32minfo[39m: ========================================== {"service":"orchestrator-agent","timestamp":"2025-12-04T03:31:36.434Z"}
+11:42:38 AM [tsx] change in ./src/gemini-client.ts Restarting...
+[32minfo[39m: SIGTERM received, shutting down gracefully... {"service":"orchestrator-agent","timestamp":"2025-12-04T03:42:38.674Z"}
+[32minfo[39m: Shutting down orchestrator agent... {"service":"orchestrator-agent","timestamp":"2025-12-04T03:42:38.677Z"}
+[32minfo[39m: Total requests processed: 0 {"service":"orchestrator-agent","timestamp":"2025-12-04T03:42:38.677Z"}
+{"level":"INFO","timestamp":"2025-12-04T03:42:42.190Z","logger":"kafkajs","message":"[Runner] consumer not running, exiting","groupId":"orchestrator-group","memberId":"orchestrator-agent-02d72339-c088-4ab8-b975-6bd826728162"}
+{"level":"INFO","timestamp":"2025-12-04T03:42:42.203Z","logger":"kafkajs","message":"[Consumer] Stopped","groupId":"orchestrator-group"}
+[32minfo[39m: Disconnected from Kafka {"service":"orchestrator-agent","timestamp":"2025-12-04T03:42:42.204Z"}
+[32minfo[39m: Orchestrator agent stopped {"service":"orchestrator-agent","timestamp":"2025-12-04T03:42:42.204Z"}
+c{"level":"WARN","timestamp":"2025-12-04T03:42:43.210Z","logger":"kafkajs","message":"KafkaJS v2.0.0 switched default partitioner. To retain the same partitioning behavior as in previous versions, create the producer with the option \"createPartitioner: Partitioners.LegacyPartitioner\". See the migration guide at https://kafka.js.org/docs/migration-guide-v2.0.0#producer-new-default-partitioner for details. Silence this warning by setting the environment variable \"KAFKAJS_NO_PARTITIONER_WARNING=1\""}
+[32minfo[39m: ========================================== {"service":"orchestrator-agent","timestamp":"2025-12-04T03:42:43.493Z"}
+[32minfo[39m: 🚀 Starting Orchestrator Agent (v2.0) {"service":"orchestrator-agent","timestamp":"2025-12-04T03:42:43.496Z"}
+[32minfo[39m: ========================================== {"service":"orchestrator-agent","timestamp":"2025-12-04T03:42:43.497Z"}
+[32minfo[39m: Connecting to Kafka... {"service":"orchestrator-agent","timestamp":"2025-12-04T03:42:43.497Z"}
+(node:96511) TimeoutNegativeWarning: -1764819763542 is a negative number.
+Timeout duration was set to 1.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[32minfo[39m: ✅ Connected to Kafka {"service":"orchestrator-agent","timestamp":"2025-12-04T03:42:43.543Z"}
+[32minfo[39m: Subscribing to topics... {"service":"orchestrator-agent","timestamp":"2025-12-04T03:42:43.544Z"}
+[32minfo[39m: ✅ Subscribed to topics: user.requests, knowledge.results {"service":"orchestrator-agent","timestamp":"2025-12-04T03:42:43.584Z"}
+[32minfo[39m: 📋 Configuration: {"service":"orchestrator-agent","timestamp":"2025-12-04T03:42:43.585Z"}
+[32minfo[39m:   - Input Topic: user.requests {"service":"orchestrator-agent","timestamp":"2025-12-04T03:42:43.585Z"}
+[32minfo[39m:   - Output Topics: agent.tasks, planning.tasks, knowledge.queries {"service":"orchestrator-agent","timestamp":"2025-12-04T03:42:43.585Z"}
+[32minfo[39m:   - Monitoring: monitoring.events {"service":"orchestrator-agent","timestamp":"2025-12-04T03:42:43.585Z"}
+[32minfo[39m:  {"service":"orchestrator-agent","timestamp":"2025-12-04T03:42:43.586Z"}
+[32minfo[39m: Starting message consumption... {"service":"orchestrator-agent","timestamp":"2025-12-04T03:42:43.586Z"}
+{"level":"INFO","timestamp":"2025-12-04T03:42:43.586Z","logger":"kafkajs","message":"[Consumer] Starting","groupId":"orchestrator-group"}
+{"level":"INFO","timestamp":"2025-12-04T03:42:46.617Z","logger":"kafkajs","message":"[ConsumerGroup] Consumer has joined the group","groupId":"orchestrator-group","memberId":"orchestrator-agent-1e8c7326-0d4b-4a9c-a282-d0c6dcc1d0a9","leaderId":"orchestrator-agent-1e8c7326-0d4b-4a9c-a282-d0c6dcc1d0a9","isLeader":true,"memberAssignment":{"user.requests":[0,1,2],"knowledge.results":[0,1,2]},"groupProtocol":"RoundRobinAssigner","duration":3030}
+[32minfo[39m: ✅ Started consuming messages {"service":"orchestrator-agent","timestamp":"2025-12-04T03:42:46.619Z"}
+[32minfo[39m: ========================================== {"service":"orchestrator-agent","timestamp":"2025-12-04T03:42:46.620Z"}
+[32minfo[39m: ✅ Orchestrator Agent is running! {"service":"orchestrator-agent","timestamp":"2025-12-04T03:42:46.620Z"}
+[32minfo[39m: ========================================== {"service":"orchestrator-agent","timestamp":"2025-12-04T03:42:46.620Z"}
+[32minfo[39m: 📥 New user request {"requestId":"3b87cb91-20b8-456e-8c37-62d7beeaa5bf","service":"orchestrator-agent","timestamp":"2025-12-04T03:42:59.999Z","type":"portfolio_advice","userId":"3"}
+[32minfo[39m: 🧠 Intent classified: portfolio_advice {"requestId":"3b87cb91-20b8-456e-8c37-62d7beeaa5bf","service":"orchestrator-agent","timestamp":"2025-12-04T03:42:59.999Z"}
+[32minfo[39m: ⚡ Complexity: simple {"requestId":"3b87cb91-20b8-456e-8c37-62d7beeaa5bf","service":"orchestrator-agent","timestamp":"2025-12-04T03:43:00.000Z"}
+[32minfo[39m: ➡️  Routing to investment agent {"requestId":"3b87cb91-20b8-456e-8c37-62d7beeaa5bf","service":"orchestrator-agent","taskId":"93162371-400f-418b-86f5-69d0ac3bc0b1","timestamp":"2025-12-04T03:43:00.001Z"}
+[32minfo[39m: 👤 User profile fetched for personalization {"investmentGoal":"Long-term growth","riskTolerance":"moderate","service":"orchestrator-agent","timestamp":"2025-12-04T03:43:00.039Z","userId":"3"}
+11:46:55 AM [tsx] change in ./src/gemini-client.ts Restarting...
+[32minfo[39m: SIGTERM received, shutting down gracefully... {"service":"orchestrator-agent","timestamp":"2025-12-04T03:46:55.557Z"}
+[32minfo[39m: Shutting down orchestrator agent... {"service":"orchestrator-agent","timestamp":"2025-12-04T03:46:55.558Z"}
+[32minfo[39m: Total requests processed: 1 {"service":"orchestrator-agent","timestamp":"2025-12-04T03:46:55.558Z"}
+{"level":"INFO","timestamp":"2025-12-04T03:47:00.305Z","logger":"kafkajs","message":"[Runner] consumer not running, exiting","groupId":"orchestrator-group","memberId":"orchestrator-agent-1e8c7326-0d4b-4a9c-a282-d0c6dcc1d0a9"}
+{"level":"INFO","timestamp":"2025-12-04T03:47:00.317Z","logger":"kafkajs","message":"[Consumer] Stopped","groupId":"orchestrator-group"}
+[32minfo[39m: Disconnected from Kafka {"service":"orchestrator-agent","timestamp":"2025-12-04T03:47:00.319Z"}
+[32minfo[39m: Orchestrator agent stopped {"service":"orchestrator-agent","timestamp":"2025-12-04T03:47:00.319Z"}
+c{"level":"WARN","timestamp":"2025-12-04T03:47:01.025Z","logger":"kafkajs","message":"KafkaJS v2.0.0 switched default partitioner. To retain the same partitioning behavior as in previous versions, create the producer with the option \"createPartitioner: Partitioners.LegacyPartitioner\". See the migration guide at https://kafka.js.org/docs/migration-guide-v2.0.0#producer-new-default-partitioner for details. Silence this warning by setting the environment variable \"KAFKAJS_NO_PARTITIONER_WARNING=1\""}
+[32minfo[39m: ========================================== {"service":"orchestrator-agent","timestamp":"2025-12-04T03:47:01.208Z"}
+[32minfo[39m: 🚀 Starting Orchestrator Agent (v2.0) {"service":"orchestrator-agent","timestamp":"2025-12-04T03:47:01.210Z"}
+[32minfo[39m: ========================================== {"service":"orchestrator-agent","timestamp":"2025-12-04T03:47:01.210Z"}
+[32minfo[39m: Connecting to Kafka... {"service":"orchestrator-agent","timestamp":"2025-12-04T03:47:01.210Z"}
+(node:97510) TimeoutNegativeWarning: -1764820021235 is a negative number.
+Timeout duration was set to 1.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[32minfo[39m: ✅ Connected to Kafka {"service":"orchestrator-agent","timestamp":"2025-12-04T03:47:01.236Z"}
+[32minfo[39m: Subscribing to topics... {"service":"orchestrator-agent","timestamp":"2025-12-04T03:47:01.237Z"}
+[32minfo[39m: ✅ Subscribed to topics: user.requests, knowledge.results {"service":"orchestrator-agent","timestamp":"2025-12-04T03:47:01.243Z"}
+[32minfo[39m: 📋 Configuration: {"service":"orchestrator-agent","timestamp":"2025-12-04T03:47:01.243Z"}
+[32minfo[39m:   - Input Topic: user.requests {"service":"orchestrator-agent","timestamp":"2025-12-04T03:47:01.243Z"}
+[32minfo[39m:   - Output Topics: agent.tasks, planning.tasks, knowledge.queries {"service":"orchestrator-agent","timestamp":"2025-12-04T03:47:01.244Z"}
+[32minfo[39m:   - Monitoring: monitoring.events {"service":"orchestrator-agent","timestamp":"2025-12-04T03:47:01.244Z"}
+[32minfo[39m:  {"service":"orchestrator-agent","timestamp":"2025-12-04T03:47:01.244Z"}
+[32minfo[39m: Starting message consumption... {"service":"orchestrator-agent","timestamp":"2025-12-04T03:47:01.244Z"}
+{"level":"INFO","timestamp":"2025-12-04T03:47:01.245Z","logger":"kafkajs","message":"[Consumer] Starting","groupId":"orchestrator-group"}
+{"level":"INFO","timestamp":"2025-12-04T03:47:04.264Z","logger":"kafkajs","message":"[ConsumerGroup] Consumer has joined the group","groupId":"orchestrator-group","memberId":"orchestrator-agent-d72decf0-7d0a-4b15-9156-9e43014086ac","leaderId":"orchestrator-agent-d72decf0-7d0a-4b15-9156-9e43014086ac","isLeader":true,"memberAssignment":{"user.requests":[0,1,2],"knowledge.results":[0,1,2]},"groupProtocol":"RoundRobinAssigner","duration":3018}
+[32minfo[39m: ✅ Started consuming messages {"service":"orchestrator-agent","timestamp":"2025-12-04T03:47:04.265Z"}
+[32minfo[39m: ========================================== {"service":"orchestrator-agent","timestamp":"2025-12-04T03:47:04.266Z"}
+[32minfo[39m: ✅ Orchestrator Agent is running! {"service":"orchestrator-agent","timestamp":"2025-12-04T03:47:04.266Z"}
+[32minfo[39m: ========================================== {"service":"orchestrator-agent","timestamp":"2025-12-04T03:47:04.266Z"}
+11:47:05 AM [tsx] change in ./src/gemini-client.ts Restarting...
+[32minfo[39m: SIGTERM received, shutting down gracefully... {"service":"orchestrator-agent","timestamp":"2025-12-04T03:47:05.361Z"}
+[32minfo[39m: Shutting down orchestrator agent... {"service":"orchestrator-agent","timestamp":"2025-12-04T03:47:05.361Z"}
+[32minfo[39m: Total requests processed: 0 {"service":"orchestrator-agent","timestamp":"2025-12-04T03:47:05.362Z"}
+{"level":"INFO","timestamp":"2025-12-04T03:47:09.294Z","logger":"kafkajs","message":"[Runner] consumer not running, exiting","groupId":"orchestrator-group","memberId":"orchestrator-agent-d72decf0-7d0a-4b15-9156-9e43014086ac"}
+{"level":"INFO","timestamp":"2025-12-04T03:47:09.303Z","logger":"kafkajs","message":"[Consumer] Stopped","groupId":"orchestrator-group"}
+[32minfo[39m: Disconnected from Kafka {"service":"orchestrator-agent","timestamp":"2025-12-04T03:47:09.304Z"}
+[32minfo[39m: Orchestrator agent stopped {"service":"orchestrator-agent","timestamp":"2025-12-04T03:47:09.304Z"}
+c{"level":"WARN","timestamp":"2025-12-04T03:47:09.772Z","logger":"kafkajs","message":"KafkaJS v2.0.0 switched default partitioner. To retain the same partitioning behavior as in previous versions, create the producer with the option \"createPartitioner: Partitioners.LegacyPartitioner\". See the migration guide at https://kafka.js.org/docs/migration-guide-v2.0.0#producer-new-default-partitioner for details. Silence this warning by setting the environment variable \"KAFKAJS_NO_PARTITIONER_WARNING=1\""}
+[32minfo[39m: ========================================== {"service":"orchestrator-agent","timestamp":"2025-12-04T03:47:09.823Z"}
+[32minfo[39m: 🚀 Starting Orchestrator Agent (v2.0) {"service":"orchestrator-agent","timestamp":"2025-12-04T03:47:09.825Z"}
+[32minfo[39m: ========================================== {"service":"orchestrator-agent","timestamp":"2025-12-04T03:47:09.826Z"}
+[32minfo[39m: Connecting to Kafka... {"service":"orchestrator-agent","timestamp":"2025-12-04T03:47:09.826Z"}
+(node:97639) TimeoutNegativeWarning: -1764820029872 is a negative number.
+Timeout duration was set to 1.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[32minfo[39m: ✅ Connected to Kafka {"service":"orchestrator-agent","timestamp":"2025-12-04T03:47:09.873Z"}
+[32minfo[39m: Subscribing to topics... {"service":"orchestrator-agent","timestamp":"2025-12-04T03:47:09.873Z"}
+[32minfo[39m: ✅ Subscribed to topics: user.requests, knowledge.results {"service":"orchestrator-agent","timestamp":"2025-12-04T03:47:09.879Z"}
+[32minfo[39m: 📋 Configuration: {"service":"orchestrator-agent","timestamp":"2025-12-04T03:47:09.879Z"}
+[32minfo[39m:   - Input Topic: user.requests {"service":"orchestrator-agent","timestamp":"2025-12-04T03:47:09.879Z"}
+[32minfo[39m:   - Output Topics: agent.tasks, planning.tasks, knowledge.queries {"service":"orchestrator-agent","timestamp":"2025-12-04T03:47:09.880Z"}
+[32minfo[39m:   - Monitoring: monitoring.events {"service":"orchestrator-agent","timestamp":"2025-12-04T03:47:09.880Z"}
+[32minfo[39m:  {"service":"orchestrator-agent","timestamp":"2025-12-04T03:47:09.880Z"}
+[32minfo[39m: Starting message consumption... {"service":"orchestrator-agent","timestamp":"2025-12-04T03:47:09.880Z"}
+{"level":"INFO","timestamp":"2025-12-04T03:47:09.880Z","logger":"kafkajs","message":"[Consumer] Starting","groupId":"orchestrator-group"}
+{"level":"INFO","timestamp":"2025-12-04T03:47:12.898Z","logger":"kafkajs","message":"[ConsumerGroup] Consumer has joined the group","groupId":"orchestrator-group","memberId":"orchestrator-agent-04922e86-a9db-4959-9609-ca5eecfa45ee","leaderId":"orchestrator-agent-04922e86-a9db-4959-9609-ca5eecfa45ee","isLeader":true,"memberAssignment":{"user.requests":[0,1,2],"knowledge.results":[0,1,2]},"groupProtocol":"RoundRobinAssigner","duration":3017}
+[32minfo[39m: ✅ Started consuming messages {"service":"orchestrator-agent","timestamp":"2025-12-04T03:47:12.899Z"}
+[32minfo[39m: ========================================== {"service":"orchestrator-agent","timestamp":"2025-12-04T03:47:12.899Z"}
+[32minfo[39m: ✅ Orchestrator Agent is running! {"service":"orchestrator-agent","timestamp":"2025-12-04T03:47:12.899Z"}
+[32minfo[39m: ========================================== {"service":"orchestrator-agent","timestamp":"2025-12-04T03:47:12.900Z"}
+[32minfo[39m: 📥 New user request {"requestId":"88d4ca30-32cb-433e-b82b-d8f4af4a1e21","service":"orchestrator-agent","timestamp":"2025-12-04T04:07:25.257Z","type":"portfolio_advice","userId":"3"}
+[32minfo[39m: 🧠 Intent classified: portfolio_advice {"requestId":"88d4ca30-32cb-433e-b82b-d8f4af4a1e21","service":"orchestrator-agent","timestamp":"2025-12-04T04:07:25.260Z"}
+[32minfo[39m: ⚡ Complexity: simple {"requestId":"88d4ca30-32cb-433e-b82b-d8f4af4a1e21","service":"orchestrator-agent","timestamp":"2025-12-04T04:07:25.262Z"}
+[32minfo[39m: ➡️  Routing to investment agent {"requestId":"88d4ca30-32cb-433e-b82b-d8f4af4a1e21","service":"orchestrator-agent","taskId":"cc25d6c7-c2fe-47ab-9608-3bb406044bd2","timestamp":"2025-12-04T04:07:25.266Z"}
+[32minfo[39m: 👤 User profile fetched for personalization {"investmentGoal":"Long-term growth","riskTolerance":"moderate","service":"orchestrator-agent","timestamp":"2025-12-04T04:07:25.336Z","userId":"3"}
+[32minfo[39m: 📥 New user request {"requestId":"b803c7fc-3559-40f3-9876-029a54301b0d","service":"orchestrator-agent","timestamp":"2025-12-04T04:08:19.903Z","type":"portfolio_advice","userId":"3"}
+[32minfo[39m: 🧠 Intent classified: portfolio_advice {"requestId":"b803c7fc-3559-40f3-9876-029a54301b0d","service":"orchestrator-agent","timestamp":"2025-12-04T04:08:19.903Z"}
+[32minfo[39m: ⚡ Complexity: simple {"requestId":"b803c7fc-3559-40f3-9876-029a54301b0d","service":"orchestrator-agent","timestamp":"2025-12-04T04:08:19.904Z"}
+[32minfo[39m: ➡️  Routing to investment agent {"requestId":"b803c7fc-3559-40f3-9876-029a54301b0d","service":"orchestrator-agent","taskId":"1d6022b0-d4d6-451f-88ed-5eec29eb4cf1","timestamp":"2025-12-04T04:08:19.904Z"}
+[32minfo[39m: 👤 User profile fetched for personalization {"investmentGoal":"Long-term growth","riskTolerance":"moderate","service":"orchestrator-agent","timestamp":"2025-12-04T04:08:19.927Z","userId":"3"}
+{"level":"ERROR","timestamp":"2025-12-04T04:42:40.398Z","logger":"kafkajs","message":"[Connection] Connection error: read ECONNRESET","broker":"localhost:9092","clientId":"orchestrator-agent","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)"}
+{"level":"ERROR","timestamp":"2025-12-04T04:42:40.503Z","logger":"kafkajs","message":"[Consumer] Crash: KafkaJSNoBrokerAvailableError: No broker available","groupId":"orchestrator-group","stack":"KafkaJSNoBrokerAvailableError: No broker available\n    at createFetchers (/home/it/apps/thesis-report/backend/orchestrator-agent/node_modules/kafkajs/src/consumer/fetchManager.js:38:13)\n    at Object.start (/home/it/apps/thesis-report/backend/orchestrator-agent/node_modules/kafkajs/src/consumer/fetchManager.js:71:18)\n    at /home/it/apps/thesis-report/backend/orchestrator-agent/node_modules/kafkajs/src/consumer/runner.js:113:33\n    at retry (/home/it/apps/thesis-report/backend/orchestrator-agent/node_modules/kafkajs/src/retry/index.js:43:5)\n    at Timeout._onTimeout (/home/it/apps/thesis-report/backend/orchestrator-agent/node_modules/kafkajs/src/retry/index.js:40:24)\n    at listOnTimeout (node:internal/timers:608:17)\n    at process.processTimers (node:internal/timers:543:7)"}
+{"level":"INFO","timestamp":"2025-12-04T04:42:40.523Z","logger":"kafkajs","message":"[Consumer] Stopped","groupId":"orchestrator-group"}
+{"level":"ERROR","timestamp":"2025-12-04T04:42:40.524Z","logger":"kafkajs","message":"[Consumer] Restarting the consumer in 100ms","retryTime":100,"groupId":"orchestrator-group"}
+{"level":"INFO","timestamp":"2025-12-04T04:42:40.624Z","logger":"kafkajs","message":"[Consumer] Starting","groupId":"orchestrator-group"}
+{"level":"ERROR","timestamp":"2025-12-04T04:42:40.628Z","logger":"kafkajs","message":"[Connection] Connection error: read ECONNRESET","broker":"localhost:9092","clientId":"orchestrator-agent","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)"}
+{"level":"ERROR","timestamp":"2025-12-04T04:42:40.629Z","logger":"kafkajs","message":"[BrokerPool] Failed to connect to seed broker, trying another broker from the list: Connection error: read ECONNRESET","retryCount":0,"retryTime":98}
+{"level":"ERROR","timestamp":"2025-12-04T04:42:40.730Z","logger":"kafkajs","message":"[Connection] Connection error: read ECONNRESET","broker":"localhost:9092","clientId":"orchestrator-agent","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)"}
+{"level":"ERROR","timestamp":"2025-12-04T04:42:40.731Z","logger":"kafkajs","message":"[BrokerPool] Failed to connect to seed broker, trying another broker from the list: Connection error: read ECONNRESET","retryCount":1,"retryTime":164}
+{"level":"ERROR","timestamp":"2025-12-04T04:42:40.896Z","logger":"kafkajs","message":"[Connection] Connection error: read ECONNRESET","broker":"localhost:9092","clientId":"orchestrator-agent","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)"}
+{"level":"ERROR","timestamp":"2025-12-04T04:42:40.897Z","logger":"kafkajs","message":"[BrokerPool] Failed to connect to seed broker, trying another broker from the list: Connection error: read ECONNRESET","retryCount":2,"retryTime":376}
+{"level":"ERROR","timestamp":"2025-12-04T04:42:41.275Z","logger":"kafkajs","message":"[Connection] Connection error: read ECONNRESET","broker":"localhost:9092","clientId":"orchestrator-agent","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)"}
+{"level":"ERROR","timestamp":"2025-12-04T04:42:41.276Z","logger":"kafkajs","message":"[BrokerPool] Failed to connect to seed broker, trying another broker from the list: Connection error: read ECONNRESET","retryCount":3,"retryTime":626}
+{"level":"ERROR","timestamp":"2025-12-04T04:42:41.904Z","logger":"kafkajs","message":"[Connection] Connection error: read ECONNRESET","broker":"localhost:9092","clientId":"orchestrator-agent","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)"}
+{"level":"ERROR","timestamp":"2025-12-04T04:42:41.904Z","logger":"kafkajs","message":"[BrokerPool] Failed to connect to seed broker, trying another broker from the list: Connection error: read ECONNRESET","retryCount":4,"retryTime":1444}

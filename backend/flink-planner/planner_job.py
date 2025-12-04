@@ -41,8 +41,8 @@ GEMINI_API_KEY = os.getenv('GEMINI_API_KEY')
 if GEMINI_API_KEY and genai:
     try:
         genai.configure(api_key=GEMINI_API_KEY)
-        model = genai.GenerativeModel('gemini-2.0-flash')
-        print("✅ Configured Gemini AI (gemini-2.0-flash)", flush=True)
+        model = genai.GenerativeModel('gemini-2.5-flash')
+        print("✅ Configured Gemini AI (gemini-2.5-flash)", flush=True)
     except Exception as e:
         print(f"⚠️  Warning: Could not configure Gemini: {e}", flush=True)
         model = None
@@ -211,7 +211,7 @@ def process_planning_task(task_data: dict, producer: KafkaProducer):
         "status": "generated",
         "metadata": {
             "processingTimeMs": processing_time,
-            "model": "gemini-2.0-flash" if model else "rule-based",
+            "model": "gemini-2.5-flash" if model else "rule-based",
             "steps": len(plan.get('steps', []))
         },
         "timestamp": datetime.now().isoformat()

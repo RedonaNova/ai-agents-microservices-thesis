@@ -24,12 +24,14 @@
     "dotenv": "^16.4.5",
     "kafkajs": "^2.2.4",
     "kafkajs-snappy": "^1.1.0",
+    "pg": "^8.11.3",
     "uuid": "^13.0.0",
     "winston": "^3.11.0"
   },
   "devDependencies": {
     "@types/kafkajs-snappy": "^1.0.0",
     "@types/node": "^20.10.6",
+    "@types/pg": "^8.10.9",
     "tsx": "^4.7.0",
     "typescript": "^5.3.3"
   }

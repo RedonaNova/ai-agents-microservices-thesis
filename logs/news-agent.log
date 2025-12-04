@@ -2,23 +2,101 @@
 > news-agent@2.0.0 dev
 > tsx watch src/index.ts
 
-{"level":"WARN","timestamp":"2025-11-18T02:43:48.068Z","logger":"kafkajs","message":"KafkaJS v2.0.0 switched default partitioner. To retain the same partitioning behavior as in previous versions, create the producer with the option \"createPartitioner: Partitioners.LegacyPartitioner\". See the migration guide at https://kafka.js.org/docs/migration-guide-v2.0.0#producer-new-default-partitioner for details. Silence this warning by setting the environment variable \"KAFKAJS_NO_PARTITIONER_WARNING=1\""}
-[2025-11-18T02:43:48.070Z] ========================================== 
-[2025-11-18T02:43:48.070Z] 📰 Starting News Agent v2.0 
-[2025-11-18T02:43:48.070Z] ========================================== 
-[2025-11-18T02:43:48.070Z] Connecting to Kafka... 
-{"level":"ERROR","timestamp":"2025-11-18T02:43:48.081Z","logger":"kafkajs","message":"[Connection] Connection error: connect ECONNREFUSED 127.0.0.1:9092","broker":"localhost:9092","clientId":"news-agent","stack":"Error: connect ECONNREFUSED 127.0.0.1:9092\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16)"}
-{"level":"ERROR","timestamp":"2025-11-18T02:43:48.082Z","logger":"kafkajs","message":"[BrokerPool] Failed to connect to seed broker, trying another broker from the list: Connection error: connect ECONNREFUSED 127.0.0.1:9092","retryCount":0,"retryTime":252}
-{"level":"ERROR","timestamp":"2025-11-18T02:43:48.335Z","logger":"kafkajs","message":"[Connection] Connection error: connect ECONNREFUSED 127.0.0.1:9092","broker":"localhost:9092","clientId":"news-agent","stack":"Error: connect ECONNREFUSED 127.0.0.1:9092\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16)"}
-{"level":"ERROR","timestamp":"2025-11-18T02:43:48.336Z","logger":"kafkajs","message":"[BrokerPool] Failed to connect to seed broker, trying another broker from the list: Connection error: connect ECONNREFUSED 127.0.0.1:9092","retryCount":1,"retryTime":476}
-{"level":"ERROR","timestamp":"2025-11-18T02:43:48.814Z","logger":"kafkajs","message":"[Connection] Connection error: connect ECONNREFUSED 127.0.0.1:9092","broker":"localhost:9092","clientId":"news-agent","stack":"Error: connect ECONNREFUSED 127.0.0.1:9092\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16)"}
-{"level":"ERROR","timestamp":"2025-11-18T02:43:48.815Z","logger":"kafkajs","message":"[BrokerPool] Failed to connect to seed broker, trying another broker from the list: Connection error: connect ECONNREFUSED 127.0.0.1:9092","retryCount":2,"retryTime":778}
-{"level":"ERROR","timestamp":"2025-11-18T02:43:49.595Z","logger":"kafkajs","message":"[Connection] Connection error: connect ECONNREFUSED 127.0.0.1:9092","broker":"localhost:9092","clientId":"news-agent","stack":"Error: connect ECONNREFUSED 127.0.0.1:9092\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16)"}
-{"level":"ERROR","timestamp":"2025-11-18T02:43:49.596Z","logger":"kafkajs","message":"[BrokerPool] Failed to connect to seed broker, trying another broker from the list: Connection error: connect ECONNREFUSED 127.0.0.1:9092","retryCount":3,"retryTime":1408}
-{"level":"ERROR","timestamp":"2025-11-18T02:43:51.016Z","logger":"kafkajs","message":"[Connection] Connection error: connect ECONNREFUSED 127.0.0.1:9092","broker":"localhost:9092","clientId":"news-agent","stack":"Error: connect ECONNREFUSED 127.0.0.1:9092\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16)"}
-{"level":"ERROR","timestamp":"2025-11-18T02:43:51.016Z","logger":"kafkajs","message":"[BrokerPool] Failed to connect to seed broker, trying another broker from the list: Connection error: connect ECONNREFUSED 127.0.0.1:9092","retryCount":4,"retryTime":2918}
-{"level":"ERROR","timestamp":"2025-11-18T02:43:53.947Z","logger":"kafkajs","message":"[Connection] Connection error: connect ECONNREFUSED 127.0.0.1:9092","broker":"localhost:9092","clientId":"news-agent","stack":"Error: connect ECONNREFUSED 127.0.0.1:9092\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16)"}
-{"level":"ERROR","timestamp":"2025-11-18T02:43:53.947Z","logger":"kafkajs","message":"[BrokerPool] Failed to connect to seed broker, trying another broker from the list: Connection error: connect ECONNREFUSED 127.0.0.1:9092","retryCount":5,"retryTime":4744}
-[2025-11-18T02:43:53.955Z] 💥 Fatal error {
-  "error": "Connection error: connect ECONNREFUSED 127.0.0.1:9092"
+{"level":"WARN","timestamp":"2025-12-04T02:36:02.056Z","logger":"kafkajs","message":"KafkaJS v2.0.0 switched default partitioner. To retain the same partitioning behavior as in previous versions, create the producer with the option \"createPartitioner: Partitioners.LegacyPartitioner\". See the migration guide at https://kafka.js.org/docs/migration-guide-v2.0.0#producer-new-default-partitioner for details. Silence this warning by setting the environment variable \"KAFKAJS_NO_PARTITIONER_WARNING=1\""}
+[2025-12-04T02:36:02.059Z] ========================================== 
+[2025-12-04T02:36:02.059Z] 📰 Starting News Agent v2.0 
+[2025-12-04T02:36:02.059Z] ========================================== 
+[2025-12-04T02:36:02.059Z] Connecting to Kafka... 
+(node:81366) TimeoutNegativeWarning: -1764815762118 is a negative number.
+Timeout duration was set to 1.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[2025-12-04T02:36:02.136Z] ✅ News Agent ready 
+[2025-12-04T02:36:02.136Z] Listening for news tasks... 
+[2025-12-04T02:36:02.136Z] ========================================== 
+{"level":"INFO","timestamp":"2025-12-04T02:36:02.137Z","logger":"kafkajs","message":"[Consumer] Starting","groupId":"news-agent-group"}
+{"level":"INFO","timestamp":"2025-12-04T02:36:05.234Z","logger":"kafkajs","message":"[ConsumerGroup] Consumer has joined the group","groupId":"news-agent-group","memberId":"news-agent-41eca289-8dfb-4bfc-9461-59e99807b3fb","leaderId":"news-agent-41eca289-8dfb-4bfc-9461-59e99807b3fb","isLeader":true,"memberAssignment":{"agent.tasks":[0,1,2]},"groupProtocol":"RoundRobinAssigner","duration":3096}
+[2025-12-04T03:28:49.180Z] 📥 Processing task {
+  "taskId": "f51c1537-606b-4650-8453-918fb6f446e8",
+  "action": "provide_advice",
+  "agentType": "investment"
 }
+[2025-12-04T03:30:12.333Z] 📥 Processing task {
+  "taskId": "f8eacb17-551f-4814-8936-cb204d99043d",
+  "action": "provide_advice",
+  "agentType": "investment"
+}
+11:42:33 AM [tsx] change in ./src/index.ts Restarting...
+[2025-12-04T03:42:33.900Z] Shutting down... 
+{"level":"INFO","timestamp":"2025-12-04T03:42:38.014Z","logger":"kafkajs","message":"[Runner] consumer not running, exiting","groupId":"news-agent-group","memberId":"news-agent-41eca289-8dfb-4bfc-9461-59e99807b3fb"}
+{"level":"INFO","timestamp":"2025-12-04T03:42:38.038Z","logger":"kafkajs","message":"[Consumer] Stopped","groupId":"news-agent-group"}
+c{"level":"WARN","timestamp":"2025-12-04T03:42:40.287Z","logger":"kafkajs","message":"KafkaJS v2.0.0 switched default partitioner. To retain the same partitioning behavior as in previous versions, create the producer with the option \"createPartitioner: Partitioners.LegacyPartitioner\". See the migration guide at https://kafka.js.org/docs/migration-guide-v2.0.0#producer-new-default-partitioner for details. Silence this warning by setting the environment variable \"KAFKAJS_NO_PARTITIONER_WARNING=1\""}
+[2025-12-04T03:42:40.289Z] ========================================== 
+[2025-12-04T03:42:40.289Z] 📰 Starting News Agent v2.0 
+[2025-12-04T03:42:40.289Z] ========================================== 
+[2025-12-04T03:42:40.290Z] Connecting to Kafka... 
+(node:96470) TimeoutNegativeWarning: -1764819760326 is a negative number.
+Timeout duration was set to 1.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[2025-12-04T03:42:40.342Z] ✅ News Agent ready 
+[2025-12-04T03:42:40.342Z] Listening for news tasks... 
+[2025-12-04T03:42:40.342Z] ========================================== 
+{"level":"INFO","timestamp":"2025-12-04T03:42:40.343Z","logger":"kafkajs","message":"[Consumer] Starting","groupId":"news-agent-group"}
+{"level":"INFO","timestamp":"2025-12-04T03:42:43.397Z","logger":"kafkajs","message":"[ConsumerGroup] Consumer has joined the group","groupId":"news-agent-group","memberId":"news-agent-c840ab61-6dee-427f-9d35-510f831028d9","leaderId":"news-agent-c840ab61-6dee-427f-9d35-510f831028d9","isLeader":true,"memberAssignment":{"agent.tasks":[0,1,2]},"groupProtocol":"RoundRobinAssigner","duration":3053}
+[2025-12-04T03:43:00.093Z] 📥 Processing task {
+  "taskId": "93162371-400f-418b-86f5-69d0ac3bc0b1",
+  "action": "provide_advice",
+  "agentType": "investment"
+}
+11:46:49 AM [tsx] change in ./src/index.ts Restarting...
+[2025-12-04T03:46:49.825Z] Shutting down... 
+{"level":"INFO","timestamp":"2025-12-04T03:46:50.321Z","logger":"kafkajs","message":"[Runner] consumer not running, exiting","groupId":"news-agent-group","memberId":"news-agent-c840ab61-6dee-427f-9d35-510f831028d9"}
+{"level":"INFO","timestamp":"2025-12-04T03:46:50.327Z","logger":"kafkajs","message":"[Consumer] Stopped","groupId":"news-agent-group"}
+c{"level":"WARN","timestamp":"2025-12-04T03:46:51.041Z","logger":"kafkajs","message":"KafkaJS v2.0.0 switched default partitioner. To retain the same partitioning behavior as in previous versions, create the producer with the option \"createPartitioner: Partitioners.LegacyPartitioner\". See the migration guide at https://kafka.js.org/docs/migration-guide-v2.0.0#producer-new-default-partitioner for details. Silence this warning by setting the environment variable \"KAFKAJS_NO_PARTITIONER_WARNING=1\""}
+[2025-12-04T03:46:51.043Z] ========================================== 
+[2025-12-04T03:46:51.043Z] 📰 Starting News Agent v2.0 
+[2025-12-04T03:46:51.043Z] ========================================== 
+[2025-12-04T03:46:51.043Z] Connecting to Kafka... 
+(node:97357) TimeoutNegativeWarning: -1764820011069 is a negative number.
+Timeout duration was set to 1.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[2025-12-04T03:46:51.082Z] ✅ News Agent ready 
+[2025-12-04T03:46:51.082Z] Listening for news tasks... 
+[2025-12-04T03:46:51.082Z] ========================================== 
+{"level":"INFO","timestamp":"2025-12-04T03:46:51.082Z","logger":"kafkajs","message":"[Consumer] Starting","groupId":"news-agent-group"}
+{"level":"INFO","timestamp":"2025-12-04T03:46:54.108Z","logger":"kafkajs","message":"[ConsumerGroup] Consumer has joined the group","groupId":"news-agent-group","memberId":"news-agent-19ae533d-a42d-432a-bbca-997b52c7bda6","leaderId":"news-agent-19ae533d-a42d-432a-bbca-997b52c7bda6","isLeader":true,"memberAssignment":{"agent.tasks":[0,1,2]},"groupProtocol":"RoundRobinAssigner","duration":3024}
+11:47:05 AM [tsx] change in ./src/index.ts Restarting...
+[2025-12-04T03:47:05.414Z] Shutting down... 
+{"level":"INFO","timestamp":"2025-12-04T03:47:09.171Z","logger":"kafkajs","message":"[Runner] consumer not running, exiting","groupId":"news-agent-group","memberId":"news-agent-19ae533d-a42d-432a-bbca-997b52c7bda6"}
+{"level":"INFO","timestamp":"2025-12-04T03:47:09.177Z","logger":"kafkajs","message":"[Consumer] Stopped","groupId":"news-agent-group"}
+c{"level":"WARN","timestamp":"2025-12-04T03:47:09.673Z","logger":"kafkajs","message":"KafkaJS v2.0.0 switched default partitioner. To retain the same partitioning behavior as in previous versions, create the producer with the option \"createPartitioner: Partitioners.LegacyPartitioner\". See the migration guide at https://kafka.js.org/docs/migration-guide-v2.0.0#producer-new-default-partitioner for details. Silence this warning by setting the environment variable \"KAFKAJS_NO_PARTITIONER_WARNING=1\""}
+[2025-12-04T03:47:09.676Z] ========================================== 
+[2025-12-04T03:47:09.676Z] 📰 Starting News Agent v2.0 
+[2025-12-04T03:47:09.676Z] ========================================== 
+[2025-12-04T03:47:09.676Z] Connecting to Kafka... 
+(node:97631) TimeoutNegativeWarning: -1764820029705 is a negative number.
+Timeout duration was set to 1.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[2025-12-04T03:47:09.719Z] ✅ News Agent ready 
+[2025-12-04T03:47:09.719Z] Listening for news tasks... 
+[2025-12-04T03:47:09.719Z] ========================================== 
+{"level":"INFO","timestamp":"2025-12-04T03:47:09.720Z","logger":"kafkajs","message":"[Consumer] Starting","groupId":"news-agent-group"}
+{"level":"INFO","timestamp":"2025-12-04T03:47:12.784Z","logger":"kafkajs","message":"[ConsumerGroup] Consumer has joined the group","groupId":"news-agent-group","memberId":"news-agent-da7a5ae3-000f-47c6-a97c-30467c836045","leaderId":"news-agent-da7a5ae3-000f-47c6-a97c-30467c836045","isLeader":true,"memberAssignment":{"agent.tasks":[0,1,2]},"groupProtocol":"RoundRobinAssigner","duration":3062}
+[2025-12-04T04:07:25.386Z] 📥 Processing task {
+  "taskId": "cc25d6c7-c2fe-47ab-9608-3bb406044bd2",
+  "action": "provide_advice",
+  "agentType": "investment"
+}
+[2025-12-04T04:08:19.933Z] 📥 Processing task {
+  "taskId": "1d6022b0-d4d6-451f-88ed-5eec29eb4cf1",
+  "action": "provide_advice",
+  "agentType": "investment"
+}
+{"level":"ERROR","timestamp":"2025-12-04T04:42:40.455Z","logger":"kafkajs","message":"[Connection] Connection error: write after end","broker":"localhost:9092","clientId":"news-agent","stack":"Error [ERR_STREAM_WRITE_AFTER_END]: write after end\n    at _write (node:internal/streams/writable:487:11)\n    at Writable.write (node:internal/streams/writable:508:10)\n    at Object.sendRequest (/home/it/apps/thesis-report/backend/news-agent/node_modules/kafkajs/src/network/connection.js:409:27)\n    at SocketRequest.send [as sendRequest] (/home/it/apps/thesis-report/backend/news-agent/node_modules/kafkajs/src/network/requestQueue/index.js:134:23)\n    at SocketRequest.send (/home/it/apps/thesis-report/backend/news-agent/node_modules/kafkajs/src/network/requestQueue/socketRequest.js:88:10)\n    at RequestQueue.sendSocketRequest (/home/it/apps/thesis-report/backend/news-agent/node_modules/kafkajs/src/network/requestQueue/index.js:182:19)\n    at RequestQueue.push (/home/it/apps/thesis-report/backend/news-agent/node_modules/kafkajs/src/network/requestQueue/index.js:162:12)\n    at /home/it/apps/thesis-report/backend/news-agent/node_modules/kafkajs/src/network/connection.js:404:29\n    at new Promise (<anonymous>)\n    at sendRequest (/home/it/apps/thesis-report/backend/news-agent/node_modules/kafkajs/src/network/connection.js:399:14)"}
+{"level":"ERROR","timestamp":"2025-12-04T04:42:40.823Z","logger":"kafkajs","message":"[Consumer] Crash: KafkaJSNoBrokerAvailableError: No broker available","groupId":"news-agent-group","stack":"KafkaJSNoBrokerAvailableError: No broker available\n    at createFetchers (/home/it/apps/thesis-report/backend/news-agent/node_modules/kafkajs/src/consumer/fetchManager.js:38:13)\n    at Object.start (/home/it/apps/thesis-report/backend/news-agent/node_modules/kafkajs/src/consumer/fetchManager.js:71:18)\n    at /home/it/apps/thesis-report/backend/news-agent/node_modules/kafkajs/src/consumer/runner.js:113:33\n    at retry (/home/it/apps/thesis-report/backend/news-agent/node_modules/kafkajs/src/retry/index.js:43:5)\n    at Timeout._onTimeout (/home/it/apps/thesis-report/backend/news-agent/node_modules/kafkajs/src/retry/index.js:40:24)\n    at listOnTimeout (node:internal/timers:608:17)\n    at process.processTimers (node:internal/timers:543:7)"}
+{"level":"INFO","timestamp":"2025-12-04T04:42:40.851Z","logger":"kafkajs","message":"[Consumer] Stopped","groupId":"news-agent-group"}
+{"level":"ERROR","timestamp":"2025-12-04T04:42:40.852Z","logger":"kafkajs","message":"[Consumer] Restarting the consumer in 300ms","retryTime":300,"groupId":"news-agent-group"}
+{"level":"INFO","timestamp":"2025-12-04T04:42:41.152Z","logger":"kafkajs","message":"[Consumer] Starting","groupId":"news-agent-group"}
+{"level":"ERROR","timestamp":"2025-12-04T04:42:41.166Z","logger":"kafkajs","message":"[BrokerPool] Closed connection","retryCount":0,"retryTime":270}
+{"level":"ERROR","timestamp":"2025-12-04T04:42:41.440Z","logger":"kafkajs","message":"[BrokerPool] Closed connection","retryCount":1,"retryTime":462}
+{"level":"ERROR","timestamp":"2025-12-04T04:42:41.905Z","logger":"kafkajs","message":"[Connection] Connection error: read ECONNRESET","broker":"localhost:9092","clientId":"news-agent","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)"}
+{"level":"ERROR","timestamp":"2025-12-04T04:42:41.905Z","logger":"kafkajs","message":"[BrokerPool] Failed to connect to seed broker, trying another broker from the list: Connection error: read ECONNRESET","retryCount":2,"retryTime":798}

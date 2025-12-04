@@ -178,6 +178,78 @@ router.get('/stream/:requestId', async (req: Request, res: Response) => {
 });
 
 /**
+ * POST /api/agent/analyze-watchlist
+ * Analyze user's MSE watchlist stocks with personalized AI analysis
+ * Returns Mongolian text analysis based on user profile
+ */
+router.post('/analyze-watchlist', async (req: Request, res: Response) => {
+  try {
+    const userId = getUserId(req);
+    const requestId = uuidv4();
+    const db = require('../services/database').default;
+
+    if (userId === 'guest') {
+      return res.status(401).json({
+        success: false,
+        error: 'Authentication required to analyze watchlist',
+      });
+    }
+
+    // Get user's watchlist items (only MSE stocks)
+    const watchlistResult = await db.query(
+      `SELECT DISTINCT wi.symbol 
+       FROM watchlist_items wi
+       JOIN watchlists w ON w.id = wi.watchlist_id
+       WHERE w.user_id = $1 AND wi.is_mse = true`,
+      [userId]
+    );
+
+    const watchlistSymbols = watchlistResult.rows.map((row: any) => row.symbol);
+
+    if (watchlistSymbols.length === 0) {
+      return res.status(400).json({
+        success: false,
+        error: 'No MSE stocks in watchlist. Please add some MSE stocks first.',
+      });
+    }
+
+    // Send to orchestrator for processing
+    await kafkaService.sendEvent('user.requests', requestId, {
+      requestId,
+      userId,
+      timestamp: new Date().toISOString(),
+      query: `Миний ажиглаж буй хувьцаануудыг (${watchlistSymbols.join(', ')}) шинжилж, хөрөнгө оруулалтын зөвлөгөө өгнө үү.`,
+      type: 'portfolio_advice',
+      context: {
+        symbols: watchlistSymbols,
+        watchlistSymbols, // Pass for investment agent
+        analysisType: 'watchlist',
+      },
+    });
+
+    logger.info('Watchlist analysis request sent', { 
+      requestId, 
+      userId, 
+      symbols: watchlistSymbols 
+    });
+
+    res.json({
+      success: true,
+      requestId,
+      message: 'Watchlist analysis request submitted',
+      symbols: watchlistSymbols,
+      pollEndpoint: `/api/agent/response/${requestId}`,
+    });
+  } catch (error) {
+    logger.error('Watchlist analysis error', { error });
+    res.status(500).json({
+      success: false,
+      error: 'Failed to analyze watchlist',
+    });
+  }
+});
+
+/**
  * POST /api/agent/portfolio/advice (Legacy compatibility)
  * Redirects to unified /query endpoint
  */

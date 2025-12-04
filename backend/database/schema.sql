@@ -2,6 +2,10 @@
 -- Event-Driven AI Agents for MSE Stock Analysis
 
 -- Drop existing tables if rebuilding
+DROP TABLE IF EXISTS agent_responses_cache CASCADE;
+DROP TABLE IF EXISTS mse_trading_status CASCADE;
+DROP TABLE IF EXISTS mse_trading_history CASCADE;
+DROP TABLE IF EXISTS mse_companies CASCADE;
 DROP TABLE IF EXISTS monitoring_events CASCADE;
 DROP TABLE IF EXISTS knowledge_base CASCADE;
 DROP TABLE IF EXISTS watchlist_items CASCADE;
@@ -125,14 +129,34 @@ CREATE INDEX idx_monitoring_service ON monitoring_events(service_name);
 CREATE INDEX idx_monitoring_type ON monitoring_events(event_type);
 CREATE INDEX idx_monitoring_created_at ON monitoring_events(created_at);
 
--- MSE Companies Table (already exists, but ensuring schema)
+-- Agent Responses Cache Table (for storing AI responses)
+CREATE TABLE agent_responses_cache (
+    id SERIAL PRIMARY KEY,
+    request_id VARCHAR(255) UNIQUE NOT NULL,
+    user_id VARCHAR(255),
+    agent_type VARCHAR(50),
+    query TEXT,
+    response TEXT,
+    status VARCHAR(50) DEFAULT 'success',
+    processing_time_ms INTEGER,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE INDEX idx_responses_request_id ON agent_responses_cache(request_id);
+CREATE INDEX idx_responses_user_id ON agent_responses_cache(user_id);
+CREATE INDEX idx_responses_created_at ON agent_responses_cache(created_at);
+
+-- MSE Companies Table (compatible with mse-ingestion-service)
 CREATE TABLE IF NOT EXISTS mse_companies (
     id SERIAL PRIMARY KEY,
-    symbol VARCHAR(50) UNIQUE NOT NULL,
+    company_code INTEGER UNIQUE,
+    symbol VARCHAR(50) NOT NULL,
     name VARCHAR(255) NOT NULL,
     name_en VARCHAR(255),
     sector VARCHAR(100),
     industry VARCHAR(100),
+    market_segment_id VARCHAR(10), -- "I", "II"
+    security_type VARCHAR(10), -- "CS" = Common Stock
     total_shares BIGINT,
     listed_date DATE,
     
@@ -141,12 +165,14 @@ CREATE TABLE IF NOT EXISTS mse_companies (
 );
 
 CREATE INDEX IF NOT EXISTS idx_mse_companies_symbol ON mse_companies(symbol);
+CREATE INDEX IF NOT EXISTS idx_mse_companies_code ON mse_companies(company_code);
 CREATE INDEX IF NOT EXISTS idx_mse_companies_sector ON mse_companies(sector);
 
--- MSE Trading History Table (already exists, but ensuring schema)
+-- MSE Trading History Table (compatible with mse-ingestion-service)
 CREATE TABLE IF NOT EXISTS mse_trading_history (
     id SERIAL PRIMARY KEY,
     symbol VARCHAR(50) NOT NULL,
+    name VARCHAR(255),
     trade_date DATE NOT NULL,
     
     opening_price DECIMAL(18, 2),
@@ -157,7 +183,10 @@ CREATE TABLE IF NOT EXISTS mse_trading_history (
     
     volume BIGINT,
     turnover DECIMAL(18, 2),
-    trades_count INTEGER,
+    md_entry_time TIMESTAMP,
+    company_code INTEGER,
+    market_segment_id VARCHAR(10),
+    security_type VARCHAR(10),
     
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     
@@ -166,6 +195,29 @@ CREATE TABLE IF NOT EXISTS mse_trading_history (
 
 CREATE INDEX IF NOT EXISTS idx_trading_symbol ON mse_trading_history(symbol);
 CREATE INDEX IF NOT EXISTS idx_trading_date ON mse_trading_history(trade_date);
+CREATE INDEX IF NOT EXISTS idx_trading_company_code ON mse_trading_history(company_code);
+
+-- MSE Trading Status Table (real-time current prices)
+CREATE TABLE IF NOT EXISTS mse_trading_status (
+    id SERIAL PRIMARY KEY,
+    symbol VARCHAR(50) UNIQUE NOT NULL,
+    name VARCHAR(255),
+    current_price DECIMAL(18, 2),
+    opening_price DECIMAL(18, 2),
+    high_price DECIMAL(18, 2),
+    low_price DECIMAL(18, 2),
+    volume BIGINT,
+    previous_close DECIMAL(18, 2),
+    turnover DECIMAL(18, 2),
+    change_percent DECIMAL(8, 4),
+    last_trade_time TIMESTAMP,
+    company_code INTEGER,
+    market_segment_id VARCHAR(10),
+    security_type VARCHAR(10),
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE INDEX IF NOT EXISTS idx_status_symbol ON mse_trading_status(symbol);
 
 -- Function to update updated_at timestamp
 CREATE OR REPLACE FUNCTION update_updated_at_column()
@@ -184,10 +236,14 @@ CREATE TRIGGER update_companies_updated_at BEFORE UPDATE ON mse_companies FOR EA
 
 -- Insert sample knowledge base entries for RAG
 INSERT INTO knowledge_base (content, content_type, source, metadata) VALUES
-('APU (Asia Pacific United) is a prominent mining company listed on the Mongolian Stock Exchange, primarily engaged in copper mining operations.', 'company_profile', 'MSE', '{"symbol": "APU", "sector": "Mining"}'),
-('TDB (Trade and Development Bank) is one of the largest commercial banks in Mongolia, offering comprehensive banking services.', 'company_profile', 'MSE', '{"symbol": "TDB", "sector": "Finance"}'),
+('APU (АПУ ХК) is one of the largest companies listed on MSE, primarily engaged in beverage production including beer, soft drinks, and dairy products.', 'company_profile', 'MSE', '{"symbol": "APU", "sector": "Consumer Goods"}'),
+('TDB (Худалдаа Хөгжлийн Банк) is one of the largest commercial banks in Mongolia, offering comprehensive banking services.', 'company_profile', 'MSE', '{"symbol": "TDB", "sector": "Finance"}'),
 ('MSE trading hours: Monday to Friday, 10:00 AM - 1:00 PM Ulaanbaatar time (UTC+8)', 'business_rule', 'MSE', '{"category": "trading_hours"}'),
-('Portfolio diversification recommendation: Do not allocate more than 40% of portfolio to a single sector', 'business_rule', 'manual', '{"category": "risk_management"}');
+('Portfolio diversification recommendation: Do not allocate more than 40% of portfolio to a single sector', 'business_rule', 'manual', '{"category": "risk_management"}'),
+-- Agent Capabilities for Orchestrator routing
+('Investment Agent: Analyzes MSE (Mongolian Stock Exchange) stocks, provides personalized investment advice based on user risk tolerance and goals, generates market analysis reports in Mongolian.', 'agent_capability', 'system', '{"agent": "investment", "intents": ["portfolio_advice", "market_analysis", "historical_analysis", "risk_assessment"]}'),
+('News Agent: Fetches financial news from Finnhub API, performs sentiment analysis using AI, summarizes news for specific stocks or market categories.', 'agent_capability', 'system', '{"agent": "news", "intents": ["news_query"]}'),
+('Knowledge Agent: Provides information about MSE companies, trading rules, and financial concepts using semantic search from knowledge base.', 'agent_capability', 'system', '{"agent": "knowledge", "intents": ["general_query"]}');
 
 -- Grant permissions (adjust user as needed)
 GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO thesis_user;

@@ -3,6 +3,22 @@ import intentClassifier from './intent-classifier';
 import complexityDetector from './complexity-detector';
 import logger from './logger';
 import { v4 as uuidv4 } from 'uuid';
+import { Pool } from 'pg';
+import dotenv from 'dotenv';
+import path from 'path';
+
+// Load environment variables
+dotenv.config({ path: path.join(__dirname, '../../.env') });
+
+// PostgreSQL connection for fetching user profiles
+const db = new Pool({
+  host: process.env.DB_HOST || 'localhost',
+  port: parseInt(process.env.DB_PORT || '5432'),
+  user: process.env.DB_USER || 'thesis_user',
+  password: process.env.DB_PASSWORD || 'thesis_pass',
+  database: process.env.DB_NAME || 'thesis_db',
+  max: 5,
+});
 
 /**
  * Orchestrator Agent - Main Entry Point
@@ -198,6 +214,34 @@ class OrchestratorAgent {
   }
 
   /**
+   * Fetch user profile from PostgreSQL for personalized AI responses
+   */
+  private async getUserProfile(userId: string): Promise<any | null> {
+    try {
+      const result = await db.query(
+        `SELECT id, email, name, investment_goal, risk_tolerance, preferred_industries 
+         FROM users WHERE id = $1`,
+        [userId]
+      );
+      
+      if (result.rows.length > 0) {
+        const user = result.rows[0];
+        return {
+          id: user.id,
+          name: user.name,
+          investmentGoal: user.investment_goal,
+          riskTolerance: user.risk_tolerance,
+          preferredIndustries: user.preferred_industries || [],
+        };
+      }
+      return null;
+    } catch (error: any) {
+      logger.error('Failed to fetch user profile', { userId, error: error.message });
+      return null;
+    }
+  }
+
+  /**
    * Route simple request to agent.tasks
    */
   private async routeToAgent(
@@ -212,6 +256,19 @@ class OrchestratorAgent {
 
     logger.info(`➡️  Routing to ${agentType} agent`, { requestId, taskId });
 
+    // Fetch user profile for personalized AI responses (ReAct pattern)
+    let userProfile = null;
+    if (userId && agentType === 'investment') {
+      userProfile = await this.getUserProfile(userId);
+      if (userProfile) {
+        logger.info(`👤 User profile fetched for personalization`, { 
+          userId, 
+          investmentGoal: userProfile.investmentGoal,
+          riskTolerance: userProfile.riskTolerance 
+        });
+      }
+    }
+
     await kafkaClient.sendEvent('agent.tasks', taskId, {
       taskId,
       correlationId: requestId,
@@ -222,6 +279,7 @@ class OrchestratorAgent {
         userId,
         query,
         context,
+        userProfile, // Include user profile for personalized responses
       },
       priority: 'normal',
       timestamp: new Date().toISOString(),
