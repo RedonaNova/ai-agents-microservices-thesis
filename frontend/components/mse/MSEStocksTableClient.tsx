@@ -1,77 +1,25 @@
 "use client";
 
-import { useEffect, useState, useCallback, useRef } from "react";
-import { getMSEStocks, MSEStockData } from "@/lib/actions/mse-stocks.actions";
-import { toggleWatchlist, isInWatchlist } from "@/lib/actions/watchlist.actions";
-import { TrendingUp, TrendingDown, Star, Loader2, RefreshCw, ArrowUpDown } from "lucide-react";
+import { useState, useMemo } from "react";
+import { MSEStockData } from "@/lib/actions/mse-stocks.actions";
+import { toggleWatchlist } from "@/lib/actions/watchlist.actions";
+import { TrendingUp, TrendingDown, Star, Loader2, ArrowUpDown } from "lucide-react";
 import Link from "next/link";
 import { toast } from "sonner";
 
 type SortField = "symbol" | "name" | "sector" | "closingPrice" | "changePercent" | "volume";
 type SortDirection = "asc" | "desc";
 
-export function MSEStocksTable() {
-  const [stocks, setStocks] = useState<MSEStockData[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [refreshing, setRefreshing] = useState(false);
+interface MSEStocksTableClientProps {
+  initialStocks: MSEStockData[];
+}
+
+export function MSEStocksTableClient({ initialStocks }: MSEStocksTableClientProps) {
+  const [stocks] = useState<MSEStockData[]>(initialStocks);
   const [watchlistStatus, setWatchlistStatus] = useState<Map<string, boolean>>(new Map());
   const [togglingWatchlist, setTogglingWatchlist] = useState<Set<string>>(new Set());
   const [sortField, setSortField] = useState<SortField>("changePercent");
   const [sortDirection, setSortDirection] = useState<SortDirection>("desc");
-  const watchlistChecked = useRef(false);
-
-  const loadStocks = useCallback(async () => {
-    try {
-      const data = await getMSEStocks(200); // Load all stocks
-      setStocks(data);
-      return data;
-    } catch (error) {
-      console.error("Error loading MSE stocks:", error);
-      toast.error("MSE өгөгдөл ачааллахад алдаа гарлаа");
-      return [];
-    } finally {
-      setLoading(false);
-    }
-  }, []);
-
-  // Single effect to load stocks and check watchlist once
-  useEffect(() => {
-    let cancelled = false;
-    
-    async function init() {
-      const data = await loadStocks();
-      if (cancelled || watchlistChecked.current) return;
-      watchlistChecked.current = true;
-      
-      // Check watchlist status for all stocks
-      const statusMap = new Map<string, boolean>();
-      const symbols = data.map((s: MSEStockData) => s.symbol);
-      
-      // Batch check - we'll check each one (API doesn't support batch)
-      for (const symbol of symbols.slice(0, 50)) { // Limit to first 50 for performance
-        try {
-          const inList = await isInWatchlist(symbol);
-          statusMap.set(symbol, inList);
-        } catch {
-          // Ignore errors for individual checks
-        }
-      }
-      if (!cancelled) {
-        setWatchlistStatus(statusMap);
-      }
-    }
-    
-    init();
-    return () => { cancelled = true; };
-  }, [loadStocks]);
-
-  async function handleRefresh() {
-    setRefreshing(true);
-    watchlistChecked.current = false; // Allow re-check
-    await loadStocks();
-    setRefreshing(false);
-    toast.success("Шинэчилсэн");
-  }
 
   async function handleToggleWatchlist(
     e: React.MouseEvent,
@@ -120,32 +68,24 @@ export function MSEStocksTable() {
     }
   }
 
-  const sortedStocks = [...stocks].sort((a, b) => {
-    const aValue = a[sortField];
-    const bValue = b[sortField];
-    
-    if (aValue === undefined || bValue === undefined) return 0;
-    
-    if (typeof aValue === "string" && typeof bValue === "string") {
+  const sortedStocks = useMemo(() => {
+    return [...stocks].sort((a, b) => {
+      const aValue = a[sortField];
+      const bValue = b[sortField];
+      
+      if (aValue === undefined || bValue === undefined) return 0;
+      
+      if (typeof aValue === "string" && typeof bValue === "string") {
+        return sortDirection === "asc" 
+          ? aValue.localeCompare(bValue)
+          : bValue.localeCompare(aValue);
+      }
+      
       return sortDirection === "asc" 
-        ? aValue.localeCompare(bValue)
-        : bValue.localeCompare(aValue);
-    }
-    
-    return sortDirection === "asc" 
-      ? (aValue as number) - (bValue as number)
-      : (bValue as number) - (aValue as number);
-  });
-
-  if (loading) {
-    return (
-      <div className="rounded-lg border border-gray-800 bg-gray-900/50 p-6">
-        <div className="flex items-center justify-center py-20">
-          <Loader2 className="w-8 h-8 animate-spin text-gray-500" />
-        </div>
-      </div>
-    );
-  }
+        ? (aValue as number) - (bValue as number)
+        : (bValue as number) - (aValue as number);
+    });
+  }, [stocks, sortField, sortDirection]);
 
   return (
     <div className="rounded-lg border border-gray-800 bg-gray-900/50 overflow-hidden">
@@ -159,14 +99,6 @@ export function MSEStocksTable() {
             {stocks.length} хувьцаа • Баганыг дарж эрэмбэлнэ үү
           </p>
         </div>
-        <button
-          onClick={handleRefresh}
-          disabled={refreshing}
-          className="p-2 rounded-md hover:bg-gray-800 transition-colors disabled:opacity-50"
-          title="Шинэчлэх"
-        >
-          <RefreshCw className={`w-4 h-4 text-gray-400 ${refreshing ? 'animate-spin' : ''}`} />
-        </button>
       </div>
 
       {/* Table */}
@@ -188,14 +120,6 @@ export function MSEStocksTable() {
                   className="flex items-center gap-1 hover:text-gray-200"
                 >
                   Нэр <ArrowUpDown className="w-3 h-3" />
-                </button>
-              </th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
-                <button
-                  onClick={() => handleSort("sector")}
-                  className="flex items-center gap-1 hover:text-gray-200"
-                >
-                  Салбар <ArrowUpDown className="w-3 h-3" />
                 </button>
               </th>
               <th className="px-4 py-3 text-right text-xs font-medium text-gray-400 uppercase tracking-wider">
@@ -253,9 +177,6 @@ export function MSEStocksTable() {
                     >
                       {stock.name}
                     </Link>
-                  </td>
-                  <td className="px-4 py-3 whitespace-nowrap">
-                    <span className="text-sm text-gray-400">{stock.sector}</span>
                   </td>
                   <td className="px-4 py-3 whitespace-nowrap text-right">
                     <span className="text-sm font-medium text-gray-100">

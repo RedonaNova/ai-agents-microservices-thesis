@@ -1,75 +1,56 @@
 "use server";
 
-import { connectToDatabase } from "@/database/mongoose";
-import { Watchlist } from "@/database/models/watchlist.model";
-import { auth } from "@/lib/better-auth/auth";
-import { headers } from "next/headers";
-import { revalidatePath } from "next/cache";
+import { getAuthToken } from "@/lib/actions/auth.actions";
 
-/**
- * Get current user's ID from session
- */
-async function getCurrentUserId(): Promise<string | null> {
-  try {
-    const session = await auth.api.getSession({
-      headers: await headers(),
-    });
-    return session?.user?.id || null;
-  } catch (error) {
-    console.error("Error getting current user:", error);
-    return null;
+const API_GATEWAY_URL = process.env.NEXT_PUBLIC_API_GATEWAY_URL || "http://localhost:3001";
+
+type WatchlistItem = { symbol: string; company: string; addedAt: string; isMse?: boolean };
+
+async function authFetch(path: string, options: RequestInit = {}) {
+  const token = await getAuthToken();
+  if (!token) {
+    return { ok: false, status: 401, json: async () => ({ error: "Not authenticated" }) } as any;
   }
+  const res = await fetch(`${API_GATEWAY_URL}${path}`, {
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+      ...(options.headers || {}),
+    },
+  });
+  return res;
 }
 
-/**
- * Get watchlist symbols by email
- */
-export async function getWatchlistSymbolsByEmail(
-  email: string
-): Promise<string[]> {
-  if (!email) return [];
+async function ensureDefaultWatchlist(): Promise<string | null> {
+  const res = await authFetch("/api/watchlist");
+  if (!res.ok) return null;
+  const data = await res.json();
+  const existing = data.watchlists?.[0];
+  if (existing) return existing.id;
 
-  try {
-    const mongoose = await connectToDatabase();
-    const db = mongoose.connection.db;
-    if (!db) throw new Error("MongoDB connection not found");
-
-    // Better Auth stores users in the "user" collection
-    const user = await db
-      .collection("user")
-      .findOne<{ _id?: unknown; id?: string; email?: string }>({ email });
-
-    if (!user) return [];
-
-    const userId = (user.id as string) || String(user._id || "");
-    if (!userId) return [];
-
-    const items = await Watchlist.find({ userId }, { symbol: 1 }).lean();
-    return items.map((i) => String(i.symbol));
-  } catch (err) {
-    console.error("getWatchlistSymbolsByEmail error:", err);
-    return [];
-  }
+  const createRes = await authFetch("/api/watchlist", {
+    method: "POST",
+    body: JSON.stringify({ name: "Default" }),
+  });
+  if (!createRes.ok) return null;
+  const created = await createRes.json();
+  return created.watchlist?.id || null;
 }
 
-/**
- * Get all watchlist items for current user
- */
-export async function getWatchlist() {
+export async function getWatchlist(): Promise<WatchlistItem[]> {
   try {
-    const userId = await getCurrentUserId();
-    if (!userId) return [];
+    const watchlistId = await ensureDefaultWatchlist();
+    if (!watchlistId) return [];
 
-    await connectToDatabase();
-    
-    const items = await Watchlist.find({ userId })
-      .sort({ addedAt: -1 })
-      .lean();
-
-    return items.map((item) => ({
-      symbol: String(item.symbol),
-      company: String(item.company),
-      addedAt: item.addedAt.toISOString(),
+    const res = await authFetch(`/api/watchlist/${watchlistId}/items`);
+    if (!res.ok) return [];
+    const data = await res.json();
+    return (data.items || []).map((item: any) => ({
+      symbol: item.symbol,
+      company: item.symbol,
+      addedAt: item.added_at || item.addedAt || new Date().toISOString(),
+      isMse: item.is_mse,
     }));
   } catch (error) {
     console.error("Error getting watchlist:", error);
@@ -77,150 +58,69 @@ export async function getWatchlist() {
   }
 }
 
-/**
- * Add stock to watchlist
- */
-export async function addToWatchlist(symbol: string, company: string) {
+export async function addToWatchlist(symbol: string, company: string, isMse = false) {
   try {
-    const userId = await getCurrentUserId();
-    if (!userId) {
-      return { success: false, error: "Not authenticated" };
+    const watchlistId = await ensureDefaultWatchlist();
+    if (!watchlistId) {
+      return { success: false, error: "Watchlist not available" };
     }
 
-    await connectToDatabase();
-
-    // Check if already in watchlist
-    const existing = await Watchlist.findOne({ userId, symbol });
-    if (existing) {
-      return { success: false, error: "Already in watchlist" };
-    }
-
-    await Watchlist.create({
-      userId,
-      symbol: symbol.toUpperCase(),
-      company,
-      addedAt: new Date(),
+    const res = await authFetch(`/api/watchlist/${watchlistId}/items`, {
+      method: "POST",
+      body: JSON.stringify({ symbol, isMse }),
     });
-
-    revalidatePath("/watchlist");
-    revalidatePath("/");
-
-    return { success: true };
+    const data = await res.json();
+    if (!res.ok) {
+      return { success: false, error: data.error || "Алдаа гарлаа" };
+    }
+    return { success: true, item: data.item, inWatchlist: true, message: "Хяналтад нэмсэн" };
   } catch (error: any) {
     console.error("Error adding to watchlist:", error);
     return { success: false, error: error.message || "Failed to add to watchlist" };
   }
 }
 
-/**
- * Remove stock from watchlist
- */
 export async function removeFromWatchlist(symbol: string) {
   try {
-    const userId = await getCurrentUserId();
-    if (!userId) {
-      return { success: false, error: "Not authenticated" };
+    const watchlistId = await ensureDefaultWatchlist();
+    if (!watchlistId) {
+      return { success: false, error: "Watchlist not available" };
     }
 
-    await connectToDatabase();
-
-    await Watchlist.deleteOne({ userId, symbol: symbol.toUpperCase() });
-
-    revalidatePath("/watchlist");
-    revalidatePath("/");
-
-    return { success: true };
+    const res = await authFetch(`/api/watchlist/${watchlistId}/items/${symbol}`, {
+      method: "DELETE",
+    });
+    const data = await res.json();
+    if (!res.ok) {
+      return { success: false, error: data.error || "Алдаа гарлаа" };
+    }
+    return { success: true, message: "Хяналтаас хассан" };
   } catch (error: any) {
     console.error("Error removing from watchlist:", error);
     return { success: false, error: error.message || "Failed to remove from watchlist" };
   }
 }
 
-/**
- * Toggle watchlist status
- */
-export async function toggleWatchlist(symbol: string, company: string) {
-  try {
-    const userId = await getCurrentUserId();
-    if (!userId) {
-      return { success: false, error: "Not authenticated", inWatchlist: false };
-    }
-
-    await connectToDatabase();
-
-    const existing = await Watchlist.findOne({ userId, symbol: symbol.toUpperCase() });
-
-    if (existing) {
-      await Watchlist.deleteOne({ userId, symbol: symbol.toUpperCase() });
-      revalidatePath("/watchlist");
-      revalidatePath("/");
-      return { success: true, inWatchlist: false, message: "Removed from watchlist" };
-    } else {
-      await Watchlist.create({
-        userId,
-        symbol: symbol.toUpperCase(),
-        company,
-        addedAt: new Date(),
-      });
-      revalidatePath("/watchlist");
-      revalidatePath("/");
-      return { success: true, inWatchlist: true, message: "Added to watchlist" };
-    }
-  } catch (error: any) {
-    console.error("Error toggling watchlist:", error);
-    return { success: false, error: error.message || "Failed to toggle watchlist", inWatchlist: false };
+export async function toggleWatchlist(symbol: string, company: string, isMse = false) {
+  const inList = await isInWatchlist(symbol);
+  if (inList) {
+    const res = await removeFromWatchlist(symbol);
+    return { ...res, inWatchlist: !res.success ? true : false };
+  } else {
+    const res = await addToWatchlist(symbol, company, isMse);
+    return { ...res, inWatchlist: res.success ? true : false };
   }
 }
 
-/**
- * Check if stock is in watchlist
- */
 export async function isInWatchlist(symbol: string): Promise<boolean> {
   try {
-    const userId = await getCurrentUserId();
-    if (!userId) return false;
-
-    await connectToDatabase();
-
-    const item = await Watchlist.findOne({ userId, symbol: symbol.toUpperCase() });
-    return !!item;
+    const res = await authFetch("/api/watchlist/all/symbols");
+    if (!res.ok) return false;
+    const data = await res.json();
+    const symbols: string[] = data.symbols || [];
+    return symbols.includes(symbol.toUpperCase());
   } catch (error) {
     console.error("Error checking watchlist:", error);
     return false;
-  }
-}
-
-/**
- * Get watchlist with user details (for multi-user systems)
- */
-export async function getAllUsersWatchlists() {
-  try {
-    const mongoose = await connectToDatabase();
-    const db = mongoose.connection.db;
-    if (!db) throw new Error("MongoDB connection not found");
-
-    const watchlists = await Watchlist.find({}).lean();
-    
-    // Get unique user IDs
-    const userIds = [...new Set(watchlists.map((w) => w.userId))];
-    
-    // Fetch user emails
-    const users = await db
-      .collection("user")
-      .find({ id: { $in: userIds } })
-      .project({ id: 1, email: 1, name: 1 })
-      .toArray();
-
-    const userMap = new Map(users.map((u: any) => [u.id, u]));
-
-    return watchlists.map((item) => ({
-      symbol: String(item.symbol),
-      company: String(item.company),
-      addedAt: item.addedAt.toISOString(),
-      user: userMap.get(item.userId) || { id: item.userId },
-    }));
-  } catch (error) {
-    console.error("Error getting all watchlists:", error);
-    return [];
   }
 }

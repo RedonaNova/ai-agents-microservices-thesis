@@ -1,6 +1,6 @@
 "use server";
 
-import { Pool } from 'pg';
+const API_GATEWAY_URL = process.env.NEXT_PUBLIC_API_GATEWAY_URL || "http://localhost:3001";
 
 export interface MSEStockData {
   symbol: string;
@@ -10,63 +10,34 @@ export interface MSEStockData {
   change: number;
   changePercent: number;
   volume: number;
-  tradingDate: string;
-}
-
-// Database connection
-let pool: Pool | null = null;
-
-function getPool() {
-  if (!pool) {
-    pool = new Pool({
-      host: process.env.DB_HOST || 'localhost',
-      port: parseInt(process.env.DB_PORT || '5432'),
-      user: process.env.DB_USER || 'thesis_user',
-      password: process.env.DB_PASSWORD || 'thesis_pass',
-      database: process.env.DB_NAME || 'thesis_db',
-      max: 10,
-    });
-  }
-  return pool;
+  tradingDate?: string;
 }
 
 /**
- * Fetch MSE stocks from PostgreSQL database
+ * Fetch MSE stocks via API Gateway (no direct DB connection from frontend)
  */
-export async function getMSEStocks(limit: number = 20): Promise<MSEStockData[]> {
+export async function getMSEStocks(limit: number = 200): Promise<MSEStockData[]> {
   try {
-    const pool = getPool();
+    const res = await fetch(`${API_GATEWAY_URL}/api/mse/trading-status`, {
+      cache: 'no-store',
+    });
+    if (!res.ok) return [];
+    const data = await res.json();
 
-    const result = await pool.query(
-      `
-      SELECT DISTINCT ON (c.symbol)
-        c.symbol,
-        c.name,
-        c.sector,
-        th.closing_price,
-        (th.closing_price - th.previous_close) as change,
-        ((th.closing_price - th.previous_close) / NULLIF(th.previous_close, 0) * 100) as change_percent,
-        th.volume,
-        th.trade_date
-      FROM mse_companies c
-      INNER JOIN mse_trading_history th ON c.symbol = th.symbol
-      WHERE th.closing_price IS NOT NULL
-      ORDER BY c.symbol, th.trade_date DESC
-      LIMIT $1
-      `,
-      [limit]
-    );
+    const stocks = (data.tradingStatus || [])
+      .map((row: any) => ({
+        symbol: row.symbol,
+        name: row.name || row.symbol,
+        sector: row.sector || '',
+        closingPrice: parseFloat(row.current_price) || 0,
+        change: (parseFloat(row.current_price) || 0) - (parseFloat(row.previous_close) || 0),
+        changePercent: parseFloat(row.change_percent) || 0,
+        volume: parseInt(row.volume) || 0,
+        tradingDate: row.last_trade_time,
+      }))
+      .slice(0, limit);
 
-    return result.rows.map(row => ({
-      symbol: row.symbol,
-      name: row.name,
-      sector: row.sector || 'Бусад',
-      closingPrice: parseFloat(row.closing_price),
-      change: parseFloat(row.change || 0),
-      changePercent: parseFloat(row.change_percent || 0),
-      volume: parseInt(row.volume || 0),
-      tradingDate: row.trade_date,
-    }));
+    return stocks;
   } catch (error) {
     console.error('Error fetching MSE stocks:', error);
     return [];
@@ -74,87 +45,86 @@ export async function getMSEStocks(limit: number = 20): Promise<MSEStockData[]> 
 }
 
 /**
- * Get top movers (gainers and losers)
+ * Get top movers (gainers and losers) via API Gateway
  */
 export async function getTopMovers() {
   try {
-    const pool = getPool();
+    const res = await fetch(`${API_GATEWAY_URL}/api/mse/summary`, {
+      cache: 'no-store',
+    });
+    if (!res.ok) return { gainers: [], losers: [] };
+    const data = await res.json();
 
-    // Get gainers
-    const gainersResult = await pool.query(
-      `
-      SELECT DISTINCT ON (c.symbol)
-        c.symbol,
-        c.name,
-        c.sector,
-        th.closing_price,
-        (th.closing_price - th.previous_close) as change,
-        ((th.closing_price - th.previous_close) / NULLIF(th.previous_close, 0) * 100) as change_percent,
-        th.volume,
-        th.trade_date
-      FROM mse_companies c
-      INNER JOIN mse_trading_history th ON c.symbol = th.symbol
-      WHERE th.closing_price IS NOT NULL
-        AND th.previous_close IS NOT NULL
-        AND th.closing_price > th.previous_close
-      ORDER BY c.symbol, th.trade_date DESC
-      LIMIT 50
-      `
-    );
+    const mapStock = (row: any): MSEStockData => ({
+      symbol: row.symbol,
+      name: row.name || row.symbol,
+      sector: '',
+      closingPrice: parseFloat(row.current_price) || 0,
+      change: (parseFloat(row.current_price) || 0) - (parseFloat(row.previous_close) || 0),
+      changePercent: parseFloat(row.change_percent) || 0,
+      volume: parseInt(row.volume) || 0,
+    });
 
-    const gainers = gainersResult.rows
-      .map(row => ({
-        symbol: row.symbol,
-        name: row.name,
-        sector: row.sector || 'Бусад',
-        closingPrice: parseFloat(row.closing_price),
-        change: parseFloat(row.change),
-        changePercent: parseFloat(row.change_percent),
-        volume: parseInt(row.volume || 0),
-        tradingDate: row.trade_date,
-      }))
-      .sort((a, b) => b.changePercent - a.changePercent)
-      .slice(0, 5);
-
-    // Get losers
-    const losersResult = await pool.query(
-      `
-      SELECT DISTINCT ON (c.symbol)
-        c.symbol,
-        c.name,
-        c.sector,
-        th.closing_price,
-        (th.closing_price - th.previous_close) as change,
-        ((th.closing_price - th.previous_close) / NULLIF(th.previous_close, 0) * 100) as change_percent,
-        th.volume,
-        th.trade_date
-      FROM mse_companies c
-      INNER JOIN mse_trading_history th ON c.symbol = th.symbol
-      WHERE th.closing_price IS NOT NULL
-        AND th.previous_close IS NOT NULL
-        AND th.closing_price < th.previous_close
-      ORDER BY c.symbol, th.trade_date DESC
-      LIMIT 50
-      `
-    );
-
-    const losers = losersResult.rows
-      .map(row => ({
-        symbol: row.symbol,
-        name: row.name,
-        sector: row.sector || 'Бусад',
-        closingPrice: parseFloat(row.closing_price),
-        change: parseFloat(row.change),
-        changePercent: parseFloat(row.change_percent),
-        volume: parseInt(row.volume || 0),
-        tradingDate: row.trade_date,
-      }))
-      .sort((a, b) => a.changePercent - b.changePercent)
-      .slice(0, 5);
-
-    return { gainers, losers };
+    return {
+      gainers: (data.summary?.topGainers || []).map(mapStock),
+      losers: (data.summary?.topLosers || []).map(mapStock),
+    };
   } catch (error) {
     console.error('Error fetching top movers:', error);
     return { gainers: [], losers: [] };
+  }
+}
+
+/**
+ * Get single stock data by symbol
+ */
+export async function getMSEStockBySymbol(symbol: string): Promise<MSEStockData | null> {
+  try {
+    const res = await fetch(`${API_GATEWAY_URL}/api/mse/trading-status/${symbol}`, {
+      cache: 'no-store',
+    });
+    if (!res.ok) return null;
+    const data = await res.json();
+    const row = data.tradingStatus;
+    if (!row) return null;
+
+    return {
+      symbol: row.symbol,
+      name: row.name || row.symbol,
+      sector: '',
+      closingPrice: parseFloat(row.current_price) || 0,
+      change: (parseFloat(row.current_price) || 0) - (parseFloat(row.previous_close) || 0),
+      changePercent: parseFloat(row.change_percent) || 0,
+      volume: parseInt(row.volume) || 0,
+      tradingDate: row.last_trade_time,
+    };
+  } catch (error) {
+    console.error('Error fetching MSE stock:', error);
+    return null;
+  }
+}
+
+/**
+ * Get stock trading history for charts
+ */
+export async function getMSEStockHistory(symbol: string, limit: number = 30) {
+  try {
+    const res = await fetch(`${API_GATEWAY_URL}/api/mse/history/${symbol}?limit=${limit}`, {
+      cache: 'no-store',
+    });
+    if (!res.ok) return [];
+    const data = await res.json();
+    
+    return (data.history || []).map((row: any) => ({
+      date: row.trade_date,
+      open: parseFloat(row.opening_price) || 0,
+      high: parseFloat(row.high_price) || 0,
+      low: parseFloat(row.low_price) || 0,
+      close: parseFloat(row.closing_price) || 0,
+      volume: parseInt(row.volume) || 0,
+    }));
+  } catch (error) {
+    console.error('Error fetching MSE history:', error);
+    return [];
   }
 }

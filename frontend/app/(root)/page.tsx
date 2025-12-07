@@ -1,8 +1,10 @@
 import TradingViewWidget from "@/components/TradingViewWidget";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { MSEStocksTable } from "@/components/mse/MSEStocksTable";
-import { MSEHeatmap } from "@/components/mse/MSEHeatmap";
-import { MSEHistoryChart } from "@/components/mse/MSEHistoryChart";
+import { MSEStocksTableSSR } from "@/components/mse/MSEStocksTableSSR";
+import { MSETopMoversSSR } from "@/components/mse/MSETopMoversSSR";
+import { WatchlistContentSSR } from "@/components/watchlist/WatchlistContentSSR";
+import { Suspense } from "react";
+import { Loader2 } from "lucide-react";
 import {
   HEATMAP_WIDGET_CONFIG,
   MARKET_DATA_WIDGET_CONFIG,
@@ -10,7 +12,9 @@ import {
   TOP_STORIES_WIDGET_CONFIG,
 } from "@/lib/constants";
 
-export default function Home() {
+export const dynamic = 'force-dynamic';
+
+export default async function Home() {
   const scriptUrl =
     "https://s3.tradingview.com/external-embedding/embed-widget-";
   
@@ -19,9 +23,9 @@ export default function Home() {
       <Tabs defaultValue="global" className="w-full">
         <div className="mb-6">
           <TabsList>
-            <TabsTrigger value="global">Global Stocks</TabsTrigger>
-            <TabsTrigger value="mse">MSE Stocks</TabsTrigger>
-            <TabsTrigger value="watchlist">My Watchlist</TabsTrigger>
+            <TabsTrigger value="global">Дэлхий нийт</TabsTrigger>
+            <TabsTrigger value="mse">МХБ</TabsTrigger>
+            <TabsTrigger value="watchlist">Хяналтын жагсаалт</TabsTrigger>
           </TabsList>
         </div>
 
@@ -68,31 +72,31 @@ export default function Home() {
         {/* MSE Stocks Tab */}
         <TabsContent value="mse">
           <div className="space-y-6">
-            {/* Sector Heatmap */}
-            <MSEHeatmap />
+            <Suspense fallback={<LoadingSkeleton />}>
+              <MSETopMoversSSR />
+            </Suspense>
 
-            {/* Top Movers */}
-            <MSEHistoryChart />
-
-            {/* Stocks Data Table */}
-            <MSEStocksTable />
+            <Suspense fallback={<LoadingSkeleton />}>
+              <MSEStocksTableSSR />
+            </Suspense>
           </div>
         </TabsContent>
 
         {/* Watchlist Tab */}
         <TabsContent value="watchlist">
-          <div className="space-y-6">
-            <div className="rounded-lg border border-gray-800 bg-gray-900/50 p-6">
-              <h2 className="text-xl font-semibold text-gray-100 mb-2">
-                Миний хяналтын жагсаалт
-              </h2>
-              <p className="text-gray-400">
-                Your combined watchlist (Global + MSE) will be displayed here
-              </p>
-            </div>
-          </div>
+          <Suspense fallback={<LoadingSkeleton />}>
+            <WatchlistContentSSR />
+          </Suspense>
         </TabsContent>
       </Tabs>
+    </div>
+  );
+}
+
+function LoadingSkeleton() {
+  return (
+    <div className="flex items-center justify-center py-20">
+      <Loader2 className="w-8 h-8 animate-spin text-gray-500" />
     </div>
   );
 }

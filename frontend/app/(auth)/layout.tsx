@@ -1,14 +1,14 @@
-import Header from "@/components/Header";
 import Link from "next/link";
 import Image from "next/image";
-import { auth } from "@/lib/better-auth/auth";
+import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { headers } from "next/headers";
+
 const Layout = async ({ children }: { children: React.ReactNode }) => {
-  const session = await auth.api.getSession({
-    headers: await headers(),
-  });
-  if (session?.user) redirect("/");
+  // If user already has our JWT cookie, redirect to home
+  const cookieStore = await cookies();
+  const token = cookieStore.get("auth-token")?.value;
+  if (token) redirect("/");
+
   return (
     <main className="auth-layout">
       <section className="auth-left-section scrollbar-hide-default">
@@ -28,7 +28,7 @@ const Layout = async ({ children }: { children: React.ReactNode }) => {
           <blockquote className="auth-blockquote">
             Дипломын ажлын хэрэгжүүлэлт: Микросервист суурилсан хиймэл оюун
             агентууд. Демо: Монгол, Гадаад хувьцааны хөрөнгийн зах зээлийн
-            мэдээг хиймэл оюунаар шинжлэн дүрслэх (Portfolio Agent, )
+            мэдээг хиймэл оюунаар шинжлэн дүрслэх.
           </blockquote>
           <div className="flex items-center justify-between">
             <div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import {
   CommandDialog,
   CommandEmpty,
@@ -12,8 +12,7 @@ import { Loader2, TrendingUp, Star } from "lucide-react";
 import Link from "next/link";
 import { searchStocks } from "@/lib/actions/finnhub.actions";
 import { searchMSEStocks } from "@/lib/actions/mse-search.actions";
-import { toggleWatchlist, isInWatchlist } from "@/lib/actions/watchlist.actions";
-import { useDebounce } from "@/hooks/useDebounce";
+import { toggleWatchlist } from "@/lib/actions/watchlist.actions";
 import { toast } from "sonner";
 
 interface MSEStock {
@@ -37,6 +36,7 @@ export default function SearchCommand({
   const [loadingMSE, setLoadingMSE] = useState(false);
   const [watchlistStatus, setWatchlistStatus] = useState<Map<string, boolean>>(new Map());
   const [togglingWatchlist, setTogglingWatchlist] = useState<Set<string>>(new Set());
+  const searchTimeout = useRef<NodeJS.Timeout | null>(null);
 
   const isSearchMode = !!searchTerm.trim();
   const displayStocks = isSearchMode ? stocks : stocks?.slice(0, 10);
@@ -52,29 +52,8 @@ export default function SearchCommand({
     return () => window.removeEventListener("keydown", onKeyDown);
   }, []);
 
-  // Check watchlist status for visible stocks
-  useEffect(() => {
-    async function checkWatchlistStatus() {
-      const allSymbols = [
-        ...displayStocks.map(s => s.symbol),
-        ...mseStocks.map(s => s.symbol)
-      ];
-      
-      const statusMap = new Map<string, boolean>();
-      for (const symbol of allSymbols) {
-        const inWatchlist = await isInWatchlist(symbol);
-        statusMap.set(symbol, inWatchlist);
-      }
-      setWatchlistStatus(statusMap);
-    }
-
-    if (displayStocks.length > 0 || mseStocks.length > 0) {
-      checkWatchlistStatus();
-    }
-  }, [displayStocks.length, mseStocks.length]);
-
-  const handleSearch = async () => {
-    if (!isSearchMode) {
+  const handleSearch = useCallback(async (term: string) => {
+    if (!term.trim()) {
       setStocks(initialStocks);
       setMseStocks([]);
       return;
@@ -83,7 +62,7 @@ export default function SearchCommand({
     // Search global stocks (Finnhub)
     setLoading(true);
     try {
-      const results = await searchStocks(searchTerm.trim());
+      const results = await searchStocks(term.trim());
       setStocks(results);
     } catch {
       setStocks([]);
@@ -91,23 +70,34 @@ export default function SearchCommand({
       setLoading(false);
     }
 
-    // Search MSE stocks (RAG)
+    // Search MSE stocks
     setLoadingMSE(true);
     try {
-      const mseResults = await searchMSEStocks(searchTerm.trim());
+      const mseResults = await searchMSEStocks(term.trim());
       setMseStocks(mseResults);
     } catch {
       setMseStocks([]);
     } finally {
       setLoadingMSE(false);
     }
-  };
+  }, [initialStocks]);
 
-  const debouncedSearch = useDebounce(handleSearch, 300);
-
+  // Debounced search effect
   useEffect(() => {
-    debouncedSearch();
-  }, [searchTerm]);
+    if (searchTimeout.current) {
+      clearTimeout(searchTimeout.current);
+    }
+    
+    searchTimeout.current = setTimeout(() => {
+      handleSearch(searchTerm);
+    }, 300);
+
+    return () => {
+      if (searchTimeout.current) {
+        clearTimeout(searchTimeout.current);
+      }
+    };
+  }, [searchTerm, handleSearch]);
 
   const handleSelectStock = () => {
     setOpen(false);
@@ -119,7 +109,8 @@ export default function SearchCommand({
   const handleToggleWatchlist = async (
     e: React.MouseEvent,
     symbol: string,
-    name: string
+    name: string,
+    isMse: boolean = false
   ) => {
     e.preventDefault();
     e.stopPropagation();
@@ -130,7 +121,7 @@ export default function SearchCommand({
     setTogglingWatchlist(prev => new Set(prev).add(symbol));
 
     try {
-      const result = await toggleWatchlist(symbol, name);
+      const result = await toggleWatchlist(symbol, name, isMse);
       
       if (result.success) {
         // Update local status
@@ -215,7 +206,7 @@ export default function SearchCommand({
                         </div>
                       </div>
                       <button
-                        onClick={(e) => handleToggleWatchlist(e, stock.symbol, stock.name)}
+                        onClick={(e) => handleToggleWatchlist(e, stock.symbol, stock.name, false)}
                         disabled={togglingWatchlist.has(stock.symbol)}
                         className="p-1.5 rounded-md hover:bg-gray-700 transition-colors disabled:opacity-50"
                         title={watchlistStatus.get(stock.symbol) ? "Хяналтаас хасах" : "Хяналтанд нэмэх"}
@@ -287,7 +278,7 @@ export default function SearchCommand({
                             )}
                           </div>
                           <button
-                            onClick={(e) => handleToggleWatchlist(e, stock.symbol, stock.name)}
+                          onClick={(e) => handleToggleWatchlist(e, stock.symbol, stock.name, true)}
                             disabled={togglingWatchlist.has(stock.symbol)}
                             className="p-1.5 rounded-md hover:bg-gray-700 transition-colors disabled:opacity-50"
                             title={watchlistStatus.get(stock.symbol) ? "Хяналтаас хасах" : "Хяналтанд нэмэх"}

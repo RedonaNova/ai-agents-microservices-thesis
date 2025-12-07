@@ -1,22 +1,16 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { getMSEStocks, MSEStockData } from "@/lib/actions/mse-stocks.actions";
 import { Loader2 } from "lucide-react";
 
 export function MSEHeatmap() {
-  const [stocks, setStocks] = useState<MSEStockData[]>([]);
   const [loading, setLoading] = useState(true);
   const [sectorData, setSectorData] = useState<Map<string, { count: number; avgChange: number }>>(new Map());
 
-  useEffect(() => {
-    loadStocks();
-  }, []);
-
-  async function loadStocks() {
+  const loadStocks = useCallback(async () => {
     try {
-      const data = await getMSEStocks(50);
-      setStocks(data);
+      const data = await getMSEStocks(200);
       
       // Calculate sector aggregations
       const sectors = new Map<string, { count: number; totalChange: number }>();
@@ -44,7 +38,11 @@ export function MSEHeatmap() {
     } finally {
       setLoading(false);
     }
-  }
+  }, []);
+
+  useEffect(() => {
+    loadStocks();
+  }, [loadStocks]);
 
   function getColorForChange(change: number): string {
     if (change > 3) return "bg-green-600";
@@ -68,9 +66,9 @@ export function MSEHeatmap() {
   return (
     <div className="rounded-lg border border-gray-800 bg-gray-900/50 p-6">
       <div className="mb-4">
-        <h3 className="text-lg font-semibold text-gray-100">Sector Heatmap</h3>
+        <h3 className="text-lg font-semibold text-gray-100">Салбарын хандлага (Heatmap)</h3>
         <p className="text-sm text-gray-400 mt-1">
-          Average change by sector
+          Салбар бүрийн дундаж өсөлт/бууралт
         </p>
       </div>
 
@@ -85,7 +83,7 @@ export function MSEHeatmap() {
               {data.avgChange >= 0 ? '+' : ''}{data.avgChange.toFixed(2)}%
             </div>
             <div className="text-xs opacity-80 mt-1">
-              {data.count} stocks
+              {data.count} хувьцаа
             </div>
           </div>
         ))}
@@ -93,7 +91,7 @@ export function MSEHeatmap() {
 
       {sectorData.size === 0 && (
         <div className="text-center py-10 text-gray-400">
-          No sector data available
+          Салбарын мэдээлэл олдсонгүй
         </div>
       )}
     </div>

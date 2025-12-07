@@ -63,7 +63,7 @@ export function MSEStocksWidget() {
     setTogglingWatchlist(prev => new Set(prev).add(symbol));
 
     try {
-      const result = await toggleWatchlist(symbol, name);
+      const result = await toggleWatchlist(symbol, name, true);
       
       if (result.success) {
         setWatchlistStatus(prev => {

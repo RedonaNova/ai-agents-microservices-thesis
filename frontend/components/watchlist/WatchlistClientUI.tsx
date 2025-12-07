@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect, useState, useCallback, useRef } from "react";
-import { getWatchlist, removeFromWatchlist } from "@/lib/actions/watchlist.actions";
-import { getMSEStockBySymbol, MSEStockData } from "@/lib/actions/mse-stocks.actions";
+import { useState, useMemo } from "react";
+import { removeFromWatchlist } from "@/lib/actions/watchlist.actions";
+import { getAuthToken } from "@/lib/actions/auth.actions";
 import { 
   TrendingUp, TrendingDown, Star, Trash2, Loader2, 
-  Sparkles, RefreshCw, Globe, Building2, ArrowUpDown
+  Sparkles, Globe, Building2, ArrowUpDown
 } from "lucide-react";
 import Link from "next/link";
 import { toast } from "sonner";
@@ -17,73 +17,28 @@ interface WatchlistStock {
   company: string;
   addedAt: string;
   isMse?: boolean;
-  // Real-time data
   price?: number;
   change?: number;
   changePercent?: number;
 }
 
 type SortField = "symbol" | "price" | "changePercent" | "addedAt";
+type FilterType = "all" | "mse" | "global";
 
-export function WatchlistContent() {
-  const [watchlist, setWatchlist] = useState<WatchlistStock[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [refreshing, setRefreshing] = useState(false);
+interface WatchlistClientUIProps {
+  initialItems: WatchlistStock[];
+}
+
+export function WatchlistClientUI({ initialItems }: WatchlistClientUIProps) {
+  const [watchlist, setWatchlist] = useState<WatchlistStock[]>(initialItems);
   const [removing, setRemoving] = useState<Set<string>>(new Set());
   const [sortField, setSortField] = useState<SortField>("addedAt");
   const [sortDesc, setSortDesc] = useState(true);
-  const [filter, setFilter] = useState<"all" | "mse" | "global">("all");
+  const [filter, setFilter] = useState<FilterType>("all");
   
   // AI Analysis
   const [analyzing, setAnalyzing] = useState(false);
   const [analysis, setAnalysis] = useState<string | null>(null);
-  const dataLoaded = useRef(false);
-
-  const loadWatchlist = useCallback(async () => {
-    try {
-      const items = await getWatchlist();
-      
-      // Fetch real prices for MSE stocks
-      const enrichedItems = await Promise.all(
-        items.map(async (item) => {
-          if (item.isMse) {
-            const mseData = await getMSEStockBySymbol(item.symbol);
-            if (mseData) {
-              return {
-                ...item,
-                company: mseData.name || item.symbol,
-                price: mseData.closingPrice,
-                change: mseData.change,
-                changePercent: mseData.changePercent,
-              };
-            }
-          }
-          return item;
-        })
-      );
-      
-      setWatchlist(enrichedItems);
-    } catch (error) {
-      console.error("Error loading watchlist:", error);
-      toast.error("Хяналтын жагсаалтыг ачааллахад алдаа гарлаа");
-    } finally {
-      setLoading(false);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (!dataLoaded.current) {
-      dataLoaded.current = true;
-      loadWatchlist();
-    }
-  }, [loadWatchlist]);
-
-  async function handleRefresh() {
-    setRefreshing(true);
-    await loadWatchlist();
-    setRefreshing(false);
-    toast.success("Шинэчилсэн");
-  }
 
   async function handleRemove(symbol: string) {
     if (removing.has(symbol)) return;
@@ -119,9 +74,13 @@ export function WatchlistContent() {
     setAnalysis(null);
 
     try {
+      const token = await getAuthToken();
+      
       const res = await fetch("/api/watchlist/analyze", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { 
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify({}),
       });
       const data = await res.json();
@@ -134,19 +93,21 @@ export function WatchlistContent() {
 
       // Poll for response
       let attempts = 0;
-      while (attempts < 12) {
+      let foundResponse = false;
+      while (attempts < 12 && !foundResponse) {
         await new Promise(r => setTimeout(r, 1500));
         const respRes = await fetch(`${API_GATEWAY_URL}/api/agent/response/${data.requestId}`);
         const respData = await respRes.json();
         
         if (respData.found && respData.response) {
           setAnalysis(respData.response);
+          foundResponse = true;
           break;
         }
         attempts++;
       }
       
-      if (!analysis && attempts >= 12) {
+      if (!foundResponse) {
         setAnalysis("Хариулт бэлтгэж байна, түр хүлээгээд дахин оролдоно уу.");
       }
     } catch (error) {
@@ -167,41 +128,37 @@ export function WatchlistContent() {
   }
 
   // Filter and sort
-  const filteredWatchlist = watchlist.filter(item => {
-    if (filter === "mse") return item.isMse;
-    if (filter === "global") return !item.isMse;
-    return true;
-  });
+  const filteredWatchlist = useMemo(() => {
+    return watchlist.filter(item => {
+      if (filter === "mse") return item.isMse;
+      if (filter === "global") return !item.isMse;
+      return true;
+    });
+  }, [watchlist, filter]);
 
-  const sortedWatchlist = [...filteredWatchlist].sort((a, b) => {
-    let comparison = 0;
-    switch (sortField) {
-      case "symbol":
-        comparison = a.symbol.localeCompare(b.symbol);
-        break;
-      case "price":
-        comparison = (a.price || 0) - (b.price || 0);
-        break;
-      case "changePercent":
-        comparison = (a.changePercent || 0) - (b.changePercent || 0);
-        break;
-      case "addedAt":
-        comparison = new Date(a.addedAt).getTime() - new Date(b.addedAt).getTime();
-        break;
-    }
-    return sortDesc ? -comparison : comparison;
-  });
+  const sortedWatchlist = useMemo(() => {
+    return [...filteredWatchlist].sort((a, b) => {
+      let comparison = 0;
+      switch (sortField) {
+        case "symbol":
+          comparison = a.symbol.localeCompare(b.symbol);
+          break;
+        case "price":
+          comparison = (a.price || 0) - (b.price || 0);
+          break;
+        case "changePercent":
+          comparison = (a.changePercent || 0) - (b.changePercent || 0);
+          break;
+        case "addedAt":
+          comparison = new Date(a.addedAt).getTime() - new Date(b.addedAt).getTime();
+          break;
+      }
+      return sortDesc ? -comparison : comparison;
+    });
+  }, [filteredWatchlist, sortField, sortDesc]);
 
   const mseCount = watchlist.filter(w => w.isMse).length;
   const globalCount = watchlist.filter(w => !w.isMse).length;
-
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center py-20">
-        <Loader2 className="w-8 h-8 animate-spin text-gray-500" />
-      </div>
-    );
-  }
 
   if (watchlist.length === 0) {
     return (
@@ -211,7 +168,7 @@ export function WatchlistContent() {
           Хяналтын жагсаалт хоосон байна
         </h3>
         <p className="text-gray-500 mb-6 max-w-md mx-auto">
-          Хувьцаа хайж (Ctrl + K) одны тэмдэг дээр дарж хяналтанд нэмнэ үү. МХБ болон дэлхийн хувьцаануудыг нэмэх боломжтой.
+          Хувьцаа хайж (Ctrl + K) одны тэмдэг дээр дарж хяналтанд нэмнэ үү.
         </p>
         <Link
           href="/"
@@ -228,7 +185,6 @@ export function WatchlistContent() {
       {/* Stats & Filters */}
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div className="flex items-center gap-3">
-          {/* Filter Tabs */}
           <div className="flex rounded-lg border border-gray-800 overflow-hidden">
             <button
               onClick={() => setFilter("all")}
@@ -260,15 +216,6 @@ export function WatchlistContent() {
         </div>
 
         <div className="flex items-center gap-2">
-          <button
-            onClick={handleRefresh}
-            disabled={refreshing}
-            className="p-2 rounded-lg border border-gray-800 bg-gray-900 hover:bg-gray-800 transition-colors disabled:opacity-50"
-            title="Шинэчлэх"
-          >
-            <RefreshCw className={`w-4 h-4 text-gray-400 ${refreshing ? "animate-spin" : ""}`} />
-          </button>
-          
           {mseCount > 0 && (
             <button
               onClick={handleAnalyze}
@@ -329,11 +276,6 @@ export function WatchlistContent() {
                   Өөрчлөлт <ArrowUpDown className="w-3 h-3" />
                 </button>
               </th>
-              <th className="px-4 py-3 text-right text-xs font-medium text-gray-400 uppercase hidden lg:table-cell">
-                <button onClick={() => handleSort("addedAt")} className="flex items-center justify-end gap-1 hover:text-gray-200 w-full">
-                  Нэмсэн <ArrowUpDown className="w-3 h-3" />
-                </button>
-              </th>
               <th className="px-4 py-3 text-center text-xs font-medium text-gray-400 uppercase w-16">
                 Үйлдэл
               </th>
@@ -390,9 +332,6 @@ export function WatchlistContent() {
                       <span className="text-gray-500">—</span>
                     )}
                   </td>
-                  <td className="px-4 py-4 text-right text-sm text-gray-500 hidden lg:table-cell">
-                    {new Date(item.addedAt).toLocaleDateString('mn-MN')}
-                  </td>
                   <td className="px-4 py-4 text-center">
                     <button
                       onClick={() => handleRemove(item.symbol)}
@@ -416,3 +355,4 @@ export function WatchlistContent() {
     </div>
   );
 }
+

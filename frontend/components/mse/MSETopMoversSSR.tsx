@@ -1,45 +1,14 @@
-"use client";
-
-import { useEffect, useState, useCallback } from "react";
-import { getTopMovers, MSEStockData } from "@/lib/actions/mse-stocks.actions";
-import { TrendingUp, TrendingDown, Loader2 } from "lucide-react";
+import { getTopMovers } from "@/lib/actions/mse-stocks.actions";
+import { TrendingUp, TrendingDown } from "lucide-react";
 import Link from "next/link";
 
-export function MSEHistoryChart() {
-  const [gainers, setGainers] = useState<MSEStockData[]>([]);
-  const [losers, setLosers] = useState<MSEStockData[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  const loadTopMovers = useCallback(async () => {
-    try {
-      const { gainers: topGainers, losers: topLosers } = await getTopMovers();
-      setGainers(topGainers);
-      setLosers(topLosers);
-    } catch (error) {
-      console.error("Error loading top movers:", error);
-    } finally {
-      setLoading(false);
-    }
-  }, []);
-
-  useEffect(() => {
-    loadTopMovers();
-  }, [loadTopMovers]);
-
-  if (loading) {
-    return (
-      <div className="rounded-lg border border-gray-800 bg-gray-900/50 p-6">
-        <div className="flex items-center justify-center py-20">
-          <Loader2 className="w-8 h-8 animate-spin text-gray-500" />
-        </div>
-      </div>
-    );
-  }
+export async function MSETopMoversSSR() {
+  const { gainers, losers } = await getTopMovers();
 
   return (
     <div className="grid md:grid-cols-2 gap-6">
       {/* Top Gainers */}
-      <div className="rounded-lg border border-gray-800 bg-gray-900 p-6">
+      <div className="rounded-lg border border-gray-800 bg-gray-900/50 p-6">
         <div className="flex items-center gap-2 mb-4">
           <TrendingUp className="w-5 h-5 text-green-400" />
           <h3 className="text-lg font-semibold text-gray-100">Өсөлттэй хувьцаа</h3>
@@ -49,7 +18,7 @@ export function MSEHistoryChart() {
             <Link
               key={stock.symbol}
               href={`/stocks/${stock.symbol}`}
-              className="flex  items-center justify-between p-3 rounded-lg bg-gray-800/30 hover:bg-gray-800/50 transition-colors"
+              className="flex items-center justify-between p-3 rounded-lg bg-gray-800/30 hover:bg-gray-800/50 transition-colors"
             >
               <div className="flex items-center gap-3">
                 <div className="text-lg font-bold text-gray-400">

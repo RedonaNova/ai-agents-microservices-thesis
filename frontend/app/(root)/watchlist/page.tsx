@@ -1,20 +1,24 @@
 import { Suspense } from "react";
 import { WatchlistContent } from "@/components/watchlist/WatchlistContent";
-import { Loader2 } from "lucide-react";
+import { Loader2, Star } from "lucide-react";
 
 export const metadata = {
-  title: "Watchlist | MSE Stocks",
-  description: "Your personalized stock watchlist with AI insights",
+  title: "Хяналтын жагсаалт | Redona",
+  description: "Таны хянаж буй хувьцаанууд",
 };
 
 export default function WatchlistPage() {
   return (
-    <div className="container mx-auto p-4 space-y-6">
-      <div className="flex items-center justify-between">
+    <div className="container mx-auto px-4 py-6 space-y-6">
+      {/* Header */}
+      <div className="flex items-center gap-3">
+        <div className="p-2 rounded-lg bg-yellow-500/20">
+          <Star className="w-6 h-6 text-yellow-400" />
+        </div>
         <div>
-          <h1 className="text-3xl font-bold">Миний хяналтын жагсаалт</h1>
-          <p className="text-gray-400 mt-1">
-            Та өөрийн сонирхож буй хувьцаануудыг энд хадгалж, хянаж болно
+          <h1 className="text-2xl font-bold text-gray-100">Хяналтын жагсаалт</h1>
+          <p className="text-sm text-gray-500">
+            МХБ болон дэлхийн хувьцаануудыг хянах, AI шинжилгээ авах
           </p>
         </div>
       </div>
@@ -33,4 +37,3 @@ function WatchlistSkeleton() {
     </div>
   );
 }
-
