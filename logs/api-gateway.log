@@ -378,3 +378,8 @@ Timeout duration was set to 1.
 [32minfo[39m: GET /api/agent/response/774edd11-52e5-4c45-aeca-aa808255821f {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:32:24.265Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
 [32minfo[39m: GET /api/agent/response/774edd11-52e5-4c45-aeca-aa808255821f {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:32:25.771Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
 [32minfo[39m: GET /api/agent/response/774edd11-52e5-4c45-aeca-aa808255821f {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:32:27.271Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
+[32minfo[39m: POST /api/agent/analyze-watchlist {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:42:29.178Z","userAgent":"curl/8.5.0"}
+[32minfo[39m: POST /api/agent/query {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:43:01.873Z","userAgent":"curl/8.5.0"}
+[32minfo[39m: Event sent to user.requests {"key":"1d52e572-e8a8-4b54-8154-784d84beb97e","service":"api-gateway","timestamp":"2025-12-08T15:43:01.894Z"}
+[32minfo[39m: User query sent to orchestrator {"requestId":"1d52e572-e8a8-4b54-8154-784d84beb97e","service":"api-gateway","timestamp":"2025-12-08T15:43:01.894Z","type":"portfolio_advice","userId":"guest"}
+[32minfo[39m: GET /api/agent/response/1d52e572-e8a8-4b54-8154-784d84beb97e {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:43:22.359Z","userAgent":"curl/8.5.0"}

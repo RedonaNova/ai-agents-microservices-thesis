@@ -56,42 +56,50 @@ async function getMSEData(symbols?: string | string[]) {
       symbolList = Array.from(new Set([...upperSymbols, ...suffixedSymbols]));
     }
     
-    // Query trading_status first (current prices), then trading_history as fallback
+    log('🔍 Looking up MSE data for symbols', { symbolList });
+    
     let query: string;
     let params: any[] = [];
     
     if (symbolList.length > 0) {
-      // Fetch specific symbols from trading_status
+      // First, try to get from trading_status (current prices)
       query = `
         SELECT 
           ts.symbol, 
-          COALESCE(ts.name, c.name, '') as name,
-          COALESCE(c.sector, '') as sector,
+          COALESCE(ts.name, '') as name,
+          '' as sector,
           COALESCE(ts.current_price, 0) as closing_price,
           COALESCE(ts.volume, 0) as volume,
           COALESCE(ts.change_percent, 0) as change_percent,
           ts.last_trade_time as trade_date
         FROM mse_trading_status ts
-        LEFT JOIN mse_companies c ON ts.symbol = c.symbol
         WHERE ts.symbol = ANY($1)
-        
-        UNION ALL
-        
-        SELECT DISTINCT ON (th.symbol)
-          th.symbol,
-          COALESCE(th.name, c.name, '') as name,
-          COALESCE(c.sector, '') as sector,
-          COALESCE(th.closing_price, 0) as closing_price,
-          COALESCE(th.volume, 0) as volume,
-          COALESCE(((th.closing_price - th.previous_close) / NULLIF(th.previous_close, 0) * 100), 0) as change_percent,
-          th.trade_date
-        FROM mse_trading_history th
-        LEFT JOIN mse_companies c ON th.symbol = c.symbol
-        WHERE th.symbol = ANY($1)
-          AND th.symbol NOT IN (SELECT symbol FROM mse_trading_status WHERE symbol = ANY($1))
-        ORDER BY th.symbol, th.trade_date DESC
       `;
       params = [symbolList];
+      
+      let result = await db.query(query, params);
+      
+      // If no results, try trading_history
+      if (result.rows.length === 0) {
+        log('⚠️ No data in trading_status, checking trading_history');
+        query = `
+          SELECT DISTINCT ON (th.symbol)
+            th.symbol,
+            COALESCE(th.name, '') as name,
+            '' as sector,
+            COALESCE(th.closing_price, 0) as closing_price,
+            COALESCE(th.volume, 0) as volume,
+            COALESCE(((th.closing_price - th.previous_close) / NULLIF(th.previous_close, 0) * 100), 0) as change_percent,
+            th.trade_date
+          FROM mse_trading_history th
+          WHERE th.symbol = ANY($1)
+          ORDER BY th.symbol, th.trade_date DESC
+        `;
+        result = await db.query(query, params);
+      }
+      
+      log('📊 Fetched MSE data', { count: result.rows.length, symbols: symbolList });
+      return result.rows;
     } else {
       // Fetch all stocks for general analysis
       query = `
@@ -107,13 +115,12 @@ async function getMSEData(symbols?: string | string[]) {
         ORDER BY ts.volume DESC NULLS LAST
         LIMIT 50
       `;
+      const result = await db.query(query, params);
+      log('📊 Fetched all MSE data', { count: result.rows.length });
+      return result.rows;
     }
-    
-    const result = await db.query(query, params);
-    log('📊 Fetched MSE data', { count: result.rows.length, symbols: symbolList });
-    return result.rows;
   } catch (error: any) {
-    log('❌ Error fetching MSE data', { error: error.message });
+    log('❌ Error fetching MSE data', { error: error.message, stack: error.stack });
     return [];
   }
 }

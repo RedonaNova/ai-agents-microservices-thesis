@@ -21,3 +21,50 @@ Timeout duration was set to 1.
 [2025-12-08T15:29:51.559Z] ✅ Returned 0 results {"queryId":"24126423-e73b-4594-8bfe-18288692dbf8"}
 [2025-12-08T15:32:13.641Z] 📚 Processing knowledge query {"queryId":"8b5dfe58-8b4b-4b55-9a8c-8d1dcb15583e","query":"Миний ажиглаж буй хувьцаануудыг (APU-O-0000, KHAN-O-0000) шинжилж, хөрөнгө оруулалтын зөвлөгөө өгнө үү."}
 [2025-12-08T15:32:13.646Z] ✅ Returned 0 results {"queryId":"8b5dfe58-8b4b-4b55-9a8c-8d1dcb15583e"}
+[2025-12-08T15:43:01.913Z] 📚 Processing knowledge query {"queryId":"91db7369-7172-4abd-99e9-5410668a9bde","query":"APU-O-0000 болон KHAN-O-0000 хувьцааг шинжилж, хөрөнгө оруулалтын зөвлөгөө өгнө үү."}
+[2025-12-08T15:43:01.933Z] ✅ Returned 0 results {"queryId":"91db7369-7172-4abd-99e9-5410668a9bde"}
+node:events:486
+      throw er; // Unhandled 'error' event
+      ^
+
+error: terminating connection due to administrator command
+    at Parser.parseErrorMessage (/home/it/apps/thesis-report/backend/knowledge-agent/node_modules/pg-protocol/src/parser.ts:369:69)
+    at Parser.handlePacket (/home/it/apps/thesis-report/backend/knowledge-agent/node_modules/pg-protocol/src/parser.ts:187:21)
+    at Parser.parse (/home/it/apps/thesis-report/backend/knowledge-agent/node_modules/pg-protocol/src/parser.ts:102:30)
+    at Socket.<anonymous> (/home/it/apps/thesis-report/backend/knowledge-agent/node_modules/pg-protocol/src/index.ts:7:48)
+    at Socket.emit (node:events:508:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+Emitted 'error' event on Client instance at:
+    at Client._handleErrorEvent (/home/it/apps/thesis-report/backend/knowledge-agent/node_modules/pg/lib/client.js:350:10)
+    at Client._handleErrorMessage (/home/it/apps/thesis-report/backend/knowledge-agent/node_modules/pg/lib/client.js:361:12)
+    at Connection.emit (node:events:508:28)
+    at /home/it/apps/thesis-report/backend/knowledge-agent/node_modules/pg/lib/connection.js:116:12
+    at Parser.parse (/home/it/apps/thesis-report/backend/knowledge-agent/node_modules/pg-protocol/src/parser.ts:103:9)
+    at Socket.<anonymous> (/home/it/apps/thesis-report/backend/knowledge-agent/node_modules/pg-protocol/src/index.ts:7:48)
+    at Socket.emit (node:events:508:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5) {
+  length: 116,
+  severity: 'FATAL',
+  code: '57P01',
+  detail: undefined,
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'postgres.c',
+  line: '3286',
+  routine: 'ProcessInterrupts'
+}
+
+Node.js v24.11.0
