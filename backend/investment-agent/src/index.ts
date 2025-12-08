@@ -47,14 +47,13 @@ const producer = kafka.producer();
  */
 async function getMSEData(symbols?: string | string[]) {
   try {
-    // Normalize symbols to array with -O-0000 suffix
+    // Normalize symbols to array; support both raw and -O-0000 suffix forms
     let symbolList: string[] = [];
     if (symbols) {
       const rawSymbols = Array.isArray(symbols) ? symbols : [symbols];
-      symbolList = rawSymbols.map(s => {
-        const upper = s.toUpperCase();
-        return upper.endsWith('-O-0000') ? upper : upper + '-O-0000';
-      });
+      const upperSymbols = rawSymbols.map(s => s.toUpperCase());
+      const suffixedSymbols = upperSymbols.map(s => (s.endsWith('-O-0000') ? s : `${s}-O-0000`));
+      symbolList = Array.from(new Set([...upperSymbols, ...suffixedSymbols]));
     }
     
     // Query trading_status first (current prices), then trading_history as fallback

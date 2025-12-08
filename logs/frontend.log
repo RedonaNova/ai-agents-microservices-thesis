@@ -2,15 +2,16 @@
 > stocks-app@0.1.0 dev
 > next dev
 
- ⚠ Port 3000 is in use by an unknown process, using available port 3002 instead.
+ ⚠ Port 3000 is in use by an unknown process, using available port 3003 instead.
 [baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
    ▲ Next.js 16.0.1 (Turbopack)
-   - Local:        http://localhost:3002
-   - Network:      http://10.255.255.254:3002
+   - Local:        http://localhost:3003
+   - Network:      http://10.255.255.254:3003
    - Environments: .env.local, .env
 
  ✓ Starting...
- ⨯ Unable to acquire lock at /home/it/apps/thesis-report/frontend/.next/dev/lock, is another instance of next dev running?
-   Suggestion: If you intended to restart next dev, terminate the other process, and then try again.
+ ⨯ Unable to acqu[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[?25h
+er process, and then try again.
 [baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
 [?25h

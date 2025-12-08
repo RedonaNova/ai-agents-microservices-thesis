@@ -7,3 +7,4 @@ export async function MSEStocksTableSSR() {
   return <MSEStocksTableClient initialStocks={stocks} />;
 }
 
+

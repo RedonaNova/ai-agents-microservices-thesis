@@ -2,63 +2,64 @@
 > investment-agent@2.0.0 dev
 > tsx watch src/index.ts
 
-{"level":"WARN","timestamp":"2025-12-04T13:14:33.264Z","logger":"kafkajs","message":"KafkaJS v2.0.0 switched default partitioner. To retain the same partitioning behavior as in previous versions, create the producer with the option \"createPartitioner: Partitioners.LegacyPartitioner\". See the migration guide at https://kafka.js.org/docs/migration-guide-v2.0.0#producer-new-default-partitioner for details. Silence this warning by setting the environment variable \"KAFKAJS_NO_PARTITIONER_WARNING=1\""}
-[2025-12-04T13:14:33.268Z] ========================================== 
-[2025-12-04T13:14:33.269Z] 🚀 Starting Investment Agent v2.0 
-[2025-12-04T13:14:33.269Z] ========================================== 
-[2025-12-04T13:14:33.269Z] Connecting to PostgreSQL... 
-[2025-12-04T13:14:33.317Z] Connecting to Kafka... 
-(node:20149) TimeoutNegativeWarning: -1764854073329 is a negative number.
+{"level":"WARN","timestamp":"2025-12-07T14:15:10.890Z","logger":"kafkajs","message":"KafkaJS v2.0.0 switched default partitioner. To retain the same partitioning behavior as in previous versions, create the producer with the option \"createPartitioner: Partitioners.LegacyPartitioner\". See the migration guide at https://kafka.js.org/docs/migration-guide-v2.0.0#producer-new-default-partitioner for details. Silence this warning by setting the environment variable \"KAFKAJS_NO_PARTITIONER_WARNING=1\""}
+[2025-12-07T14:15:10.892Z] ========================================== 
+[2025-12-07T14:15:10.892Z] 🚀 Starting Investment Agent v2.0 
+[2025-12-07T14:15:10.892Z] ========================================== 
+[2025-12-07T14:15:10.892Z] Connecting to PostgreSQL... 
+[2025-12-07T14:15:10.918Z] Connecting to Kafka... 
+(node:93387) TimeoutNegativeWarning: -1765116910928 is a negative number.
 Timeout duration was set to 1.
 (Use `node --trace-warnings ...` to show where the warning was created)
-[2025-12-04T13:14:33.348Z] ✅ Investment Agent ready 
-[2025-12-04T13:14:33.348Z] Listening for investment tasks... 
-[2025-12-04T13:14:33.348Z] ========================================== 
-{"level":"INFO","timestamp":"2025-12-04T13:14:33.348Z","logger":"kafkajs","message":"[Consumer] Starting","groupId":"investment-agent-group"}
-{"level":"INFO","timestamp":"2025-12-04T13:14:37.278Z","logger":"kafkajs","message":"[ConsumerGroup] Consumer has joined the group","groupId":"investment-agent-group","memberId":"investment-agent-4203c0ef-614a-44f7-810d-f9fa7917eba1","leaderId":"investment-agent-4203c0ef-614a-44f7-810d-f9fa7917eba1","isLeader":true,"memberAssignment":{"agent.tasks":[0,1,2],"execution.plans":[0,1,2]},"groupProtocol":"RoundRobinAssigner","duration":3928}
-[2025-12-04T13:31:13.903Z] 📥 Processing task {
-  "taskId": "42353911-2c11-413d-8b89-75532779ac48",
+[2025-12-07T14:15:10.938Z] ✅ Investment Agent ready 
+[2025-12-07T14:15:10.938Z] Listening for investment tasks... 
+[2025-12-07T14:15:10.938Z] ========================================== 
+{"level":"INFO","timestamp":"2025-12-07T14:15:10.939Z","logger":"kafkajs","message":"[Consumer] Starting","groupId":"investment-agent-group"}
+{"level":"INFO","timestamp":"2025-12-07T14:15:13.964Z","logger":"kafkajs","message":"[ConsumerGroup] Consumer has joined the group","groupId":"investment-agent-group","memberId":"investment-agent-e410ccfc-69aa-404c-ab06-0a745caa1e39","leaderId":"investment-agent-e410ccfc-69aa-404c-ab06-0a745caa1e39","isLeader":true,"memberAssignment":{"agent.tasks":[0,1,2],"execution.plans":[0,1,2]},"groupProtocol":"RoundRobinAssigner","duration":3024}
+[2025-12-07T14:17:33.714Z] 📥 Processing task {
+  "taskId": "1a738686-d472-4b02-8db6-634c55cb0d5b",
   "action": "analyze_watchlist",
   "agentType": "investment"
 }
-[2025-12-04T13:31:13.913Z] 🔍 Processing request {
+[2025-12-07T14:17:33.715Z] 🔍 Processing request {
   "action": "analyze_watchlist",
   "symbols": [
-    "APU-O-0000",
-    "KHAN-O-0000"
+    "KHAN-O-0000",
+    "MSE-O-0000"
   ],
   "hasContext": true
 }
-[2025-12-04T13:31:13.987Z] ❌ Error fetching MSE data {
+[2025-12-07T14:17:33.744Z] ❌ Error fetching MSE data {
   "error": "missing FROM-clause entry for table \"th\""
 }
-[2025-12-04T13:31:34.156Z] ✅ Response saved to database {
-  "requestId": "067fa9dc-2cca-4343-8878-8d5e9532065d"
+[2025-12-07T14:17:45.972Z] ✅ Response saved to database {
+  "requestId": "3052ec79-fb5f-4f9a-8ea1-437e6e7b9c54"
 }
-[2025-12-04T13:31:34.156Z] ✅ Task completed {
-  "taskId": "42353911-2c11-413d-8b89-75532779ac48",
-  "duration": 20253
+[2025-12-07T14:17:45.973Z] ✅ Task completed {
+  "taskId": "1a738686-d472-4b02-8db6-634c55cb0d5b",
+  "duration": 12259
 }
-[2025-12-04T13:54:17.543Z] 📥 Processing task {
-  "taskId": "aa8132dd-f34d-44ed-8869-6c7d7d19c1db",
-  "action": "process_query",
+[2025-12-07T14:19:06.153Z] 📥 Processing task {
+  "taskId": "bf040d22-d7ce-46f5-8163-0ced73194c97",
+  "action": "analyze_portfolio",
   "agentType": "investment"
 }
-[2025-12-04T13:54:17.550Z] 🔍 Processing request {
-  "action": "process_query",
-  "symbols": [],
+[2025-12-07T14:19:06.153Z] 🔍 Processing request {
+  "action": "analyze_portfolio",
+  "symbols": [
+    "APU-O-0000"
+  ],
   "hasContext": true
 }
-[2025-12-04T13:54:17.656Z] 📊 Fetched MSE data {
-  "count": 50,
-  "symbols": []
+[2025-12-07T14:19:06.181Z] ❌ Error fetching MSE data {
+  "error": "missing FROM-clause entry for table \"th\""
 }
-[2025-12-04T13:54:31.472Z] ✅ Response saved to database {
-  "requestId": "e90f8172-592a-4022-8cc7-ea83ec31d48e"
+[2025-12-07T14:19:16.262Z] ✅ Response saved to database {
+  "requestId": "31987d87-31d2-4a10-b851-b65830d25230"
 }
-[2025-12-04T13:54:31.472Z] ✅ Task completed {
-  "taskId": "aa8132dd-f34d-44ed-8869-6c7d7d19c1db",
-  "duration": 13929
+[2025-12-07T14:19:16.262Z] ✅ Task completed {
+  "taskId": "bf040d22-d7ce-46f5-8163-0ced73194c97",
+  "duration": 10109
 }
 node:events:486
       throw er; // Unhandled 'error' event

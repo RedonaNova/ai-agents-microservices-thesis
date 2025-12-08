@@ -27,3 +27,4 @@ export async function WatchlistContentSSR() {
   return <WatchlistClientUI initialItems={enrichedItems} />;
 }
 
+

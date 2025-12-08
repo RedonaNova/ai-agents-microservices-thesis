@@ -117,6 +117,46 @@ router.get('/response/:requestId', async (req: Request, res: Response) => {
 });
 
 /**
+ * GET /api/agent/history
+ * Return recent cached AI responses for the authenticated user
+ */
+router.get('/history', async (req: Request, res: Response) => {
+  try {
+    const userId = getUserId(req);
+    const db = require('../services/database').default;
+    const limit = Math.min(parseInt((req.query.limit as string) || '20', 10), 50);
+
+    if (userId === 'guest') {
+      return res.status(401).json({
+        success: false,
+        error: 'Authentication required',
+      });
+    }
+
+    const result = await db.query(
+      `SELECT request_id, agent_type, query, response, status, processing_time_ms, created_at
+       FROM agent_responses_cache
+       WHERE user_id = $1
+       ORDER BY created_at DESC
+       LIMIT $2`,
+      [userId, limit]
+    );
+
+    res.json({
+      success: true,
+      count: result.rows.length,
+      items: result.rows,
+    });
+  } catch (error) {
+    logger.error('Get history error', { error });
+    res.status(500).json({
+      success: false,
+      error: 'Failed to fetch history',
+    });
+  }
+});
+
+/**
  * GET /api/agent/stream/:requestId
  * Server-Sent Events (SSE) endpoint for streaming agent responses
  */
@@ -187,6 +227,7 @@ router.post('/analyze-watchlist', async (req: Request, res: Response) => {
     const userId = getUserId(req);
     const requestId = uuidv4();
     const db = require('../services/database').default;
+    const { watchlistId } = req.body;
 
     if (userId === 'guest') {
       return res.status(401).json({
@@ -195,14 +236,25 @@ router.post('/analyze-watchlist', async (req: Request, res: Response) => {
       });
     }
 
-    // Get user's watchlist items (only MSE stocks)
-    const watchlistResult = await db.query(
-      `SELECT DISTINCT wi.symbol 
-       FROM watchlist_items wi
-       JOIN watchlists w ON w.id = wi.watchlist_id
-       WHERE w.user_id = $1 AND wi.is_mse = true`,
-      [userId]
-    );
+    // Get user's watchlist items (only MSE stocks). If watchlistId provided, scope to it.
+    let watchlistResult;
+    if (watchlistId) {
+      watchlistResult = await db.query(
+        `SELECT DISTINCT wi.symbol 
+         FROM watchlist_items wi
+         JOIN watchlists w ON w.id = wi.watchlist_id
+         WHERE w.user_id = $1 AND wi.watchlist_id = $2 AND wi.is_mse = true`,
+        [userId, watchlistId]
+      );
+    } else {
+      watchlistResult = await db.query(
+        `SELECT DISTINCT wi.symbol 
+         FROM watchlist_items wi
+         JOIN watchlists w ON w.id = wi.watchlist_id
+         WHERE w.user_id = $1 AND wi.is_mse = true`,
+        [userId]
+      );
+    }
 
     const watchlistSymbols = watchlistResult.rows.map((row: any) => row.symbol);
 

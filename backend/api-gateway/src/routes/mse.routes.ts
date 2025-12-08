@@ -222,7 +222,9 @@ router.get('/summary', async (req: Request, res: Response) => {
     // Top gainers
     const gainersResult = await db.query(`
       SELECT symbol, 
+        COALESCE(name, symbol) as name,
         COALESCE(current_price, 0) as current_price, 
+        COALESCE(previous_close, 0) as previous_close,
         COALESCE(change_percent, 0) as change_percent, 
         COALESCE(volume, 0) as volume
       FROM mse_trading_status 
@@ -234,7 +236,9 @@ router.get('/summary', async (req: Request, res: Response) => {
     // Top losers
     const losersResult = await db.query(`
       SELECT symbol, 
+        COALESCE(name, symbol) as name,
         COALESCE(current_price, 0) as current_price, 
+        COALESCE(previous_close, 0) as previous_close,
         COALESCE(change_percent, 0) as change_percent, 
         COALESCE(volume, 0) as volume
       FROM mse_trading_status 
@@ -246,7 +250,9 @@ router.get('/summary', async (req: Request, res: Response) => {
     // Most active by volume
     const activeResult = await db.query(`
       SELECT symbol, 
+        COALESCE(name, symbol) as name,
         COALESCE(current_price, 0) as current_price, 
+        COALESCE(previous_close, 0) as previous_close,
         COALESCE(change_percent, 0) as change_percent, 
         COALESCE(volume, 0) as volume
       FROM mse_trading_status 

@@ -230,3 +230,4 @@ export function MSEStocksTableClient({ initialStocks }: MSEStocksTableClientProp
   );
 }
 
+
