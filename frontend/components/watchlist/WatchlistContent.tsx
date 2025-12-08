@@ -308,7 +308,7 @@ export function WatchlistContent() {
 
       {/* Table */}
       <div className="rounded-xl border border-gray-800 bg-gray-900/50 overflow-hidden">
-        <table className="w-full">
+        <table className="w-full bg-gray-800 border border-gray-600 rounded-md">
           <thead className="bg-gray-800/50">
             <tr>
               <th className="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase">

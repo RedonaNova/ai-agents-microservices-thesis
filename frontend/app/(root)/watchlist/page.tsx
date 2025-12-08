@@ -12,7 +12,7 @@ export default function WatchlistPage() {
     <div className="container mx-auto px-4 py-6 space-y-6">
       {/* Header */}
       <div className="flex items-center gap-3">
-        <div className="p-2 rounded-lg bg-yellow-500/20">
+        <div className="p-2 rounded-lg ">
           <Star className="w-6 h-6 text-yellow-400" />
         </div>
         <div>

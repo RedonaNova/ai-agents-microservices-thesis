@@ -42,7 +42,7 @@ export function MSEHistoryChart() {
       <div className="rounded-lg border border-gray-800 bg-gray-900 p-6">
         <div className="flex items-center gap-2 mb-4">
           <TrendingUp className="w-5 h-5 text-green-400" />
-          <h3 className="text-lg font-semibold text-gray-100">Өсөлттэй хувьцаа</h3>
+          <h3 className="font-semibold text-2xl text-gray-100 mb-5">Өсөлттэй хувьцаа</h3>
         </div>
         <div className="space-y-3">
           {gainers.map((stock, index) => (
@@ -82,7 +82,7 @@ export function MSEHistoryChart() {
       <div className="rounded-lg border border-gray-800 bg-gray-900/50 p-6">
         <div className="flex items-center gap-2 mb-4">
           <TrendingDown className="w-5 h-5 text-red-400" />
-          <h3 className="text-lg font-semibold text-gray-100">Бууралттай хувьцаа</h3>
+          <h3 className="font-semibold text-2xl text-gray-100 mb-5">Бууралттай хувьцаа</h3>
         </div>
         <div className="space-y-3">
           {losers.map((stock, index) => (

@@ -13,6 +13,15 @@ export interface MSEStockData {
   tradingDate?: string;
 }
 
+export interface MSEStockDataFull extends MSEStockData {
+  displaySymbol: string;
+  openingPrice: number;
+  highPrice: number;
+  lowPrice: number;
+  previousClose: number;
+  turnover: number;
+}
+
 /**
  * Fetch MSE stocks via API Gateway (no direct DB connection from frontend)
  */
@@ -76,7 +85,7 @@ export async function getTopMovers() {
 }
 
 /**
- * Get single stock data by symbol
+ * Get single stock data by symbol (basic)
  */
 export async function getMSEStockBySymbol(symbol: string): Promise<MSEStockData | null> {
   try {
@@ -96,6 +105,47 @@ export async function getMSEStockBySymbol(symbol: string): Promise<MSEStockData 
       change: (parseFloat(row.current_price) || 0) - (parseFloat(row.previous_close) || 0),
       changePercent: parseFloat(row.change_percent) || 0,
       volume: parseInt(row.volume) || 0,
+      tradingDate: row.last_trade_time,
+    };
+  } catch (error) {
+    console.error('Error fetching MSE stock:', error);
+    return null;
+  }
+}
+
+/**
+ * Get single stock data by symbol (full details)
+ */
+export async function getMSEStockBySymbolFull(symbol: string): Promise<MSEStockDataFull | null> {
+  try {
+    const res = await fetch(`${API_GATEWAY_URL}/api/mse/trading-status/${symbol}`, {
+      cache: 'no-store',
+    });
+    if (!res.ok) return null;
+    const data = await res.json();
+    const row = data.tradingStatus;
+    if (!row) return null;
+
+    const currentPrice = parseFloat(row.current_price) || 0;
+    const previousClose = parseFloat(row.previous_close) || 0;
+    
+    // Create display symbol without -O-0000 suffix
+    const displaySymbol = row.symbol.replace('-O-0000', '');
+
+    return {
+      symbol: row.symbol,
+      displaySymbol,
+      name: row.name || displaySymbol,
+      sector: '',
+      closingPrice: currentPrice,
+      openingPrice: parseFloat(row.opening_price) || currentPrice,
+      highPrice: parseFloat(row.high_price) || currentPrice,
+      lowPrice: parseFloat(row.low_price) || currentPrice,
+      previousClose: previousClose,
+      change: currentPrice - previousClose,
+      changePercent: parseFloat(row.change_percent) || 0,
+      volume: parseInt(row.volume) || 0,
+      turnover: parseFloat(row.turnover) || 0,
       tradingDate: row.last_trade_time,
     };
   } catch (error) {

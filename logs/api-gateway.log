@@ -2,272 +2,379 @@
 > api-gateway@1.0.0 dev
 > tsx watch src/index.ts
 
-[32minfo[39m: ✅ Email service configured {"service":"api-gateway","timestamp":"2025-12-07T14:15:14.009Z"}
-[32minfo[39m: ✅ Gemini AI configured for email generation {"service":"api-gateway","timestamp":"2025-12-07T14:15:14.012Z"}
-[32minfo[39m: Starting API Gateway... {"env":"development","port":3001,"service":"api-gateway","timestamp":"2025-12-07T14:15:14.030Z"}
-[32minfo[39m: ✅ PostgreSQL connected successfully {"service":"api-gateway","timestamp":"2025-12-07T14:15:14.063Z"}
-{"level":"WARN","timestamp":"2025-12-07T14:15:14.064Z","logger":"kafkajs","message":"KafkaJS v2.0.0 switched default partitioner. To retain the same partitioning behavior as in previous versions, create the producer with the option \"createPartitioner: Partitioners.LegacyPartitioner\". See the migration guide at https://kafka.js.org/docs/migration-guide-v2.0.0#producer-new-default-partitioner for details. Silence this warning by setting the environment variable \"KAFKAJS_NO_PARTITIONER_WARNING=1\""}
-(node:93513) TimeoutNegativeWarning: -1765116914074 is a negative number.
+[32minfo[39m: ✅ Email service configured {"service":"api-gateway","timestamp":"2025-12-08T14:54:33.541Z"}
+[32minfo[39m: ✅ Gemini AI configured for email generation {"service":"api-gateway","timestamp":"2025-12-08T14:54:33.548Z"}
+[32minfo[39m: Starting API Gateway... {"env":"development","port":3001,"service":"api-gateway","timestamp":"2025-12-08T14:54:33.564Z"}
+[32minfo[39m: ✅ PostgreSQL connected successfully {"service":"api-gateway","timestamp":"2025-12-08T14:54:33.584Z"}
+{"level":"WARN","timestamp":"2025-12-08T14:54:33.585Z","logger":"kafkajs","message":"KafkaJS v2.0.0 switched default partitioner. To retain the same partitioning behavior as in previous versions, create the producer with the option \"createPartitioner: Partitioners.LegacyPartitioner\". See the migration guide at https://kafka.js.org/docs/migration-guide-v2.0.0#producer-new-default-partitioner for details. Silence this warning by setting the environment variable \"KAFKAJS_NO_PARTITIONER_WARNING=1\""}
+(node:26222) TimeoutNegativeWarning: -1765205673596 is a negative number.
 Timeout duration was set to 1.
 (Use `node --trace-warnings ...` to show where the warning was created)
-[32minfo[39m: Kafka producer connected {"service":"api-gateway","timestamp":"2025-12-07T14:15:14.074Z"}
-[32minfo[39m: API Gateway listening on port 3001 {"service":"api-gateway","timestamp":"2025-12-07T14:15:14.076Z"}
-[32minfo[39m: CORS enabled for: http://localhost:3000 {"service":"api-gateway","timestamp":"2025-12-07T14:15:14.076Z"}
-[32minfo[39m: Kafka broker: localhost:9092 {"service":"api-gateway","timestamp":"2025-12-07T14:15:14.076Z"}
-[32minfo[39m: API Gateway is ready! {"service":"api-gateway","timestamp":"2025-12-07T14:15:14.077Z"}
-[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:15:14.275Z","userAgent":"curl/8.5.0"}
-[32minfo[39m: GET /api/mse/summary {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:15:18.301Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/trading-status {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:15:18.304Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/summary {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:16:48.009Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/trading-status {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:16:48.012Z","userAgent":"node"}
-[32minfo[39m: GET /api/users/profile {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:16:48.013Z","userAgent":"node"}
-[32minfo[39m: GET /api/watchlist {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:16:48.018Z","userAgent":"node"}
-[32minfo[39m: GET /api/watchlist/6aadb975-2a25-49a4-822f-d3be23e0c247/items {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:16:48.275Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/trading-status/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:16:48.371Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/trading-status/MSE-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:16:48.374Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/trading-status/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:16:59.241Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/trading-status/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:16:59.654Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/history/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:16:59.721Z","userAgent":"node"}
-[32minfo[39m: GET /api/watchlist/all/symbols {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:16:59.801Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/trading-status/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:16:59.860Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/history/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:16:59.920Z","userAgent":"node"}
-[32minfo[39m: GET /api/watchlist/all/symbols {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:16:59.989Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/trading-status/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:17:02.590Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/history/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:17:02.653Z","userAgent":"node"}
-[32minfo[39m: GET /api/watchlist/all/symbols {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:17:02.723Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/trading-status/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:17:03.223Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/history/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:17:03.252Z","userAgent":"node"}
-[32minfo[39m: GET /api/watchlist/all/symbols {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:17:03.321Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/trading-status/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:17:03.537Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/history/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:17:03.593Z","userAgent":"node"}
-[32minfo[39m: GET /api/watchlist/all/symbols {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:17:03.670Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/trading-status/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:17:04.162Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/history/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:17:04.221Z","userAgent":"node"}
-[32minfo[39m: GET /api/watchlist/all/symbols {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:17:04.294Z","userAgent":"node"}
-[32minfo[39m: GET /api/agent/history {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:17:23.973Z","userAgent":"node"}
-[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:17:24.147Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:17:24.156Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:17:24.177Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:17:24.210Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /api/watchlist {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:17:29.408Z","userAgent":"node"}
-[32minfo[39m: GET /api/watchlist/6aadb975-2a25-49a4-822f-d3be23e0c247/items {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:17:29.423Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/trading-status/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:17:29.459Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/trading-status/MSE-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:17:29.507Z","userAgent":"node"}
-[32minfo[39m: POST /api/agent/analyze-watchlist {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:17:33.485Z","userAgent":"node"}
-[32minfo[39m: Event sent to user.requests {"key":"3052ec79-fb5f-4f9a-8ea1-437e6e7b9c54","service":"api-gateway","timestamp":"2025-12-07T14:17:33.543Z"}
-[32minfo[39m: Watchlist analysis request sent {"requestId":"3052ec79-fb5f-4f9a-8ea1-437e6e7b9c54","service":"api-gateway","symbols":["KHAN-O-0000","MSE-O-0000"],"timestamp":"2025-12-07T14:17:33.544Z","userId":"6"}
-[32minfo[39m: GET /api/agent/response/3052ec79-fb5f-4f9a-8ea1-437e6e7b9c54 {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:17:35.042Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /api/agent/response/3052ec79-fb5f-4f9a-8ea1-437e6e7b9c54 {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:17:36.548Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /api/agent/response/3052ec79-fb5f-4f9a-8ea1-437e6e7b9c54 {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:17:38.054Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /api/agent/response/3052ec79-fb5f-4f9a-8ea1-437e6e7b9c54 {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:17:39.561Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /api/agent/response/3052ec79-fb5f-4f9a-8ea1-437e6e7b9c54 {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:17:41.071Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /api/agent/response/3052ec79-fb5f-4f9a-8ea1-437e6e7b9c54 {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:17:42.585Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /api/agent/response/3052ec79-fb5f-4f9a-8ea1-437e6e7b9c54 {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:17:44.100Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /api/agent/response/3052ec79-fb5f-4f9a-8ea1-437e6e7b9c54 {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:17:45.617Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /api/agent/response/3052ec79-fb5f-4f9a-8ea1-437e6e7b9c54 {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:17:47.136Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /api/users/profile {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:17:57.314Z","userAgent":"node"}
-[32minfo[39m: GET /api/agent/history {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:17:57.315Z","userAgent":"node"}
-[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:17:58.202Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:17:58.205Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:17:58.214Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:17:58.219Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:18:08.070Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:18:08.072Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:18:18.113Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:18:18.117Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:18:28.460Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:18:28.461Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:18:38.338Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:18:38.340Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:18:48.374Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:18:48.375Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:18:58.464Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:18:58.466Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /api/mse/trading-status {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:19:01.858Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/trading-status {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:19:02.636Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/trading-status {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:19:02.666Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/trading-status/APU-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:19:04.077Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/trading-status/APU-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:19:04.186Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/history/APU-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:19:04.242Z","userAgent":"node"}
-[32minfo[39m: GET /api/watchlist/all/symbols {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:19:04.287Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/trading-status/APU-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:19:04.320Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/history/APU-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:19:04.370Z","userAgent":"node"}
-[32minfo[39m: GET /api/watchlist/all/symbols {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:19:04.412Z","userAgent":"node"}
-[32minfo[39m: POST /api/agent/query {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:19:06.102Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: Event sent to user.requests {"key":"31987d87-31d2-4a10-b851-b65830d25230","service":"api-gateway","timestamp":"2025-12-07T14:19:06.106Z"}
-[32minfo[39m: User query sent to orchestrator {"requestId":"31987d87-31d2-4a10-b851-b65830d25230","service":"api-gateway","timestamp":"2025-12-07T14:19:06.106Z","type":"portfolio","userId":"6"}
-[32minfo[39m: GET /api/agent/response/31987d87-31d2-4a10-b851-b65830d25230 {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:19:07.609Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:19:08.299Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:19:08.305Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /api/agent/response/31987d87-31d2-4a10-b851-b65830d25230 {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:19:09.114Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /api/agent/response/31987d87-31d2-4a10-b851-b65830d25230 {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:19:10.632Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /api/agent/response/31987d87-31d2-4a10-b851-b65830d25230 {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:19:12.144Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /api/agent/response/31987d87-31d2-4a10-b851-b65830d25230 {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:19:13.659Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /api/agent/response/31987d87-31d2-4a10-b851-b65830d25230 {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:19:15.173Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /api/agent/response/31987d87-31d2-4a10-b851-b65830d25230 {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:19:16.689Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:19:18.314Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:19:18.315Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:19:33.366Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:19:33.368Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /api/mse/summary {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:19:40.933Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/trading-status {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:19:40.934Z","userAgent":"node"}
-[32minfo[39m: GET /api/watchlist {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:19:40.935Z","userAgent":"node"}
-[32minfo[39m: GET /api/watchlist/6aadb975-2a25-49a4-822f-d3be23e0c247/items {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:19:41.011Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/trading-status/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:19:41.032Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/trading-status/MSE-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:19:41.034Z","userAgent":"node"}
-[32minfo[39m: GET /api/agent/history {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:19:49.533Z","userAgent":"node"}
-[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:19:49.611Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:19:49.613Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:19:49.620Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:19:49.623Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /api/watchlist {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:19:50.176Z","userAgent":"node"}
-[32minfo[39m: GET /api/watchlist/6aadb975-2a25-49a4-822f-d3be23e0c247/items {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:19:50.184Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/trading-status/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:19:50.210Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/trading-status/MSE-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:19:50.236Z","userAgent":"node"}
-[32minfo[39m: GET /api/agent/history {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:19:50.683Z","userAgent":"node"}
-[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:19:50.748Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:19:50.750Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:19:50.753Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:19:50.762Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /api/mse/summary {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:19:52.073Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/trading-status {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:19:52.074Z","userAgent":"node"}
-[32minfo[39m: GET /api/watchlist {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:19:52.115Z","userAgent":"node"}
-[32minfo[39m: GET /api/watchlist/6aadb975-2a25-49a4-822f-d3be23e0c247/items {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:19:52.135Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/trading-status/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:19:52.161Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/trading-status/MSE-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:19:52.164Z","userAgent":"node"}
-[32minfo[39m: GET /api/agent/history {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:20:13.971Z","userAgent":"node"}
-[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:20:14.025Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:20:14.028Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:20:14.034Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:20:14.039Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:20:24.096Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:20:24.098Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:20:33.345Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:20:33.346Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:20:34.033Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:20:34.034Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:20:38.505Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:20:38.506Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:20:38.905Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:20:38.906Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:20:39.287Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:20:39.288Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:20:39.488Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:20:39.489Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:20:39.656Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:20:39.657Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:20:44.019Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:20:44.020Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:20:54.101Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:20:54.102Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:20:55.253Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:20:55.275Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:20:58.444Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:20:58.445Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:21:04.323Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:21:04.324Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:21:08.299Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:21:08.300Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:21:13.990Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:21:13.990Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:21:18.321Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:21:18.322Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:21:24.076Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:21:24.077Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:21:28.424Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:21:28.424Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /api/mse/summary {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:21:30.120Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/trading-status {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:21:30.121Z","userAgent":"node"}
-[32minfo[39m: GET /api/watchlist {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:21:30.121Z","userAgent":"node"}
-[32minfo[39m: GET /api/watchlist/6aadb975-2a25-49a4-822f-d3be23e0c247/items {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:21:30.168Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/trading-status/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:21:30.217Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/trading-status/MSE-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:21:30.218Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/summary {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:21:31.531Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/trading-status {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:21:31.533Z","userAgent":"node"}
-[32minfo[39m: GET /api/watchlist {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:21:31.543Z","userAgent":"node"}
-[32minfo[39m: GET /api/watchlist/6aadb975-2a25-49a4-822f-d3be23e0c247/items {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:21:31.577Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/trading-status/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:21:31.589Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/trading-status/MSE-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:21:31.591Z","userAgent":"node"}
-[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:21:38.331Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:21:38.332Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:21:48.388Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:21:48.390Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /api/mse/trading-status/JTB-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:22:21.880Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/trading-status/JTB-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:22:21.981Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/history/JTB-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:22:22.027Z","userAgent":"node"}
-[32minfo[39m: GET /api/watchlist/all/symbols {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:22:22.088Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/trading-status/JTB-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:22:22.160Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/history/JTB-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:22:22.215Z","userAgent":"node"}
-[32minfo[39m: GET /api/watchlist/all/symbols {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:22:22.261Z","userAgent":"node"}
-[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:22:33.361Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:22:33.363Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /api/mse/summary {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:23:24.751Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/trading-status {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:23:24.752Z","userAgent":"node"}
-[32minfo[39m: GET /api/users/profile {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:23:24.752Z","userAgent":"node"}
-[32minfo[39m: GET /api/watchlist {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:23:24.753Z","userAgent":"node"}
-[32minfo[39m: GET /api/watchlist/6aadb975-2a25-49a4-822f-d3be23e0c247/items {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:23:24.829Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/trading-status/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:23:24.899Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/trading-status/MSE-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:23:24.900Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/trading-status {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:23:29.277Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/trading-status/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:23:31.805Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/trading-status/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:23:32.010Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/history/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:23:32.082Z","userAgent":"node"}
-[32minfo[39m: GET /api/watchlist/all/symbols {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:23:32.154Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/trading-status/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:23:32.214Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/history/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:23:32.278Z","userAgent":"node"}
-[32minfo[39m: GET /api/watchlist/all/symbols {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:23:32.340Z","userAgent":"node"}
-[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:23:33.361Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:23:33.362Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /api/mse/trading-status/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:23:37.143Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/history/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:23:37.203Z","userAgent":"node"}
-[32minfo[39m: GET /api/watchlist/all/symbols {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:23:37.288Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/trading-status/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:23:38.231Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/history/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:23:38.310Z","userAgent":"node"}
-[32minfo[39m: GET /api/watchlist/all/symbols {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:23:38.376Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/trading-status/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:23:38.570Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/history/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:23:38.625Z","userAgent":"node"}
-[32minfo[39m: GET /api/watchlist/all/symbols {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:23:38.689Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/trading-status/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:23:39.057Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/history/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:23:39.124Z","userAgent":"node"}
-[32minfo[39m: GET /api/watchlist/all/symbols {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:23:39.197Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/trading-status/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:23:41.978Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/history/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:23:42.034Z","userAgent":"node"}
-[32minfo[39m: GET /api/watchlist/all/symbols {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:23:42.102Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/summary {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:23:49.821Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/trading-status {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:23:49.822Z","userAgent":"node"}
-[32minfo[39m: GET /api/watchlist {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:23:49.823Z","userAgent":"node"}
-[32minfo[39m: GET /api/watchlist/6aadb975-2a25-49a4-822f-d3be23e0c247/items {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:23:49.853Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/trading-status/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:23:49.889Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/trading-status/MSE-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:23:49.891Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/summary {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:23:50.044Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/trading-status {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:23:50.044Z","userAgent":"node"}
-[32minfo[39m: GET /api/watchlist {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:23:50.056Z","userAgent":"node"}
-[32minfo[39m: GET /api/watchlist/6aadb975-2a25-49a4-822f-d3be23e0c247/items {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:23:50.087Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/trading-status/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:23:50.097Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/trading-status/MSE-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:23:50.098Z","userAgent":"node"}
-[32minfo[39m: GET /api/agent/history {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:23:50.963Z","userAgent":"node"}
-[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:23:51.138Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:23:51.148Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:23:51.159Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:23:51.161Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /api/watchlist {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:23:52.047Z","userAgent":"node"}
-[32minfo[39m: GET /api/watchlist/6aadb975-2a25-49a4-822f-d3be23e0c247/items {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:23:52.053Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/trading-status/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:23:52.077Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/trading-status/MSE-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:23:52.099Z","userAgent":"node"}
-[32minfo[39m: GET /api/agent/history {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:23:52.592Z","userAgent":"node"}
-[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:23:52.658Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:23:52.659Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:23:52.661Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-12-07T14:23:52.667Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
-[32minfo[39m: GET /api/mse/summary {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:23:54.077Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/trading-status {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:23:54.078Z","userAgent":"node"}
-[32minfo[39m: GET /api/watchlist {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:23:54.127Z","userAgent":"node"}
-[32minfo[39m: GET /api/watchlist/6aadb975-2a25-49a4-822f-d3be23e0c247/items {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:23:54.139Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/trading-status/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:23:54.153Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/trading-status/MSE-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:23:54.155Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/summary {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:23:54.985Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/trading-status {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:23:54.987Z","userAgent":"node"}
-[32minfo[39m: GET /api/watchlist {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:23:54.999Z","userAgent":"node"}
-[32minfo[39m: GET /api/watchlist/6aadb975-2a25-49a4-822f-d3be23e0c247/items {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:23:55.065Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/trading-status/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:23:55.089Z","userAgent":"node"}
-[32minfo[39m: GET /api/mse/trading-status/MSE-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-07T14:23:55.093Z","userAgent":"node"}
+[32minfo[39m: Kafka producer connected {"service":"api-gateway","timestamp":"2025-12-08T14:54:33.596Z"}
+[32minfo[39m: API Gateway listening on port 3001 {"service":"api-gateway","timestamp":"2025-12-08T14:54:33.598Z"}
+[32minfo[39m: CORS enabled for: http://localhost:3000 {"service":"api-gateway","timestamp":"2025-12-08T14:54:33.598Z"}
+[32minfo[39m: Kafka broker: localhost:9092 {"service":"api-gateway","timestamp":"2025-12-08T14:54:33.599Z"}
+[32minfo[39m: API Gateway is ready! {"service":"api-gateway","timestamp":"2025-12-08T14:54:33.599Z"}
+[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T14:54:34.695Z","userAgent":"curl/8.5.0"}
+[32minfo[39m: GET /api/mse/summary {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T14:54:34.865Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T14:54:34.867Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/summary {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T14:54:55.664Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T14:54:55.668Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/summary {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T14:54:58.051Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T14:54:58.053Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/summary {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T14:54:58.842Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T14:54:58.843Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/summary {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T14:55:11.939Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T14:55:11.940Z","userAgent":"node"}
+[32minfo[39m: GET /api/users/profile {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T14:55:11.942Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T14:55:11.949Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist/6aadb975-2a25-49a4-822f-d3be23e0c247/items {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T14:55:12.031Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T14:55:12.085Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/MSE-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T14:55:12.087Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/summary {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:00:00.397Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:00:00.399Z","userAgent":"node"}
+[32minfo[39m: GET /api/users/profile {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:00:00.400Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:00:00.402Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist/6aadb975-2a25-49a4-822f-d3be23e0c247/items {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:00:00.508Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:00:00.585Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/MSE-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:00:00.587Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/summary {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:01:03.133Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:01:03.135Z","userAgent":"node"}
+[32minfo[39m: GET /api/users/profile {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:01:03.135Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:01:03.136Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist/6aadb975-2a25-49a4-822f-d3be23e0c247/items {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:01:03.192Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:01:03.265Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/MSE-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:01:03.266Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/summary {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:01:30.908Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:01:30.909Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/summary {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:01:30.910Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:01:30.910Z","userAgent":"node"}
+[32minfo[39m: GET /api/users/profile {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:01:30.911Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:01:30.913Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist/6aadb975-2a25-49a4-822f-d3be23e0c247/items {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:01:31.239Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:01:31.260Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/MSE-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:01:31.263Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/GOV-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:01:38.294Z","userAgent":"node"}
+[32minfo[39m: GET /api/users/profile {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:01:38.295Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/GOV-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:01:39.078Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/history/GOV-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:01:39.134Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist/all/symbols {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:01:39.245Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:02:32.351Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist/6aadb975-2a25-49a4-822f-d3be23e0c247/items {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:02:32.378Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:02:32.409Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/MSE-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:02:32.443Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/summary {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:02:34.494Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:02:34.495Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:02:34.549Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist/6aadb975-2a25-49a4-822f-d3be23e0c247/items {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:02:34.563Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:02:34.575Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/MSE-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:02:34.576Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist/all/symbols {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:02:44.028Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:02:44.036Z","userAgent":"node"}
+[32minfo[39m: DELETE /api/watchlist/6aadb975-2a25-49a4-822f-d3be23e0c247/items/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:02:44.041Z","userAgent":"node"}
+[32minfo[39m: Event sent to user.events {"key":"6","service":"api-gateway","timestamp":"2025-12-08T15:02:44.139Z"}
+[32minfo[39m: GET /api/watchlist/all/symbols {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:02:45.214Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:02:45.219Z","userAgent":"node"}
+[32minfo[39m: POST /api/watchlist/6aadb975-2a25-49a4-822f-d3be23e0c247/items {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:02:45.245Z","userAgent":"node"}
+[32minfo[39m: Event sent to user.events {"key":"6","service":"api-gateway","timestamp":"2025-12-08T15:02:45.257Z"}
+[32minfo[39m: GET /api/mse/summary {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:02:46.777Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:02:46.778Z","userAgent":"node"}
+[32minfo[39m: GET /api/users/profile {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:02:46.931Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:02:46.933Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist/6aadb975-2a25-49a4-822f-d3be23e0c247/items {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:02:46.943Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:02:46.981Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/MSE-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:02:46.983Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/summary {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:02:55.618Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:02:55.618Z","userAgent":"node"}
+[32minfo[39m: GET /api/users/profile {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:02:55.619Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:02:55.620Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist/6aadb975-2a25-49a4-822f-d3be23e0c247/items {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:02:55.673Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:02:55.716Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/MSE-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:02:55.717Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/JTB-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:03:33.232Z","userAgent":"node"}
+[32minfo[39m: GET /api/users/profile {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:03:33.233Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/JTB-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:03:33.715Z","userAgent":"node"}
+[32minfo[39m: GET /api/users/profile {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:03:33.743Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/JTB-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:03:34.123Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/history/JTB-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:03:34.178Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist/all/symbols {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:03:34.250Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/JTB-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:03:34.508Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/history/JTB-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:03:34.550Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist/all/symbols {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:03:34.608Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/BDS-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:04:46.442Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/BDS-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:04:46.851Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/history/BDS-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:04:46.895Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist/all/symbols {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:04:46.947Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/BDS-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:04:46.994Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/history/BDS-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:04:47.045Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist/all/symbols {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:04:47.088Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:06:03.407Z","userAgent":"node"}
+[32minfo[39m: GET /api/agent/history {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:06:13.659Z","userAgent":"node"}
+[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:06:13.790Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
+[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:06:13.803Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
+[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:06:13.823Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
+[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:06:13.839Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
+[32minfo[39m: GET /api/watchlist {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:06:21.779Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist/6aadb975-2a25-49a4-822f-d3be23e0c247/items {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:06:21.795Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:06:21.831Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/MSE-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:06:21.862Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:06:52.908Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:07:03.823Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:07:11.785Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/summary {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:07:18.999Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:07:19.000Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:07:19.001Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist/6aadb975-2a25-49a4-822f-d3be23e0c247/items {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:07:19.068Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:07:19.085Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/MSE-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:07:19.086Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:08:25.900Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist/6aadb975-2a25-49a4-822f-d3be23e0c247/items {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:08:25.931Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:08:25.964Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/MSE-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:08:26.029Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:08:35.778Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist/6aadb975-2a25-49a4-822f-d3be23e0c247/items {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:08:35.785Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:08:35.815Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/MSE-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:08:35.849Z","userAgent":"node"}
+[32minfo[39m: GET /api/agent/history {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:08:40.516Z","userAgent":"node"}
+[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:08:40.592Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
+[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:08:40.593Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
+[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:08:40.602Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
+[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:08:40.608Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
+[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:08:50.612Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
+[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:08:50.613Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
+[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:09:00.545Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
+[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:09:00.547Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
+[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:09:10.570Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
+[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:09:10.572Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
+[32minfo[39m: GET /api/watchlist {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:09:14.443Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist/6aadb975-2a25-49a4-822f-d3be23e0c247/items {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:09:14.471Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:09:14.505Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/MSE-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:09:14.559Z","userAgent":"node"}
+[32minfo[39m: GET /api/agent/history {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:09:15.424Z","userAgent":"node"}
+[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:09:15.482Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
+[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:09:15.484Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
+[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:09:15.490Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
+[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:09:15.495Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
+[32minfo[39m: GET /api/watchlist {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:09:15.845Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist/6aadb975-2a25-49a4-822f-d3be23e0c247/items {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:09:15.852Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:09:15.878Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/MSE-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:09:15.903Z","userAgent":"node"}
+[32minfo[39m: GET /api/agent/history {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:09:16.156Z","userAgent":"node"}
+[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:09:16.210Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
+[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:09:16.212Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
+[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:09:16.214Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
+[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:09:16.221Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
+[32minfo[39m: GET /api/agent/history {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:09:16.956Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:09:21.947Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:09:22.055Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/history/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:09:22.120Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist/all/symbols {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:09:22.155Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:09:22.184Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/history/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:09:22.256Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist/all/symbols {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:09:22.295Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:09:44.546Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist/6aadb975-2a25-49a4-822f-d3be23e0c247/items {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:09:44.555Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:09:44.584Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/MSE-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:09:44.609Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/GOV-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:10:10.795Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/JTB-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:10:10.836Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/JTB-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:10:10.872Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/history/GOV-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:10:10.898Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/history/JTB-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:10:10.954Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/history/JTB-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:10:10.975Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist/all/symbols {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:10:11.067Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist/all/symbols {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:10:11.089Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist/all/symbols {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:10:11.108Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/GOV-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:10:11.137Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/JTB-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:10:11.158Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/JTB-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:10:11.173Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/history/GOV-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:10:11.208Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/history/JTB-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:10:11.233Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/history/JTB-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:10:11.243Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist/all/symbols {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:10:11.293Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist/all/symbols {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:10:11.317Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist/all/symbols {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:10:11.336Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/GOV-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:10:11.371Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/JTB-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:10:11.398Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/JTB-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:10:11.418Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/history/GOV-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:10:11.452Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/history/JTB-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:10:11.472Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/history/JTB-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:10:11.506Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist/all/symbols {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:10:11.620Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist/all/symbols {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:10:11.621Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist/all/symbols {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:10:11.646Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:10:15.124Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:10:15.199Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/history/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:10:15.259Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist/all/symbols {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:10:15.305Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:10:15.332Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/history/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:10:15.403Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist/all/symbols {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:10:15.439Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/GOV-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:10:40.799Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:10:40.822Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/JTB-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:10:40.887Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/JTB-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:10:40.923Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/history/GOV-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:10:41.056Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/history/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:10:41.074Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/history/JTB-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:10:41.126Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/history/JTB-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:10:41.144Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist/all/symbols {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:10:41.239Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist/all/symbols {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:10:41.241Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist/all/symbols {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:10:41.276Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist/all/symbols {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:10:41.296Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/summary {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:10:56.404Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:10:56.404Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:10:56.405Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist/6aadb975-2a25-49a4-822f-d3be23e0c247/items {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:10:56.461Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:10:56.475Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/MSE-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:10:56.477Z","userAgent":"node"}
+[32minfo[39m: GET /api/agent/history {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:11:09.408Z","userAgent":"node"}
+[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:11:09.462Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
+[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:11:09.463Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
+[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:11:09.472Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
+[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:11:09.475Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
+[32minfo[39m: GET /api/watchlist {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:11:12.716Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist/6aadb975-2a25-49a4-822f-d3be23e0c247/items {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:11:12.724Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:11:12.758Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/MSE-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:11:12.783Z","userAgent":"node"}
+[32minfo[39m: GET /api/agent/history {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:11:13.939Z","userAgent":"node"}
+[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:11:14.012Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
+[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:11:14.013Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
+[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:11:14.015Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
+[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:11:14.025Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
+[32minfo[39m: GET /api/watchlist {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:11:14.310Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist/6aadb975-2a25-49a4-822f-d3be23e0c247/items {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:11:14.344Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:11:14.371Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/MSE-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:11:14.395Z","userAgent":"node"}
+[32minfo[39m: GET /api/agent/history {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:11:14.753Z","userAgent":"node"}
+[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:11:14.809Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
+[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:11:14.810Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
+[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:11:14.813Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
+[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:11:14.821Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
+[32minfo[39m: GET /api/watchlist {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:11:22.263Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist/6aadb975-2a25-49a4-822f-d3be23e0c247/items {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:11:22.269Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:11:22.302Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/MSE-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:11:22.331Z","userAgent":"node"}
+[32minfo[39m: GET /api/agent/history {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:11:34.975Z","userAgent":"node"}
+[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:11:35.031Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
+[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:11:35.032Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
+[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:11:35.040Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
+[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:11:35.041Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
+[32minfo[39m: GET /api/mse/summary {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:11:36.013Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:11:36.044Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:11:36.044Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist/6aadb975-2a25-49a4-822f-d3be23e0c247/items {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:11:36.072Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:11:36.086Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/MSE-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:11:36.087Z","userAgent":"node"}
+[32minfo[39m: GET /api/agent/history {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:11:49.779Z","userAgent":"node"}
+[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:11:49.855Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
+[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:11:49.856Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
+[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:11:49.866Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
+[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:11:49.871Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
+[32minfo[39m: GET /api/watchlist {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:11:50.852Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist/6aadb975-2a25-49a4-822f-d3be23e0c247/items {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:11:50.860Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:11:50.888Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/MSE-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:11:50.914Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/summary {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:11:52.381Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:11:52.383Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:11:52.424Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist/6aadb975-2a25-49a4-822f-d3be23e0c247/items {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:11:52.433Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:11:52.447Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/MSE-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:11:52.451Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/JTB-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:28:23.342Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/history/JTB-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:28:23.498Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist/all/symbols {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:28:23.639Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/JTB-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:28:23.703Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/history/JTB-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:28:23.739Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist/all/symbols {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:28:23.806Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/JTB-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:28:23.839Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/history/JTB-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:28:23.935Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist/all/symbols {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:28:24.037Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/summary {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:29:09.177Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:29:09.181Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:29:09.182Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist/6aadb975-2a25-49a4-822f-d3be23e0c247/items {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:29:09.238Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:29:09.277Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/MSE-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:29:09.278Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/BDS-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:29:18.135Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/BDS-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:29:18.192Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/history/BDS-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:29:18.212Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist/all/symbols {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:29:18.304Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/BDS-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:29:18.330Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/history/BDS-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:29:18.353Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist/all/symbols {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:29:18.395Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:29:36.409Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:29:36.469Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/history/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:29:36.524Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist/all/symbols {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:29:36.571Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:29:36.601Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/history/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:29:36.671Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist/all/symbols {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:29:36.708Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:29:42.700Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/APU-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:29:44.353Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/APU-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:29:44.467Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/history/APU-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:29:44.496Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist/all/symbols {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:29:44.583Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/APU-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:29:44.630Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/history/APU-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:29:44.698Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist/all/symbols {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:29:44.743Z","userAgent":"node"}
+[32minfo[39m: POST /api/agent/query {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:29:51.014Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
+[32minfo[39m: Event sent to user.requests {"key":"d2e7e090-cacc-4c8b-b60a-cbf2f7275383","service":"api-gateway","timestamp":"2025-12-08T15:29:51.060Z"}
+[32minfo[39m: User query sent to orchestrator {"requestId":"d2e7e090-cacc-4c8b-b60a-cbf2f7275383","service":"api-gateway","timestamp":"2025-12-08T15:29:51.060Z","type":"portfolio","userId":"6"}
+[32minfo[39m: GET /api/agent/response/d2e7e090-cacc-4c8b-b60a-cbf2f7275383 {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:29:52.579Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
+[32minfo[39m: GET /api/agent/response/d2e7e090-cacc-4c8b-b60a-cbf2f7275383 {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:29:54.095Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
+[32minfo[39m: GET /api/agent/response/d2e7e090-cacc-4c8b-b60a-cbf2f7275383 {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:29:55.605Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
+[32minfo[39m: GET /api/agent/response/d2e7e090-cacc-4c8b-b60a-cbf2f7275383 {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:29:57.114Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
+[32minfo[39m: GET /api/agent/response/d2e7e090-cacc-4c8b-b60a-cbf2f7275383 {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:29:58.617Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
+[32minfo[39m: GET /api/agent/response/d2e7e090-cacc-4c8b-b60a-cbf2f7275383 {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:30:00.122Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
+[32minfo[39m: GET /api/agent/response/d2e7e090-cacc-4c8b-b60a-cbf2f7275383 {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:30:01.617Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
+[32minfo[39m: GET /api/agent/response/d2e7e090-cacc-4c8b-b60a-cbf2f7275383 {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:30:03.112Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
+[32minfo[39m: GET /api/watchlist/all/symbols {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:30:54.922Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:30:54.943Z","userAgent":"node"}
+[32minfo[39m: POST /api/watchlist/6aadb975-2a25-49a4-822f-d3be23e0c247/items {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:30:54.953Z","userAgent":"node"}
+[32minfo[39m: Event sent to user.events {"key":"6","service":"api-gateway","timestamp":"2025-12-08T15:30:54.977Z"}
+[32minfo[39m: GET /api/agent/history {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:30:56.437Z","userAgent":"node"}
+[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:30:56.507Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
+[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:30:56.511Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
+[32minfo[39m: GET /health {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:30:56.518Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
+[32minfo[39m: GET /api/monitoring/agents {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:30:56.524Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
+[32minfo[39m: GET /api/watchlist {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:31:02.816Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist/6aadb975-2a25-49a4-822f-d3be23e0c247/items {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:31:02.821Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/APU-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:31:02.842Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:31:02.862Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/MSE-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:31:02.881Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/summary {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:31:14.358Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:31:14.359Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:31:14.360Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist/6aadb975-2a25-49a4-822f-d3be23e0c247/items {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:31:14.468Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/APU-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:31:14.488Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:31:14.490Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/MSE-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:31:14.514Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:31:16.999Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:31:19.075Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:31:19.217Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/history/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:31:19.280Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist/all/symbols {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:31:19.347Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:31:19.377Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/history/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:31:19.437Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist/all/symbols {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:31:19.487Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:31:58.485Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist/6aadb975-2a25-49a4-822f-d3be23e0c247/items {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:31:58.509Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/APU-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:31:58.529Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/KHAN-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:31:58.556Z","userAgent":"node"}
+[32minfo[39m: GET /api/mse/trading-status/MSE-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:31:58.572Z","userAgent":"node"}
+[32minfo[39m: GET /api/watchlist {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:32:10.250Z","userAgent":"node"}
+[32minfo[39m: DELETE /api/watchlist/6aadb975-2a25-49a4-822f-d3be23e0c247/items/MSE-O-0000 {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:32:10.255Z","userAgent":"node"}
+[32minfo[39m: Event sent to user.events {"key":"6","service":"api-gateway","timestamp":"2025-12-08T15:32:10.273Z"}
+[32minfo[39m: POST /api/agent/analyze-watchlist {"ip":"::ffff:127.0.0.1","service":"api-gateway","timestamp":"2025-12-08T15:32:13.621Z","userAgent":"node"}
+[32minfo[39m: Event sent to user.requests {"key":"774edd11-52e5-4c45-aeca-aa808255821f","service":"api-gateway","timestamp":"2025-12-08T15:32:13.632Z"}
+[32minfo[39m: Watchlist analysis request sent {"requestId":"774edd11-52e5-4c45-aeca-aa808255821f","service":"api-gateway","symbols":["APU-O-0000","KHAN-O-0000"],"timestamp":"2025-12-08T15:32:13.632Z","userId":"6"}
+[32minfo[39m: GET /api/agent/response/774edd11-52e5-4c45-aeca-aa808255821f {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:32:15.165Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
+[32minfo[39m: GET /api/agent/response/774edd11-52e5-4c45-aeca-aa808255821f {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:32:16.696Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
+[32minfo[39m: GET /api/agent/response/774edd11-52e5-4c45-aeca-aa808255821f {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:32:18.214Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
+[32minfo[39m: GET /api/agent/response/774edd11-52e5-4c45-aeca-aa808255821f {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:32:19.728Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
+[32minfo[39m: GET /api/agent/response/774edd11-52e5-4c45-aeca-aa808255821f {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:32:21.244Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
+[32minfo[39m: GET /api/agent/response/774edd11-52e5-4c45-aeca-aa808255821f {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:32:22.756Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
+[32minfo[39m: GET /api/agent/response/774edd11-52e5-4c45-aeca-aa808255821f {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:32:24.265Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
+[32minfo[39m: GET /api/agent/response/774edd11-52e5-4c45-aeca-aa808255821f {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:32:25.771Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
+[32minfo[39m: GET /api/agent/response/774edd11-52e5-4c45-aeca-aa808255821f {"ip":"::1","service":"api-gateway","timestamp":"2025-12-08T15:32:27.271Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}

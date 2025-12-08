@@ -88,23 +88,23 @@ export function MSEStocksTableClient({ initialStocks }: MSEStocksTableClientProp
   }, [stocks, sortField, sortDirection]);
 
   return (
-    <div className="rounded-lg border border-gray-800 bg-gray-900/50 overflow-hidden">
+    <div className=" overflow-hidden">
       {/* Header */}
-      <div className="flex items-center justify-between p-4 border-b border-gray-800">
+      <div className="flex items-center justify-between p-4 ">
         <div>
-          <h3 className="text-lg font-semibold text-gray-100">
-            МХБ хувьцааны мэдээлэл
+          <h3 className="font-semibold text-2xl text-gray-100 mb-5">
+            МХБ Зах зээлийн мэдээ
           </h3>
           <p className="text-sm text-gray-400 mt-1">
-            {stocks.length} хувьцаа • Баганыг дарж эрэмбэлнэ үү
+            {stocks.length} хувьцаа 
           </p>
         </div>
       </div>
 
       {/* Table */}
       <div className="overflow-x-auto">
-        <table className="w-full">
-          <thead className="bg-gray-800/50">
+        <table className="w-full bg-gray-800 border border-gray-600 rounded-lg  ">
+          <thead className="bg-gray-800/50 rounded-lg">
             <tr>
               <th className="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                 <button

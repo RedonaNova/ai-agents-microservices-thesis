@@ -171,7 +171,7 @@ export function MSEStocksTable() {
 
       {/* Table */}
       <div className="overflow-x-auto">
-        <table className="w-full">
+        <table className="w-full bg-gray-800 border border-gray-600 rounded-md">
           <thead className="bg-gray-800/50">
             <tr>
               <th className="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">

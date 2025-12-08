@@ -10,11 +10,11 @@ export async function MSETopMoversSSR() {
       {/* Top Gainers */}
       <div className="rounded-lg border border-gray-800 bg-gray-900/50 p-6">
         <div className="flex items-center gap-2 mb-4">
-          <TrendingUp className="w-5 h-5 text-green-400" />
-          <h3 className="text-lg font-semibold text-gray-100">Өсөлттэй хувьцаа</h3>
+          <TrendingUp className="w-7 h-7 text-green-400" />
+          <h3 className="font-semibold text-2xl text-gray-100 mb-5">Өсөлттэй хувьцаа</h3>
         </div>
-        <div className="space-y-3">
-          {gainers.map((stock, index) => (
+        <div className="bg-gray-800 rounded-md border border-gray-600 space-y-3">
+          {gainers.map((stock:any, index:number) => (
             <Link
               key={stock.symbol}
               href={`/stocks/${stock.symbol}`}
@@ -50,11 +50,11 @@ export async function MSETopMoversSSR() {
       {/* Top Losers */}
       <div className="rounded-lg border border-gray-800 bg-gray-900/50 p-6">
         <div className="flex items-center gap-2 mb-4">
-          <TrendingDown className="w-5 h-5 text-red-400" />
-          <h3 className="text-lg font-semibold text-gray-100">Бууралттай хувьцаа</h3>
+          <TrendingDown className="w-7 h-7 text-red-400" />
+          <h3 className="font-semibold text-2xl text-gray-100 mb-5">Бууралттай хувьцаа</h3>
         </div>
-        <div className="space-y-3">
-          {losers.map((stock, index) => (
+        <div className="bg-gray-800 rounded-md border border-gray-600 space-y-3">
+          {losers.map((stock:any, index:number) => (
             <Link
               key={stock.symbol}
               href={`/stocks/${stock.symbol}`}
