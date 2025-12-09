@@ -18,3 +18,5 @@
 /logs/**/**/**/**/*
 /logs/**/**/**/**/**
 /logs/**/**/**/**/**/*
+thesis-backend-pids.txt
+/frontend/node_modules
