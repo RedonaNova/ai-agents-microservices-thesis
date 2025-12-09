@@ -180,7 +180,7 @@ This script will:
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 thesis-report/
@@ -232,7 +232,7 @@ thesis-report/
 
 ---
 
-## 🔧 Technology Stack
+## Technology Stack
 
 ### Frontend
 | Technology | Version | Purpose |
@@ -276,7 +276,7 @@ thesis-report/
 
 ---
 
-## 📊 Kafka Topics
+## Kafka Topics
 
 ```
 user.requests       → User queries to orchestrator
@@ -292,7 +292,7 @@ monitoring.events   → System monitoring and metrics
 
 ---
 
-## 🗄️ Database Schema
+## Database Schema
 
 ### Core Tables
 - `users` - User accounts with investment profiles
@@ -310,7 +310,7 @@ monitoring.events   → System monitoring and metrics
 
 ---
 
-## 🧪 API Examples
+## API Examples
 
 ### Register User
 ```bash
@@ -345,7 +345,7 @@ curl http://localhost:3001/api/mse/trading-status
 
 ---
 
-## 📈 Performance Metrics
+## Performance Metrics
 
 | Metric | Value |
 |--------|-------|
@@ -358,7 +358,7 @@ curl http://localhost:3001/api/mse/trading-status
 
 ---
 
-## 📝 Development
+## Development
 
 ### View Logs
 ```bash
@@ -393,7 +393,7 @@ SELECT * FROM mse_companies;  # Query MSE data
 
 ---
 
-## 📚 Thesis Documentation
+## Thesis Documentation
 
 The complete thesis report is available in the `report/` directory:
 - **main.tex** - Main LaTeX document
@@ -407,7 +407,7 @@ Key chapters:
 
 ---
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - Supervisor: Associate Professor B.Suvdaa
 - National University of Mongolia, MTES
@@ -416,11 +416,10 @@ Key chapters:
 
 ---
 
-## 📄 License
+## License
 
 This project is part of a Bachelor's thesis and is provided for educational purposes.
 
 ---
 
 **Built with ❤️ **
-
