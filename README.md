@@ -1,4 +1,4 @@
-# 🤖 AI Agents for Microservices
+# AI Agents for Microservices
 
 **Микросервис архитектурт суурилсан хиймэл оюун агентууд**
 
@@ -9,7 +9,7 @@
 
 ---
 
-## 📋 Overview
+## Overview
 
 This project demonstrates an **Event-Driven AI Agent Architecture** that combines microservices design patterns with AI agents for intelligent financial analysis. The system analyzes Mongolian Stock Exchange (MSE) data and provides personalized investment advice in Mongolian language.
 
@@ -24,7 +24,7 @@ Traditional multi-agent systems suffer from **N×M coupling complexity** when ag
 
 ---
 
-## 🏗️ System Architecture
+## System Architecture
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────────┐
@@ -75,7 +75,7 @@ Traditional multi-agent systems suffer from **N×M coupling complexity** when ag
 
 ---
 
-## 🤖 AI Agents
+## AI Agents
 
 ### 1. Orchestrator Agent (Төлөвлөгч Агент)
 - **Role**: Central coordinator using ReAct (Reasoning + Acting) pattern
@@ -122,7 +122,7 @@ Traditional multi-agent systems suffer from **N×M coupling complexity** when ag
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
