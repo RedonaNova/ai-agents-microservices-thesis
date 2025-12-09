@@ -422,5 +422,5 @@ This project is part of a Bachelor's thesis and is provided for educational purp
 
 ---
 
-**Built with ❤️ for Mongolian Stock Market Analysis**
+**Built with ❤️ **
 

@@ -2,69 +2,30 @@
 > knowledge-agent@1.0.0 dev
 > tsx watch src/index.ts
 
-{"level":"WARN","timestamp":"2025-12-08T14:54:30.353Z","logger":"kafkajs","message":"KafkaJS v2.0.0 switched default partitioner. To retain the same partitioning behavior as in previous versions, create the producer with the option \"createPartitioner: Partitioners.LegacyPartitioner\". See the migration guide at https://kafka.js.org/docs/migration-guide-v2.0.0#producer-new-default-partitioner for details. Silence this warning by setting the environment variable \"KAFKAJS_NO_PARTITIONER_WARNING=1\""}
-[2025-12-08T14:54:30.355Z] ========================================== 
-[2025-12-08T14:54:30.355Z] 🚀 Starting Knowledge Agent (RAG) 
-[2025-12-08T14:54:30.355Z] ========================================== 
-[2025-12-08T14:54:30.355Z] Connecting to PostgreSQL... 
-[2025-12-08T14:54:30.407Z] ✅ Loaded 4 knowledge base entries 
-[2025-12-08T14:54:30.407Z] Connecting to Kafka... 
-(node:26056) TimeoutNegativeWarning: -1765205670467 is a negative number.
+{"level":"WARN","timestamp":"2025-12-09T02:09:26.802Z","logger":"kafkajs","message":"KafkaJS v2.0.0 switched default partitioner. To retain the same partitioning behavior as in previous versions, create the producer with the option \"createPartitioner: Partitioners.LegacyPartitioner\". See the migration guide at https://kafka.js.org/docs/migration-guide-v2.0.0#producer-new-default-partitioner for details. Silence this warning by setting the environment variable \"KAFKAJS_NO_PARTITIONER_WARNING=1\""}
+[2025-12-09T02:09:26.804Z] ========================================== 
+[2025-12-09T02:09:26.804Z] 🚀 Starting Knowledge Agent (RAG) 
+[2025-12-09T02:09:26.804Z] ========================================== 
+[2025-12-09T02:09:26.804Z] Connecting to PostgreSQL... 
+[2025-12-09T02:09:26.870Z] ✅ Loaded 4 knowledge base entries 
+[2025-12-09T02:09:26.870Z] Connecting to Kafka... 
+(node:28275) TimeoutNegativeWarning: -1765246166879 is a negative number.
 Timeout duration was set to 1.
 (Use `node --trace-warnings ...` to show where the warning was created)
-[2025-12-08T14:54:30.488Z] ✅ Knowledge Agent ready 
-[2025-12-08T14:54:30.489Z] Listening for knowledge queries... 
-[2025-12-08T14:54:30.489Z] ========================================== 
-{"level":"INFO","timestamp":"2025-12-08T14:54:30.489Z","logger":"kafkajs","message":"[Consumer] Starting","groupId":"knowledge-agent-group"}
-{"level":"INFO","timestamp":"2025-12-08T14:54:33.586Z","logger":"kafkajs","message":"[ConsumerGroup] Consumer has joined the group","groupId":"knowledge-agent-group","memberId":"knowledge-agent-3c3c9b46-4d13-4911-91e0-a1e4d7d6f5b8","leaderId":"knowledge-agent-3c3c9b46-4d13-4911-91e0-a1e4d7d6f5b8","isLeader":true,"memberAssignment":{"knowledge.queries":[0,1,2]},"groupProtocol":"RoundRobinAssigner","duration":3095}
-[2025-12-08T15:29:51.459Z] 📚 Processing knowledge query {"queryId":"24126423-e73b-4594-8bfe-18288692dbf8","query":"APU-O-0000 хувьцааг шинжилж, хөрөнгө оруулалтын зөвлөгөө өгнө үү."}
-[2025-12-08T15:29:51.559Z] ✅ Returned 0 results {"queryId":"24126423-e73b-4594-8bfe-18288692dbf8"}
-[2025-12-08T15:32:13.641Z] 📚 Processing knowledge query {"queryId":"8b5dfe58-8b4b-4b55-9a8c-8d1dcb15583e","query":"Миний ажиглаж буй хувьцаануудыг (APU-O-0000, KHAN-O-0000) шинжилж, хөрөнгө оруулалтын зөвлөгөө өгнө үү."}
-[2025-12-08T15:32:13.646Z] ✅ Returned 0 results {"queryId":"8b5dfe58-8b4b-4b55-9a8c-8d1dcb15583e"}
-[2025-12-08T15:43:01.913Z] 📚 Processing knowledge query {"queryId":"91db7369-7172-4abd-99e9-5410668a9bde","query":"APU-O-0000 болон KHAN-O-0000 хувьцааг шинжилж, хөрөнгө оруулалтын зөвлөгөө өгнө үү."}
-[2025-12-08T15:43:01.933Z] ✅ Returned 0 results {"queryId":"91db7369-7172-4abd-99e9-5410668a9bde"}
-node:events:486
-      throw er; // Unhandled 'error' event
-      ^
-
-error: terminating connection due to administrator command
-    at Parser.parseErrorMessage (/home/it/apps/thesis-report/backend/knowledge-agent/node_modules/pg-protocol/src/parser.ts:369:69)
-    at Parser.handlePacket (/home/it/apps/thesis-report/backend/knowledge-agent/node_modules/pg-protocol/src/parser.ts:187:21)
-    at Parser.parse (/home/it/apps/thesis-report/backend/knowledge-agent/node_modules/pg-protocol/src/parser.ts:102:30)
-    at Socket.<anonymous> (/home/it/apps/thesis-report/backend/knowledge-agent/node_modules/pg-protocol/src/index.ts:7:48)
-    at Socket.emit (node:events:508:28)
-    at addChunk (node:internal/streams/readable:559:12)
-    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
-    at Readable.push (node:internal/streams/readable:390:5)
-    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
-Emitted 'error' event on Client instance at:
-    at Client._handleErrorEvent (/home/it/apps/thesis-report/backend/knowledge-agent/node_modules/pg/lib/client.js:350:10)
-    at Client._handleErrorMessage (/home/it/apps/thesis-report/backend/knowledge-agent/node_modules/pg/lib/client.js:361:12)
-    at Connection.emit (node:events:508:28)
-    at /home/it/apps/thesis-report/backend/knowledge-agent/node_modules/pg/lib/connection.js:116:12
-    at Parser.parse (/home/it/apps/thesis-report/backend/knowledge-agent/node_modules/pg-protocol/src/parser.ts:103:9)
-    at Socket.<anonymous> (/home/it/apps/thesis-report/backend/knowledge-agent/node_modules/pg-protocol/src/index.ts:7:48)
-    at Socket.emit (node:events:508:28)
-    at addChunk (node:internal/streams/readable:559:12)
-    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
-    at Readable.push (node:internal/streams/readable:390:5) {
-  length: 116,
-  severity: 'FATAL',
-  code: '57P01',
-  detail: undefined,
-  hint: undefined,
-  position: undefined,
-  internalPosition: undefined,
-  internalQuery: undefined,
-  where: undefined,
-  schema: undefined,
-  table: undefined,
-  column: undefined,
-  dataType: undefined,
-  constraint: undefined,
-  file: 'postgres.c',
-  line: '3286',
-  routine: 'ProcessInterrupts'
-}
-
-Node.js v24.11.0
+[2025-12-09T02:09:26.890Z] ✅ Knowledge Agent ready 
+[2025-12-09T02:09:26.890Z] Listening for knowledge queries... 
+[2025-12-09T02:09:26.890Z] ========================================== 
+{"level":"INFO","timestamp":"2025-12-09T02:09:26.891Z","logger":"kafkajs","message":"[Consumer] Starting","groupId":"knowledge-agent-group"}
+{"level":"INFO","timestamp":"2025-12-09T02:09:29.921Z","logger":"kafkajs","message":"[ConsumerGroup] Consumer has joined the group","groupId":"knowledge-agent-group","memberId":"knowledge-agent-9bd416b2-31ce-41be-adc1-954c323ecefe","leaderId":"knowledge-agent-9bd416b2-31ce-41be-adc1-954c323ecefe","isLeader":true,"memberAssignment":{"knowledge.queries":[0,1,2]},"groupProtocol":"RoundRobinAssigner","duration":3030}
+[2025-12-09T02:12:09.295Z] 📚 Processing knowledge query {"queryId":"15d29378-8c19-4319-845e-7984083399e7","query":"Миний ажиглаж буй хувьцаануудыг (APU-O-0000, KHAN-O-0000) шинжилж, хөрөнгө оруулалтын зөвлөгөө өгнө үү."}
+[2025-12-09T02:12:09.313Z] ✅ Returned 0 results {"queryId":"15d29378-8c19-4319-845e-7984083399e7"}
+{"level":"WARN","timestamp":"2025-12-09T02:36:54.860Z","logger":"kafkajs","message":"[RequestQueue] Response without match","clientId":"knowledge-agent","broker":"localhost:9092","correlationId":67}
+[2025-12-09T03:22:49.643Z] 📚 Processing knowledge query {"queryId":"c663d0e7-f83d-4610-a3c9-401e0497a800","query":"Миний ажиглаж буй хувьцаануудыг (APU-O-0000, KHAN-O-0000) шинжилж, хөрөнгө оруулалтын зөвлөгөө өгнө үү."}
+[2025-12-09T03:22:49.676Z] ✅ Returned 0 results {"queryId":"c663d0e7-f83d-4610-a3c9-401e0497a800"}
+[2025-12-09T03:23:23.879Z] 📚 Processing knowledge query {"queryId":"38b13ce0-b0d8-49ac-8492-86231d63d174","query":"KHAN-O-0000 хувьцааг шинжилж, хөрөнгө оруулалтын зөвлөгөө өгнө үү."}
+[2025-12-09T03:23:23.883Z] ✅ Returned 0 results {"queryId":"38b13ce0-b0d8-49ac-8492-86231d63d174"}
+[2025-12-09T03:26:03.456Z] 📚 Processing knowledge query {"queryId":"a1e075d8-5be7-4193-ad7a-5ca615ab50e3","query":"Миний ажиглаж буй хувьцаануудыг (APU-O-0000, KHAN-O-0000) шинжилж, хөрөнгө оруулалтын зөвлөгөө өгнө үү."}
+[2025-12-09T03:26:03.461Z] ✅ Returned 0 results {"queryId":"a1e075d8-5be7-4193-ad7a-5ca615ab50e3"}
+[2025-12-09T03:26:48.855Z] 📚 Processing knowledge query {"queryId":"a61ad358-5189-42d1-82e9-e718c5a8f1d7","query":"KHAN-O-0000 хувьцааг шинжилж, хөрөнгө оруулалтын зөвлөгөө өгнө үү."}
+[2025-12-09T03:26:48.861Z] ✅ Returned 0 results {"queryId":"a61ad358-5189-42d1-82e9-e718c5a8f1d7"}
+{"level":"WARN","timestamp":"2025-12-09T04:19:10.717Z","logger":"kafkajs","message":"[RequestQueue] Response without match","clientId":"knowledge-agent","broker":"localhost:9092","correlationId":975}
