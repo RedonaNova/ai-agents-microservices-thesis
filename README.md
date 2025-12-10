@@ -30,7 +30,7 @@ Traditional multi-agent systems suffer from **N×M coupling complexity** when ag
 ```
 ┌─────────────────────────────────────────────────────────────────────────────────┐
 │                                   FRONTEND                                       │
-│                          Next.js 15 + React 19                                   │
+│                          Next.js 16 + React 19                                   │
 │            Dashboard │ AI Chat │ Watchlist │ MSE Stocks │ Analytics              │
 └─────────────────────────────────────────────────────────────────────────────────┘
                                         │
@@ -396,8 +396,9 @@ SELECT * FROM mse_companies;  # Query MSE data
 
 ## Thesis Documentation
 
-The complete thesis report is available in the `report/` directory:
+The complete thesis report is available in the `latex-report/` directory:
 - **main.tex** - Main LaTeX document
+- **main.pdf** Thesis report
 - **Compile with**: `xelatex main.tex`
 
 Key chapters:
