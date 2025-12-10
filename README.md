@@ -21,6 +21,7 @@ Traditional multi-agent systems suffer from **N×M coupling complexity** when ag
 - **Horizontal scaling** by adding more agent instances
 - **Event replay** for debugging and model retraining
 - **Real-time streaming** with Apache Flink
+- **Open-source** that can be online business' internal information system
 
 ---
 
@@ -237,7 +238,7 @@ thesis-report/
 ### Frontend
 | Technology | Version | Purpose |
 |------------|---------|---------|
-| Next.js | 15 | React framework with App Router |
+| Next.js | 16 | React framework with App Router |
 | React | 19 | UI library |
 | TypeScript | 5 | Type safety |
 | Tailwind CSS | 3.4 | Styling |
@@ -422,4 +423,4 @@ This project is part of a Bachelor's thesis and is provided for educational purp
 
 ---
 
-**Built with ❤️ **
+**Built with ❤️**
