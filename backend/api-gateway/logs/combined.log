@@ -4369,3 +4369,15 @@
 {"ip":"::1","level":"info","message":"GET /api/agent/response/f2ec044a-44f0-4e8e-ac18-080b339452ad","service":"api-gateway","timestamp":"2025-12-09T03:27:01.486Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0"}
 {"ip":"::ffff:127.0.0.1","level":"info","message":"GET /api/mse/summary","service":"api-gateway","timestamp":"2025-12-09T04:29:10.869Z","userAgent":"node"}
 {"ip":"::ffff:127.0.0.1","level":"info","message":"GET /api/mse/trading-status","service":"api-gateway","timestamp":"2025-12-09T04:29:10.892Z","userAgent":"node"}
+{"level":"info","message":"✅ Email service configured","service":"api-gateway","timestamp":"2025-12-13T08:20:38.342Z"}
+{"level":"info","message":"✅ Gemini AI configured for email generation","service":"api-gateway","timestamp":"2025-12-13T08:20:38.347Z"}
+{"env":"development","level":"info","message":"Starting API Gateway...","port":3001,"service":"api-gateway","timestamp":"2025-12-13T08:20:38.471Z"}
+{"level":"info","message":"✅ PostgreSQL connected successfully","service":"api-gateway","timestamp":"2025-12-13T08:20:38.508Z"}
+{"level":"info","message":"Kafka producer connected","service":"api-gateway","timestamp":"2025-12-13T08:20:38.537Z"}
+{"level":"info","message":"API Gateway listening on port 3001","service":"api-gateway","timestamp":"2025-12-13T08:20:38.543Z"}
+{"level":"info","message":"CORS enabled for: http://localhost:3000","service":"api-gateway","timestamp":"2025-12-13T08:20:38.544Z"}
+{"level":"info","message":"Kafka broker: localhost:9092","service":"api-gateway","timestamp":"2025-12-13T08:20:38.544Z"}
+{"level":"info","message":"API Gateway is ready!","service":"api-gateway","timestamp":"2025-12-13T08:20:38.545Z"}
+{"ip":"::1","level":"info","message":"GET /health","service":"api-gateway","timestamp":"2025-12-13T08:20:40.364Z","userAgent":"curl/8.5.0"}
+{"ip":"::ffff:127.0.0.1","level":"info","message":"GET /api/mse/summary","service":"api-gateway","timestamp":"2025-12-13T08:20:48.950Z","userAgent":"node"}
+{"ip":"::ffff:127.0.0.1","level":"info","message":"GET /api/mse/trading-status","service":"api-gateway","timestamp":"2025-12-13T08:20:48.952Z","userAgent":"node"}

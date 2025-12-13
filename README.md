@@ -12,6 +12,9 @@
 ## Overview
 
 This project demonstrates an **Event-Driven AI Agent Architecture** that combines microservices design patterns with AI agents for intelligent financial analysis. The system analyzes Mongolian Stock Exchange (MSE) data and provides personalized investment advice in Mongolian language.
+> For full Thesis Report (Mongolian), see [./latex-report/main.pdf](./latex-report/main.pdf)
+
+> For performance metrics report, see [./perf.md](./perf.md)
 
 ### Key Innovation
 
@@ -22,6 +25,7 @@ Traditional multi-agent systems suffer from **N×M coupling complexity** when ag
 - **Event replay** for debugging and model retraining
 - **Real-time streaming** with Apache Flink
 - **Open-source** that can be online business' internal information system
+
 
 ---
 
@@ -147,6 +151,8 @@ cp backend/env.example backend/.env
 # - RESEND_API_KEY=your_key_here (optional, for emails)
 ```
 
+After doing this step, we can import the dump postgres data from /backend/database/dump.sql
+
 ### 2. Start All Services
 
 ```bash
@@ -199,8 +205,8 @@ thesis-report/
 │   ├── knowledge-agent/      # RAG system agent
 │   ├── flink-planner/        # PyFlink multi-step planner
 │   │
-│   ├── database/
-│   │   └── schema.sql        # PostgreSQL schema
+│   ├── database (mse ingestion)/
+│   │   └── dump.sql        # Thesis DB dump (2015-2020 trading histories, user, watchlist)
 │   ├── kafka/
 │   │   └── topics.sh         # Kafka topic creation
 │   │
