@@ -31,6 +31,22 @@ Traditional multi-agent systems suffer from **N×M coupling complexity** when ag
 
 ---
 
+## Thesis Documentation
+
+The complete thesis report is available in the `latex-report/` directory:
+- **main.tex** - Main LaTeX document
+- **main.pdf** Thesis report
+- **Thesis_Presentation.pdf** – Thesis presentation slides 
+- **Compile with**: `xelatex main.tex` (MiKTeX for Windows, TeX Live for Linux, MacTeX for macOS)
+
+Key chapters:
+1. AI Engineering and Agents
+2. Microservices and EDA
+3. Problem Definition and Solution
+4. Implementation
+
+---
+
 ## System Architecture
 
 ```
@@ -399,21 +415,6 @@ docker exec -it thesis-postgres psql -U thesis_user -d thesis_db
 \dt                           # List tables
 SELECT * FROM mse_companies;  # Query MSE data
 ```
-
----
-
-## Thesis Documentation
-
-The complete thesis report is available in the `latex-report/` directory:
-- **main.tex** - Main LaTeX document
-- **main.pdf** Thesis report
-- **Compile with**: `xelatex main.tex`
-
-Key chapters:
-1. AI Engineering and Agents
-2. Microservices and EDA
-3. Problem Definition and Solution
-4. Implementation
 
 ---
 
