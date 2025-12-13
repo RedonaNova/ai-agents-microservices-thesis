@@ -8,6 +8,7 @@
 > December 2025
 
 > For full Thesis Report (Mongolian), see [./latex-report/main.pdf](./latex-report/main.pdf)
+
 > For performance metrics report, see [./perf.md](./perf.md)
 
 ---
